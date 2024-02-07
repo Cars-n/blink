@@ -8,6 +8,12 @@ function setupPlayer(){
     player.spriteSheet = 'assets/BODY_skeleton.png';
     player.anis.offset.x = 2;
     player.anis.frameDelay = 8;
+
+    //Adding in the collsion
+    player.collider = 'dynamic';
+
+    
+
     
     player.addAnis({
         up: { row: 0, frames: 9 },

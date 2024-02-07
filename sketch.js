@@ -1,18 +1,19 @@
-import { Player } from './src/js/mainPlayer.js';
-
-let ball;
 let player;
 
 function setup() {
-	new Canvas(500, 500);
+	new Canvas();
 
-	//Testing player
-	player = new Player();
-
-	ball = new Sprite();
-	ball.diameter = 50;
+	// new Player 
+	player = new Sprite(30, 24, 64, 64);
+	setupPlayer();
+	playerMovement = new MovementController(player,3,true,true);
 }
 
 function draw() {
-	background('gray');
+	clear();
+	playerMovement.handleMovement();
+
+
+	//Setting the debug on for sprite
+    player.debug = kb.pressing('q');
 }
