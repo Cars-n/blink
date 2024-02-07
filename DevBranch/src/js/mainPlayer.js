@@ -10,9 +10,12 @@ function setupPlayer(){
     player.anis.frameDelay = 8;
 
     //Adding in the collsion
-    player.collider = 'dynamic';
+    player.collider = 'kinematic';
 
-    
+    //Sets LOCK for ration interactions
+    //This prevents the player sprite from spning
+    //from envrionmental interactions
+    player.roationLock = true;
 
     
     player.addAnis({

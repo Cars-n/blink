@@ -15,12 +15,14 @@ function setup() {
 
 
 	//Adding in for collsion testing
+	player.rotationLock = true;
+	world.gravity.y = 15;
 	box = new Sprite();
 	box2 = new Sprite(100,100,100,100);
 	box3 = new Sprite(-10,-10,-10,-10);
 
-	box.collider = 'static';
-	box2.collider = 'static';
+	box.collider = 'kinematic';
+	box2.collider = 'kinematic';
 	box3.collider = 'kinematic';
 }
 
