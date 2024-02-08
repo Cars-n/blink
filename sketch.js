@@ -1,18 +1,17 @@
-import { Player } from './src/js/mainPlayer.js';
-
-let ball;
-let player;
+let bricks, tilesGroup;
+let playerControl,player;
 
 function setup() {
-	new Canvas(500, 500);
 
-	//Testing player
-	player = new Player();
-
-	ball = new Sprite();
-	ball.diameter = 50;
+	createCanvas(windowWidth,windowHeight);//Make a canvas the size of our window
+	createRoom(10,10);
+	
+	// var player=new Player();
+	player=new Sprite(300,305,100);
+	playerControl=new MovementController(player,10);
 }
 
 function draw() {
 	background('gray');
+	playerControl.handleInput();
 }
