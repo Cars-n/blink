@@ -18,7 +18,7 @@ function setup() {
 
 	//Adding in for collsion testing
 	player.rotationLock = true;
-	world.gravity.y = 15;
+	// world.gravity.y = 15;
 	box = new Sprite();
 	box2 = new Sprite(100,100,100,100);
 	box3 = new Sprite(-10,-10,-10,-10);
