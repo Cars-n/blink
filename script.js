@@ -125,7 +125,7 @@ video.addEventListener('play', () => {
     var p_ = Math.floor(x_+w_/2) + Math.floor(y_+h_/2) * video.width
     //console.log("eye_RGB:"+[frame.data[p_*4+0], frame.data[p_*4+1], frame.data[p_*4+2]]);
     var v_ = Math.floor( (frame.data[p_*4+0] + frame.data[p_*4+1] + frame.data[p_*4+2])/3 );
-    console.log("irisC:"+v_);
+    //console.log("irisC:"+v_);
 
     irisC.push(v_);
     if(irisC.length>100){
@@ -143,6 +143,7 @@ video.addEventListener('play', () => {
        if(nowBlinking==false){
           if(currentIrisC>=meanIrisC*vThreshold){
               nowBlinking = true;
+              
           }//
        }//
        else{
@@ -151,7 +152,7 @@ video.addEventListener('play', () => {
               blinkCount += 1;
               mBlinkSound.pause();
               mBlinkSound.currentTime = 0;
-              mBlinkSound.play();
+             // mBlinkSound.play();
           }//
        }//
 
@@ -220,9 +221,11 @@ video.addEventListener('play', () => {
     ctx.font = "48px serif";
     ctx.fillText("FPS:"+ Math.floor(1000.0/(t2-t1)), 10, 50);
     ctx.fillText("Count:"+blinkCount, 10, 100);
-    console.log(blinkCount);
+    if(!nowBlinking){
+      console.log(blinkCount);
+    }
     if(nowBlinking){
-      ctx.fillText("Blinking", 10, 150);
+      console.log("Blinking");
     }
     //ctx.fillText("FPS:"+ (t2-t1), 10, 50);
     t1 = t2;
