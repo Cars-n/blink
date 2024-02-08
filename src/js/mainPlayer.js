@@ -1,22 +1,19 @@
 /**
- * Main player of the game done in a class, will include a spirte and collision and movement
  * 
- * 
- * 
+ * Player of the game - settings and other setup
+ *
  */
+
+
 function setupPlayer(){
     player.spriteSheet = 'assets/BODY_skeleton.png';
     player.anis.offset.x = 2;
     player.anis.frameDelay = 8;
 
-    //Adding in the collsion
-    // player.collider = 'kinematic';
-
-    //Sets LOCK for ration interactions
-    //This prevents the player sprite from spning
-    //from envrionmental interactions
-    player.roationLock = true;
-
+    //Configures the collision settings based on presets
+    //turns on rotation lock (A MUST!!!), and sets the
+    //collider type as dynamic
+    setObjectCollider(player, spriteTypes.PLAYER, true);
     
     player.addAnis({
         up: { row: 0, frames: 9 },

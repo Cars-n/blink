@@ -1,11 +1,6 @@
 let bricks, tilesGroup;
 let playerControl,player;
 
-//Boxes to test collsions on
-let box;
-let box2;
-let box3;
-
 function setup() {
 	createCanvas(windowWidth,windowHeight);//Make a canvas the size of our window
 	createRoom(10,10);
@@ -14,24 +9,18 @@ function setup() {
 	player = new Sprite(300, 300, 64, 64);
 	setupPlayer();
 	playerMovement = new MovementController(player,3,true);
-
-
-	//Adding in for collsion testing
-	player.rotationLock = true;
-	// world.gravity.y = 15;
-	box = new Sprite();
-	box2 = new Sprite(100,100,100,100);
-	box3 = new Sprite(-10,-10,-10,-10);
-
-	box.collider = 'kinematic';
-	box2.collider = 'kinematic';
-	box3.collider = 'kinematic';
+	
+	//Remove to turn off debug mode
+	turnOnDebugMode(true, false);
+	
+	
 }
 
 function draw() {
 	clear();
 	playerMovement.handleInput();
-
-	//Setting the debug on for sprite
-    player.debug = true;
+	
+	//FPS counter, needs to be in draw to
+	//render properly
+	renderStats();
 }
