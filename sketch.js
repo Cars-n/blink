@@ -11,9 +11,9 @@ function setup() {
 	createRoom(10,10);
 
 	// new Player 
-	player = new Sprite(30, 24, 64, 64);
+	player = new Sprite(300, 300, 64, 64);
 	setupPlayer();
-	playerMovement = new MovementController(player,3,true,true);
+	playerMovement = new MovementController(player,3,true);
 
 
 	//Adding in for collsion testing
@@ -30,7 +30,7 @@ function setup() {
 
 function draw() {
 	clear();
-	playerMovement.handleMovement();
+	playerMovement.handleInput();
 
 	//Setting the debug on for sprite
     player.debug = true;
