@@ -6,6 +6,7 @@
 
 
 function setupPlayer(){
+    player = new Sprite(300, 300, 64, 64);
     player.spriteSheet = 'assets/BODY_skeleton.png';
     player.anis.offset.x = 2;
     player.anis.frameDelay = 8;
@@ -28,5 +29,6 @@ function setupPlayer(){
     });
     player.changeAni('idle_up'); // Starting direction
     // Animations for movement
+    return player;
 }
 
