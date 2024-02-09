@@ -1,5 +1,6 @@
 let bricks, tilesGroup;
 let playerControl,player;
+const enemyList = [];
 
 function setup() {
 	createCanvas();//Make a canvas the size of our window
@@ -19,6 +20,7 @@ function draw() {
 	clear();
 	playerMovement.handleInput();
 	makeCameraFollowPlayer();
+	enemyHandler();
 	//FPS counter, needs to be in draw to
 	//render properly
 	renderStats();
