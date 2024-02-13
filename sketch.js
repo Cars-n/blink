@@ -1,18 +1,19 @@
-let bricks, tilesGroup;
+
 let playerControl,player;
 let ALL_LOADED=1;
 
 function setup() {
 
 	createCanvas();//Make a canvas the size of our window
-	
-	createRoom(10,10);
+	roomControl = new RoomController();
+	// createRoom(10,10);
+	roomControl.renderMap();
 	// new Player 
 	player = setupPlayer();
-	playerMovement = new MovementController(player,3,true);
+	playerMovement = new MovementController(player,20,true);
 	
 	//Remove to turn off debug mode
-	turnOnDebugMode(false, false);
+	turnOnDebugMode(true, false);
 	
 	
 }

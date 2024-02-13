@@ -20,6 +20,12 @@ class ImageTile {
         this.group.collider=colliderType;
         this.group.tile=symbol;
     }
+    tileHeight(){
+        return this.group.h;
+    }
+    tileWidth(){
+        return this.group.w;
+    }
 }
 
 class EventTile{
