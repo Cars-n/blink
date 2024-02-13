@@ -1,12 +1,25 @@
-let ball;
+let bricks, tilesGroup;
+let playerControl,player;
 
 function setup() {
-	new Canvas(500, 500);
+	createCanvas();//Make a canvas the size of our window
+	createRoom(10,10);
 
-	ball = new Sprite();
-	ball.diameter = 50;
+	// new Player 
+	player = setupPlayer();
+	playerMovement = new MovementController(player,3,true);
+	
+	//Remove to turn off debug mode
+	turnOnDebugMode(true, false);
+	
+	
 }
 
 function draw() {
-	background('gray');
+	clear();
+	playerMovement.handleInput();
+	makeCameraFollowPlayer();
+	//FPS counter, needs to be in draw to
+	//render properly
+	renderStats();
 }
