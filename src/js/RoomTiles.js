@@ -8,8 +8,9 @@ class ImageTile {
  * @param {int} width - Tile width
  * @param {int} height - Tile height
  * @param {string} colliderType - The type of the collider. See p5Play sprite documentation for collider types
+ * @param {int} layer - Determines which sprites are drawn on top of others
  */
-    constructor(image,symbol,width,height,colliderType='none') {
+    constructor(image,symbol,width,height,colliderType='none', layer = 1) {
         
         this.image=createImage(width,height)
         this.image.copy(image,0,0,width,height,0,0,width,height);
@@ -19,6 +20,8 @@ class ImageTile {
         this.group.h=height;
         this.group.collider=colliderType;
         this.group.tile=symbol;
+        this.group.layer = layer;
+
     }
     tileHeight(){
         return this.group.h;
