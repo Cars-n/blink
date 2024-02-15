@@ -6,11 +6,11 @@
 
 
 function setupPlayer(){
-    player = new Sprite(300, 300, 64, 64);
+    player = new Sprite(500, 500, 64, 64);
     player.spriteSheet = 'assets/BODY_skeleton.png';
     player.anis.offset.x = 2;
     player.anis.frameDelay = 8;
-
+    player.tag="player";
     //Configures the collision settings based on presets
     //turns on rotation lock (A MUST!!!), and sets the
     //collider type as dynamic
