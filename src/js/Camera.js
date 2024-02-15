@@ -12,6 +12,7 @@ function makeCameraFollowPlayer(){
 function createFadeScreen(){
     object = new Sprite(500, 500, 100000,100000);
     object.color = 'black';
+    
     object.collider = 'none';
     object.layer = FADELAYER; //Layer needs to be higher than the layer of every other Sprite
     object.opacity = 0;
