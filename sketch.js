@@ -1,17 +1,25 @@
 
 let playerControl,player;
 let ALL_LOADED=1;
+let notPlayer;
 
+function preload() {
+	brickImage = loadImage('./assets/sand-brick-tileset-texture.png');
+	floorBoardImage = loadImage("assets/floorboards.png");
+	doorImage=loadImage("assets/Door.png");
+
+}
+//Group to specify which sprites we want to interact with event tiles.
+// let eventTileInteractable;
 function setup() {
 
-	createCanvas();//Make a canvas the size of our window
+	createCanvas(1920,1080,"fullscreen");//Make a canvas the size of our window
 	roomControl = new RoomController();
-	// createRoom(10,10);
 	roomControl.renderMap();
 	// new Player 
 	player = setupPlayer();
 	playerMovement = new MovementController(player,20,true);
-	
+
 	//Remove to turn off debug mode
 	turnOnDebugMode(true, false);
 	
