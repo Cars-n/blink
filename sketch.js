@@ -1,6 +1,7 @@
 let bricks, tilesGroup;
 let playerControl,player;
-const enemyList = [];
+const enemyList = []; //Enemeies currently spawned
+const staticEnemyList = []; //Stored list of every enemy
 
 function setup() {
 	createCanvas();//Make a canvas the size of our window
@@ -9,9 +10,11 @@ function setup() {
 	// new Player 
 	player = setupPlayer();
 	playerMovement = new MovementController(player,3,true);
+
+	setupStaticEnemeyList()
 	
 	//Remove to turn off debug mode
-	turnOnDebugMode(true, false);
+	//turnOnDebugMode(true, false);
 	
 	
 }
