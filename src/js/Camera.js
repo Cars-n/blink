@@ -2,6 +2,7 @@ const FADERATE = 0.01;
 const FADELAYER = 3;
 let HASFADEDIN = true;
 let HASFADEDOUT = true;
+let HASMOVEDCAMERA = false;
 
 function makeCameraFollowPlayer(){
     camera.x = player.x;
@@ -22,6 +23,7 @@ function createFadeScreen(){
 //Run constantly, If HASFADEDIN and HASFADEDOUT are false it will Fade the fadeScreen in over eveything. 
 // HASFADEDIN and HASFADEDOUT shouldn't be changed manually, use the fadeScreenNow function to reset them.
 function fadeInAndOut(ScreenSprite){
+    if (kb.presses('.')) {HASFADEDIN = false; HASFADEDOUT = false;}
     if (!HASFADEDIN){
         HASFADEDIN = fadeIn(ScreenSprite);
     }
@@ -34,9 +36,11 @@ function fadeInAndOut(ScreenSprite){
 function fadeIn(object){
     if(object.opacity <= 1){
     object.opacity += FADERATE;
+    return false;
     }
     else {
         object.opacity = 1;
+        return true;
     }
 }
 
@@ -77,4 +81,9 @@ function movePlayer(){
 function fadeScreenNow(){
     HASFADEDIN = false;
     HASFADEDOUT = false;
+}
+
+
+function trackCamera(sprite, collider){
+
 }

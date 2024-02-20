@@ -33,12 +33,9 @@ function setup() {
 function draw() {
 	clear();
 	fadeInAndOut(fadeScreen);
-	if (kb.presses('.')){
-		fadeScreenNow();
-	}
+	if (kb.presses('.')) fadeScreenNow();
 	movementSounds(player,footsteps);
 	playerMovement.handleInput();
-	 
 	//Create a new room
 	//fadeInAndOut(fadeScreen);
 	//FPS counter, needs to be in draw to
