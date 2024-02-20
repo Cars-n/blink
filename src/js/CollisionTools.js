@@ -52,6 +52,7 @@ function setObjectCollider(gameObject, objectType=spriteTypes.NONE, rotationLock
             break;
 
         default:    //Used for NONE type
+        gameObject.collider = 'none';
         gameObject.rotationLock = rotationLock;
         break;
     }
