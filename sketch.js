@@ -1,6 +1,10 @@
+let bricks, tilesGroup;
+const enemyList = []; //Enemeies currently spawned
+const staticEnemyList = []; //Stored list of every enemy
 let playerControl,player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
 let notPlayer;
+
 
 function preload() {
 	brickImage = loadImage('./assets/sand-brick-tileset-texture.png');
@@ -26,6 +30,8 @@ function setup() {
 
 
 	playerMovement = new MovementController(player,3,true);
+
+	setupStaticEnemeyList();
 	
 	
 	//Remove to turn off debug mode
@@ -40,6 +46,9 @@ function draw() {
 	if (kb.presses('.')) fadeScreenNow();
 	movementSounds(player,footsteps);
 	playerMovement.handleInput();
+	enemyHandler();
+	//FPS counter, needs to be in draw to
+	//render properly
 	//Create a new room
 	//fadeInAndOut(fadeScreen);
 	//FPS counter, needs to be in draw to
