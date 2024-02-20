@@ -1,5 +1,6 @@
 let playerControl,player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
+let notPlayer;
 
 function preload() {
 	brickImage = loadImage('./assets/sand-brick-tileset-texture.png');
@@ -19,10 +20,11 @@ function setup() {
 	fadeScreen = createFadeScreen(); //Creates a screen that's black and fades in and out with the fadeInAndOut function
 	//Creates Room Controller. 
 	roomControl = new RoomController();
-	// createRoom(10,10);
 	roomControl.renderMap();
 	// new Player 
 	player = setupPlayer();
+
+
 	playerMovement = new MovementController(player,3,true);
 	
 	
