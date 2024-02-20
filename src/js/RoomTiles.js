@@ -1,5 +1,4 @@
 
-
 // Class representing a tile in a room
 class RoomTile {
     constructor(symbol, width, height, colliderType = 'none', collidingCallback = null) {
