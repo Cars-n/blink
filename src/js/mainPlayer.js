@@ -6,12 +6,12 @@
 
 
 function setupPlayer(){
-    player = new Sprite(300, 300, 64, 64);
+    player = new Sprite(900, 600, 64, 64);
     player.spriteSheet = 'assets/player.png';
     player.anis.offset.x = 2;
     player.anis.frameDelay = 8;
     player.layer = 2;
-    //Configures the collision settings based on presets
+    //Configures the collision settings based on presetsd
     //turns on rotation lock (A MUST!!!), and sets the
     //collider type as dynamic
     setObjectCollider(player, spriteTypes.PLAYER, true);
