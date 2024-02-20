@@ -83,7 +83,9 @@ function fadeScreenNow(){
     HASFADEDOUT = false;
 }
 
+window.addEventListener("resize", canvasResize);
 
-function trackCamera(sprite, collider){
-
+function canvasResize() {
+    resizeCanvas(1920,1080,document.getElementById("game"));
+	canvas.style=""; // removes default canvas styling
 }

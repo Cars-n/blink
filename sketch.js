@@ -13,7 +13,9 @@ function preload() {
 }
 
 function setup() {
-	createCanvas();//Make a canvas the size of our window
+	createCanvas(1920,1080,document.getElementById("game"));
+	noSmooth(); // removes smoothing to maintain pixelated look
+	canvas.style = ""; // removes default canvas styling
 	fadeScreen = createFadeScreen(); //Creates a screen that's black and fades in and out with the fadeInAndOut function
 	//Creates Room Controller. 
 	roomControl = new RoomController();

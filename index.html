@@ -7,30 +7,38 @@
 	<title>p5play</title>
 	<script defer src="face-api.min.js"></script>
  	 <script defer src="script.js"></script>
-	<style>
-		body {
-    	  	margin: 0;
-     		padding: 0;
-     	 	width: 100vw;
-      		height: 100vh;
-      		display: flex; 
-      		justify-content: center; 
-     	 	align-items: center;
-			background-color: #000;
-     	 	overflow: hidden; /* Hide the video overflow */
-   		 }
-   		#video {
-     	 position:absolute;
-   	     width:1px;
-     	 height:1px;
-    }
-		canvas {
-     	 position: absolute;
-     	 overflow:hidden;
-    	  height: 1px;
-    	  width: 1px;
-    	}
-		</style>
+	  <style>
+		body{
+			margin: 0;
+			padding: 0;
+			height: 100vh; /* body uses the whole viewport's height */
+			width: 100vw; /* body uses the whole viewport's width */
+			display: flex;
+			justify-content: center; /* makes contents horizontally centered */
+			align-items: center; /* makes contents vertically centered */
+			overflow: hidden; /* hides overflow from the video element */
+			background-image: url("assets/background.svg");
+			background-size: contain; /* scales background image to size of container */
+			background-position: center;
+	  	}
+
+	 	 canvas {
+			max-width: 100%;
+			max-height: 100%;
+			object-fit: contain; /* scales canvas to size of container */
+      	outline: none; /* removes default white outline */
+			background-color: black;
+
+	  	}
+	 	video {
+			position: fixed;
+			top: -10000px;
+			left: -10000px;
+			width:1px;
+			height:1px;
+		}
+	  </style>
+
 </head>
 
 <body>
