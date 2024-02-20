@@ -5,11 +5,31 @@ let roomControl;
 // Callback function, simply determines whether it is the player ob colliding with door tile or not
 function doorCallback(a, b) {
     if (b?.tag === "player") {
-        console.log("player at door");
+
     } else {
         console.log("not player: ", b.tag);
     }
    
+}
+
+function upwardDoorCallback(a, b) {
+        fadeScreenNow();
+        if(HASFADEDIN === true){
+        moveCamera("up");
+        movePlayer("up");
+        }
+    }
+function rightDoorCallback(a, b) {
+        fadeScreenNow();
+        if(HASFADEDIN === true){
+        moveCamera("right");
+        movePlayer("right");
+        }
+}
+function leftDoorCallback(a, b) {
+    fadeScreenNow();
+    moveCamera("left");
+    movePlayer("left");
 }
 
 // Class for managing the room layout
@@ -20,7 +40,8 @@ class RoomController {
 	//Defining our tiles that we want to use, keeps them in memory. Not meant to be written to outside of class
     static wallTile; 
     static floor;
-    static door;
+    static upDoor;
+    static rightDoor;
 
     constructor() {
         // If it's the first load, initialize the tiles
@@ -30,7 +51,9 @@ class RoomController {
             RoomController.wallTile = new ImageTile(brickImage, '=', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static');
             RoomController.floor = new ImageTile(floorBoardImage, 'o', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'none',doorCallback);
             RoomController.door = new ImageTile(doorImage, 'D', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static', doorCallback);
-			
+			RoomController.upDoor = new ImageTile(doorImage, '^', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static', upwardDoorCallback);
+            RoomController.rightDoor = new ImageTile(doorImage, '>', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static', rightDoorCallback);
+            RoomController.leftDoor = new ImageTile(doorImage, '<', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static', leftDoorCallback);
 		}
 
         this.map = [];
@@ -56,8 +79,8 @@ class RoomController {
                 '.'.repeat(10),
                 '.'.repeat(10),
                 '='.repeat(10),
-                'o'.repeat(10),
-                'o'.repeat(10),
+                'o'.repeat(2)+ '><' + 'o'.repeat(6),
+                'o'.repeat(2)+ '><' + 'o'.repeat(6),
                 '='.repeat(10),
                 '.'.repeat(10),
                 '.'.repeat(10),

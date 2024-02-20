@@ -39,6 +39,7 @@ function fadeIn(object){
     return false;
     }
     else {
+        console.log('Hello');
         object.opacity = 1;
         return true;
     }
@@ -61,19 +62,22 @@ function fadeOut(object){
 
 //Moves the camera in the direction specified. takes "up", "down", "left", "right" as arguments.
 function moveCamera(direction){
-    if (direction == "up") camera.y -= windowHeight;
-    else if (direction == "down") camera.y += windowHeight;
-    else if (direction == "left") camera.x -= windowWidth;
-    else if (direction == "right") camera.x += windowWidth;
+   if(!HASMOVEDCAMERA){
+    if (direction == "up") camera.y -= 1080;
+    else if (direction == "down") camera.y += 1080;
+    else if (direction == "left") camera.x -= 1920;
+    else if (direction == "right") camera.x += 1920;
+   }
+   HASMOVEDCAMERA = true;
 }
 
 
 //Moves the player in the direction specified. takes "up", "down", "left", "right" as arguments. Used to teleport to the next room. 
-function movePlayer(){
-    if (direction == "up") player.y -= 20;
-    else if (direction == "down") player.y += 20;
-    else if (direction == "left") player.x -= 20;
-    else if (direction == "right") player.x += 20;
+function movePlayer(direction){
+    if (direction == "up") player.y -= 80;
+    else if (direction == "down") player.y += 80;
+    else if (direction == "left") player.x -= 80;
+    else if (direction == "right") player.x += 80;
 }
 
 

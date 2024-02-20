@@ -47,6 +47,8 @@ function draw() {
 	movementSounds(player,footsteps);
 	playerMovement.handleInput();
 	enemyHandler();
+
+
 	//FPS counter, needs to be in draw to
 	//render properly
 	//Create a new room
