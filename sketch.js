@@ -31,7 +31,7 @@ function setup() {
 
 	playerMovement = new MovementController(player,3,true);
 
-	setupStaticEnemeyList();
+	setupStaticEnemyList();
 	
 	
 	//Remove to turn off debug mode

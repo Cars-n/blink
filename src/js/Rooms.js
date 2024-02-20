@@ -1,7 +1,6 @@
 // Declaring variables for images and the room controller
 let brickImage, floorBoardImage, doorImage;
 let roomControl;
-let tilesGroup;
 
 // Callback function, simply determines whether it is the player ob colliding with door tile or not
 function doorCallback(a, b) {
@@ -116,4 +115,4 @@ class RoomController {
 }
 
 // Creating an instance of the room controller
-roomControl = new RoomController();
+// roomControl = new RoomController();

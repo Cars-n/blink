@@ -85,7 +85,7 @@ function enemyHandler(){
 
 //Loads at start
 //Enemy data is harded coded and then pushed onto the staticEnemyList
-function setupStaticEnemeyList(){ //Add new enemies here
+function setupStaticEnemyList(){ //Add new enemies here
 
     temp = new enemyData(0, 0, "test", 5, 0, 0, 10);
     staticEnemyList.push(temp);
