@@ -11,7 +11,7 @@ function setup() {
 	player = setupPlayer();
 	playerMovement = new MovementController(player,3,true);
 
-	setupStaticEnemeyList()
+	setupStaticEnemeyList();
 	
 	//Remove to turn off debug mode
 	//turnOnDebugMode(true, false);
