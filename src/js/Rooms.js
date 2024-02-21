@@ -1,3 +1,4 @@
+
 // Declaring variables for images and the room controller
 let brickImage, floorBoardImage, doorImage;
 let roomControl;
@@ -10,6 +11,26 @@ function doorCallback(a, b) {
         console.log("not player: ", b.tag);
     }
    
+}
+class Room{
+    static MAX_T_WIDTH=16;
+    static MAX_T_HEIGHT=9;
+
+    constructor(tWidth,tHeight,tileArray){
+        if((tWidth>Room.MAX_T_WIDTH||tWidth<1)||(tHeight>Room.MAX_T_HEIGHT||tHeight<1)){
+            console.error("Invalid room dimensions!",tWidth,tHeight);
+            return;
+        }
+        this.tWidth=tWidth;
+        this.tHeight=tHeight;
+        this.tileArray=tileArray;
+    }
+    getTileArray(){
+        return this.tileArray;
+    }
+    getTileSymbol(row,col){
+        return this.tileArray[row][col];
+    }
 }
 
 // Class for managing the room layout
@@ -33,7 +54,7 @@ class RoomController {
 			
 		}
 
-        this.map = [];
+        // this.map = [];
     }
 
     // Method to render the room layout
@@ -91,7 +112,24 @@ class RoomController {
             RoomController.TILE_HEIGHT
         );
     }
-
+    getRoom1(){
+        var tileMap=[
+            '='.repeat(16),
+            '=' + 'o'.repeat(14) + '=',
+            '=' + 'o'.repeat(14) + '=',
+            '=' + 'o'.repeat(14) + '=',
+            '=' + 'o'.repeat(15),
+            '=' + 'o'.repeat(15),
+            '=' + 'o'.repeat(14) + '=',
+            '=' + 'o'.repeat(14) + '=',
+            '=' + 'o'.repeat(14) + '=',
+            '=' + 'o'.repeat(14) + '=',
+            '=' + 'o'.repeat(14) + '=',
+            '='.repeat(16)
+        ]
+        var room=new Room(16,9,tileMap)
+        return room;
+    }
     // Method to render room 2
     renderRoom2(x, y) {
         var room = new Tiles(
@@ -113,6 +151,3 @@ class RoomController {
         );
     }
 }
-
-// Creating an instance of the room controller
-// roomControl = new RoomController();
