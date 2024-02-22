@@ -4,7 +4,7 @@ const staticEnemyList = []; //Stored list of every enemy
 let playerControl,player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
 let notPlayer;
-
+const PLAYERSPEED = 3;
 
 function preload() {
 	brickImage = loadImage('./assets/sand-brick-tileset-texture.png');
@@ -28,8 +28,8 @@ function setup() {
 	// new Player 
 	player = setupPlayer();
 
-
-	playerMovement = new MovementController(player,3,true);
+	
+	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
 	setupStaticEnemyList();
 	

@@ -1,15 +1,61 @@
 // Declaring variables for images and the room controller
 let brickImage, floorBoardImage, doorImage;
 let roomControl;
-
+let ISWAITING = false;
+const WAITTIME = 1350;
 // Callback function, simply determines whether it is the player ob colliding with door tile or not
-function doorCallback(a, b) {
-    if (b?.tag === "player") {
-        console.log("player at door");
-    } else {
-        console.log("not player: ", b.tag);
+function upDoorCallback() {
+   fadeScreenNow();
+    playerMovement.moveSpeed = 0;
+    if(!ISWAITING){
+        ISWAITING = true;
+      setTimeout(() => {
+       moveCamera("up");
+       movePlayer("up");
+       ISWAITING = false;
+       playerMovement.moveSpeed = PLAYERSPEED;
+      },WAITTIME)
+  }
+}
+
+function rightDoorCallback() {
+   fadeScreenNow();
+   playerMovement.moveSpeed = 0;
+   if(!ISWAITING){
+         ISWAITING = true;
+       setTimeout(() => {
+        moveCamera("right");
+        movePlayer("right");
+        ISWAITING = false;
+        playerMovement.moveSpeed = PLAYERSPEED;
+       },WAITTIME)
+   }
+}
+function leftDoorCallback() {
+    fadeScreenNow();
+    playerMovement.moveSpeed = 0;
+    if(!ISWAITING){
+          ISWAITING = true;
+        setTimeout(() => {
+         moveCamera("left");
+         movePlayer("left");
+         ISWAITING = false;
+        playerMovement.moveSpeed = PLAYERSPEED;
+        },WAITTIME)
     }
-   
+}
+function downDoorCallback() {
+    fadeScreenNow();
+    playerMovement.moveSpeed = 0;
+    if(!ISWAITING){
+        ISWAITING = true;
+      setTimeout(() => {
+       moveCamera("down");
+       movePlayer("down");
+       ISWAITING = false;
+       playerMovement.moveSpeed = PLAYERSPEED;
+      },WAITTIME)
+  }
 }
 
 // Class for managing the room layout
@@ -20,7 +66,11 @@ class RoomController {
 	//Defining our tiles that we want to use, keeps them in memory. Not meant to be written to outside of class
     static wallTile; 
     static floor;
-    static door;
+    static upDoor;
+    static rightDoor;
+    static leftDoor;
+    static downDoor;
+
 
     constructor() {
         // If it's the first load, initialize the tiles
@@ -28,8 +78,11 @@ class RoomController {
             RoomController.firstLoad == false;
             // Creating wall, floor, and door tiles
             RoomController.wallTile = new ImageTile(brickImage, '=', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static');
-            RoomController.floor = new ImageTile(floorBoardImage, 'o', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'none',doorCallback);
-            RoomController.door = new ImageTile(doorImage, 'D', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static', doorCallback);
+            RoomController.floor = new ImageTile(floorBoardImage, 'o', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'none',upDoorCallback);
+            RoomController.upDoor = new ImageTile(doorImage, '^', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static', upDoorCallback);
+            RoomController.rightDoor = new ImageTile(doorImage, '>', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static', rightDoorCallback);
+            RoomController.leftDoor = new ImageTile(doorImage, '<', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static', leftDoorCallback);
+            RoomController.downDoor = new ImageTile(doorImage, 'v', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static', downDoorCallback);
 			
 		}
 
@@ -43,25 +96,25 @@ class RoomController {
         const ROOM_WIDTH = RoomController.TILE_WIDTH * 10;
 
         // Rendering rooms and hallway
-        this.renderRoom1(OFFSET_WIDTH, OFFSET_HEIGHT);
-        this.renderHallway(OFFSET_WIDTH + ROOM_WIDTH, OFFSET_HEIGHT);
-        this.renderRoom2(OFFSET_WIDTH + (ROOM_WIDTH * 2), OFFSET_HEIGHT);
+        this.renderRoom1(RoomController.TILE_WIDTH/2, RoomController.TILE_HEIGHT/2);
+        this.renderHallway(RoomController.TILE_WIDTH/2 + 1920, RoomController.TILE_HEIGHT/2);
+        this.renderRoom2(RoomController.TILE_WIDTH/2 + (1920 * 2), RoomController.TILE_HEIGHT/2);
     }
 
     // Method to render a hallway
     renderHallway(x, y) {
         var room = new Tiles(
             [
-                '.'.repeat(10),
-                '.'.repeat(10),
-                '.'.repeat(10),
-                '='.repeat(10),
-                'o'.repeat(10),
-                'o'.repeat(10),
-                '='.repeat(10),
-                '.'.repeat(10),
-                '.'.repeat(10),
-                '.'.repeat(10),
+                '.'.repeat(16),
+                '.'.repeat(16),
+                '.'.repeat(16),
+                '='.repeat(16),
+                '<' + 'o'.repeat(14) + '>',
+                '<' + 'o'.repeat(14) + '>',
+                '='.repeat(16),
+                '.'.repeat(16),
+                '.'.repeat(16),
+                '.'.repeat(16),
             ],
             x, y,
             RoomController.TILE_WIDTH,
@@ -73,18 +126,15 @@ class RoomController {
     renderRoom1(x, y) {
         var room = new Tiles(
             [
-                '='.repeat(10),
-                '=' + 'o'.repeat(8) + '=',
-                '=' + 'o'.repeat(8) + '=',
-                '=' + 'o'.repeat(8) + '=',
-                '=' + 'o'.repeat(9),
-                '=' + 'o'.repeat(9),
-                '=' + 'o'.repeat(8) + '=',
-                '=' + 'o'.repeat(8) + '=',
-                '=' + 'o'.repeat(8) + '=',
-                '=' + 'o'.repeat(8) + '=',
-                '=' + 'o'.repeat(8) + '=',
-                '='.repeat(10)
+                '='.repeat(16),
+                '=' + 'o'.repeat(14) + '=',
+                '=' + 'o'.repeat(14) + '=',
+                '=' + 'o'.repeat(14) + '=',
+                '=' + 'o'.repeat(14) + '>',
+                '=' + 'o'.repeat(14) + '>',
+                '=' + 'o'.repeat(14) + '=',
+                '=' + 'o'.repeat(14) + '=',
+                '='.repeat(16)
             ],
             x, y,
             RoomController.TILE_WIDTH,
@@ -96,16 +146,15 @@ class RoomController {
     renderRoom2(x, y) {
         var room = new Tiles(
             [
-                '=DD=======',
-                '=' + 'o'.repeat(8) + '=',
-                '=' + 'o'.repeat(8) + '=',
-                '=' + 'o'.repeat(8) + '=',
-                'o'.repeat(9) + '=',
-                'o'.repeat(9) + '=',
-                '=' + 'o'.repeat(8) + '=',
-                '=' + 'o'.repeat(8) + '=',
-                '=' + 'o'.repeat(8) + '=',
-                '='.repeat(10)
+                '='.repeat(16),
+                '=' + 'o'.repeat(14) + '=',
+                '=' + 'o'.repeat(14) + '=',
+                '=' + 'o'.repeat(14) + '=',
+                '<' + 'o'.repeat(14) + '=',
+                '<' + 'o'.repeat(14) + '=',
+                '=' + 'o'.repeat(14) + '=',
+                '=' + 'o'.repeat(14) + '=',
+                '='.repeat(16)
             ],
             x, y,
             RoomController.TILE_WIDTH,
