@@ -119,15 +119,27 @@ class RoomController {
             '=' + 'o'.repeat(14) + '=',
             '=' + 'o'.repeat(14) + '=',
             '=' + 'o'.repeat(15),
-            '=' + 'o'.repeat(15),
-            '=' + 'o'.repeat(14) + '=',
-            '=' + 'o'.repeat(14) + '=',
-            '=' + 'o'.repeat(14) + '=',
+            'o' + 'o'.repeat(15),
             '=' + 'o'.repeat(14) + '=',
             '=' + 'o'.repeat(14) + '=',
             '='.repeat(16)
         ]
         var room=new Room(16,9,tileMap)
+        return room;
+    }
+    getConnectorRoom(){
+        var tileMap=[
+            '='.repeat(7)+"oo"+'='.repeat(7),
+            '=' + 'o'.repeat(14) + '=',
+            '=' + 'o'.repeat(14) + '=',
+            '=' + 'o'.repeat(14) + '=',
+            'o' + 'o'.repeat(15),
+            'o' + 'o'.repeat(15),
+            '=' + 'o'.repeat(14) + '=',
+            '=' + 'o'.repeat(14) + '=',
+            '='.repeat(7)+"oo"+'='.repeat(7)
+        ];
+        var room=new Room(16,9,tileMap);
         return room;
     }
     // Method to render room 2
