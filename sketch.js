@@ -32,7 +32,7 @@ function setup() {
 	playerMovement = new MovementController(player,3,true);
 
 	setupStaticEnemyList();
-	
+	darknessSetup();
 	
 	//Remove to turn off debug mode
 	//turnOnDebugMode(true, false);
@@ -47,6 +47,7 @@ function draw() {
 	movementSounds(player,footsteps);
 	playerMovement.handleInput();
 	enemyHandler();
+	drawDarkness();
 	//FPS counter, needs to be in draw to
 	//render properly
 	//Create a new room
