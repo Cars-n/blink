@@ -2,11 +2,13 @@
 let brickImage, floorBoardImage, doorImage;
 let roomControl;
 let ISWAITING = false;
-const WAITTIME = 1350;
+const WAITTIME = ((1/FADERATE)/60)*1000; // gives the number of frames it will take to fade int to 1 Then divides that by 60fps then multiples by 1000 to put it in miliseconds;
+
 // Callback function, simply determines whether it is the player ob colliding with door tile or not
 function upDoorCallback() {
    fadeScreenNow();
     playerMovement.moveSpeed = 0;
+   if(doorCreak.isPlaying() == false) doorCreak.play();
     if(!ISWAITING){
         ISWAITING = true;
       setTimeout(() => {
@@ -21,6 +23,7 @@ function upDoorCallback() {
 function rightDoorCallback() {
    fadeScreenNow();
    playerMovement.moveSpeed = 0;
+   if(doorCreak.isPlaying() == false) doorCreak.play();
    if(!ISWAITING){
          ISWAITING = true;
        setTimeout(() => {
@@ -34,6 +37,7 @@ function rightDoorCallback() {
 function leftDoorCallback() {
     fadeScreenNow();
     playerMovement.moveSpeed = 0;
+    if(doorCreak.isPlaying() == false) doorCreak.play();
     if(!ISWAITING){
           ISWAITING = true;
         setTimeout(() => {
@@ -47,6 +51,7 @@ function leftDoorCallback() {
 function downDoorCallback() {
     fadeScreenNow();
     playerMovement.moveSpeed = 0;
+    if(doorCreak.isPlaying() == false) doorCreak.play();
     if(!ISWAITING){
         ISWAITING = true;
       setTimeout(() => {
