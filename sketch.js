@@ -25,7 +25,7 @@ function setup() {
 	fadeScreen = createFadeScreen(); //Creates a screen that's black and fades in and out with the fadeInAndOut function
 	//Creates Room Controller. 
 	gameMap=new GameMap();
-	gameMap.loadRoom(0,0);
+	gameMap.render();
 	// roomControl = new RoomController();
 
 	player = setupPlayer();

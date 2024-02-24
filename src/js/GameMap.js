@@ -50,6 +50,7 @@ class GameMap {
         RoomController.TILE_WIDTH   ,
         RoomController.TILE_HEIGHT);
     }
+    //Renders the entire map at once, most useful in debugging. Is slow at runtime
     render(){
         
         //Instantiate all tiles in map
