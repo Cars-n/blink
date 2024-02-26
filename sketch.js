@@ -7,6 +7,8 @@ let notPlayer;
 const PLAYERSPEED = 3;
 let MAINMENULOADED = true;
 let menuScreen;
+let gameMap;
+
 
 function preload() {
 	brickImage = loadImage('./assets/WallRoughDraft.png');
@@ -27,9 +29,10 @@ function setup() {
 	fadeScreen = createFadeScreen(); //Creates a screen that's black and fades in and out with the fadeInAndOut function
 	//Creates Room Controller. 
 	menuScreen = createMenuScreen();
-	roomControl = new RoomController();
-	roomControl.renderMap();
-	// new Player 
+	gameMap=new GameMap();
+	gameMap.render();
+	// roomControl = new RoomController();
+
 	player = setupPlayer();
 
 	
@@ -39,12 +42,13 @@ function setup() {
 	
 	
 	//Remove to turn off debug mode
-	//turnOnDebugMode(true, false);
+	// turnOnDebugMode(true, true);
 	
 	
 }
 
 function draw() {
+	// console.log("FPS:",1000/deltaTime);
 	clear();
 	if(mouse.presses()){
 		MAINMENULOADED = false;
@@ -55,12 +59,5 @@ function draw() {
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
 		enemyHandler();
-		//FPS counter, needs to be in draw to
-		//render properly
-		//Create a new room
-		//fadeInAndOut(fadeScreen);
-		//FPS counter, needs to be in draw to
-		//render properly
-		//renderStats();
 	}
 }
