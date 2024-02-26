@@ -1,9 +1,8 @@
-const FADERATE = 0.01;
+const FADERATE = 0.025;
 const FADELAYER = 3;
 let HASFADEDIN = true;
 let HASFADEDOUT = true;
-let HASMOVEDCAMERA = false;
-
+let OPACITYEQUALSONE = false;
 function makeCameraFollowPlayer(){
     camera.x = player.x;
 	camera.y = player.y;
@@ -23,7 +22,6 @@ function createFadeScreen(){
 //Run constantly, If HASFADEDIN and HASFADEDOUT are false it will Fade the fadeScreen in over eveything. 
 // HASFADEDIN and HASFADEDOUT shouldn't be changed manually, use the fadeScreenNow function to reset them.
 function fadeInAndOut(ScreenSprite){
-    if (kb.presses('.')) {HASFADEDIN = false; HASFADEDOUT = false;}
     if (!HASFADEDIN){
         HASFADEDIN = fadeIn(ScreenSprite);
     }
@@ -39,6 +37,7 @@ function fadeIn(object){
     return false;
     }
     else {
+        OPACITYEQUALSONE = true;
         object.opacity = 1;
         return true;
     }
@@ -49,6 +48,7 @@ function fadeIn(object){
 function fadeOut(object){
     if(object.opacity >= 0){
         object.opacity = Math.max(object.opacity - FADERATE, 0);
+        OPACITYEQUALSONE = false;
         return false;
     }
     else {
@@ -61,19 +61,19 @@ function fadeOut(object){
 
 //Moves the camera in the direction specified. takes "up", "down", "left", "right" as arguments.
 function moveCamera(direction){
-    if (direction == "up") camera.y -= windowHeight;
-    else if (direction == "down") camera.y += windowHeight;
-    else if (direction == "left") camera.x -= windowWidth;
-    else if (direction == "right") camera.x += windowWidth;
+    if (direction == "up") camera.y -= 1080;
+    else if (direction == "down") camera.y += 1080;
+    else if (direction == "left") camera.x -= 1920;
+    else if (direction == "right") camera.x += 1920;
 }
 
 
 //Moves the player in the direction specified. takes "up", "down", "left", "right" as arguments. Used to teleport to the next room. 
-function movePlayer(){
-    if (direction == "up") player.y -= 20;
-    else if (direction == "down") player.y += 20;
-    else if (direction == "left") player.x -= 20;
-    else if (direction == "right") player.x += 20;
+function movePlayer(direction){
+    if (direction == "up") player.y -= 375;
+    else if (direction == "down") player.y += 375;
+    else if (direction == "left") player.x -= 375;
+    else if (direction == "right") player.x += 375;
 }
 
 
