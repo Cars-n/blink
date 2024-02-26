@@ -37,6 +37,7 @@ function setup() {
 	player = setupPlayer();
 	// darkness overlay
 	darknessSprite = darkness();
+	darknessSprite.layer = 0;
 	
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
@@ -60,8 +61,8 @@ function draw() {
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
 		enemyHandler();
-	darknessSprite.x = player.x;
-   darknessSprite.y = player.y;
-	image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
+		darknessSprite.x = player.x;
+		darknessSprite.y = player.y;
+		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
 }
