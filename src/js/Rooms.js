@@ -11,7 +11,7 @@ function upDoorCallback(a,b) {
             fadeScreenNow();
             playerMovement.moveSpeed = 0;
             if(doorCreak.isPlaying() == false) doorCreak.play();
-            waitForOpacityCondition(1000) // Wait for up to 1˝ seconds
+            waitForOpacityCondition(1000) // Wait for up to 1 seconds
             .then(() => {
                 moveCamera("up");
                 movePlayer("up");
