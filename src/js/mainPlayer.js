@@ -15,7 +15,7 @@ function setupPlayer(){
     //turns on rotation lock (A MUST!!!), and sets the
     //collider type as dynamic
     setObjectCollider(player, spriteTypes.PLAYER, true);
-    
+    player.tag="player";
     player.addAnis({
         up: { row: 8, frames: 9 },
         left: { row: 9, frames: 9 }, 
