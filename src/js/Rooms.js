@@ -11,7 +11,7 @@ function upDoorCallback(a,b) {
             fadeScreenNow();
             playerMovement.moveSpeed = 0;
             if(doorCreak.isPlaying() == false) doorCreak.play();
-            waitForOpacityCondition(1000) // Wait for up to 5 seconds
+            waitForOpacityCondition(1000) // Wait for up to 1˝ seconds
             .then(() => {
                 moveCamera("up");
                 movePlayer("up");
@@ -35,7 +35,7 @@ function upDoorCallback(a,b) {
                 fadeScreenNow();
                 playerMovement.moveSpeed = 0;
                 if(doorCreak.isPlaying() == false) doorCreak.play();
-                waitForOpacityCondition(1000) // Wait for up to 5 seconds
+                waitForOpacityCondition(1000) // Wait for up to 1 seconds
                 .then(() => {
                     moveCamera("right");
                     movePlayer("right");
@@ -58,7 +58,7 @@ function leftDoorCallback(a,b) {
         fadeScreenNow();
         playerMovement.moveSpeed = 0;
         if(doorCreak.isPlaying() == false) doorCreak.play();
-        waitForOpacityCondition(1000) // Wait for up to 5 seconds
+        waitForOpacityCondition(1000) // Wait for up to 1 seconds
           .then(() => {
             moveCamera("left");
             movePlayer("left");
@@ -81,7 +81,7 @@ function downDoorCallback() {
         fadeScreenNow();
         playerMovement.moveSpeed = 0;
         if(doorCreak.isPlaying() == false) doorCreak.play();
-        waitForOpacityCondition(1000) // Wait for up to 5 seconds
+        waitForOpacityCondition(1000) // Wait for up to 1 seconds
           .then(() => {
             moveCamera("down");
             movePlayer("down");
