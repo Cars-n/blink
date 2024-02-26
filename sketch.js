@@ -10,6 +10,7 @@ function preload() {
 	brickImage = loadImage('./assets/sand-brick-tileset-texture.png');
 	floorBoardImage = loadImage("assets/floorboards.png");
 	doorImage=loadImage("assets/Door.png");
+	darknessImage = loadImage("assets/darkness.svg");
 	soundFormats('mp3');
 	doorCreak = loadSound('assets/audio/doorCreak.mp3');
 	doorCreak.setVolume(0.5);
@@ -27,12 +28,12 @@ function setup() {
 	roomControl.renderMap();
 	// new Player 
 	player = setupPlayer();
-
+	// darkness overlay
+	darknessSprite = darkness();
 
 	playerMovement = new MovementController(player,3,true);
 
 	setupStaticEnemyList();
-	darknessSetup();
 	
 	//Remove to turn off debug mode
 	//turnOnDebugMode(true, false);
@@ -47,7 +48,9 @@ function draw() {
 	movementSounds(player,footsteps);
 	playerMovement.handleInput();
 	enemyHandler();
-	drawDarkness();
+	darknessSprite.x = player.x;
+   darknessSprite.y = player.y;
+	image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	//FPS counter, needs to be in draw to
 	//render properly
 	//Create a new room
