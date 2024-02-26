@@ -9,7 +9,7 @@ let MAINMENULOADED = true;
 let menuScreen;
 
 function preload() {
-	brickImage = loadImage('./assets/sand-brick-tileset-texture.png');
+	brickImage = loadImage('./assets/WallRoughDraft.png');
 	floorBoardImage = loadImage("assets/floortiles.png");
 	mainMenuImage = loadImage("assets/Menu_Screen_for_a_pixelated_Horror_game_named_Blink_Set_in_a_Haunted_Mansion.png")
 	doorImage=loadImage("assets/Door.png");
@@ -52,7 +52,6 @@ function draw() {
 	}
 	if(MAINMENULOADED == false){
 		fadeInAndOut(fadeScreen);
-		if (kb.presses('.')) fadeScreenNow();
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
 		enemyHandler();

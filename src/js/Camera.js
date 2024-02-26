@@ -2,6 +2,7 @@ const FADERATE = 0.025;
 const FADELAYER = 3;
 let HASFADEDIN = true;
 let HASFADEDOUT = true;
+let OPACITYEQUALSONE = false;
 function makeCameraFollowPlayer(){
     camera.x = player.x;
 	camera.y = player.y;
@@ -21,7 +22,6 @@ function createFadeScreen(){
 //Run constantly, If HASFADEDIN and HASFADEDOUT are false it will Fade the fadeScreen in over eveything. 
 // HASFADEDIN and HASFADEDOUT shouldn't be changed manually, use the fadeScreenNow function to reset them.
 function fadeInAndOut(ScreenSprite){
-    if (kb.presses('.')) {HASFADEDIN = false; HASFADEDOUT = false;}
     if (!HASFADEDIN){
         HASFADEDIN = fadeIn(ScreenSprite);
     }
@@ -37,6 +37,7 @@ function fadeIn(object){
     return false;
     }
     else {
+        OPACITYEQUALSONE = true;
         object.opacity = 1;
         return true;
     }
@@ -47,6 +48,7 @@ function fadeIn(object){
 function fadeOut(object){
     if(object.opacity >= 0){
         object.opacity = Math.max(object.opacity - FADERATE, 0);
+        OPACITYEQUALSONE = false;
         return false;
     }
     else {
@@ -59,7 +61,6 @@ function fadeOut(object){
 
 //Moves the camera in the direction specified. takes "up", "down", "left", "right" as arguments.
 function moveCamera(direction){
-    console.log("Moving camera");
     if (direction == "up") camera.y -= 1080;
     else if (direction == "down") camera.y += 1080;
     else if (direction == "left") camera.x -= 1920;

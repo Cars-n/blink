@@ -6,61 +6,77 @@ const WAITTIME = ((1/FADERATE)/60)*1000; // gives the number of frames it will t
 
 // Callback function, simply determines whether it is the player ob colliding with door tile or not
 function upDoorCallback() {
-   fadeScreenNow();
-    playerMovement.moveSpeed = 0;
-   if(doorCreak.isPlaying() == false) doorCreak.play();
     if(!ISWAITING){
         ISWAITING = true;
-      setTimeout(() => {
-       moveCamera("up");
-       movePlayer("up");
-       ISWAITING = false;
-       playerMovement.moveSpeed = PLAYERSPEED;
-      },WAITTIME)
-  }
+        fadeScreenNow();
+        playerMovement.moveSpeed = 0;
+        if(doorCreak.isPlaying() == false) doorCreak.play();
+        waitForOpacityCondition(1000) // Wait for up to 5 seconds
+          .then(() => {
+            moveCamera("up");
+            movePlayer("up");
+            ISWAITING = false;
+            playerMovement.moveSpeed = PLAYERSPEED;
+          })
+          .catch((error) => {
+            console.error(error.message);
+          });
+    }
 }
 
 function rightDoorCallback() {
-   fadeScreenNow();
-   playerMovement.moveSpeed = 0;
-   if(doorCreak.isPlaying() == false) doorCreak.play();
-   if(!ISWAITING){
-         ISWAITING = true;
-       setTimeout(() => {
-        moveCamera("right");
-        movePlayer("right");
-        ISWAITING = false;
-        playerMovement.moveSpeed = PLAYERSPEED;
-       },WAITTIME)
-   }
+    if(!ISWAITING){
+        ISWAITING = true;
+        fadeScreenNow();
+        playerMovement.moveSpeed = 0;
+        if(doorCreak.isPlaying() == false) doorCreak.play();
+        waitForOpacityCondition(1000) // Wait for up to 5 seconds
+          .then(() => {
+            moveCamera("right");
+            movePlayer("right");
+            ISWAITING = false;
+            playerMovement.moveSpeed = PLAYERSPEED;
+          })
+          .catch((error) => {
+            console.error(error.message);
+          });
+    }
 }
 function leftDoorCallback() {
-    fadeScreenNow();
-    playerMovement.moveSpeed = 0;
-    if(doorCreak.isPlaying() == false) doorCreak.play();
     if(!ISWAITING){
-          ISWAITING = true;
-        setTimeout(() => {
-         moveCamera("left");
-         movePlayer("left");
-         ISWAITING = false;
-        playerMovement.moveSpeed = PLAYERSPEED;
-        },WAITTIME)
+        ISWAITING = true;
+        fadeScreenNow();
+        playerMovement.moveSpeed = 0;
+        if(doorCreak.isPlaying() == false) doorCreak.play();
+        waitForOpacityCondition(1000) // Wait for up to 5 seconds
+          .then(() => {
+            moveCamera("left");
+            movePlayer("left");
+            ISWAITING = false;
+            playerMovement.moveSpeed = PLAYERSPEED;
+          })
+          .catch((error) => {
+            console.error(error.message);
+          });
     }
 }
 function downDoorCallback() {
-    fadeScreenNow();
-    playerMovement.moveSpeed = 0;
-    if(doorCreak.isPlaying() == false) doorCreak.play();
     if(!ISWAITING){
         ISWAITING = true;
-      setTimeout(() => {
-       moveCamera("down");
-       movePlayer("down");
-       ISWAITING = false;
-       playerMovement.moveSpeed = PLAYERSPEED;
-      },WAITTIME)
-  }
+        fadeScreenNow();
+        playerMovement.moveSpeed = 0;
+        if(doorCreak.isPlaying() == false) doorCreak.play();
+        waitForOpacityCondition(1000) // Wait for up to 5 seconds
+          .then(() => {
+            moveCamera("down");
+            movePlayer("down");
+            ISWAITING = false;
+            playerMovement.moveSpeed = PLAYERSPEED;
+          })
+          .catch((error) => {
+            console.error(error.message);
+          });
+    }
 }
 
 // Class for managing the room layout
