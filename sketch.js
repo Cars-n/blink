@@ -15,6 +15,7 @@ function preload() {
 	floorBoardImage = loadImage("assets/floortiles.png");
 	mainMenuImage = loadImage("assets/Menu_Screen_for_a_pixelated_Horror_game_named_Blink_Set_in_a_Haunted_Mansion.png")
 	doorImage=loadImage("assets/Door.png");
+	darknessImage = loadImage("assets/darkness.svg");
 	soundFormats('mp3');
 	doorCreak = loadSound('assets/audio/doorCreak.mp3');
 	doorCreak.setVolume(0.5);
@@ -34,12 +35,13 @@ function setup() {
 	// roomControl = new RoomController();
 
 	player = setupPlayer();
-
+	// darkness overlay
+	darknessSprite = darkness();
+	darknessSprite.layer = 0;
 	
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
 	setupStaticEnemyList();
-	
 	
 	//Remove to turn off debug mode
 	// turnOnDebugMode(true, true);
@@ -60,5 +62,8 @@ function draw() {
 		playerMovement.handleInput();
 		if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
 		enemyHandler();
+		darknessSprite.x = player.x;
+		darknessSprite.y = player.y;
+		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
 }
