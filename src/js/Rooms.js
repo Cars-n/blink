@@ -119,6 +119,26 @@ class Room{
     }
 }
 
+function upwardDoorCallback(a, b) {
+        fadeScreenNow();
+        if(HASFADEDIN === true){
+        moveCamera("up");
+        movePlayer("up");
+        }
+    }
+function rightDoorCallback(a, b) {
+        fadeScreenNow();
+        if(HASFADEDIN === true){
+        moveCamera("right");
+        movePlayer("right");
+        }
+}
+function leftDoorCallback(a, b) {
+    fadeScreenNow();
+    moveCamera("left");
+    movePlayer("left");
+}
+
 // Class for managing the room layout
 class RoomController {
     static TILE_HEIGHT = 120;
@@ -145,6 +165,7 @@ class RoomController {
             RoomController.leftDoor = new ImageTile(doorImage, '<', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static', leftDoorCallback);
             RoomController.downDoor = new ImageTile(doorImage, 'v', RoomController.TILE_WIDTH, RoomController.TILE_HEIGHT, 'static', downDoorCallback);
 			
+
 		}
 
         // this.map = [];
@@ -166,6 +187,7 @@ class RoomController {
     renderHallway(x, y) {
         var room = new Tiles(
             [
+
                 '.'.repeat(16),
                 '.'.repeat(16),
                 '.'.repeat(16),
