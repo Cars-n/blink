@@ -8,12 +8,14 @@ const PLAYERSPEED = 3;
 let MAINMENULOADED = true;
 let menuScreen;
 let gameMap;
-
+// MENU PLAYING or PAUSED
+let gameState = 'MENU'
 
 function preload() {
 	brickImage = loadImage('./assets/WallRoughDraft.png');
 	floorBoardImage = loadImage("assets/floortiles.png");
-	mainMenuImage = loadImage("assets/Menu_Screen_for_a_pixelated_Horror_game_named_Blink_Set_in_a_Haunted_Mansion.png")
+	// load background of main menu 
+	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png")
 	doorImage=loadImage("assets/Door.png");
 	darknessImage = loadImage("assets/darkness.svg");
 	soundFormats('mp3');
@@ -52,11 +54,14 @@ function setup() {
 function draw() {
 	// console.log("FPS:",1000/deltaTime);
 	clear();
-	if(mouse.presses()){
-		MAINMENULOADED = false;
-		menuScreen.remove();
-	}
-	if(MAINMENULOADED == false){
+	if (gameState === 'MENU') {
+		// Draw menu
+		if(mouse.presses()){
+			gameState = 'PLAYING';
+			menuScreen.remove();
+		}
+	} else if (gameState === 'PLAYING') {
+		clear();
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
@@ -67,5 +72,4 @@ function draw() {
 		darknessSprite.y = player.y;
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
-
 }
