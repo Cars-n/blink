@@ -1,3 +1,4 @@
+/*
 // create and setup menu screen 
 function createMenuScreen() {
   // Create a new Sprite object that represents the menu background
@@ -59,7 +60,7 @@ function showControls() {
 function quitGame() {
   // close the game
 }
-
+ */
 
 function waitForOpacityCondition(timeout) {
     return new Promise((resolve, reject) => {

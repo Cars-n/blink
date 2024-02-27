@@ -10,6 +10,19 @@ let menuScreen;
 let gameMap;
 // MENU PLAYING or PAUSED
 let gameState = 'MENU'
+let buttons = [start, tutorial, controls, quit];
+
+function createMenuScreen() {
+	// Create a new Sprite object that represents the menu background
+	// Positioned at the center of the screen and spans the full screen size
+	var menu = new Sprite(1920/2, 1080/2, 1920,1080);
+  
+	menu.image = mainMenuBackground;
+	menu.layer = 3;
+	menu.collider = 'none';
+
+	return menu;
+}
 
 function preload() {
 	brickImage = loadImage('./assets/WallRoughDraft.png');
