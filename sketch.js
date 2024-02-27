@@ -67,4 +67,5 @@ function draw() {
 		darknessSprite.y = player.y;
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
+
 }
