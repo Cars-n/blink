@@ -8,6 +8,7 @@ const PLAYERSPEED = 3;
 let MAINMENULOADED = true;
 let menuScreen;
 let gameMap;
+let inventory;
 
 
 function preload() {
@@ -33,8 +34,9 @@ function setup() {
 	gameMap=new GameMap();
 	gameMap.render();
 	// roomControl = new RoomController();
-
+	inventory = new InventoryController();
 	player = setupPlayer();
+	let notPlayer = makeItem(player.x,player.y,50,50,'none')
 	// darkness overlay
 	darknessSprite = darkness();
 	darknessSprite.layer = 0;
@@ -61,8 +63,11 @@ function draw() {
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
 		if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
-		enemyHandler();
-		darknessSprite.opacity = 0.7;
+		if(player.overlaps(notPlayer)){
+		inventory.renderInventory();
+			if(InventoryController.inventory)
+		}
+		darknessSprite.opacity = 0.4;
 		darknessSprite.x = player.x;
 		darknessSprite.y = player.y;
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
