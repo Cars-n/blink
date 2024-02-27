@@ -119,25 +119,25 @@ class Room{
     }
 }
 
-function upwardDoorCallback(a, b) {
-        fadeScreenNow();
-        if(HASFADEDIN === true){
-        moveCamera("up");
-        movePlayer("up");
-        }
-    }
-function rightDoorCallback(a, b) {
-        fadeScreenNow();
-        if(HASFADEDIN === true){
-        moveCamera("right");
-        movePlayer("right");
-        }
-}
-function leftDoorCallback(a, b) {
-    fadeScreenNow();
-    moveCamera("left");
-    movePlayer("left");
-}
+// // function upwardDoorCallback(a, b) {
+// //         fadeScreenNow();
+// //         if(HASFADEDIN === true){
+// //         moveCamera("up");
+// //         movePlayer("up");
+// //         }
+// //     }
+// // function rightDoorCallback(a, b) {
+// //         fadeScreenNow();
+// //         if(HASFADEDIN === true){
+// //         moveCamera("right");
+// //         movePlayer("right");
+// //         }
+// // }
+// // function leftDoorCallback(a, b) {
+// //     fadeScreenNow();
+// //     moveCamera("left");
+// //     movePlayer("left");
+// }
 
 // Class for managing the room layout
 class RoomController {
