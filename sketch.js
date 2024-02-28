@@ -93,6 +93,8 @@ function draw() {
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
     else if (GAMESTATE == "INVENTORY"){
+		player.velocity.y = 0;
+		player.velocity.x = 0;
 		if(!INVENTORYRENDERED){
 			inventory.renderInventory();
 			INVENTORYRENDERED = true;
@@ -100,9 +102,16 @@ function draw() {
 		if(kb.pressed('e')){
 			inventory.remove();
 			INVENTORYRENDERED = false;
+			playerMovement.moveSpeed = 3;
 			GAMESTATE = "PLAYING";
 		} 
-
+		if(kb.pressed('r')){
+			inventory.removeItem(flashlight, true);
+			console.log("This is the inventory after Flashlight is removed")
+			console.log(inventory.inventory);
+			inventory.remove();
+			inventory.renderInventory();
+		} 
 	}
 
 }

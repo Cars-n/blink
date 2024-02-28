@@ -27,18 +27,14 @@ class InventoryController {
             InventoryController.TILE_WIDTH,
             InventoryController.TILE_HEIGHT
         );
-        console.log(this.inventory);
         for(let j = 0; j < InventoryController.INVENTORY_HEIGHT; j++){
-            console.log("this is j: " + j)
             for(let i = 0; i < InventoryController.INVENTORY_WIDTH-1; i++){
                 if (this.inventory[j][i] !==''){
                     let item = this.inventory[j][i];
                     item.itemSprite.visible = true;
                     item.itemSprite.scale = item.scaleVector;
                     let location = this.getTileLocation(i,j);
-                    console.log(item);
                     if (item.orientation == 'none'){
-                        console.log("Key has been rendered in 1,0");
                         item.itemSprite.x = location.x;
                         item.itemSprite.y = location.y;
                     }
@@ -50,7 +46,6 @@ class InventoryController {
                         ++i;
                     }
                     else if (item.orientation == 'vertical' && j == 0){
-                        console.log("Flashlight has been rendered vertically");
                         item.itemSprite.x = location.x;
                         item.itemSprite.y = location.y;
                         item.itemSprite.y += InventoryController.TILE_HEIGHT/2;
@@ -132,7 +127,6 @@ class InventoryController {
             this.inventory[PAO.y][PAO.x+1] = item;
         }
         else if(PAO.orientation == 'vertical'){
-            console.log("should be placed vertically")
             item.orientation = 'vertical';
             this.inventory[PAO.y+1][PAO.x] = item;
         }
@@ -141,7 +135,6 @@ class InventoryController {
 
     remove(){
         for(let i = 0; i < InventoryController.INVENTORY_WIDTH-1; i++){
-            console.log("this is running");
             if (this.inventory[0][i] !==''){
                 this.inventory[0][i].itemSprite.visible = false;
             }
@@ -153,10 +146,55 @@ class InventoryController {
     }
 
 
-    removeItem(item){
-        
+    removeItem(item, drop=false){
+        for(let j = 0; j < InventoryController.INVENTORY_HEIGHT; j++){
+            for(let i = 0; i < InventoryController.INVENTORY_WIDTH; i++){
+                if(this.inventory[j][i].name == item.name) {
+                    if(item.orientation == 'none') {
+                        this.inventory[j][i].itemSprite.visible = false;
+                        if(drop == false) this.inventory[j][i].itemSprite.remove()
+                        else {
+                            this.inventory[j][i].itemSprite.visible = true;
+                            this.inventory[j][i].itemSprite.x = player.x + 30;
+                            this.inventory[j][i].itemSprite.x = player.y + 30;
+                            this.inventory[j][i].itemSprite.scale = 1;
+                        }
+                        this.inventory[j][i] = '';
+                        return true;
+                    }
+                    else if (item.orientation == 'horizontal'){
+                        this.inventory[j][i].itemSprite.visible = false;
+                        if(drop == false) this.inventory[j][i].itemSprite.remove()
+                        else {
+                            this.inventory[j][i].itemSprite.visible = true;
+                            this.inventory[j][i].itemSprite.x = player.x + 30;
+                            this.inventory[j][i].itemSprite.x = player.y + 30;
+                            this.inventory[j][i].itemSprite.scale = 1;
+                        }
+                        this.inventory[j][i] = '';
+                        this.inventory[j][i+1] = '';
+                        return true;
+                    }
+                    else if (item.orientation == 'vertical'){
+                        this.inventory[j][i].itemSprite.visible = false;
+                        if(drop == false) this.inventory[j][i].itemSprite.remove()
+                        else {
+                            this.inventory[j][i].itemSprite.visible = true;
+                            this.inventory[j][i].itemSprite.x = player.x + 30;
+                            this.inventory[j][i].itemSprite.x = player.y + 30;
+                            this.inventory[j][i].itemSprite.scale = 1;
+                        }
+                        this.inventory[j][i] = '';
+                        this.inventory[j+1][i] = '';
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
+
 
 class Inventory{
     constructor(tWidth,tHeight,tileArray){
