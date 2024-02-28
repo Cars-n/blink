@@ -114,6 +114,7 @@ function draw() {
 			inventory.remove();
 			inventory.renderInventory();
 		} 
+		dragItem(flashlight);
+		dragItem(key);
 	}
-
-}
+}	

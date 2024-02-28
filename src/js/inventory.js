@@ -215,7 +215,7 @@ class Inventory{
 
 
 class Item{
-    constructor(spawnX, spawnY, item_name, inventoryX, inventoryY, width, height, image='', layer=3){
+    constructor(spawnX, spawnY, item_name, inventoryX, inventoryY, width, height, image='', layer=3, friction=10, drag = 100){
         this.name = item_name;
         this.InventoryX = inventoryX;
         this.InventoryY = inventoryY;
@@ -224,9 +224,24 @@ class Item{
         this.orientation = 'none';
         if(image !== '') this.itemSprite.img = image;
         this.itemSprite.layer =  layer;
-        setObjectCollider(this.itemSprite, spriteTypes.STATICOBJECT);
+        this.itemSprite.friction = friction;
+        this.itemSprite.drag = drag;
+        setObjectCollider(this.itemSprite, spriteTypes.MOVABLEOBJECT);
     }
 
 
 }
 
+
+function dragItem(item){
+    if (item.itemSprite.mouse.hovering()) mouse.cursor = 'grab';
+		else mouse.cursor = 'default';
+
+		if (item.itemSprite.mouse.dragging()) {
+			item.itemSprite.moveTowards(
+				mouse.x + item.itemSprite.mouse.x,
+				mouse.y + item.itemSprite.mouse.y,
+				1 // full tracking
+			);
+		}
+}
