@@ -95,6 +95,8 @@ function draw() {
     else if (GAMESTATE == "INVENTORY"){
 		player.velocity.y = 0;
 		player.velocity.x = 0;
+		player.changeAni("idle_" + playerMovement.lastDirection);
+		movementSounds(player,footsteps);
 		if(!INVENTORYRENDERED){
 			inventory.renderInventory();
 			INVENTORYRENDERED = true;

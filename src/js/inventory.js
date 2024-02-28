@@ -137,9 +137,12 @@ class InventoryController {
         for(let i = 0; i < InventoryController.INVENTORY_WIDTH-1; i++){
             if (this.inventory[0][i] !==''){
                 this.inventory[0][i].itemSprite.visible = false;
+                this.inventory[0][i].itemSprite.x = 10000;
+
+
             }
             if (this.inventory[1][i] !==''){
-                this.inventory[1][i].itemSprite.visible = false;
+                this.inventory[1][i].itemSprite.x = 10000;
             }
         }
         InventoryController.tile.group.removeAll();
@@ -212,7 +215,7 @@ class Inventory{
 
 
 class Item{
-    constructor(spawnX, spawnY, item_name, inventoryX, inventoryY, width, height, image=''){
+    constructor(spawnX, spawnY, item_name, inventoryX, inventoryY, width, height, image='', layer=3){
         this.name = item_name;
         this.InventoryX = inventoryX;
         this.InventoryY = inventoryY;
@@ -220,7 +223,7 @@ class Item{
         this.itemSprite = new Sprite(spawnX, spawnY, width, height);
         this.orientation = 'none';
         if(image !== '') this.itemSprite.img = image;
-        this.itemSprite.layer =  1;
+        this.itemSprite.layer =  layer;
         setObjectCollider(this.itemSprite, spriteTypes.STATICOBJECT);
     }
 
