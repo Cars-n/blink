@@ -3,16 +3,20 @@ const enemyList = []; //Enemeies currently spawned
 const staticEnemyList = []; //Stored list of every enemy
 let playerControl,player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
-let notPlayer;
+let flashlight;
+let INVENTORYRENDERED = false;
 const PLAYERSPEED = 3;
-let MAINMENULOADED = true;
 let menuScreen;
 let gameMap;
 let inventory;
-
+let key
+let GAMESTATE = "MAINMENU";
 
 function preload() {
-	brickImage = loadImage('./assets/WallRoughDraft.png');
+	InventoryBackground = loadImage('assets/InventoryBackground.png');
+	keyImage = loadImage('assets/key.png');
+	brickImage = loadImage('assets/WallRoughDraft.png');
+	flashlightImage = loadImage('assets/Flashlight.png');
 	floorBoardImage = loadImage("assets/floortiles.png");
 	mainMenuImage = loadImage("assets/Menu_Screen_for_a_pixelated_Horror_game_named_Blink_Set_in_a_Haunted_Mansion.png")
 	doorImage=loadImage("assets/Door.png");
@@ -36,7 +40,9 @@ function setup() {
 	// roomControl = new RoomController();
 	inventory = new InventoryController();
 	player = setupPlayer();
-	let notPlayer = makeItem(player.x,player.y,50,50,'none')
+	flashlight = new Item(500,500, "FlashLight", 2,1,20,8,flashlightImage);
+	flashlight.itemSprite.rotation = -90;
+	key = new Item(1000,500, "Key", 1,1,10,5,keyImage);
 	// darkness overlay
 	darknessSprite = darkness();
 	darknessSprite.layer = 0;
@@ -54,23 +60,49 @@ function setup() {
 function draw() {
 	// console.log("FPS:",1000/deltaTime);
 	clear();
-	if(mouse.presses()){
-		MAINMENULOADED = false;
-		menuScreen.remove();
+
+	if(GAMESTATE == "MAINMENU"){
+		if(mouse.presses()) {
+			GAMESTATE = "PLAYING";
+			menuScreen.remove()
+		
+		}
 	}
-	if(MAINMENULOADED == false){
+	else if(GAMESTATE == "PLAYING"){
+		console.log(GAMESTATE);
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
 		if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
-		if(player.overlaps(notPlayer)){
-		inventory.renderInventory();
-			if(InventoryController.inventory)
+		if(kb.pressed('e')) {
+			GAMESTATE = "INVENTORY";
+			console.log(GAMESTATE);
+		}
+		if(player.overlaps(flashlight.itemSprite)){
+			if (inventory.insertItem(flashlight, inventory.hasSpace(flashlight.InventoryX,flashlight.InventoryY))) flashlight.itemSprite.visible = false;
+			console.log(inventory.inventory);
+		}
+		if(player.overlaps(key.itemSprite)){
+			if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) key.itemSprite.visible = false;
+			console.log("This is the inventory after Key is added");
+			console.log(inventory.inventory);
 		}
 		darknessSprite.opacity = 0.4;
 		darknessSprite.x = player.x;
 		darknessSprite.y = player.y;
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
+	}
+    else if (GAMESTATE == "INVENTORY"){
+		if(!INVENTORYRENDERED){
+			inventory.renderInventory();
+			INVENTORYRENDERED = true;
+		}
+		if(kb.pressed('e')){
+			inventory.remove();
+			INVENTORYRENDERED = false;
+			GAMESTATE = "PLAYING";
+		} 
+
 	}
 
 }
