@@ -11,6 +11,10 @@ let gameMap;
 // MENU PLAYING or PAUSED
 let gameState = 'MENU'
 let mainMenu;
+let startButton;
+let tutorialButton;
+let controlsButton;
+let quitButton;
 
 function preload() {
 	brickImage = loadImage('./assets/WallRoughDraft.png');
@@ -55,16 +59,57 @@ function setup() {
 	mainMenu.image = mainMenuBackground;
 	mainMenu.layer = 3;
 	mainMenu.collider = 'none';
+
+	// Setup Start Button
+	startButton = createButton('Start');
+	startButton.position(150,100)
+	startButton.style('background-color', 'transparent'); 
+	startButton.style('color', 'white'); 
+	startButton.style('border', 'none'); 
+	startButton.style('font-size', '25px'); 
+
+	// Setup Tutorial Button
+	tutorialButton = createButton('Tutorial');
+	tutorialButton.position(150,150)
+	tutorialButton.style('background-color', 'transparent'); 
+	tutorialButton.style('color', 'white'); 
+	tutorialButton.style('border', 'none'); 
+	tutorialButton.style('font-size', '25px'); 
+
+	// Setup Controls Button
+	controlsButton = createButton('Controls');
+	controlsButton.position(150,200)
+	controlsButton.style('background-color', 'transparent'); 
+	controlsButton.style('color', 'white'); 
+	controlsButton.style('border', 'none'); 
+	controlsButton.style('font-size', '25px'); 
+
+	// Setup Quit Button
+	quitButton = createButton('Quit');
+	quitButton.position(150,250)
+	quitButton.style('background-color', 'transparent'); 
+	quitButton.style('color', 'white'); 
+	quitButton.style('border', 'none'); 
+	quitButton.style('font-size', '25px'); 
+
+	
 }
 
 function draw() {
 	// console.log("FPS:",1000/deltaTime);
-	clear();
 	if (gameState === 'MENU') {
 		// Draw menu
+
 		if(mouse.presses()){
 			gameState = 'PLAYING';
+
+			// remove 
 			mainMenu.remove();
+			startButton.remove();
+			tutorialButton.remove();
+			controlsButton.remove();
+			quitButton.remove();
+
 		}
 	} else if (gameState === 'PLAYING') {
 		clear();
