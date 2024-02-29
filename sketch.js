@@ -5,30 +5,16 @@ let playerControl,player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
 let notPlayer;
 const PLAYERSPEED = 3;
-let MAINMENULOADED = true;
-let menuScreen;
 let gameMap;
+
+// Main Menu Assets
 // MENU PLAYING or PAUSED
 let gameState = 'MENU'
-let buttons = [start, tutorial, controls, quit];
-
-function createMenuScreen() {
-	// Create a new Sprite object that represents the menu background
-	// Positioned at the center of the screen and spans the full screen size
-	var menu = new Sprite(1920/2, 1080/2, 1920,1080);
-  
-	menu.image = mainMenuBackground;
-	menu.layer = 3;
-	menu.collider = 'none';
-
-	return menu;
-}
+let mainMenu;
 
 function preload() {
 	brickImage = loadImage('./assets/WallRoughDraft.png');
 	floorBoardImage = loadImage("assets/floortiles.png");
-	// load background of main menu 
-	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png")
 	doorImage=loadImage("assets/Door.png");
 	darknessImage = loadImage("assets/darkness.svg");
 	soundFormats('mp3');
@@ -36,6 +22,10 @@ function preload() {
 	doorCreak.setVolume(0.5);
 	footsteps = loadSound('assets/audio/footsteps.mp3');
 	footsteps.setVolume(0.5);
+
+	// Main Menu Preload
+	// load background of main menu 
+	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png")
 }
 
 function setup() {
@@ -43,8 +33,6 @@ function setup() {
 	noSmooth(); // removes smoothing to maintain pixelated look
 	canvas.style = ""; // removes default canvas styling
 	fadeScreen = createFadeScreen(); //Creates a screen that's black and fades in and out with the fadeInAndOut function
-	//Creates Room Controller. 
-	menuScreen = createMenuScreen();
 	gameMap=new GameMap();
 	gameMap.render();
 	// roomControl = new RoomController();
@@ -61,7 +49,12 @@ function setup() {
 	//Remove to turn off debug mode
 	// turnOnDebugMode(true, true);
 	
-	
+	// Main Menu Setup
+	//Creates Room Controller. 
+	mainMenu = new Sprite(1920/2, 1080/2, 1920,1080);
+	mainMenu.image = mainMenuBackground;
+	mainMenu.layer = 3;
+	mainMenu.collider = 'none';
 }
 
 function draw() {
@@ -71,7 +64,7 @@ function draw() {
 		// Draw menu
 		if(mouse.presses()){
 			gameState = 'PLAYING';
-			menuScreen.remove();
+			mainMenu.remove();
 		}
 	} else if (gameState === 'PLAYING') {
 		clear();
@@ -86,3 +79,17 @@ function draw() {
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
 }
+
+/*
+function createMenuScreen() {
+	// Create a new Sprite object that represents the menu background
+	// Positioned at the center of the screen and spans the full screen size
+	var menu = new Sprite(1920/2, 1080/2, 1920,1080);
+  
+	menu.image = mainMenuBackground;
+	menu.layer = 3;
+	menu.collider = 'none';
+
+	return menu;
+}
+*/
