@@ -60,9 +60,12 @@ function draw() {
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
+		if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
 		enemyHandler();
+		darknessSprite.opacity = 0.7;
 		darknessSprite.x = player.x;
 		darknessSprite.y = player.y;
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
+
 }

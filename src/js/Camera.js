@@ -65,6 +65,7 @@ function moveCamera(direction){
     else if (direction == "down") camera.y += 1080;
     else if (direction == "left") camera.x -= 1920;
     else if (direction == "right") camera.x += 1920;
+
 }
 
 
@@ -74,6 +75,7 @@ function movePlayer(direction){
     else if (direction == "down") player.y += 375;
     else if (direction == "left") player.x -= 375;
     else if (direction == "right") player.x += 375;
+
 }
 
 
