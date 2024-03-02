@@ -12,7 +12,15 @@ class GameMap {
         this.MAX
         this.map=null;
         this.roomControl=new RoomController();
-        
+        this.activeRoom=null;
+        this.roomArr=[]
+        for (let i = 0; i < 100; i++) {
+            this.roomArr.push([])
+            for (let j = 0; j < 100; j++) {
+                this.roomArr[i].push(this.roomControl.getConnectorRoom());
+            }
+            
+        }
         //Generate empty char array for map
         this.mapArray = Array(this.MAX_TILES_VERTICAL).fill(".".repeat(this.MAX_TILES_HORIZONTAL));
         this.rooms = 10;
@@ -21,13 +29,19 @@ class GameMap {
                 // const element = array[index];
                 this.insertRoom(x,y,this.roomControl.getConnectorRoom());
             }
-            
         }
         // this.insertRoom(0,0,this.roomControl.getRoom1());
         // this.insertRoom(16,0,this.roomControl.getConnectorRoom());
         
     }
     getRoom(x,y) {
+        try {
+            return this.roomArr[x][y].getTileArray();
+        } catch (error) {
+            console.log(error);
+            console.log("ROOM OUT OF BOUNDS")
+        }
+        
         x=x*Room.MAX_T_WIDTH;
         y=y*Room.MAX_T_HEIGHT;
         var res=[];
@@ -43,12 +57,19 @@ class GameMap {
     }
     //Takes the x and y coords of a room on the map. a room with top left at 32x 9y would be gotten with 2,1
     loadRoom(x,y){
+        let xOffset=0;
+        let yOffset=0;
+        this.activeRoom={"x":x,"y":y};
+        xOffset=this.activeRoom['x']*CANVAS_WIDTH_PX;
+        yOffset=this.activeRoom['y']*CANVAS_HEIGHT_PX;
+
         // this.map?.removeAll();
         this.map=new Tiles(this.getRoom(x,y),
-        RoomController.TILE_WIDTH /2,
-        RoomController.TILE_HEIGHT/2,
+        RoomController.TILE_WIDTH /2+xOffset,
+        RoomController.TILE_HEIGHT/2+yOffset,
         RoomController.TILE_WIDTH   ,
         RoomController.TILE_HEIGHT);
+        this.map.layer=0;
     }
     //Renders the entire map at once, most useful in debugging. Is slow at runtime
     render(){

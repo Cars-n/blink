@@ -4,10 +4,12 @@ const staticEnemyList = []; //Stored list of every enemy
 let playerControl,player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
 let notPlayer;
-const PLAYERSPEED = 3;
+const PLAYERSPEED = 10;
 let MAINMENULOADED = true;
 let menuScreen;
 let gameMap;
+const CANVAS_WIDTH_PX=1920;
+const CANVAS_HEIGHT_PX=1080;
 
 
 function preload() {
@@ -24,20 +26,23 @@ function preload() {
 }
 
 function setup() {
-	createCanvas(1920,1080,document.getElementById("game"));
+	createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX,document.getElementById("game"));
 	noSmooth(); // removes smoothing to maintain pixelated look
 	canvas.style = ""; // removes default canvas styling
 	fadeScreen = createFadeScreen(); //Creates a screen that's black and fades in and out with the fadeInAndOut function
 	//Creates Room Controller. 
 	menuScreen = createMenuScreen();
+	const SPAWNX=50;
+	const SPAWNY=50;
 	gameMap=new GameMap();
-	gameMap.render();
+	gameMap.loadRoom(SPAWNX,SPAWNY);
 	// roomControl = new RoomController();
-
-	player = setupPlayer();
+	player = setupPlayer(SPAWNX,SPAWNY);
+	moveCamera("right",SPAWNX);
+	moveCamera("down",SPAWNY);
 	// darkness overlay
 	darknessSprite = darkness();
-	darknessSprite.layer = 0;
+	darknessSprite.layer = 1;
 	
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
@@ -67,5 +72,5 @@ function draw() {
 		darknessSprite.y = player.y;
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
-
+	console.log(player.room)
 }
