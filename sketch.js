@@ -21,7 +21,7 @@ function preload() {
     doorCreak.setVolume(0.5);
     footsteps = loadSound('assets/audio/footsteps.mp3');
     footsteps.setVolume(0.5);
-    darknessSVG = loadSVG("assets/darkness.svg");
+    darknessSVG = loadImage("assets/darkness.svg");
 }
 
 function setup() {
@@ -60,7 +60,6 @@ function draw() {
 			playerMovement.handleInput();
 			if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
 			enemyHandler();
-			
 		}
-
+		darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y);
 }

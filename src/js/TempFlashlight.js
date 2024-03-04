@@ -1,6 +1,8 @@
 const DARKNESSLAYER = 2;
 const DARKNESSOPACITY = 0.9;
 let darkness;
+let rotateClockwise = false;
+let flashlightRotation;
 
 function darknessSetup() {
       darkness = new Sprite(width/2, height/2, 1920, 1080); // creates a sprite that is the size of the canvas and at the center of the canvas
@@ -10,19 +12,23 @@ function darknessSetup() {
       darkness.collider = 'none';
       darkness.layer = DARKNESSLAYER; //Layer needs to be higher than player and enviroment sprites
       return darkness;
-}
+} 
 
-function updateTriangle(darkSVG) {
-      const triangle = select('#flashlight'); // Select all polygons in the SVG
-      let trianglePoints = extractPoints(triangleMask.attribute('d')); // Get the points of each polygon
-      // Modify the points however you want
-      for (let j = 0; j < points.length; j++) {
-        points[j].x += random(-5, 5); // Example manipulation, adding random value to x coordinate
-        points[j].y += random(-5, 5); // Example manipulation, adding random value to y coordinate
-      }
-}
+function darknessDraw(playerX, playerY, playerVelocityX, playerVelocityY) {     
+      darkness.y = playerY;
+      darkness.x = playerX;
+      if(playerVelocityX != 0 || playerVelocityY != 0) // if player is moving change rotation
+            flashlightRotation = 0; // reset rotation
+            if (playerVelocityX > 0) {
+                  flashlightRotation = 90;
+            } else if (playerVelocityX < 0) {
+                  flashlightRotation = -90;
+            }
+            if (playerVelocityY > 0) {
+                  flashlightRotation = -180;
+            } else if (playerVelocityY < 0) {
+                  flashlightRotation = 0;
+            }
 
-function darknessDraw(playerx, playery) {
-      const triangle = document.getElementById('cutout');
-      triangle.setAttribute('points', '0,0 1060,740 1060,340');
+    darkness.rotation = flashlightRotation;
 }
