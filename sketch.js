@@ -42,18 +42,19 @@ function preload() {
 }
 const SPAWNX=6;
 const SPAWNY=5;
+
 function setup() {
 	createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX,document.getElementById("game"));
 	noSmooth(); // removes smoothing to maintain pixelated look
 	canvas.style = ""; // removes default canvas styling
 	fadeScreen = createFadeScreen(); //Creates a screen that's black and fades in and out with the fadeInAndOut function
 	//Creates Room Controller. 
-	menuScreen = createMenuScreen();
 	
 	gameMap=new GameMap();
 	gameMap.loadRoom(SPAWNX,SPAWNY);
 	// roomControl = new RoomController();
-	inventory = new InventoryController();	player = setupPlayer(SPAWNX,SPAWNY);
+	inventory = new InventoryController();	
+	player = setupPlayer(SPAWNX,SPAWNY);
 	fadeScreen.x = player.x;
 	fadeScreen.y = player.y;
 	flashlight = new Item(500,500, "FlashLight", 2,1,20,8,flashlightImage);
