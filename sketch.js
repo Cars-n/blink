@@ -108,13 +108,9 @@ function draw() {
 			GAMESTATE = "PLAYING";
 		} 
 		if(kb.pressed('r')){
-			inventory.removeItem(flashlight, true);
-			console.log("This is the inventory after Flashlight is removed")
 			console.log(inventory.inventory);
-			inventory.remove();
-			inventory.renderInventory();
 		} 
-		dragItem(flashlight);
-		dragItem(key);
+		dragItem(flashlight, inventory);
+		dragItem(key, inventory);
 	}
 }	
