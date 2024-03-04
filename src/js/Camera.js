@@ -60,11 +60,11 @@ function fadeOut(object){
 
 
 //Moves the camera in the direction specified. takes "up", "down", "left", "right" as arguments.
-function moveCamera(direction){
-    if (direction == "up") camera.y -= 1080;
-    else if (direction == "down") camera.y += 1080;
-    else if (direction == "left") camera.x -= 1920;
-    else if (direction == "right") camera.x += 1920;
+function moveCamera(direction,multiplier=1){
+    if (direction == "up") camera.y -= 1080*multiplier;
+    else if (direction == "down") camera.y += 1080*multiplier;
+    else if (direction == "left") camera.x -= 1920*multiplier;
+    else if (direction == "right") camera.x += 1920*multiplier;
 
 }
 

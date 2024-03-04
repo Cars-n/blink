@@ -10,6 +10,8 @@ function upDoorCallback(a,b) {
             ISWAITING = true;
             fadeScreenNow();
             playerMovement.moveSpeed = 0;
+            player.room['y']-=1
+            gameMap.loadRoom(player.room['x'],player.room['y']);
             if(doorCreak.isPlaying() == false) doorCreak.play();
             waitForOpacityCondition(5000) // Wait for up to 5 seconds
             .then(() => {
@@ -34,6 +36,8 @@ function upDoorCallback(a,b) {
                 ISWAITING = true;
                 fadeScreenNow();
                 playerMovement.moveSpeed = 0;
+                player.room['x']+=1
+                gameMap.loadRoom(player.room['x'],player.room['y']);
                 if(doorCreak.isPlaying() == false) doorCreak.play();
                 waitForOpacityCondition(5000) // Wait for up to 5 seconds
                 .then(() => {
@@ -57,6 +61,8 @@ function leftDoorCallback(a,b) {
         ISWAITING = true;
         fadeScreenNow();
         playerMovement.moveSpeed = 0;
+        player.room['x']-=1
+        gameMap.loadRoom(player.room['x'],player.room['y']);
         if(doorCreak.isPlaying() == false) doorCreak.play();
         waitForOpacityCondition(5000) // Wait for up to 5 seconds
           .then(() => {
@@ -80,6 +86,8 @@ function downDoorCallback(a,b) {
         ISWAITING = true;
         fadeScreenNow();
         playerMovement.moveSpeed = 0;
+        player.room['y']+=1
+        gameMap.loadRoom(player.room['x'],player.room['y']);
         if(doorCreak.isPlaying() == false) doorCreak.play();
         waitForOpacityCondition(5000) // Wait for up to 5 seconds
           .then(() => {

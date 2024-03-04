@@ -8,6 +8,8 @@ let INVENTORYRENDERED = false;
 const PLAYERSPEED = 3;
 let menuScreen;
 let gameMap;
+const CANVAS_WIDTH_PX=1920;
+const CANVAS_HEIGHT_PX=1080;
 let darknessSprite;
 // Main Menu Assets
 // MENU PLAYING or PAUSED
@@ -38,17 +40,22 @@ function preload() {
 	// load background of main menu 
 	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png")
 }
-
+const SPAWNX=6;
+const SPAWNY=5;
 function setup() {
-	createCanvas(1920,1080,document.getElementById("game"));
+	createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX,document.getElementById("game"));
 	noSmooth(); // removes smoothing to maintain pixelated look
 	canvas.style = ""; // removes default canvas styling
 	fadeScreen = createFadeScreen(); //Creates a screen that's black and fades in and out with the fadeInAndOut function
+	//Creates Room Controller. 
+	menuScreen = createMenuScreen();
+	
 	gameMap=new GameMap();
-	gameMap.render();
+	gameMap.loadRoom(SPAWNX,SPAWNY);
 	// roomControl = new RoomController();
-	inventory = new InventoryController();
-	player = setupPlayer();
+	inventory = new InventoryController();	player = setupPlayer(SPAWNX,SPAWNY);
+	fadeScreen.x = player.x;
+	fadeScreen.y = player.y;
 	flashlight = new Item(500,500, "FlashLight", 2,1,20,8,flashlightImage);
 	flashlight.itemSprite.rotation = -90;
 	key = new Item(1000,500, "Key", 1,1,10,5,keyImage);
