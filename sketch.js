@@ -9,7 +9,7 @@ let gameMap;
 
 // Main Menu Assets
 // MENU PLAYING or PAUSED
-let gameState = 'MENU'
+let GAMESTATE = "MENU";
 let mainMenu;
 let startButton;
 let tutorialButton;
@@ -97,11 +97,11 @@ function setup() {
 
 function draw() {
 	// console.log("FPS:",1000/deltaTime);
-	if (gameState === 'MENU') {
+	if (GAMESTATE === 'MENU') {
 		// Draw menu
 
 		if(mouse.presses()){
-			gameState = 'PLAYING';
+			GAMESTATE = 'PLAYING';
 
 			// remove 
 			mainMenu.remove();
@@ -111,7 +111,7 @@ function draw() {
 			quitButton.remove();
 
 		}
-	} else if (gameState === 'PLAYING') {
+	} else if (GAMESTATE === 'PLAYING') {
 		clear();
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
