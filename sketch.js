@@ -24,7 +24,8 @@ function preload() {
 	footsteps = loadSound('assets/audio/footsteps.mp3');
 	footsteps.setVolume(0.5);
 }
-
+const SPAWNX=6;
+const SPAWNY=5;
 function setup() {
 	createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX,document.getElementById("game"));
 	noSmooth(); // removes smoothing to maintain pixelated look
@@ -32,18 +33,16 @@ function setup() {
 	fadeScreen = createFadeScreen(); //Creates a screen that's black and fades in and out with the fadeInAndOut function
 	//Creates Room Controller. 
 	menuScreen = createMenuScreen();
-	const SPAWNX=50;
-	const SPAWNY=50;
+	
 	gameMap=new GameMap();
 	gameMap.loadRoom(SPAWNX,SPAWNY);
 	// roomControl = new RoomController();
 	player = setupPlayer(SPAWNX,SPAWNY);
-	moveCamera("right",SPAWNX);
-	moveCamera("down",SPAWNY);
+	
 	// darkness overlay
 	darknessSprite = darkness();
-	darknessSprite.layer = 1;
-	
+	darknessSprite.layer = 3;
+	// darknessSprite.position.x=player.x;
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
 	setupStaticEnemyList();
@@ -59,7 +58,11 @@ function draw() {
 	clear();
 	if(mouse.presses()){
 		MAINMENULOADED = false;
+		
 		menuScreen.remove();
+		moveCamera("right",SPAWNX);
+		moveCamera("down",SPAWNY);
+		darknessSprite.opacity = 0.7;
 	}
 	if(MAINMENULOADED == false){
 		fadeInAndOut(fadeScreen);

@@ -69,7 +69,7 @@ class GameMap {
         RoomController.TILE_HEIGHT/2+yOffset,
         RoomController.TILE_WIDTH   ,
         RoomController.TILE_HEIGHT);
-        this.map.layer=0;
+        this.map.layer=1;
     }
     //Renders the entire map at once, most useful in debugging. Is slow at runtime
     render(){
