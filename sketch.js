@@ -59,7 +59,7 @@ function setup() {
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
 	setupStaticEnemyList();
-	
+	darknessSetup();
 	//Remove to turn off debug mode
 	// turnOnDebugMode(true, true);
 	
@@ -127,6 +127,8 @@ function draw() {
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
 		if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
+		enemyHandler();
+		darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y);
 		if(kb.pressed('e')) {
 			GAMESTATE = "INVENTORY";
 			console.log(GAMESTATE);
@@ -140,10 +142,7 @@ function draw() {
 			console.log("This is the inventory after Key is added");
 			console.log(inventory.inventory);
 		}
-		darknessSprite.opacity = 0.5;
-		darknessSprite.x = player.x;
-		darknessSprite.y = player.y;
-		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
+
 	}
     else if (GAMESTATE == "INVENTORY"){
 		player.velocity.y = 0;
