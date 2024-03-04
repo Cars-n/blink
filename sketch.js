@@ -5,7 +5,7 @@ let playerControl,player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
 let notPlayer;
 const PLAYERSPEED = 3;
-let MAINMENULOADED = false;
+let MAINMENULOADED = true;
 let menuScreen;
 let gameMap;
 let darknessSVG;
@@ -49,7 +49,6 @@ function setup() {
 function draw() {
 		// console.log("FPS:",1000/deltaTime);
 		clear();
-		menuScreen.remove();
 		if(mouse.presses()){
 			MAINMENULOADED = false;
 			menuScreen.remove();
@@ -60,6 +59,6 @@ function draw() {
 			playerMovement.handleInput();
 			if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
 			enemyHandler();
+            darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y);
 		}
-		darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y);
 }
