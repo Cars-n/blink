@@ -3,8 +3,10 @@ const enemyList = []; //Enemeies currently spawned
 const staticEnemyList = []; //Stored list of every enemy
 let playerControl,player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
-let notPlayer;
+let flashlight;
+let INVENTORYRENDERED = false;
 const PLAYERSPEED = 3;
+let menuScreen;
 let gameMap;
 
 // Main Menu Assets
@@ -15,9 +17,14 @@ let startButton;
 let tutorialButton;
 let controlsButton;
 let quitButton;
+let inventory;
+let key
 
 function preload() {
-	brickImage = loadImage('./assets/WallRoughDraft.png');
+	InventoryBackground = loadImage('assets/InventoryBackground.png');
+	keyImage = loadImage('assets/key.png');
+	brickImage = loadImage('assets/WallRoughDraft.png');
+	flashlightImage = loadImage('assets/Flashlight.png');
 	floorBoardImage = loadImage("assets/floortiles.png");
 	doorImage=loadImage("assets/Door.png");
 	darknessImage = loadImage("assets/darkness.svg");
@@ -40,8 +47,11 @@ function setup() {
 	gameMap=new GameMap();
 	gameMap.render();
 	// roomControl = new RoomController();
-
+	inventory = new InventoryController();
 	player = setupPlayer();
+	flashlight = new Item(500,500, "FlashLight", 2,1,20,8,flashlightImage);
+	flashlight.itemSprite.rotation = -90;
+	key = new Item(1000,500, "Key", 1,1,10,5,keyImage);
 	// darkness overlay
 	darknessSprite = darkness();
 	darknessSprite.layer = 0;
@@ -117,24 +127,43 @@ function draw() {
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
 		if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
-		enemyHandler();
-		darknessSprite.opacity = 0.7;
+		if(kb.pressed('e')) {
+			GAMESTATE = "INVENTORY";
+			console.log(GAMESTATE);
+		}
+		if(player.overlaps(flashlight.itemSprite)){
+			if (inventory.insertItem(flashlight, inventory.hasSpace(flashlight.InventoryX,flashlight.InventoryY))) flashlight.itemSprite.visible = false;
+			console.log(inventory.inventory);
+		}
+		if(player.overlaps(key.itemSprite)){
+			if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) key.itemSprite.visible = false;
+			console.log("This is the inventory after Key is added");
+			console.log(inventory.inventory);
+		}
+		darknessSprite.opacity = 0.4;
 		darknessSprite.x = player.x;
 		darknessSprite.y = player.y;
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
-}
-
-/*
-function createMenuScreen() {
-	// Create a new Sprite object that represents the menu background
-	// Positioned at the center of the screen and spans the full screen size
-	var menu = new Sprite(1920/2, 1080/2, 1920,1080);
-  
-	menu.image = mainMenuBackground;
-	menu.layer = 3;
-	menu.collider = 'none';
-
-	return menu;
-}
-*/
+    else if (GAMESTATE == "INVENTORY"){
+		player.velocity.y = 0;
+		player.velocity.x = 0;
+		player.changeAni("idle_" + playerMovement.lastDirection);
+		movementSounds(player,footsteps);
+		if(!INVENTORYRENDERED){
+			inventory.renderInventory();
+			INVENTORYRENDERED = true;
+		}
+		if(kb.pressed('e')){
+			inventory.remove();
+			INVENTORYRENDERED = false;
+			playerMovement.moveSpeed = 3;
+			GAMESTATE = "PLAYING";
+		} 
+		if(kb.pressed('r')){
+			console.log(inventory.inventory);
+		} 
+		dragItem(flashlight, inventory);
+		dragItem(key, inventory);
+	}
+}	
