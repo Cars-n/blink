@@ -59,7 +59,6 @@ function draw() {
 		playerMovement.handleInput();
 		if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
 		enemyHandler();
-		darkness.opacity = 0.7;
 		darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y);
 	}
 

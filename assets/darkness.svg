@@ -8,5 +8,5 @@
   </mask>
   
   <!-- Black square rectangle with mask applied -->
-  <rect x="0" y="0" width="3840" height="3840" fill="black" mask="url(#triangle-mask)" />
+  <rect x="0" y="0" width="3840" height="3840" fill="black" opacity="0.7" mask="url(#triangle-mask)" />
 </svg>
