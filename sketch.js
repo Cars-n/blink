@@ -38,7 +38,8 @@ function setup() {
 	gameMap.loadRoom(SPAWNX,SPAWNY);
 	// roomControl = new RoomController();
 	player = setupPlayer(SPAWNX,SPAWNY);
-	
+	fadeScreen.x = player.x;
+	fadeScreen.y = player.y;
 	// darkness overlay
 	darknessSprite = darkness();
 	darknessSprite.layer = 3;
@@ -70,7 +71,7 @@ function draw() {
 		playerMovement.handleInput();
 		if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
 		enemyHandler();
-		darknessSprite.opacity = 0.7;
+		darknessSprite.opacity = 0.4;
 		darknessSprite.x = player.x;
 		darknessSprite.y = player.y;
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
