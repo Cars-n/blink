@@ -4,7 +4,7 @@
     <rect width="100%" height="100%" fill="white"/> <!-- Make the entire canvas white -->
     <!-- Transparent triangle cutout -->
     
-    <polygon id="flashlight" points="960,540 1260,740 1260,340" fill="black" />
+    <polygon id="flashlight" points="960,540  1260,640  1260,440" fill="black" />
   </mask>
   
   <!-- Black square rectangle with mask applied -->
