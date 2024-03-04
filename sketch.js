@@ -8,7 +8,7 @@ let INVENTORYRENDERED = false;
 const PLAYERSPEED = 3;
 let menuScreen;
 let gameMap;
-
+let darknessSprite;
 // Main Menu Assets
 // MENU PLAYING or PAUSED
 let GAMESTATE = "MENU";
@@ -140,7 +140,7 @@ function draw() {
 			console.log("This is the inventory after Key is added");
 			console.log(inventory.inventory);
 		}
-		darknessSprite.opacity = 0.4;
+		darknessSprite.opacity = 0.5;
 		darknessSprite.x = player.x;
 		darknessSprite.y = player.y;
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
