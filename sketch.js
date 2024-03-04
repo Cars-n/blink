@@ -125,7 +125,8 @@ function draw() {
 			tutorialButton.remove();
 			controlsButton.remove();
 			quitButton.remove();
-
+			moveCamera("right",SPAWNX);
+			moveCamera("down",SPAWNY);
 		}
 	} else if (GAMESTATE === 'PLAYING') {
 		clear();
