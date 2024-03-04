@@ -53,8 +53,6 @@ function setup() {
 	flashlight.itemSprite.rotation = -90;
 	key = new Item(1000,500, "Key", 1,1,10,5,keyImage);
 	// darkness overlay
-	darknessSprite = darkness();
-	darknessSprite.layer = 0;
 	
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
