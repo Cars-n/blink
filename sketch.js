@@ -131,16 +131,12 @@ function draw() {
 		darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y);
 		if(kb.pressed('e')) {
 			GAMESTATE = "INVENTORY";
-			console.log(GAMESTATE);
 		}
 		if(player.overlaps(flashlight.itemSprite)){
 			if (inventory.insertItem(flashlight, inventory.hasSpace(flashlight.InventoryX,flashlight.InventoryY))) flashlight.itemSprite.visible = false;
-			console.log(inventory.inventory);
 		}
 		if(player.overlaps(key.itemSprite)){
 			if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) key.itemSprite.visible = false;
-			console.log("This is the inventory after Key is added");
-			console.log(inventory.inventory);
 		}
 
 	}
