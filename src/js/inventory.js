@@ -150,7 +150,7 @@ class InventoryController {
     }
 
 
-    removeItem(item, drop=""){
+    removeItem(item, drop){
         item.inInventory = false;
         for(let j = 0; j < InventoryController.INVENTORY_HEIGHT; j++){
             for(let i = 0; i < InventoryController.INVENTORY_WIDTH; i++){
@@ -159,7 +159,7 @@ class InventoryController {
                         this.inventory[j][i].itemSprite.visible = false;
                         if(drop == "") this.inventory[j][i].itemSprite.remove()
                         else if (drop == "remove") this.inventory[j][i].itemSprite.visible = true;
-                        else {
+                        else if (drop == "drop"){
                             this.inventory[j][i].itemSprite.visible = true;
                             this.inventory[j][i].itemSprite.x = player.x + 30;
                             this.inventory[j][i].itemSprite.x = player.y + 30;
@@ -172,7 +172,7 @@ class InventoryController {
                         this.inventory[j][i].itemSprite.visible = false;
                         if(drop == "") this.inventory[j][i].itemSprite.remove()
                         else if (drop == "remove") this.inventory[j][i].itemSprite.visible = true;
-                        else {
+                        else if (drop == "drop"){
                             this.inventory[j][i].itemSprite.visible = true;
                             this.inventory[j][i].itemSprite.x = player.x + 30;
                             this.inventory[j][i].itemSprite.x = player.y + 30;
@@ -186,7 +186,7 @@ class InventoryController {
                         this.inventory[j][i].itemSprite.visible = false;
                         if(drop == "") this.inventory[j][i].itemSprite.remove()
                         else if (drop == "remove") this.inventory[j][i].itemSprite.visible = true;
-                        else {
+                        else if (drop == "drop"){
                             this.inventory[j][i].itemSprite.visible = true;
                             this.inventory[j][i].itemSprite.x = player.x + 30;
                             this.inventory[j][i].itemSprite.x = player.y + 30;
@@ -261,7 +261,7 @@ function dragItem(item, inventory){
         ||  item.itemSprite.y > ((Math.ceil(player.y/1080)*1080-540)-(InventoryController.TILE_HEIGHT)) + (InventoryController.TILE_HEIGHT * 1.5)) 
         {
             console.log('removing');
-            inventory.removeItem(item, true);
+            inventory.removeItem(item, "drop");
         }
         else {
             for (let i = 0; i < InventoryController.INVENTORY_WIDTH; i++){
