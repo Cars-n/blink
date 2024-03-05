@@ -40,8 +40,8 @@ function preload() {
 	// load background of main menu 
 	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png")
 }
-const SPAWNX=6;
-const SPAWNY=5;
+const SPAWNX=1;
+const SPAWNY=1;
 
 function setup() {
 	createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX,document.getElementById("game"));
@@ -57,9 +57,9 @@ function setup() {
 	player = setupPlayer(SPAWNX,SPAWNY);
 	fadeScreen.x = player.x;
 	fadeScreen.y = player.y;
-	flashlight = new Item(500,500, "FlashLight", 2,1,20,8,flashlightImage);
+	flashlight = new Item(player.x + 50,player.y + 50, "FlashLight", 2,1,20,8,flashlightImage);
 	flashlight.itemSprite.rotation = -90;
-	key = new Item(1000,500, "Key", 1,1,10,5,keyImage);
+	key = new Item(player.x + 100 ,player.y, "Key", 1,1,10,5,keyImage);
 	// darkness overlay
 	
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
