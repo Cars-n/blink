@@ -161,7 +161,6 @@ class InventoryController {
                         else if (drop == "remove") this.inventory[j][i].itemSprite.visible = true;
                         else if (drop == "drop"){
                             this.inventory[j][i].itemSprite.visible = true;
-                            console.log(player.x + 30, player.y + 30);
                             this.inventory[j][i].itemSprite.x = player.x + 30;
                             this.inventory[j][i].itemSprite.y = player.y + 30;
                             this.inventory[j][i].itemSprite.scale = 1;
@@ -261,7 +260,6 @@ function dragItem(item, inventory){
         ||  item.itemSprite.y < ((Math.ceil(player.y/1080)*1080-540)-(InventoryController.TILE_HEIGHT)*1.5)
         ||  item.itemSprite.y > ((Math.ceil(player.y/1080)*1080-540)-(InventoryController.TILE_HEIGHT)) + (InventoryController.TILE_HEIGHT * 1.5)) 
         {
-            console.log('removing');
             inventory.removeItem(item, "drop");
         }
         else {
