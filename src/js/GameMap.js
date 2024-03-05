@@ -34,6 +34,12 @@ class GameMap {
         // this.insertRoom(16,0,this.roomControl.getConnectorRoom());
         
     }
+    getRoomWorldCoords(x,y){
+        let worldCoords={"x":0,"y":0};
+        worldCoords.x=(RoomController.TILE_WIDTH /2)+(x*CANVAS_WIDTH_PX )
+        worldCoords.y=(RoomController.TILE_HEIGHT/2)+(y*CANVAS_HEIGHT_PX);
+        return worldCoords;
+    }
     getRoom(x,y) {
         try {
             return this.roomArr[x][y].getTileArray();

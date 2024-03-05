@@ -1,7 +1,7 @@
 let bricks, tilesGroup;
 const enemyList = []; //Enemeies currently spawned
 const staticEnemyList = []; //Stored list of every enemy
-let playerControl,player,fadeScreen, footsteps, doorCreak;
+let player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
 let notPlayer;
 const PLAYERSPEED = 10;
@@ -25,8 +25,8 @@ function preload() {
 	footsteps.setVolume(0.5);
 }
 
-const SPAWNX=6;
-const SPAWNY=6;
+const SPAWNX=60;
+const SPAWNY=60;
 
 function setup() {
 	createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX,document.getElementById("game"));
@@ -39,19 +39,20 @@ function setup() {
 	gameMap=new GameMap();
 	
 	// roomControl = new RoomController();
-	player = setupPlayer(SPAWNX,SPAWNY);
-	fadeScreen.x = player.x;
-	fadeScreen.y = player.y;
+	
+
 	// darkness overlay
 	darknessSprite = darkness();
 	darknessSprite.layer = 3;
 	// darknessSprite.position.x=player.x;
+	player = setupPlayer();
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
-
-	setupStaticEnemyList();
 	
+	setupStaticEnemyList();
+	// fadeScreen.x = player.x;
+	// fadeScreen.y = player.y;
 	//Remove to turn off debug mode
-	// turnOnDebugMode(true, true);
+	// turnOnDebugMode(true, false);
 	
 	
 }
@@ -65,6 +66,13 @@ function draw() {
 		menuScreen.remove();
 		moveCamera("right",SPAWNX);
 		moveCamera("down",SPAWNY);
+		var coords=gameMap.getRoomWorldCoords(SPAWNX,SPAWNY);
+		player.x=coords.x+600;
+		player.y=coords.y+600;
+		player.room["x"]=SPAWNX;
+		player.room["y"]=SPAWNY;
+		fadeScreen.x = player.x;
+		fadeScreen.y = player.y;
 		gameMap.loadRoom(SPAWNX,SPAWNY);
 		// darknessSprite.opacity = 0.7;
 	}
@@ -77,7 +85,12 @@ function draw() {
 		darknessSprite.opacity = 0.4;
 		darknessSprite.x = player.x;
 		darknessSprite.y = player.y;
+		
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
-	console.log(player.room)
+	console.log(playerMovement.target.x)
+	console.log(playerMovement.target.y)
+
+	
+	// console.log(player.room)
 }
