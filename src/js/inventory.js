@@ -161,8 +161,9 @@ class InventoryController {
                         else if (drop == "remove") this.inventory[j][i].itemSprite.visible = true;
                         else if (drop == "drop"){
                             this.inventory[j][i].itemSprite.visible = true;
+                            console.log(player.x + 30, player.y + 30);
                             this.inventory[j][i].itemSprite.x = player.x + 30;
-                            this.inventory[j][i].itemSprite.x = player.y + 30;
+                            this.inventory[j][i].itemSprite.y = player.y + 30;
                             this.inventory[j][i].itemSprite.scale = 1;
                         }
                         this.inventory[j][i] = '';
@@ -175,7 +176,7 @@ class InventoryController {
                         else if (drop == "drop"){
                             this.inventory[j][i].itemSprite.visible = true;
                             this.inventory[j][i].itemSprite.x = player.x + 30;
-                            this.inventory[j][i].itemSprite.x = player.y + 30;
+                            this.inventory[j][i].itemSprite.y = player.y + 30;
                             this.inventory[j][i].itemSprite.scale = 1;
                         }
                         this.inventory[j][i] = '';
@@ -189,7 +190,7 @@ class InventoryController {
                         else if (drop == "drop"){
                             this.inventory[j][i].itemSprite.visible = true;
                             this.inventory[j][i].itemSprite.x = player.x + 30;
-                            this.inventory[j][i].itemSprite.x = player.y + 30;
+                            this.inventory[j][i].itemSprite.y = player.y + 30;
                             this.inventory[j][i].itemSprite.scale = 1;
                         }
                         this.inventory[j][i] = '';
