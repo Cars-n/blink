@@ -24,8 +24,10 @@ function preload() {
 	footsteps = loadSound('assets/audio/footsteps.mp3');
 	footsteps.setVolume(0.5);
 }
+
 const SPAWNX=6;
-const SPAWNY=5;
+const SPAWNY=6;
+
 function setup() {
 	createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX,document.getElementById("game"));
 	noSmooth(); // removes smoothing to maintain pixelated look
@@ -35,7 +37,7 @@ function setup() {
 	menuScreen = createMenuScreen();
 	
 	gameMap=new GameMap();
-	gameMap.loadRoom(SPAWNX,SPAWNY);
+	
 	// roomControl = new RoomController();
 	player = setupPlayer(SPAWNX,SPAWNY);
 	
@@ -56,13 +58,14 @@ function setup() {
 function draw() {
 	// console.log("FPS:",1000/deltaTime);
 	clear();
-	if(mouse.presses()){
+	if(mouse.presses() &&MAINMENULOADED != false){
 		MAINMENULOADED = false;
 		
 		menuScreen.remove();
 		moveCamera("right",SPAWNX);
 		moveCamera("down",SPAWNY);
-		darknessSprite.opacity = 0.7;
+		gameMap.loadRoom(SPAWNX,SPAWNY);
+		// darknessSprite.opacity = 0.7;
 	}
 	if(MAINMENULOADED == false){
 		fadeInAndOut(fadeScreen);
