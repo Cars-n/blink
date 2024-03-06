@@ -1,17 +1,21 @@
 /**
  * 
- * 
- * 
  */
 
+
+/**
+ * Class for the settings sub menu
+ */
 class SettingsMenu {
 
 	constructor() {
+		//Creating all of the buttons, sliders, controls, etc. needed for the menu
 		this.exitButton = createButton("Exit");
 
 
+		//Sets up the background sprite to mask over the pause menu
 		this.settingsMenu = new Sprite(1920/2,1080/2,1920,1080);
-		this.settingsMenu.layer = 6;
+		this.settingsMenu.layer = 6;		//ONE LAYER HIGHER THAN PAUSE MENU TO DISPLAY OVER IT
 		this.settingsMenu.opacity = 0.4;
 		this.settingsMenu.color = 'green';
         this.settingsMenu.visible = false;
@@ -27,7 +31,9 @@ class SettingsMenu {
 
 	}
 
-
+	/**
+	 * Makes all of the components of the settings menu visible
+	 */
 	showSettings() {
 		if (this.settingsMenu.visible == false) {
 			this.settingsMenu.visible = true;
@@ -36,6 +42,9 @@ class SettingsMenu {
 	}
 
 
+	/**
+	 * Hides the components and menu background of the settings
+	 */
 	hideSettings() {
 		if (this.settingsMenu.visible == true) {
 			this.settingsMenu.visible = false;
@@ -43,7 +52,12 @@ class SettingsMenu {
 		}
 	}
 
-
+	/**
+	 * Closes the settings submenu of the pause menu
+	 * 
+	 * @param {*} CURRENTGAMESTATE 
+	 * @returns The PAUSE game state
+	 */
 	exitSettings(CURRENTGAMESTATE) {
 		this.hideSettings();
 		CURRENTGAMESTATE = "PAUSE";
@@ -53,6 +67,9 @@ class SettingsMenu {
 }
 
 
+/**
+ * Class to handle the control of the pause menu and actions in the menu
+ */
 class PauseMenu {
 	/**
 	 * Default constructor, makes a background, resume and exit buttons
