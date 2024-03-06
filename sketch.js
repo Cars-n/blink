@@ -41,9 +41,7 @@ function preload() {
 	// Main Menu Preload
 	// load background of main menu 
 	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png");
-	
-	//Setting background resolution
-	mainMenuBackground.resize(1920/2, CANVAS_WIDTH_PX);
+
 
 }
 const SPAWNX=0;
