@@ -200,6 +200,7 @@ function draw() {
 			
 			/* TODO - LEFT OPEN FOR THE MAIN MENU METHODS TO DISPLAY */
 			alert("What, got to scared and quit?");
+			GAMESTATE = pauseMenu.exitGame(GAMESTATE);
 		});
 		
 

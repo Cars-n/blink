@@ -141,17 +141,23 @@ class PauseMenu {
 
 
 	/**
-	 * Called when exit is clicked
-	 * Takes you to the main menu
+	 * Exits the player from the game and returns them to the menu
+	 * 
+	 * @param {*} CURRENTGAMESTATE 
+	 * @returns The "MENU" game state
 	 */
 	exitGame(CURRENTGAMESTATE) {
 		this.hideMenu();
 		CURRENTGAMESTATE = "MENU";
+		return 	CURRENTGAMESTATE;
 	}
 
 
 	/**
-	 * Resumes the game when resume is clicked OR escape is pressed a second time
+	 * Resumes game play and closes the pause menu
+	 * 
+	 * @param {*} CURRENTGAMESTATE 
+	 * @returns The "PLAYING" game state
 	 */
 	resumeGame(CURRENTGAMESTATE) {
 		this.hideMenu();
@@ -161,13 +167,17 @@ class PauseMenu {
 	}
 
 	/**
+	 * Toggles the settings sub menu
 	 * 
+	 * @param {*} SETTINGSMENU 
+	 * @param {*} CURRENTGAMESTATE 
+	 * @returns The "SETTINGS" game state
 	 */
 	settingsToggle(SETTINGSMENU, CURRENTGAMESTATE) {
 		this.hideMenu();
-		CURRENTGAMESTATE = "SETTINGS";
+		//CURRENTGAMESTATE = "SETTINGS";
 		//SETTINGSMENU.showSettings();
-		return CURRENTGAMESTATE;
+		//return CURRENTGAMESTATE;
 
 	}
 
