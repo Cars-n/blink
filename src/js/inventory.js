@@ -1,4 +1,6 @@
+//Inventory class with functions for inserting into inventory, removing from inventory, rendering inventory, getting coordinates of inventory tiles, and checking if inventory is full.
 class InventoryController {
+    //Static variables should not be cahnged. 
     static TILE_HEIGHT = 200;
     static TILE_WIDTH = 200;
     static INVENTORY_WIDTH = 3;
@@ -7,6 +9,7 @@ class InventoryController {
     static tile;
 
     constructor() {
+        //intitializes the inventory to have nothing in it.
         this.inventory = [
             ["", "", ""],
             ["", "", ""],
@@ -14,7 +17,7 @@ class InventoryController {
         this.inventoryRendered = false;
         if (InventoryController.firstLoad == true) {
             InventoryController.firstLoad == false;
-            // Creating inventory tile
+            // Creating inventory tile, used for rendering the inventory. change the InventoryBackground if we want a different background tile.
             InventoryController.tile = new ImageTile(
                 InventoryBackground,
                 ";",
@@ -25,18 +28,17 @@ class InventoryController {
         }
     }
 
+    //Renders the inventory in the center of the screen. If you see any Math.ceil things that look complicated all they're doing is centering the inventory on the screen for any given location of the player. 
     renderInventory() {
         var invent = new Tiles(
-            [";;;", ";;;"],
-            Math.ceil(player.x / 1920) * 1920 -
-                960 -
-                InventoryController.TILE_WIDTH,
-            Math.ceil(player.y / 1080) * 1080 -
-                540 -
-                InventoryController.TILE_HEIGHT,
+            [";;;", 
+            ";;;"],
+            Math.ceil(player.x / 1920) * 1920 - 960 - InventoryController.TILE_WIDTH,
+            Math.ceil(player.y / 1080) * 1080 - 540 - InventoryController.TILE_HEIGHT,
             InventoryController.TILE_WIDTH,
             InventoryController.TILE_HEIGHT
         );
+        //Pulls the sprites from 10k x to the inventory and makes them visible and larger.
         for (let j = 0; j < InventoryController.INVENTORY_HEIGHT; j++) {
             for (let i = 0; i < InventoryController.INVENTORY_WIDTH; i++) {
                 if (this.inventory[j][i] !== "") {
@@ -64,22 +66,18 @@ class InventoryController {
         }
     }
 
+    // Checks if an inventory tile is full. Will not check both tiles for horizontal or vertical items. Those need to be checked.
     isFull(x, y) {
         if (this.inventory[y][x] !== "") return true;
         else return false;
     }
 
+    //Gets a tile location, 0-2 and 0-1 for x and y. returns a dictionary with the tile's centered x and y coords.
     getTileLocation(x, y) {
         x += 1;
         y += 1;
-        let topCornerX =
-            Math.ceil(player.x / 1920) * 1920 -
-            960 -
-            InventoryController.TILE_WIDTH * 1.5;
-        let topCornerY =
-            Math.ceil(player.y / 1080) * 1080 -
-            540 -
-            InventoryController.TILE_WIDTH * 1.5;
+        let topCornerX = Math.ceil(player.x / 1920) * 1920 - 960 - InventoryController.TILE_WIDTH * 1.5;
+        let topCornerY = Math.ceil(player.y / 1080) * 1080 - 540 - InventoryController.TILE_WIDTH * 1.5;
         return {
             x:
                 topCornerX +
@@ -92,6 +90,7 @@ class InventoryController {
         };
     }
 
+    //Checks if there is space for an item of x*y size. Returns a dictionary with the x and y coords of the top left corner of the space and the orientation of the space.
     hasSpace(x, y) {
         if (x * y == 1) {
             if (this.inventory[0].indexOf("") !== -1)
@@ -149,6 +148,8 @@ class InventoryController {
             };
         }
     }
+
+
     //PAO = position and orientation, taken from hasSpace();
     // It's a dictionary where {x: int, y: int, orientation: string}
     // Will return true is successful and false if not.
@@ -168,6 +169,8 @@ class InventoryController {
         return true;
     }
 
+    // Removes item from the inventory and places it at 10,000 x. as well as making it invisible.
+    // DO NOT USE THIS FUNCTION TO DROP ITEMS. ONLY FOR BACKEND USES OF RENDERING INVENTORY.
     remove() {
         for (let i = 0; i < InventoryController.INVENTORY_WIDTH; i++) {
             if (this.inventory[0][i] !== "") {
@@ -181,6 +184,7 @@ class InventoryController {
         InventoryController.tile.group.removeAll();
     }
 
+    //This is what should be used to remove items from the inventory. The Drop parameter is used to determine if the item should be dropped or not. setting it to "" will destroy the item. and "drop" will drop the item next to the player. 
     removeItem(item, drop) {
         item.inInventory = false;
         for (let j = 0; j < InventoryController.INVENTORY_HEIGHT; j++) {
