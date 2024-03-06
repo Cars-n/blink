@@ -23,6 +23,7 @@ let inventory;
 let key;
 
 let pauseMenu;
+let settingsMenu;
 
 function preload() {
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
@@ -114,6 +115,9 @@ function setup() {
 
 	//Makes a pause menu screen
 	pauseMenu = new PauseMenu();
+
+	//Makes a new settings menu
+	settingsMenu = new SettingsMenu();
 }
 
 function draw() {
@@ -198,6 +202,12 @@ function draw() {
 			alert("What, got to scared and quit?");
 		});
 		
+
+		pauseMenu.settingsButton.mousePressed(() => {
+			alert("The settings screen is under progress and will be done soon! :)");
+			//GAMESTATE = pauseMenu.settingsToggle(settingsMenu, GAMESTATE);
+
+		});
 		
 
 		if(kb.pressed('escape')){
@@ -205,4 +215,9 @@ function draw() {
 			
 		} 
 	}
+
+	/* TODO - FOR THE SETTINGS TRIGGER
+	/*else if (GAMESTATE == 'SETTINGS') {
+
+	}*/
 }	

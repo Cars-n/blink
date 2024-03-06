@@ -4,6 +4,55 @@
  * 
  */
 
+class SettingsMenu {
+
+	constructor() {
+		this.exitButton = createButton("Exit");
+
+
+		this.settingsMenu = new Sprite(1920/2,1080/2,1920,1080);
+		this.settingsMenu.layer = 6;
+		this.settingsMenu.opacity = 0.4;
+		this.settingsMenu.color = 'green';
+        this.settingsMenu.visible = false;
+        this.settingsMenu.collider = 'none';
+
+		// Setup exit Button
+		this.exitButton.position(300,300)
+		this.exitButton.style('background-color', 'transparent'); 
+		this.exitButton.style('color', 'white'); 
+		this.exitButton.style('border', 'none'); 
+		this.exitButton.style('font-size', '25px');
+		this.exitButton.hide();		//Hides the button until pause menu is triggered
+
+	}
+
+
+	showSettings() {
+		if (this.settingsMenu.visible == false) {
+			this.settingsMenu.visible = true;
+			this.exitButton.show();
+		}
+	}
+
+
+	hideSettings() {
+		if (this.settingsMenu.visible == true) {
+			this.settingsMenu.visible = false;
+			this.exitButton.hide();
+		}
+	}
+
+
+	exitSettings(CURRENTGAMESTATE) {
+		this.hideSettings();
+		CURRENTGAMESTATE = "PAUSE";
+
+		return CURRENTGAMESTATE;
+	}
+}
+
+
 class PauseMenu {
 	/**
 	 * Default constructor, makes a background, resume and exit buttons
@@ -11,6 +60,7 @@ class PauseMenu {
 	constructor() {
 		this.resumeButton = createButton('Resume');
 		this.exitButton = createButton('Exit');
+		this.settingsButton = createButton('Settings');
 
 		//Backdrop to the menu
 		this.menu = new Sprite(1920/2,1080/2,1920,1080);
@@ -36,18 +86,26 @@ class PauseMenu {
 		this.exitButton.style('border', 'none'); 
 		this.exitButton.style('font-size', '25px');
 		this.exitButton.hide();		//Hides the button until pause menu is triggered
+
+		// Setup settings Button
+		this.settingsButton.position(300,200)
+		this.settingsButton.style('background-color', 'transparent'); 
+		this.settingsButton.style('color', 'white'); 
+		this.settingsButton.style('border', 'none'); 
+		this.settingsButton.style('font-size', '25px');
+		this.settingsButton.hide();		//Hides the button until pause menu is triggered
 	}
 
 	/**
 	 * Shows the menu and buttons
 	 * 
-	 * @param {*} CURRENTGAMESTATE 
 	 */
 	showMenu() {
 		if (this.menu.visible == false) {
 			this.menu.visible = true;
 			this.resumeButton.show();
 			this.exitButton.show();
+			this.settingsButton.show();
 		}
 	}
 	
@@ -60,6 +118,7 @@ class PauseMenu {
 			this.resumeButton.hide();
 			this.menu.visible = false;
 			this.exitButton.hide();
+			this.settingsButton.hide();
 		}	
 	}
 
@@ -83,4 +142,16 @@ class PauseMenu {
 
 		return CURRENTGAMESTATE;
 	}
+
+	/**
+	 * 
+	 */
+	settingsToggle(SETTINGSMENU, CURRENTGAMESTATE) {
+		this.hideMenu();
+		CURRENTGAMESTATE = "SETTINGS";
+		//SETTINGSMENU.showSettings();
+		return CURRENTGAMESTATE;
+
+	}
+
 }
