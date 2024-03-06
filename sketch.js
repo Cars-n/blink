@@ -57,9 +57,11 @@ function setup() {
 	player = setupPlayer(SPAWNX,SPAWNY);
 	fadeScreen.x = player.x;
 	fadeScreen.y = player.y;
-	flashlight = new Item(player.x + 50,player.y + 50, "FlashLight", 2,1,20,8,flashlightImage);
-	flashlight.itemSprite.rotation = -90;
+	flashlight = new Item(player.x + 50,player.y + 50, "FlashLight", 2,1,8,20,flashlightImage);
+	flashlight.itemSprite.debug=true;
 	key = new Item(player.x + 100 ,player.y, "Key", 1,1,10,5,keyImage);
+	key.itemSprite.debug=true;
+
 	// darkness overlay
 	
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
@@ -169,3 +171,4 @@ function draw() {
 		dragItem(key, inventory);
 	}
 }	
+
