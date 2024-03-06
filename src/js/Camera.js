@@ -87,6 +87,6 @@ function fadeScreenNow(){
 window.addEventListener("resize", canvasResize);
 
 function canvasResize() {
-    resizeCanvas(1920,1080,document.getElementById("game"));
+    resizeCanvas(CANVAS_HEIGHT_PX,CANVAS_WIDTH_PX,document.getElementById("game"));
 	canvas.style=""; // removes default canvas styling
 }

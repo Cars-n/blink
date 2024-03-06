@@ -20,7 +20,9 @@ let tutorialButton;
 let controlsButton;
 let quitButton;
 let inventory;
-let key
+let key;
+
+let pauseMenu;
 
 function preload() {
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
@@ -38,7 +40,11 @@ function preload() {
 
 	// Main Menu Preload
 	// load background of main menu 
-	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png")
+	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png");
+	
+	//Setting background resolution
+	mainMenuBackground.resize(1920/2, CANVAS_WIDTH_PX);
+
 }
 const SPAWNX=0;
 const SPAWNY=0;
@@ -71,7 +77,7 @@ function setup() {
 	
 	// Main Menu Setup
 	//Creates Room Controller. 
-	mainMenu = new Sprite(1920/2, 1080/2, 1920,1080);
+	mainMenu = new Sprite(1920/2,1080/2,1920,1080);
 	mainMenu.image = mainMenuBackground;
 	mainMenu.layer = 3;
 	mainMenu.collider = 'none';
@@ -108,7 +114,8 @@ function setup() {
 	quitButton.style('border', 'none'); 
 	quitButton.style('font-size', '25px'); 
 
-	
+	//Makes a pause menu screen
+	pauseMenu = new PauseMenu();
 }
 
 function draw() {
@@ -146,6 +153,10 @@ function draw() {
 			if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) key.itemSprite.visible = false;
 		}
 
+
+		//Pause handle
+		if (kb.pressed('escape')) GAMESTATE = "PAUSE";
+
 	}
     else if (GAMESTATE == "INVENTORY"){
 		player.velocity.y = 0;
@@ -167,5 +178,33 @@ function draw() {
 		} 
 		dragItem(flashlight, inventory);
 		dragItem(key, inventory);
+	} else if (GAMESTATE == "PAUSE") {
+		console.log("PAUSED");
+
+		player.velocity.y = 0;
+		player.velocity.x = 0;
+		player.changeAni("idle_" + playerMovement.lastDirection);
+		movementSounds(player,footsteps);
+
+		pauseMenu.showMenu();
+
+		pauseMenu.resumeButton.mousePressed(() => {
+			GAMESTATE = pauseMenu.resumeGame(GAMESTATE);
+		
+		});
+
+
+		pauseMenu.exitButton.mousePressed(() => {
+			
+			/* TODO - LEFT OPEN FOR THE MAIN MENU METHODS TO DISPLAY */
+			alert("What, got to scared and quit?");
+		});
+		
+		
+
+		if(kb.pressed('escape')){
+			GAMESTATE = pauseMenu.resumeGame(GAMESTATE);
+			
+		} 
 	}
 }	
