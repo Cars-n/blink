@@ -287,7 +287,7 @@ class Item {
         this.itemSprite.drag = drag;
         setObjectCollider(this.itemSprite, spriteTypes.MOVABLEOBJECT);
     }
-
+    //fixes the sprite of the item to be horizontal or vertical.
     fixSpriteRotation() {
         if (this.orientation == "horizontal") {
             this.itemSprite.rotation = 90;
@@ -298,6 +298,7 @@ class Item {
     }
 }
 
+//This function is used to drag items from the inventory, and drop them. Most of the scary parts are just he math to keep it centered everything else is just checking if an item is in the correct square. 
 function dragItem(item, inventory) {
     if (item.inInventory == true) {
         if (item.itemSprite.mouse.hovering()) mouse.cursor = "grab";
