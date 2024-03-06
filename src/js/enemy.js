@@ -32,7 +32,7 @@ class Enemy{
         this.health = staticEnemyList[enemy_id].health;
         this.enemySprite = new Sprite(400, 400, 25, 25);
         this.enemySprite.diameter = staticEnemyList[enemy_id].dia;
-        this.enemySprite.layer=2;
+        this.enemySprite.layer=ENEMY_LAYER;
         setObjectCollider(this.enemySprite, spriteTypes.ENEMY, true);
     }
 }

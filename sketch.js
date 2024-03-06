@@ -75,7 +75,7 @@ function setup() {
 	//Creates Room Controller. 
 	mainMenu = new Sprite(1920/2, 1080/2, 1920,1080);
 	mainMenu.image = mainMenuBackground;
-	mainMenu.layer = 3;
+	mainMenu.layer = MAIN_MENU_LAYER;
 	mainMenu.collider = 'none';
 
 	// Setup Start Button

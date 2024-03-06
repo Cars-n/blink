@@ -1,4 +1,4 @@
-const DARKNESSLAYER = 2;
+
 let darkness;
 let flashlightRotation;
 
@@ -7,7 +7,7 @@ function darknessSetup() {
       darkness.img = "assets/darkness.svg"
       
       darkness.collider = 'none';
-      darkness.layer = DARKNESSLAYER; //Layer needs to be higher than player and enviroment sprites
+      darkness.layer = DARKNESS_LAYER; //Layer needs to be higher than player and enviroment sprites
 } 
 
 function darknessDraw(playerX, playerY, playerVelocityX, playerVelocityY) {     

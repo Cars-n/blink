@@ -1,7 +1,7 @@
 function createMenuScreen() {
     var object = new Sprite(1920 / 2, 1080 / 2, 1920, 1080);
     object.image = mainMenuImage;
-    object.layer = 10;
+    object.layer = MAIN_MENU_LAYER;
     object.collider = "none";
     return object;
 }
