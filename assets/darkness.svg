@@ -2,9 +2,13 @@
   <!-- Define the mask -->
   <mask id="triangle-mask">
     <rect width="100%" height="100%" fill="white"/> <!-- Make the entire canvas white -->
-    <!-- Transparent triangle cutout -->
-    
-    <polygon id="flashlight" points="1920,1920  1820,1580  2020,1580" fill="black" />
+    <!-- Transparent gradient transition -->
+    <linearGradient id="grad" x1="2020" y1="1580" x2="1920" y2="1920" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="black" stop-opacity="0"/>
+      <stop offset="50%" stop-color="black" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="black" stop-opacity="1"/>
+    </linearGradient>
+    <polygon points="1920,1920  1820,1580  2020,1580" fill="url(#grad)" />
   </mask>
   
   <!-- Black square rectangle with mask applied -->
