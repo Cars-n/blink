@@ -244,7 +244,7 @@ class RoomController {
             '=' + 'o'.repeat(14) + '=',
             '='.repeat(7)+"vv"+'='.repeat(7)
         ];
-        var tmp=new Furnishing(70,70,null,"static");
+        var tmp=new Furnishing(100,60,brickImage,"static");
         tmp.setTilePosition(5,5);
         var room=new Room(16,9,tileMap);
         room.furnishings.push(tmp);

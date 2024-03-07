@@ -7,7 +7,9 @@ class Furnishing {
         //Data necessary to construct our sprite
         this.width=width;
         this.height=height;
-        this.image=image;
+        this.image = createImage(width, height);
+        // Copying the provided image to the created image object
+        this.image.copy(image, 0, 0, width, height, 0, 0, width, height);
         this.colliderType=colliderType;
         this.event=collidingCallback;
         this.tileOffsetX=null;
@@ -30,6 +32,7 @@ class Furnishing {
     }
     instantiateSprite(worldX,worldY){
         this.furnishSprite = new Sprite();
+        this.furnishSprite.image=this.image;
         this.applyWorldOffset(worldX,worldY);
         // Setting width and height properties for the group
         this.furnishSprite.w = this.width;
