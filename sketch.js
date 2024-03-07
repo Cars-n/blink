@@ -3,15 +3,19 @@ const enemyList = []; //Enemeies currently spawned
 const staticEnemyList = []; //Stored list of every enemy
 let playerControl,player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
-let notPlayer;
+let flashlight;
+let INVENTORYRENDERED = false;
 const PLAYERSPEED = 3;
 let gameMap;
+let inventory;
+let key
+let GAMESTATE = "MENU";
+
+let pauseMenu;
 
 // Main Menu Assets
 // MENU PLAYING or PAUSED
-let GAMESTATE = "MENU";
 let mainMenu;
-
 let startButton;
 let tutorialButton;
 let controlsButton;
