@@ -124,7 +124,8 @@ function draw() {
 		} 
 		dragItem(flashlight);
 		dragItem(key);
-	} else if (GAMESTATE == "PAUSE") {
+	} 
+	else if (GAMESTATE == "PAUSE") {
 		console.log("PAUSED");
 
 		player.velocity.y = 0;
