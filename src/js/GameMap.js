@@ -16,8 +16,8 @@ class GameMap {
         //Generate empty char array for map
         this.mapArray = Array(this.MAX_TILES_VERTICAL).fill(".".repeat(this.MAX_TILES_HORIZONTAL));
         this.rooms = 10;
-        for (let x = 0; x < this.MAX_TILES_HORIZONTAL/4; x+=16) {
-            for (let y = 0; y < this.MAX_TILES_VERTICAL/4; y+=9) {
+        for (let x = 0; x < 2; x+=16) {
+            for (let y = 0; y < 2; y+=9) {
                 // const element = array[index];
                 this.insertRoom(x,y,this.roomControl.getConnectorRoom());
             }

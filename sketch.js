@@ -6,15 +6,25 @@ let ALL_LOADED=1;
 let notPlayer;
 const PLAYERSPEED = 3;
 let gameMap;
+<<<<<<< Updated upstream
 
 // Main Menu Assets
 // MENU PLAYING or PAUSED
 let GAMESTATE = "MENU";
+=======
+let inventory;
+let key
+let GAMESTATE = "MENU";
+
+let pauseMenu;
+>>>>>>> Stashed changes
 let mainMenu;
+
 let startButton;
 let tutorialButton;
 let controlsButton;
 let quitButton;
+
 
 function preload() {
 	brickImage = loadImage('./assets/WallRoughDraft.png');
@@ -52,66 +62,44 @@ function setup() {
 	
 	//Remove to turn off debug mode
 	// turnOnDebugMode(true, true);
+
+<<<<<<< Updated upstream
 	
-	// Main Menu Setup
-	//Creates Room Controller. 
-	mainMenu = new Sprite(1920/2, 1080/2, 1920,1080);
-	mainMenu.image = mainMenuBackground;
-	mainMenu.layer = 3;
-	mainMenu.collider = 'none';
+=======
+	// Main menu controller
+	mainMenu = new MainMenu();
 
-	// Setup Start Button
-	startButton = createButton('Start');
-	startButton.position(150,100)
-	startButton.style('background-color', 'transparent'); 
-	startButton.style('color', 'white'); 
-	startButton.style('border', 'none'); 
-	startButton.style('font-size', '25px'); 
-
-	// Setup Tutorial Button
-	tutorialButton = createButton('Tutorial');
-	tutorialButton.position(150,150)
-	tutorialButton.style('background-color', 'transparent'); 
-	tutorialButton.style('color', 'white'); 
-	tutorialButton.style('border', 'none'); 
-	tutorialButton.style('font-size', '25px'); 
-
-	// Setup Controls Button
-	controlsButton = createButton('Controls');
-	controlsButton.position(150,200)
-	controlsButton.style('background-color', 'transparent'); 
-	controlsButton.style('color', 'white'); 
-	controlsButton.style('border', 'none'); 
-	controlsButton.style('font-size', '25px'); 
-
-	// Setup Quit Button
-	quitButton = createButton('Quit');
-	quitButton.position(150,250)
-	quitButton.style('background-color', 'transparent'); 
-	quitButton.style('color', 'white'); 
-	quitButton.style('border', 'none'); 
-	quitButton.style('font-size', '25px'); 
-
-	
+	//Pause menu controller
+	pauseMenu = new PauseMenu();
+>>>>>>> Stashed changes
 }
 
 function draw() {
 	// console.log("FPS:",1000/deltaTime);
-	if (GAMESTATE === 'MENU') {
-		// Draw menu
+	if (GAMESTATE == "MENU") {
+		console.log("MAIN");
 
-		if(mouse.presses()){
-			GAMESTATE = 'PLAYING';
+		player.velocity.y = 0;
+		player.velocity.x = 0;
+		player.changeAni("idle_" + playerMovement.lastDirection);
+		movementSounds(player,footsteps);
 
-			// remove 
-			mainMenu.remove();
-			startButton.remove();
-			tutorialButton.remove();
-			controlsButton.remove();
-			quitButton.remove();
+		mainMenu.showMenu();
 
-		}
-	} else if (GAMESTATE === 'PLAYING') {
+		mainMenu.startButton.mousePressed(() => {
+			GAMESTATE = mainMenu.startGame(GAMESTATE);
+		});
+
+		mainMenu.exitButton.mousePressed(() => {		
+			/* TODO - LEFT OPEN FOR THE MAIN MENU METHODS TO DISPLAY */
+			alert("What, got to scared and quit?");
+		});
+		
+		if(kb.pressed('l')){
+			GAMESTATE = mainMenu.startGame(GAMESTATE);		
+		} 
+	}
+	else if (GAMESTATE == 'PLAYING') {
 		clear();
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
@@ -123,7 +111,66 @@ function draw() {
 		darknessSprite.y = player.y;
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
+<<<<<<< Updated upstream
 }
+=======
+    else if (GAMESTATE == "INVENTORY"){
+		player.velocity.y = 0;
+		player.velocity.x = 0;
+		player.changeAni("idle_" + playerMovement.lastDirection);
+		movementSounds(player,footsteps);
+		if(!INVENTORYRENDERED){
+			inventory.renderInventory();
+			INVENTORYRENDERED = true;
+		}
+		if(kb.pressed('e')){
+			inventory.remove();
+			INVENTORYRENDERED = false;
+			playerMovement.moveSpeed = 3;
+			GAMESTATE = "PLAYING";
+		} 
+		if(kb.pressed('r')){
+			inventory.removeItem(flashlight, true);
+			console.log("This is the inventory after Flashlight is removed")
+			console.log(inventory.inventory);
+			inventory.remove();
+			inventory.renderInventory();
+		} 
+		dragItem(flashlight);
+		dragItem(key);
+	} 
+	else if (GAMESTATE == "PAUSE") {
+		console.log("PAUSED");
+
+		player.velocity.y = 0;
+		player.velocity.x = 0;
+		player.changeAni("idle_" + playerMovement.lastDirection);
+		movementSounds(player,footsteps);
+
+		pauseMenu.showMenu();
+
+		pauseMenu.resumeButton.mousePressed(() => {
+			GAMESTATE = pauseMenu.resumeGame(GAMESTATE);
+		
+		});
+
+
+		pauseMenu.exitButton.mousePressed(() => {
+			
+			/* TODO - LEFT OPEN FOR THE MAIN MENU METHODS TO DISPLAY */
+			alert("What, got to scared and quit?");
+		});
+		
+		
+
+		if(kb.pressed('l')){
+			GAMESTATE = pauseMenu.resumeGame(GAMESTATE);
+			
+		} 
+	}
+}	
+
+>>>>>>> Stashed changes
 
 /*
 function createMenuScreen() {
