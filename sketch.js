@@ -6,25 +6,18 @@ let ALL_LOADED=1;
 let notPlayer;
 const PLAYERSPEED = 3;
 let gameMap;
-<<<<<<< Updated upstream
 
 // Main Menu Assets
 // MENU PLAYING or PAUSED
 let GAMESTATE = "MENU";
-=======
-let inventory;
-let key
-let GAMESTATE = "MENU";
-
-let pauseMenu;
->>>>>>> Stashed changes
 let mainMenu;
 
 let startButton;
 let tutorialButton;
 let controlsButton;
 let quitButton;
-
+let resumeButton;
+let exitButton;
 
 function preload() {
 	brickImage = loadImage('./assets/WallRoughDraft.png');
@@ -63,15 +56,11 @@ function setup() {
 	//Remove to turn off debug mode
 	// turnOnDebugMode(true, true);
 
-<<<<<<< Updated upstream
-	
-=======
 	// Main menu controller
 	mainMenu = new MainMenu();
 
 	//Pause menu controller
 	pauseMenu = new PauseMenu();
->>>>>>> Stashed changes
 }
 
 function draw() {
@@ -111,9 +100,6 @@ function draw() {
 		darknessSprite.y = player.y;
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
-<<<<<<< Updated upstream
-}
-=======
     else if (GAMESTATE == "INVENTORY"){
 		player.velocity.y = 0;
 		player.velocity.x = 0;
@@ -138,8 +124,7 @@ function draw() {
 		} 
 		dragItem(flashlight);
 		dragItem(key);
-	} 
-	else if (GAMESTATE == "PAUSE") {
+	} else if (GAMESTATE == "PAUSE") {
 		console.log("PAUSED");
 
 		player.velocity.y = 0;
@@ -170,18 +155,5 @@ function draw() {
 	}
 }	
 
->>>>>>> Stashed changes
 
-/*
-function createMenuScreen() {
-	// Create a new Sprite object that represents the menu background
-	// Positioned at the center of the screen and spans the full screen size
-	var menu = new Sprite(1920/2, 1080/2, 1920,1080);
-  
-	menu.image = mainMenuBackground;
-	menu.layer = 3;
-	menu.collider = 'none';
 
-	return menu;
-}
-*/
