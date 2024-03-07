@@ -92,14 +92,27 @@ function draw() {
 			GAMESTATE = mainMenu.startGame(GAMESTATE);		
 		} 
 	}
-	else if (GAMESTATE == 'PLAYING') {
+	else if (GAMESTATE === 'PLAYING') {
 		clear();
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
 		if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
-		enemyHandler();
-		darknessSprite.opacity = 0.7;
+		if(kb.pressed('escape')) GAMESTATE = "PAUSE";	//Pause screen game trigger
+		if(kb.pressed('e')) {
+			GAMESTATE = "INVENTORY";
+			console.log(GAMESTATE);
+		}
+		if(player.overlaps(flashlight.itemSprite)){
+			if (inventory.insertItem(flashlight, inventory.hasSpace(flashlight.InventoryX,flashlight.InventoryY))) flashlight.itemSprite.visible = false;
+			console.log(inventory.inventory);
+		}
+		if(player.overlaps(key.itemSprite)){
+			if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) key.itemSprite.visible = false;
+			console.log("This is the inventory after Key is added");
+			console.log(inventory.inventory);
+		}
+		darknessSprite.opacity = 0.4;
 		darknessSprite.x = player.x;
 		darknessSprite.y = player.y;
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
@@ -128,8 +141,7 @@ function draw() {
 		} 
 		dragItem(flashlight);
 		dragItem(key);
-	} 
-	else if (GAMESTATE == "PAUSE") {
+	} else if (GAMESTATE == "PAUSE") {
 		console.log("PAUSED");
 
 		player.velocity.y = 0;
@@ -159,6 +171,4 @@ function draw() {
 		} 
 	}
 }	
-
-
 
