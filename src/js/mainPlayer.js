@@ -4,7 +4,7 @@
  *
  */
 
-f
+
 function setupPlayer(){
     player = new Sprite(0, 0, 64, 64);
     player.room={"x":0,"y":0};

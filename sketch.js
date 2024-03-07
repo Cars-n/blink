@@ -82,14 +82,14 @@ function draw() {
 		playerMovement.handleInput();
 		if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
 		enemyHandler();
-		darknessSprite.opacity = 0.4;
+		darknessSprite.opacity = 1;
 		darknessSprite.x = player.x;
 		darknessSprite.y = player.y;
 		
 		image(darknessSprite.img, player.x, player.y, darknessSprite.width, darknessSprite.height);
 	}
-	console.log(playerMovement.target.x)
-	console.log(playerMovement.target.y)
+	// console.log(playerMovement.target.x)
+	// console.log(playerMovement.target.y)
 
 	
 	// console.log(player.room)

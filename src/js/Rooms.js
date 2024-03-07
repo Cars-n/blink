@@ -55,6 +55,7 @@ function upDoorCallback(a,b) {
             console.log("not player: ", b.tag);
         }  
 }
+
 function leftDoorCallback(a,b) {
     if (b?.tag === "player") {
     if(!ISWAITING){
@@ -106,6 +107,7 @@ function downDoorCallback(a,b) {
     }  
 }
 
+
 class Room{
     static MAX_T_WIDTH=16;
     static MAX_T_HEIGHT=9;
@@ -118,6 +120,8 @@ class Room{
         this.tWidth=tWidth;
         this.tHeight=tHeight;
         this.tileArray=tileArray;
+        
+        this.furnishings=[];
     }
     getTileArray(){
         return this.tileArray;
@@ -125,6 +129,7 @@ class Room{
     getTileSymbol(row,col){
         return this.tileArray[row][col];
     }
+    
 }
 
 // Class for managing the room layout
@@ -239,7 +244,10 @@ class RoomController {
             '=' + 'o'.repeat(14) + '=',
             '='.repeat(7)+"vv"+'='.repeat(7)
         ];
+        var tmp=new Furnishing(70,70,null,"static");
+        tmp.setTilePosition(5,5);
         var room=new Room(16,9,tileMap);
+        room.furnishings.push(tmp);
         return room;
     }
     // Method to render room 2
