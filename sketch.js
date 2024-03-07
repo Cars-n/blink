@@ -16,6 +16,11 @@ function setup() {
 	//Adding in for collsion testing
 	player.rotationLock = true;
 
+// Start the calibration process
+webgazer.begin();
+
+// Add an event listener for the "blink" event
+
 
 	//world.gravity.y = 15;
 	box = new Sprite();
@@ -28,6 +33,8 @@ function setup() {
 }
 
 function draw() {
+	var prediction = webgazer.getCurrentPrediction();
+	
 	clear();
 	// if (BlinkCount > blinks){
 	// 	background('black');
