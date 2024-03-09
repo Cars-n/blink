@@ -6,7 +6,7 @@ class MovementController {
         this.target = target;
         this.moveSpeed = moveSpeed;
         this.hasAnimation = hasAnimation;
-        this.lastDirection = '';
+        this.lastDirection = 'up';
     }
     // Call this for sprites controllable by the player
     handleInput() {
