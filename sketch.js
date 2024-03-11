@@ -12,7 +12,7 @@ const CANVAS_WIDTH_PX=1920;
 const CANVAS_HEIGHT_PX=1080;
 let darknessSprite;
 // Main Menu Assets
-// MENU PLAYING or PAUSED
+// MENU, PLAYING, INVENTORY, PAUSED
 let GAMESTATE = "MENU";
 let mainMenu;
 let startButton;
@@ -20,7 +20,10 @@ let tutorialButton;
 let controlsButton;
 let quitButton;
 let inventory;
-let key
+let key;
+
+let pauseMenu;
+let settingsMenu;
 
 function preload() {
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
@@ -38,7 +41,9 @@ function preload() {
 
 	// Main Menu Preload
 	// load background of main menu 
-	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png")
+	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png");
+
+
 }
 const SPAWNX=0;
 const SPAWNY=0;
@@ -70,67 +75,43 @@ function setup() {
 	darknessSetup();
 	//Remove to turn off debug mode
 	// turnOnDebugMode(true, true);
-	
-	// Main Menu Setup
-	//Creates Room Controller. 
-	mainMenu = new Sprite(1920/2, 1080/2, 1920,1080);
-	mainMenu.image = mainMenuBackground;
-	mainMenu.layer = MAIN_MENU_LAYER;
-	mainMenu.collider = 'none';
 
-	// Setup Start Button
-	startButton = createButton('Start');
-	startButton.position(200,100)
-	startButton.style('background-color', 'transparent'); 
-	startButton.style('color', 'white'); 
-	startButton.style('border', 'none'); 
-	startButton.style('font-size', '25px'); 
+	mainMenuBackground.resize(1920,1080);
+	mainMenu = new MainMenu();
 
-	// Setup Tutorial Button
-	tutorialButton = createButton('Tutorial');
-	tutorialButton.position(200,150)
-	tutorialButton.style('background-color', 'transparent'); 
-	tutorialButton.style('color', 'white'); 
-	tutorialButton.style('border', 'none'); 
-	tutorialButton.style('font-size', '25px'); 
+	//Makes a pause menu screen
+	pauseMenu = new PauseMenu();
 
-	// Setup Controls Button
-	controlsButton = createButton('Controls');
-	controlsButton.position(200,200)
-	controlsButton.style('background-color', 'transparent'); 
-	controlsButton.style('color', 'white'); 
-	controlsButton.style('border', 'none'); 
-	controlsButton.style('font-size', '25px'); 
-
-	// Setup Quit Button
-	quitButton = createButton('Quit');
-	quitButton.position(200,250)
-	quitButton.style('background-color', 'transparent'); 
-	quitButton.style('color', 'white'); 
-	quitButton.style('border', 'none'); 
-	quitButton.style('font-size', '25px'); 
-
-	
+	//Makes a new settings menu
+	settingsMenu = new SettingsMenu();
 }
 
 function draw() {
 	// console.log("FPS:",1000/deltaTime);
-	if (GAMESTATE === 'MENU') {
-		// Draw menu
+	if (GAMESTATE == "MENU") {
+		console.log("MAIN");
 
-		if(mouse.presses()){
-			GAMESTATE = 'PLAYING';
+		player.velocity.y = 0;
+		player.velocity.x = 0;
+		player.changeAni("idle_" + playerMovement.lastDirection);
+		movementSounds(player,footsteps);
 
-			// remove 
-			mainMenu.remove();
-			startButton.remove();
-			tutorialButton.remove();
-			controlsButton.remove();
-			quitButton.remove();
-			moveCamera("right",SPAWNX);
-			moveCamera("down",SPAWNY);
-		}
-	} else if (GAMESTATE === 'PLAYING') {
+		mainMenu.showMenu();
+
+		mainMenu.startButton.mousePressed(() => {
+			GAMESTATE = mainMenu.startGame(GAMESTATE);
+		});
+
+		mainMenu.exitButton.mousePressed(() => {		
+			/* TODO - LEFT OPEN FOR THE MAIN MENU METHODS TO DISPLAY */
+			alert("What, got to scared and quit?");
+		});
+		
+		if(kb.pressed('l')){
+			GAMESTATE = mainMenu.startGame(GAMESTATE);		
+		} 
+	} 
+	else if (GAMESTATE === 'PLAYING') {
 		clear();
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
@@ -150,6 +131,10 @@ function draw() {
 		if(player.overlaps(key.itemSprite)){
 			if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) key.itemSprite.visible = false;
 		}
+
+
+		//Pause handle
+		if (kb.pressed('escape')) GAMESTATE = "PAUSE";
 
 	}
     else if (GAMESTATE == "INVENTORY"){
@@ -172,6 +157,47 @@ function draw() {
 		} 
 		dragItem(flashlight, inventory);
 		dragItem(key, inventory);
+	} 
+	else if (GAMESTATE == "PAUSE") {
+		console.log("PAUSED");
+
+		player.velocity.y = 0;
+		player.velocity.x = 0;
+		player.changeAni("idle_" + playerMovement.lastDirection);
+		movementSounds(player,footsteps);
+
+		pauseMenu.showMenu();
+
+		pauseMenu.resumeButton.mousePressed(() => {
+			GAMESTATE = pauseMenu.resumeGame(GAMESTATE);
+		
+		});
+
+
+		pauseMenu.exitButton.mousePressed(() => {
+			
+			/* TODO - LEFT OPEN FOR THE MAIN MENU METHODS TO DISPLAY */
+			alert("What, got to scared and quit?");
+			GAMESTATE = pauseMenu.exitGame(GAMESTATE);
+		});
+		
+
+		pauseMenu.settingsButton.mousePressed(() => {
+			alert("The settings screen is under progress and will be done soon! :)");
+			//GAMESTATE = pauseMenu.settingsToggle(settingsMenu, GAMESTATE);
+
+		});
+		
+
+		if(kb.pressed('escape')){
+			GAMESTATE = pauseMenu.resumeGame(GAMESTATE);
+			
+		} 
 	}
+
+	/* TODO - FOR THE SETTINGS TRIGGER
+	/*else if (GAMESTATE == 'SETTINGS') {
+
+	}*/
 }	
 
