@@ -12,7 +12,7 @@ const CANVAS_WIDTH_PX=1920;
 const CANVAS_HEIGHT_PX=1080;
 let darknessSprite;
 // Main Menu Assets
-// MENU PLAYING or PAUSED
+// MENU, PLAYING, INVENTORY, PAUSED
 let GAMESTATE = "MENU";
 let mainMenu;
 let startButton;
@@ -74,6 +74,7 @@ function setup() {
 	//Remove to turn off debug mode
 	// turnOnDebugMode(true, true);
 
+	mainMenuBackground.resize(1920,1080);
 	mainMenu = new MainMenu();
 
 	//Makes a pause menu screen
