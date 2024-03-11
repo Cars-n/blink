@@ -39,6 +39,7 @@ function preload() {
 	doorCreak.setVolume(0.5);
 	footsteps = loadSound('assets/audio/footsteps.mp3');
 	footsteps.setVolume(0.5);
+	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png");
 }
 
 SPAWNX = 0;
