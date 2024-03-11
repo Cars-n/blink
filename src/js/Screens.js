@@ -15,7 +15,7 @@ class SettingsMenu {
 
 		//Sets up the background sprite to mask over the pause menu
 		this.settingsMenu = new Sprite(1920/2,1080/2,1920,1080);
-		this.settingsMenu.layer = 6;		//ONE LAYER HIGHER THAN PAUSE MENU TO DISPLAY OVER IT
+		this.settingsMenu.layer = SETTINGS_LAYER;		//ONE LAYER HIGHER THAN PAUSE MENU TO DISPLAY OVER IT
 		this.settingsMenu.opacity = 0.4;
 		this.settingsMenu.color = 'green';
         this.settingsMenu.visible = false;
@@ -81,7 +81,7 @@ class PauseMenu {
 
 		//Backdrop to the menu
 		this.menu = new Sprite(1920/2,1080/2,1920,1080);
-		this.menu.layer = 5;
+		this.menu.layer = PAUSE_LAYER;
 		this.menu.opacity = 0.4;
 		this.menu.color = 'black';
         this.menu.visible = false;
@@ -195,7 +195,7 @@ class MainMenu {
 
 		//Backdrop to the menu
 		this.menu = new Sprite(1920/2,1080/2,1920,1080);
-		this.menu.layer = 3;
+		this.menu.layer = MAIN_MENU_LAYER;
 		this.menu.opacity = 0.4;
 		this.menu.color = 'black';
 		this.menu.image = mainMenuBackground;
