@@ -1,7 +1,7 @@
 let bricks, tilesGroup;
 const enemyList = []; //Enemeies currently spawned
 const staticEnemyList = []; //Stored list of every enemy
-let playerControl,player,fadeScreen, footsteps, doorCreak;
+let player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
 let flashlight;
 let INVENTORYRENDERED = false;
@@ -45,8 +45,9 @@ function preload() {
 
 
 }
-const SPAWNX=0;
-const SPAWNY=0;
+
+const SPAWNX=60;
+const SPAWNY=60;
 
 function setup() {
 	createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX,document.getElementById("game"));
@@ -56,7 +57,7 @@ function setup() {
 	//Creates Room Controller. 
 	
 	gameMap=new GameMap();
-	gameMap.loadRoom(SPAWNX,SPAWNY);
+	
 	// roomControl = new RoomController();
 	inventory = new InventoryController();	
 	player = setupPlayer(SPAWNX,SPAWNY);
@@ -99,6 +100,16 @@ function draw() {
 		mainMenu.showMenu();
 
 		mainMenu.startButton.mousePressed(() => {
+			moveCamera("right",SPAWNX);
+			moveCamera("down",SPAWNY);
+			var coords=gameMap.getRoomWorldCoords(SPAWNX,SPAWNY);
+			player.x=coords.x+600;
+			player.y=coords.y+600;
+			player.room["x"]=SPAWNX;
+			player.room["y"]=SPAWNY;
+			fadeScreen.x = player.x;
+			fadeScreen.y = player.y;
+			gameMap.loadRoom(SPAWNX,SPAWNY);
 			GAMESTATE = mainMenu.startGame(GAMESTATE);
 		});
 
@@ -113,6 +124,7 @@ function draw() {
 	} 
 	else if (GAMESTATE === 'PLAYING') {
 		clear();
+
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();

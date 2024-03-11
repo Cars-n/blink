@@ -48,6 +48,32 @@ function rightDoorCallback(a, b) {
                 .catch((error) => {
                     console.error(error.message);
                 });
+            }
+        } 
+        else {
+            console.log("not player: ", b.tag);
+        }  
+}
+
+function leftDoorCallback(a,b) {
+    if (b?.tag === "player") {
+    if(!ISWAITING){
+        ISWAITING = true;
+        fadeScreenNow();
+        playerMovement.moveSpeed = 0;
+        player.room['x']-=1
+        gameMap.loadRoom(player.room['x'],player.room['y']);
+        if(doorCreak.isPlaying() == false) doorCreak.play();
+        waitForOpacityCondition(5000) // Wait for up to 5 seconds
+          .then(() => {
+            moveCamera("left");
+            movePlayer("left");
+            ISWAITING = false;
+            playerMovement.moveSpeed = PLAYERSPEED;
+          })
+          .catch((error) => {
+            console.error(error.message);
+          });
         }
     } else {
         console.log("not player: ", b.tag);
@@ -102,9 +128,10 @@ function downDoorCallback(a, b) {
     }
 }
 
-class Room {
-    static MAX_T_WIDTH = 16;
-    static MAX_T_HEIGHT = 9;
+
+class Room{
+    static MAX_T_WIDTH=16;
+    static MAX_T_HEIGHT=9;
 
     constructor(tWidth, tHeight, tileArray) {
         if (
@@ -116,9 +143,11 @@ class Room {
             console.error("Invalid room dimensions!", tWidth, tHeight);
             return;
         }
-        this.tWidth = tWidth;
-        this.tHeight = tHeight;
-        this.tileArray = tileArray;
+        this.tWidth=tWidth;
+        this.tHeight=tHeight;
+        this.tileArray=tileArray;
+        
+        this.furnishings=[];
     }
     getTileArray() {
         return this.tileArray;
@@ -126,6 +155,7 @@ class Room {
     getTileSymbol(row, col) {
         return this.tileArray[row][col];
     }
+    
 }
 
 // Class for managing the room layout
@@ -288,7 +318,10 @@ class RoomController {
             "=" + "o".repeat(14) + "=",
             "=".repeat(7) + "vv" + "=".repeat(7),
         ];
-        var room = new Room(16, 9, tileMap);
+        var tmp=new Furnishing(100,60,brickImage,"static");
+        tmp.setTilePosition(5,5);
+        var room=new Room(16,9,tileMap);
+        room.furnishings.push(tmp);
         return room;
     }
     // Method to render room 2

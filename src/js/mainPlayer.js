@@ -5,14 +5,9 @@
  */
 
 
-function setupPlayer(roomX=0,roomY=0){
-    
-    let xOffset=(RoomController.TILE_WIDTH /2)+(roomX*CANVAS_WIDTH_PX )+300;
-    let yOffset=(RoomController.TILE_HEIGHT/2)+(roomY*CANVAS_HEIGHT_PX)+300;
-
-
-    player = new Sprite(xOffset, yOffset, 64, 64);
-    player.room={"x":roomX,"y":roomY};
+function setupPlayer(){
+    player = new Sprite(0, 0, 64, 64);
+    player.room={"x":0,"y":0};
     player.spriteSheet = 'assets/player.png';
     player.anis.offset.x = 2;
     player.anis.frameDelay = 8;
