@@ -1,8 +1,10 @@
 let bricks, tilesGroup;
-const enemyList = []; //Enemeies currently spawned
+let enemyList = []; //Enemeies currently spawned
 const staticEnemyList = []; //Stored list of every enemy
 let player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
+// Main Menu Assets
+// MENU PLAYING or PAUSED
 let flashlight;
 let INVENTORYRENDERED = false;
 const PLAYERSPEED = 3;
@@ -21,7 +23,6 @@ let controlsButton;
 let quitButton;
 let inventory;
 let key;
-
 let pauseMenu;
 let settingsMenu;
 
@@ -38,16 +39,11 @@ function preload() {
 	doorCreak.setVolume(0.5);
 	footsteps = loadSound('assets/audio/footsteps.mp3');
 	footsteps.setVolume(0.5);
-
-	// Main Menu Preload
-	// load background of main menu 
 	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png");
-
-
 }
 
-const SPAWNX=60;
-const SPAWNY=60;
+const SPAWNX=0;
+const SPAWNY=0;
 
 function setup() {
 	createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX,document.getElementById("game"));

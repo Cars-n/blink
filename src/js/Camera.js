@@ -40,9 +40,11 @@ function fadeIn(object) {
 }
 
 // Fades the object out by lowering it's opacity.
+
 function fadeOut(object) {
     if (object.opacity >= 0) {
         object.opacity = Math.max(object.opacity - FADERATE, 0);
+        OPACITYEQUALSONE = false;
         OPACITYEQUALSONE = false;
         return false;
     } else {
@@ -66,8 +68,17 @@ function movePlayer(direction) {
     else if (direction == "left") player.x -= 375;
     else if (direction == "right") player.x += 375;
 }
+//Moves the player in the direction specified. takes "up", "down", "left", "right" as arguments. Used to teleport to the next room.
+function movePlayer(direction) {
+    if (direction == "up") player.y -= 375;
+    else if (direction == "down") player.y += 375;
+    else if (direction == "left") player.x -= 375;
+    else if (direction == "right") player.x += 375;
+}
 
 //Resets the HASFADEDIN and HASFADEDOUT variables. In order to fade the screen. Call then when you want to fade the screen.
+
+
 function fadeScreenNow() {
     HASFADEDIN = false;
     HASFADEDOUT = false;
@@ -78,4 +89,7 @@ window.addEventListener("resize", canvasResize);
 function canvasResize() {
     resizeCanvas(1920, 1080, document.getElementById("game"));
     canvas.style = ""; // removes default canvas styling
+    resizeCanvas(1920, 1080, document.getElementById("game"));
+    canvas.style = ""; // removes default canvas styling
 }
+

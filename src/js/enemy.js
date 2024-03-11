@@ -5,7 +5,7 @@
 //health: the max hp
 //width: width of enemy
 class enemyData{
-    constructor(enemy_id, ai_type, name, health, height, width, dia){
+    constructor(enemy_id, ai_type, name, health, height, width, dia, assetPath){
         this.enemy_id = enemy_id;
         this.ai_type = ai_type;
         this.name = name;
@@ -13,6 +13,8 @@ class enemyData{
         this.height = height;
         this.width = width;
         this.dia = dia;
+        this.assetPath = assetPath || false;
+        this.animation = null;
     }
 }
 
@@ -34,7 +36,28 @@ class Enemy{
         this.enemySprite.diameter = staticEnemyList[enemy_id].dia;
         this.enemySprite.layer=ENEMY_LAYER;
         setObjectCollider(this.enemySprite, spriteTypes.ENEMY, true);
+
+        if(staticEnemyList[enemy_id].assetPath){
+            this.enemySprite.addAni('default', staticEnemyList[enemy_id].animation)
+        }
     }
+
+    recieveDamage(dmgTaken){
+        this.health -= dmgTaken;
+
+        if(this.health < 0){
+
+        }
+    }
+}
+
+//Animations must be loaded before start up
+function loadEnemyAnimations(){
+    for(let i = 0; i < staticEnemyList.length; ++i){
+        if(staticEnemyList[i].assetPath)
+            staticEnemyList[i].animation = loadAnimation(staticEnemyList[i].assetPath);
+    }
+
 }
 
 //Spawns an enemy in default location, used mostly for debugging
@@ -43,7 +66,7 @@ function spawnEnemy(num){
     enemyList.push(temp);
 }
 
-//Similar to spawnEnemy() but this takes a pair of x,y cords and spawns it at the location
+//Similar to spawnEnemy() but this takes a pair of x,y cords and spawns it at that location
 function spawnEnemyAt(num, x, y){
     let temp = new Enemy(num, x, y);
     enemyList.push(temp);
@@ -57,6 +80,15 @@ function removeEnemy(){
     }
 }
 
+//Clears the enemy list, getting rid of any alive enemy
+function clearEnemyList(){
+    let previousMax = enemyList.length;
+    for(let i = 0; i < previousMax; ++ i){
+        removeEnemy();
+    }
+}
+
+//Debug keys
 //Spawns an enemy when k key is pressed and removes latest spawed enemy with l key
 function keyPressed(){
     if(keyCode === 75){
@@ -68,7 +100,8 @@ function keyPressed(){
     }
 
     if(keyCode === 76){
-        removeEnemy();
+        //removeEnemy();
+        clearEnemyList();
     }
 }
 
@@ -88,20 +121,20 @@ function enemyHandler(){
 //Enemy data is harded coded and then pushed onto the staticEnemyList
 function setupStaticEnemyList(){ //Add new enemies here
 
-    temp = new enemyData(0, 0, "test", 5, 0, 0, 10);
-    staticEnemyList.push(temp);
-
-    temp = new enemyData(1, 0, "test2", 5, 0, 0, 20);
+    temp = new enemyData(0, 0, "test", 5, 0, 0, 10, "assets/GrimReaper.png");
     staticEnemyList.push(temp);
 
 
 
+    //Throws an error is enemy id's arent sequential
     for(let i = 0; i < staticEnemyList.length; ++i){
         if(i != staticEnemyList[i].enemy_id) {
             console.log("Enemy id issue at", i);
             throw new Error("Enemy id's not sequental or number is shared when they should not");
         }
     }
+
+    loadEnemyAnimations();
 }
 
 
