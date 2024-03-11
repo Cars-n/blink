@@ -3,24 +3,8 @@ let enemyList = []; //Enemeies currently spawned
 const staticEnemyList = []; //Stored list of every enemy
 let playerControl,player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
-let flashlight;
-let INVENTORYRENDERED = false;
-const PLAYERSPEED = 3;
-let menuScreen;
-let gameMap;
-const CANVAS_WIDTH_PX=1920;
-const CANVAS_HEIGHT_PX=1080;
-let darknessSprite;
 // Main Menu Assets
 // MENU PLAYING or PAUSED
-let GAMESTATE = "MENU";
-let mainMenu;
-let startButton;
-let tutorialButton;
-let controlsButton;
-let quitButton;
-let inventory;
-let key
 let flashlight;
 let INVENTORYRENDERED = false;
 const PLAYERSPEED = 3;
@@ -39,7 +23,6 @@ let controlsButton;
 let quitButton;
 let inventory;
 let key;
-
 let pauseMenu;
 let settingsMenu;
 
@@ -58,6 +41,8 @@ function preload() {
 	footsteps.setVolume(0.5);
 }
 
+SPAWNX = 0;
+SPAWNY = 0;
 function setup() {
 	createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX,document.getElementById("game"));
 	noSmooth(); // removes smoothing to maintain pixelated look
@@ -81,8 +66,6 @@ function setup() {
 	
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
-	setupStaticEnemyList();
-	darknessSetup();
 	setupStaticEnemyList();
 	darknessSetup();
 	//Remove to turn off debug mode

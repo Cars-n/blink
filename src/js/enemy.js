@@ -120,12 +120,8 @@ function enemyHandler(){
 //Loads at start
 //Enemy data is harded coded and then pushed onto the staticEnemyList
 function setupStaticEnemyList(){ //Add new enemies here
-function setupStaticEnemyList(){ //Add new enemies here
 
     temp = new enemyData(0, 0, "test", 5, 0, 0, 10, "assets/GrimReaper.png");
-    staticEnemyList.push(temp);
-
-    temp = new enemyData(1, 0, "test2", 5, 0, 0, 20 , "assets/GlowingEyesEnemy.png");
     staticEnemyList.push(temp);
 
 
