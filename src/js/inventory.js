@@ -266,7 +266,7 @@ class Item {
         width,
         height,
         image = "",
-        layer = 3,
+        layer = ITEM_LAYER,
         friction = 10,
         drag = 10
     ) {
