@@ -142,7 +142,10 @@ function draw() {
 			GAMESTATE = "INVENTORY";
 		}
 		if(player.overlaps(flashlight.itemSprite)){
-			if (inventory.insertItem(flashlight, inventory.hasSpace(flashlight.InventoryX,flashlight.InventoryY))) flashlight.itemSprite.visible = false;
+			console.log("this crap is getting called twice really fast");
+			if (inventory.insertItem(flashlight, inventory.hasSpace(flashlight.InventoryX,flashlight.InventoryY))) 
+			flashlight.itemSprite.visible = false;
+			
 		}
 		if(player.overlaps(key.itemSprite)){
 			if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) key.itemSprite.visible = false;

@@ -112,7 +112,6 @@ class InventoryController {
                 };
         }
         if (x * y == 2) {
-            console.log("This should only run once");
             for (let i = 0; i < InventoryController.INVENTORY_WIDTH - 1; i++) {
                 if (this.inventory[0][i] == "" && this.inventory[1][i] == "") {
                     return {
@@ -160,12 +159,12 @@ class InventoryController {
         this.inventory[PAO.y][PAO.x] = item;
         if (PAO.orientation == "horizontal") {
             item.orientation = "horizontal";
-            this.inventory[PAO.y][PAO.x + 1] = item;
             item.fixSpriteRotation();
+            this.inventory[PAO.y][PAO.x + 1] = item;
         } else if (PAO.orientation == "vertical") {
             item.orientation = "vertical";
-            this.inventory[PAO.y + 1][PAO.x] = item;
             item.fixSpriteRotation();
+            this.inventory[PAO.y + 1][PAO.x] = item;
         }
         return true;
     }
@@ -267,7 +266,7 @@ class Item {
         width,
         height,
         image = "",
-        layer = ITEM_LAYER,
+        layer = 3,
         friction = 10,
         drag = 10
     ) {
