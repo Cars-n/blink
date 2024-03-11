@@ -315,23 +315,11 @@ function dragItem(item, inventory) {
             return;
         } else if (
             item.itemSprite.x <
-                Math.ceil(player.x / 1920) * 1920 -
-                    960 -
-                    InventoryController.TILE_WIDTH * 1.5 ||
-            item.itemSprite.x >
-                Math.ceil(player.x / 1920) * 1920 -
-                    960 -
-                    InventoryController.TILE_WIDTH +
-                    InventoryController.TILE_WIDTH * 2.5 ||
+                Math.ceil(player.x / 1920) * 1920 - 960 - InventoryController.TILE_WIDTH * 1.5 || item.itemSprite.x >
+                Math.ceil(player.x / 1920) * 1920 - 960 - InventoryController.TILE_WIDTH + InventoryController.TILE_WIDTH * 2.5 ||
             item.itemSprite.y <
-                Math.ceil(player.y / 1080) * 1080 -
-                    540 -
-                    InventoryController.TILE_HEIGHT * 1.5 ||
-            item.itemSprite.y >
-                Math.ceil(player.y / 1080) * 1080 -
-                    540 -
-                    InventoryController.TILE_HEIGHT +
-                    InventoryController.TILE_HEIGHT * 1.5
+            Math.ceil(player.y / 1080) * 1080 - 540 - InventoryController.TILE_HEIGHT * 1.5 ||
+            item.itemSprite.y > Math.ceil(player.y / 1080) * 1080 - 540 - InventoryController.TILE_HEIGHT + InventoryController.TILE_HEIGHT * 1.5
         ) {
             inventory.removeItem(item, "drop");
         } else {
@@ -348,12 +336,11 @@ function dragItem(item, inventory) {
                     }
                 } 
                 else if (item.orientation == "horizontal") {
-                    if ( Math.abs( item.itemSprite.x - InventoryController.TILE_WIDTH / 2 - inventory.getTileLocation(i, 0).x ) < 100 ) {
-                        item.itemSprite.x = inventory.getTileLocation(i, 0).x +InventoryController.TILE_WIDTH / 2;
-                        if (Math.abs(item.itemSprite.y -inventory.getTileLocation(0, 0).y) < 100) {
+                    if ( Math.abs(item.itemSprite.x - InventoryController.TILE_WIDTH / 2 - inventory.getTileLocation(i, 0).x ) < 100 ) {
+                        item.itemSprite.x = inventory.getTileLocation(i, 0).x + InventoryController.TILE_WIDTH / 2;
+                        if (Math.abs(item.itemSprite.y - inventory.getTileLocation(0, 0).y) < 100) {
                             if (inventory.isFull(i, 0) == false && inventory.isFull(i + 1, 0) == false) {
                                 inventory.removeItem(item, "remove");
-                                console.log("This should be attempting to insert at " + i);
                                 inventory.insertItem(item, {
                                     x: i,
                                     y: 0,
@@ -368,7 +355,6 @@ function dragItem(item, inventory) {
                         } else {
                             if (inventory.isFull(i, 0) == false) {
                                 inventory.removeItem(item, "remove");
-                                //console.log("this should insert it into the bottom");
                                 inventory.insertItem(item, {
                                     x: i,
                                     y: 1,
