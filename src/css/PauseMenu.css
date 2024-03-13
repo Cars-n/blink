@@ -1,0 +1,44 @@
+/**
+    CSS Styling for the pause screen
+
+*/
+
+
+/*
+    Lays out the grid implementation that will be overlaid to center the buttons
+    3x4 grid with fractional units for scalability
+    The 3 allows for a center
+*/
+.layoutGrid {
+    display: grid;
+    grid-template:
+    ".    .        .      .            ." 1fr
+    ".    Resume   .      Settings     ." 1fr
+    ".    .        Exit   .            ." 1fr
+    ".    .        .      .            ." 1fr
+    /1fr  1fr      1fr    1fr          1fr;
+}
+
+
+
+
+.Resume {
+    grid-area: Resume;
+
+    justify-content: center;
+}
+
+
+.Settings{
+    grid-area: Settings;
+
+    justify-content: center;
+}
+
+
+.Exit{
+    grid-area: Exit;
+
+    justify-content: center;
+
+}
