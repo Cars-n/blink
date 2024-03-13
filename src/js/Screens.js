@@ -88,11 +88,15 @@ class PauseMenu {
         this.menu.collider = 'none';
 
 		//Setting up the resume button
-		this.resumeButton.position(1920/2, 1080/2)
-		this.resumeButton.style('background-color', 'transparent'); 
+		this.resumeButton.class("Resume");
+		//this.resumeButton.position(1920/2, 1080/2)
+		this.resumeButton.style('background-color', 'transparent');
+		this.resumeButton.style('display', 'grid'); 
 		this.resumeButton.style('color', 'white'); 
 		this.resumeButton.style('border', 'none'); 
 		this.resumeButton.style('font-size', '25px');
+		//adding in the css class
+		
 		this.resumeButton.hide();		//Hides the button until pause menu is triggered
 
 
