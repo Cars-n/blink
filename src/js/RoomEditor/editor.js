@@ -105,9 +105,9 @@ function setup() {
         var textarea = document.getElementById('output');
         textarea.select();
         navigator.clipboard.writeText(textarea.value);
-        alert('Text copied to clipboard');
-    });
 
+    });
+    
 
     createCanvas(16 * tileSize, 9 * tileSize,document.getElementById('editor'));
     tileInput=document.getElementById("tileInput");
@@ -158,7 +158,9 @@ function mouseDragged() {
     if (x >= 0 && x < cols && y >= 0 && y < rows) {
         if (mouseButton === LEFT) {
             tiles[y][x] = 1;
-            tileChars[y]=replaceAt(tileChars[y],x,tileInput.value)
+            var val=tileInput.value;
+            if (val===""){val='.'}
+            tileChars[y]=replaceAt(tileChars[y],x,val)
         } else if (mouseButton === RIGHT) {
             tiles[y][x] = 0;
         }
