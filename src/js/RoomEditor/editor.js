@@ -87,7 +87,7 @@ function replaceAt(string, index, replacement) {
 }
 function displayRoomArray(){
     var output = document.getElementById("output");
-    var outstr="[";
+    var outstr="[\n";
     tileChars.forEach(element => {
         outstr+=element+",\n";
     });
@@ -96,8 +96,19 @@ function displayRoomArray(){
 }
 
 function setup() {
+    //Set up generator button
     var btn = document.getElementById("generateBtn");
     btn.addEventListener("click", displayRoomArray);
+
+    //Set up copy
+    document.getElementById('copyBtn').addEventListener('click', function() {
+        var textarea = document.getElementById('output');
+        textarea.select();
+        navigator.clipboard.writeText(textarea.value);
+        alert('Text copied to clipboard');
+    });
+
+
     createCanvas(16 * tileSize, 9 * tileSize,document.getElementById('editor'));
     tileInput=document.getElementById("tileInput");
     cols = width / tileSize;
