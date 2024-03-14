@@ -46,4 +46,11 @@
 
 }
 
+.PauseMenuButtons{
+    background-color: transparent;
+    display: grid;
+    color: white;
+    border: none;
+    font-size: 25px;
+}
 

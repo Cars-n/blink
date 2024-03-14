@@ -94,11 +94,7 @@ class PauseMenu {
 		//Makes the button
 		//this.resumeButton.position(1920/2, 1080/2)
 		this.resumeButton = createButton('Resume');
-		this.resumeButton.style('background-color', 'transparent');
-		this.resumeButton.style('display', 'grid'); 
-		this.resumeButton.style('color', 'white'); 
-		this.resumeButton.style('border', 'none'); 
-		this.resumeButton.style('font-size', '25px');
+		this.resumeButton.class("PauseMenuButtons");
 	
 		//Sets parent and hides div
 		this.resumeButton.parent("resumeButton");
@@ -115,12 +111,7 @@ class PauseMenu {
 
 		// Setup exit Button
 		this.exitButton = createButton('Exit');
-		//this.exitButton.position(300,150)
-		this.exitButton.style('background-color', 'transparent'); 
-		this.exitButton.style('color', 'white'); 
-		this.exitButton.style('border', 'none'); 
-		this.exitButton.style('font-size', '25px');
-		//this.exitButton.hide();		//Hides the button until pause menu is triggered
+		this.exitButton.class("PauseMenuButtons");
 
 		//Sets the parent and hides the div
 		this.exitButton.parent("exitButton");
@@ -136,12 +127,7 @@ class PauseMenu {
 
 		// Setup settings Button
 		this.settingsButton = createButton('Settings');
-		//this.settingsButton.position(300,200)
-		this.settingsButton.style('background-color', 'transparent'); 
-		this.settingsButton.style('color', 'white'); 
-		this.settingsButton.style('border', 'none'); 
-		this.settingsButton.style('font-size', '25px');
-		//this.settingsButton.hide();		//Hides the button until pause menu is triggered
+		this.settingsButton.class("PauseMenuButtons");
 
 		//Sets the parent and hides the div
 		this.settingsButton.parent("settingsButton");
