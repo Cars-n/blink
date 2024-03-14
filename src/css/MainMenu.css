@@ -1,0 +1,11 @@
+.MainMenuButtons {
+    color: red;
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.MainMenuButtons:hover {
+    background-color: rgb(120, 79, 4);
+}
