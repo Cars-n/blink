@@ -32,14 +32,18 @@
 
 .Settings{
     grid-area: Settings;
-
+    display:inline-grid;
+    position: center;
     justify-content: center;
 }
 
 
 .Exit{
     grid-area: Exit;
-
+    display:inline-grid;
+    position: center;
     justify-content: center;
 
 }
+
+
