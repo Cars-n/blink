@@ -84,17 +84,16 @@ class PauseMenu {
         this.menu.collider = 'none';
 
 
-
-
 		//Make div to then put each button under
 		this.resumeButtonDiv = createDiv();
 		this.resumeButtonDiv.id("resumeButton");
 		this.resumeButtonDiv.class("Resume");
 
 		//Makes the button
-		//this.resumeButton.position(1920/2, 1080/2)
 		this.resumeButton = createButton('Resume');
 		this.resumeButton.class("PauseMenuButtons");
+		this.resumeButtonDiv.center();
+		this.resumeButtonDiv.position(340,328);	// x, y
 	
 		//Sets parent and hides div
 		this.resumeButton.parent("resumeButton");
@@ -107,11 +106,15 @@ class PauseMenu {
 		this.exitButtonDiv = createDiv();
 		this.exitButtonDiv.id("exitButton");
 		this.exitButtonDiv.class("Exit");
+		//this.exitButtonDiv.center(); 
 		
 
 		// Setup exit Button
 		this.exitButton = createButton('Exit');
 		this.exitButton.class("PauseMenuButtons");
+		this.exitButtonDiv.center();
+		this.exitButtonDiv.position(700,350);	//x, y
+		
 
 		//Sets the parent and hides the div
 		this.exitButton.parent("exitButton");
@@ -123,15 +126,22 @@ class PauseMenu {
 		//Create the div to hold the button
 		this.settingsButtonDiv = createDiv();
 		this.settingsButtonDiv.id("settingsButton");
-		this.settingsButtonDiv.class("Settings");
 
 		// Setup settings Button
 		this.settingsButton = createButton('Settings');
 		this.settingsButton.class("PauseMenuButtons");
+		this.settingsButtonDiv.center();
+		this.settingsButtonDiv.position(870,330);	// x, y
 
 		//Sets the parent and hides the div
 		this.settingsButton.parent("settingsButton");
 		this.settingsButtonDiv.hide();
+
+
+		//Together div
+		this.buttonRowDiv = createDiv();
+		this.buttonRowDiv.class("ButtonRowDiv");
+		
 	}
 
 	/**
