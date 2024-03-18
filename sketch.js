@@ -25,7 +25,8 @@ let inventory;
 let key;
 let pauseMenu;
 let settingsMenu;
-
+let capture;
+let faceapi;
 function preload() {
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
 	keyImage = loadImage('assets/key.png');
@@ -63,7 +64,8 @@ function setup() {
 	flashlight.itemSprite.debug=false;
 	key = new Item(player.x + 100 ,player.y, "Key", 1,1,10,5,keyImage);
 	key.itemSprite.debug=false;
-
+	capture = createCapture(VIDEO);
+	faceapi = ml5.faceApi(capture, detectionOptions, modelLoaded);
 	// darkness overlay
 	
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
@@ -120,7 +122,8 @@ function draw() {
 	} 
 	else if (GAMESTATE === 'PLAYING') {
 		clear();
-
+		if(nowBlinking) console.log("Blinking");
+		faceapi.detect(calculateBlink)
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
@@ -130,6 +133,9 @@ function draw() {
 		if(kb.pressed('e')) {
 			GAMESTATE = "INVENTORY";
 		}
+		if(kb.pressed('c')){
+			console.log(irisC);
+		} 
 		if(player.overlaps(flashlight.itemSprite)){
 			if (inventory.insertItem(flashlight, inventory.hasSpace(flashlight.InventoryX,flashlight.InventoryY))){
 				flashlight.itemSprite.visible = false;
@@ -160,6 +166,7 @@ function draw() {
 			playerMovement.moveSpeed = 3;
 			GAMESTATE = "PLAYING";
 		} 
+		
 		if(kb.pressed('r')){
 			console.log(inventory.inventory);
 		} 

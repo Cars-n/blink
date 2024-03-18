@@ -1,4 +1,4 @@
-const video = document.getElementById('video')
+const video = capture
 var mBlinkSound = new Audio("/sound/shotgun-firing1.mp3");
 let nowBlinking = false;
 
@@ -125,7 +125,7 @@ video.addEventListener('play', () => {
     var p_ = Math.floor(x_+w_/2) + Math.floor(y_+h_/2) * video.width
     //console.log("eye_RGB:"+[frame.data[p_*4+0], frame.data[p_*4+1], frame.data[p_*4+2]]);
     var v_ = Math.floor( (frame.data[p_*4+0] + frame.data[p_*4+1] + frame.data[p_*4+2])/3 );
-    //console.log("irisC:"+v_);
+    console.log("irisC:"+v_);
 
     irisC.push(v_);
     if(irisC.length>100){
@@ -150,8 +150,6 @@ video.addEventListener('play', () => {
           if(currentIrisC<meanIrisC*vThreshold){
               nowBlinking = false;
               blinkCount += 1;
-              mBlinkSound.pause();
-              mBlinkSound.currentTime = 0;
              // mBlinkSound.play();
           }//
        }//
