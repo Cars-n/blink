@@ -12,7 +12,16 @@ class GameMap {
         this.MAX
         this.map=null;
         this.roomControl=new RoomController();
-        
+        this.activeRoom=null;
+        this.roomArr=[]
+        for (let i = 0; i < 100; i++) {
+            this.roomArr.push([])
+            for (let j = 0; j < 100; j++) {
+                var room=this.roomControl.getConnectorRoom();
+                this.roomArr[i].push(room);
+            }
+            
+        }
         //Generate empty char array for map
         this.mapArray = Array(this.MAX_TILES_VERTICAL).fill(".".repeat(this.MAX_TILES_HORIZONTAL));
         this.rooms = 10;
@@ -21,34 +30,62 @@ class GameMap {
                 // const element = array[index];
                 this.insertRoom(x,y,this.roomControl.getConnectorRoom());
             }
-            
         }
         // this.insertRoom(0,0,this.roomControl.getRoom1());
         // this.insertRoom(16,0,this.roomControl.getConnectorRoom());
         
     }
-    getRoom(x,y) {
-        x=x*Room.MAX_T_WIDTH;
-        y=y*Room.MAX_T_HEIGHT;
-        var res=[];
-        for(let row=y;row<y+Room.MAX_T_HEIGHT;row++){
-            var workingStr="";
-            for(let col=x;col<x+Room.MAX_T_WIDTH;col++){
-                workingStr+=this.mapArray[row][col];
-            }
-            res.push(workingStr);
-            // console.log(res)
+    getRoomWorldCoords(x,y){
+        let worldCoords={"x":0,"y":0};
+        worldCoords.x=(RoomController.TILE_WIDTH /2)+(x*CANVAS_WIDTH_PX )
+        worldCoords.y=(RoomController.TILE_HEIGHT/2)+(y*CANVAS_HEIGHT_PX);
+        return worldCoords;
+    }
+    getRoomTiles(x,y) {
+        try {
+            return this.roomArr[x][y].getTileArray();
+        } catch (error) {
+            console.log(error);
+            console.log("ROOM OUT OF BOUNDS")
+            return [];
         }
-        return res;
+        
+    }
+    unloadRoom(x,y){
+        var xOffset=x*CANVAS_WIDTH_PX;
+        var yOffset=y*CANVAS_HEIGHT_PX;
+        this.roomArr[x][y].furnishings.forEach(element => {
+            // element.x=(RoomController.TILE_WIDTH*element.applyWorldOffset(xOffset, yOffset));
+            element.furnishSprite.remove();
+        });
     }
     //Takes the x and y coords of a room on the map. a room with top left at 32x 9y would be gotten with 2,1
     loadRoom(x,y){
-        // this.map?.removeAll();
-        this.map=new Tiles(this.getRoom(x,y),
-        RoomController.TILE_WIDTH /2,
-        RoomController.TILE_HEIGHT/2,
+        let xOffset=0;
+        let yOffset=0;
+        if(this.activeRoom!=null){
+            this.unloadRoom(this.activeRoom['x'],this.activeRoom['y']);
+            this.map?.removeAll();
+        }
+        
+        this.activeRoom={"x":x,"y":y};
+        xOffset=this.activeRoom['x']*CANVAS_WIDTH_PX;
+        yOffset=this.activeRoom['y']*CANVAS_HEIGHT_PX;
+
+        
+        
+        this.map=new Tiles(this.roomArr[x][y].getTileArray(),
+        RoomController.TILE_WIDTH /2+xOffset,
+        RoomController.TILE_HEIGHT/2+yOffset,
         RoomController.TILE_WIDTH   ,
         RoomController.TILE_HEIGHT);
+        this.roomArr[x][y].furnishings.forEach(element => {
+            element.instantiateSprite(xOffset, yOffset);
+        });
+
+
+        this.map.layer=MAP_LAYER;
+
     }
     //Renders the entire map at once, most useful in debugging. Is slow at runtime
     render(){

@@ -5,13 +5,20 @@
  */
 
 
-function setupPlayer(){
-    player = new Sprite(900, 600, 64, 64);
+
+function setupPlayer(roomX=0,roomY=0){
+    
+    let xOffset=(RoomController.TILE_WIDTH /2)+(roomX*CANVAS_WIDTH_PX )+300;
+    let yOffset=(RoomController.TILE_HEIGHT/2)+(roomY*CANVAS_HEIGHT_PX)+300;
+
+
+    player = new Sprite(xOffset, yOffset, 64, 64);
+    player.room={"x":roomX,"y":roomY};
     player.spriteSheet = 'assets/player.png';
     player.anis.offset.x = 2;
     player.anis.frameDelay = 8;
     player.layer = 2;
-    //Configures the collision settings based on presetsd
+    //Configures the collision settings based on presets
     //turns on rotation lock (A MUST!!!), and sets the
     //collider type as dynamic
     setObjectCollider(player, spriteTypes.PLAYER, true);
@@ -31,4 +38,5 @@ function setupPlayer(){
     // Animations for movement
     return player;
 }
+
 

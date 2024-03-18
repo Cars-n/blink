@@ -14,7 +14,7 @@ class RoomTile {
         // Assigning a callback function for collision events
         this.event = collidingCallback;
         // Setting the layer of the group
-        this.group.layer = 0;
+        this.group.layer = MAP_LAYER;
         console.log(this.group.colliding)
         // If a colliding callback function is provided, add it to the group's collision event
         if (!(collidingCallback === null)) {
