@@ -48,5 +48,5 @@
     background-color: rgba(255, 0, 0, 0.2); 
     color: #fff; 
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px red; 
-    cursor: none; 
+    cursor: auto
   }
