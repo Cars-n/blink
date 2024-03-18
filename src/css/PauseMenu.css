@@ -25,7 +25,7 @@
 .Resume {
     grid-area: Resume;
     justify-content: center;
-    padding-left: 150px;
+    /* padding-left: 150px; */
     
 }
 
@@ -34,7 +34,7 @@
     grid-area: Settings;
     display:inline-grid;
     justify-content: center;
-    padding-top: 250px;
+    /* padding-top: 250px; */
 }
 
 
@@ -51,6 +51,7 @@
     color: white;
     border: none;
     font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 
@@ -59,5 +60,40 @@
 }
 
 .PauseMenuButtons:hover{
-    color: yellow;
+    color: rgb(252, 252, 86);
 }
+
+
+@keyframes pauseGlitch {
+    0% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    40% {
+        opacity: 0.9;
+    }
+    60% {
+        text-shadow: 0 0 10px yellow, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow, 0 0 60px yellow, 0 0 70px yellow;
+    }
+    80% {
+        background-color: transparent;
+        color: rgb(255, 255, 157); 
+        text-shadow: 0 0 10px rgb(255, 255, 117), 0 0 20px rgb(255, 255, 246), 0 0 30px rgb(255, 255, 0);
+        opacity: 0.75;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+  
+.PauseH1 {
+    font-size: 7em;
+    color: rgb(255, 255, 0);
+    background-color: transparent;
+    border:none;
+    animation: pauseGlitch 4s infinite;
+    text-shadow: 0 0 5px yellow; /* Add a red glow effect */
+    transition: all 0.1s ease-in-out; /* Smoother transition for the glitch effect */
+  }
