@@ -12,22 +12,25 @@
 
 @keyframes glitch {
     0% {
-      opacity: 1;
+        opacity: 1;
     }
     20% {
-      opacity: 0.8;
+        opacity: 0.8;
     }
     40% {
-      opacity: 0.9;
+        opacity: 0.9;
     }
     60% {
-      text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red, 0 0 50px red, 0 0 60px red, 0 0 70px red;
+        text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red, 0 0 50px red, 0 0 60px red, 0 0 70px red;
     }
     80% {
-      opacity: 0.75;
+        background-color: transparent;
+        color: rgb(241, 157, 157); 
+        text-shadow: 0 0 10px #9d7575, 0 0 20px #fff6f6, 0 0 30px red;
+        opacity: 0.75;
     }
     100% {
-      opacity: 1;
+        opacity: 1;
     }
   }
   
@@ -35,16 +38,9 @@
     font-size: 7em;
     color: red;
     background-color: transparent;
-    border-color: red;
-    border-width: 2px;
+    border:none;
     animation: glitch 4s infinite;
     text-shadow: 0 0 5px red; /* Add a red glow effect */
     transition: all 0.1s ease-in-out; /* Smoother transition for the glitch effect */
   }
-  
-.H1:hover {
-    background-color: rgba(255, 0, 0, 0.2); 
-    color: #fff; 
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px red; 
-    cursor: auto
-  }
+
