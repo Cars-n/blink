@@ -242,38 +242,42 @@ class MainMenu {
 	 */
 	constructor() {
 		this.startButton = createButton('> Start');
-		this.tutorialButton = createButton('> Tutorial')
-		this.controlsButton = createButton('> Controls')
+		this.tutorialButton = createButton('> Tutorial');
+		this.controlsButton = createButton('> Controls');
 		this.exitButton = createButton('> Exit');
+		this.title = createButton('BLINK');
 
 		//Backdrop to the menu
 		this.menu = new Sprite(1920/2,1080/2,1920,1080);
 		this.menu.layer = MAIN_MENU_LAYER;
 		this.menu.opacity = 0.4;
 		this.menu.color = 'black';
-		// this.menu.image = mainMenuBackground;
 		this.menu.collider = 'none';
-		
+
+		this.title.class("H1");
+		this.title.position(600,50);
+		this.title.hide();
 
 		//Setting up the start button
 		this.startButton.class("MainMenuButtons");
-		this.startButton.position(150, 100)
+		this.startButton.position(660, 200)
 		this.startButton.hide();		//Hides the button until pause menu is triggered
 
 		//Setting up the tutorial button
 		this.tutorialButton.class("MainMenuButtons");
-		this.tutorialButton.position(150, 150)
+		this.tutorialButton.position(660, 250)
 		this.tutorialButton.hide();		//Hides the button until pause menu is triggered
 
 		//Setting up the controls button
 		this.controlsButton.class("MainMenuButtons");
-		this.controlsButton.position(150, 200)
+		this.controlsButton.position(660, 300)
 		this.controlsButton.hide();		//Hides the button until pause menu is triggered
 
 		// Setup exit Button
 		this.exitButton.class("MainMenuButtons");
-		this.exitButton.position(150,250)
+		this.exitButton.position(660,350)
 		this.exitButton.hide();		//Hides the button until pause menu is triggered
+		
 	}
 
 	/**
@@ -287,6 +291,8 @@ class MainMenu {
 		this.tutorialButton.show();
 		this.controlsButton.show();
 		this.exitButton.show();
+		this.title.show();
+
 	}
 
 	/**
@@ -298,6 +304,7 @@ class MainMenu {
 		this.tutorialButton.hide();
 		this.controlsButton.hide();
 		this.exitButton.hide();
+		this.title.hide();
 		this.menu.visible = false;
 	}
 

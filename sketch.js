@@ -3,12 +3,9 @@ let enemyList = []; //Enemeies currently spawned
 const staticEnemyList = []; //Stored list of every enemy
 let player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
-// Main Menu Assets
-// MENU PLAYING or PAUSED
 let flashlight;
 let INVENTORYRENDERED = false;
 const PLAYERSPEED = 3;
-let menuScreen;
 let gameMap;
 const CANVAS_WIDTH_PX=1920;
 const CANVAS_HEIGHT_PX=1080;
@@ -16,13 +13,9 @@ let darknessSprite;
 // Main Menu Assets
 // MENU, PLAYING, INVENTORY, PAUSED
 let GAMESTATE = "MENU";
-let mainMenu;
-let startButton;
-let tutorialButton;
-let controlsButton;
-let quitButton;
 let inventory;
 let key;
+let mainMenu;
 let pauseMenu;
 let settingsMenu;
 

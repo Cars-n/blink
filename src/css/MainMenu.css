@@ -9,3 +9,44 @@
 .MainMenuButtons:hover {
     background-color: rgb(120, 79, 4);
 }
+
+@keyframes glitch {
+    0% {
+      opacity: 1;
+    }
+    20% {
+      opacity: 0.8;
+    }
+    40% {
+      opacity: 0.9;
+    }
+    60% {
+      text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red, 0 0 50px red, 0 0 60px red, 0 0 70px red;
+    }
+    80% {
+      opacity: 0.75;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+.H1 {
+    font-size: 7em;
+    color: red;
+    background-color: transparent;
+    border-color: red;
+    border-width: 2px;
+    animation: glitch 4s infinite;
+    text-shadow: 0 0 5px red; /* Add a red glow effect */
+    -webkit-text-stroke: 2px red; /* Red text stroke for better visibility */
+    transition: all 0.1s ease-in-out; /* Smoother transition for the glitch effect */
+  }
+
+  /* Additional styling for the button to make it look more "dangerous" */
+.H1:hover {
+    background-color: rgba(255, 0, 0, 0.2); 
+    color: #fff; 
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px red; 
+    cursor: none; 
+  }
