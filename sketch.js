@@ -39,9 +39,10 @@ const SPAWNX=0;
 const SPAWNY=0;
 
 function setup() {
-	createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX,document.getElementById("game"));
+	canvas = createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX);
 	noSmooth(); // removes smoothing to maintain pixelated look
 	canvas.style = ""; // removes default canvas styling
+
 	fadeScreen = createFadeScreen(); //Creates a screen that's black and fades in and out with the fadeInAndOut function
 	//Creates Room Controller. 
 	
