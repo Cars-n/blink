@@ -28,9 +28,10 @@ function modelLoaded() {
     var landmarkPositions = results[0].landmarks.positions;
 
     var frame = ctx_face.getImageData(0, 0, video.width, video.height);
-
     var x_ = landmarkPositions[44 - 1].x;
+    console.log(x_);
     var y_ = landmarkPositions[44 - 1].y;
+    console.log(y_);
     var w_ = landmarkPositions[45 - 1].x - landmarkPositions[44 - 1].x;
     var h_ = landmarkPositions[48 - 1].y - landmarkPositions[44 - 1].y;
     var p_ = Math.floor(x_ + w_ / 2) + Math.floor(y_ + h_ / 2) * video.width;
