@@ -7,7 +7,7 @@ function setup() {
 
 	// new Player 
 	player = setupPlayer();
-	playerMovement = new MovementController(player,3,true);
+	playerMovement = new MovementController(player,15,true);
 	
 	//Remove to turn off debug mode
 	turnOnDebugMode(true, false);
