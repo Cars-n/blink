@@ -40,7 +40,6 @@ video.addEventListener('play', () => {
   canvas_face.width = video.width;
   canvas_face.height = video.height;
   var ctx_face = canvas_face.getContext('2d');
-c
   const canvas = faceapi.createCanvasFromMedia(video)
   document.body.append(canvas)
   const displaySize = { width: video.width, height: video.height }
