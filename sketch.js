@@ -18,7 +18,8 @@ let key;
 let mainMenu;
 let pauseMenu;
 let settingsMenu;
-
+let CreepyPiano1;
+let CreepyPiano2;
 function preload() {
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
 	keyImage = loadImage('assets/key.png');
@@ -27,7 +28,11 @@ function preload() {
 	floorBoardImage = loadImage("assets/floortiles.png");
 	doorImage=loadImage("assets/Door.png");
 	darknessImage = loadImage("assets/darkness.svg");
-	soundFormats('mp3');
+	soundFormats('mp3','wav');
+	CreepyPiano1 = loadSound('assets/audio/Piano_dissonent.wav');
+	CreepyPiano1.setVolume(1);
+	CreepyPiano2 = loadSound('assets/audio/Piano_dissonent2.wav');
+	CreepyPiano2.setVolume(1);
 	doorCreak = loadSound('assets/audio/doorCreak.mp3');
 	doorCreak.setVolume(0.5);
 	footsteps = loadSound('assets/audio/footsteps.mp3');
@@ -113,7 +118,9 @@ function draw() {
 	} 
 	else if (GAMESTATE === 'PLAYING') {
 		clear();
-
+		i = Math.floor(Math.random() * 5000);
+		if(i == 20) CreepyPiano1.play();
+		if(i == 21) CreepyPiano2.play();
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
