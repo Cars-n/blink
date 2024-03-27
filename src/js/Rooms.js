@@ -342,6 +342,425 @@ class RoomController {
         // room.furnishings.push(tmp);
         // return room;
 	}
+	getRoom02(){
+		var tileMap = [
+			"=======^^=======",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"====oooooooo====",
+			"...=oooooooo=...",
+			"...=oooooooo=...",
+			"...====vv====...",
+			]
+        // var tmp=new Furnishing(100,60,brickImage,"static");
+        // tmp.setTilePosition(5,5);
+        // var room=new Room(16,9,tileMap);
+        // room.furnishings.push(tmp);
+        // return room;
+	}
+	getRoom03(){
+		var tileMap = [
+			"...====^^====...",
+			"...=oooooooo=...",
+			"...=oooooooo=...",
+			"...=oooooooo=...",
+			"...=oooooooo=...",
+			"...=oooooooo=...",
+			"...=oooooooo=...",
+			"...=oooooooo=...",
+			"...====vv====...",
+			];
+        // var tmp=new Furnishing(100,60,brickImage,"static");
+        // tmp.setTilePosition(5,5);
+        // var room=new Room(16,9,tileMap);
+        // room.furnishings.push(tmp);
+        // return room;
+	}
+	getRoom04(){
+		var tileMap = [
+			"=======^^=======",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"================",
+			];
+        // var tmp=new Furnishing(100,60,brickImage,"static");
+        // tmp.setTilePosition(5,5);
+        // var room=new Room(16,9,tileMap);
+        // room.furnishings.push(tmp);
+        // return room;
+	}
+	getRoom10(){
+		var tileMap = [
+			"================",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"<oooooooooooooo>",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=======vv=======",
+			];
+        // var tmp=new Furnishing(100,60,brickImage,"static");
+        // tmp.setTilePosition(5,5);
+        // var room=new Room(16,9,tileMap);
+        // room.furnishings.push(tmp);
+        // return room;
+	}
+	getRoom11(){
+		var tileMap = [
+			"=======^^=======",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"================",
+			];
+        // var tmp=new Furnishing(100,60,brickImage,"static");
+        // tmp.setTilePosition(5,5);
+        // var room=new Room(16,9,tileMap);
+        // room.furnishings.push(tmp);
+        // return room;
+	}
+	getRoom20(){
+		var tileMap = [
+			"================",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooTTo=",
+			"<oooooooooooTTo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"================",
+			]
+        // var tmp=new Furnishing(100,60,brickImage,"static");
+        // tmp.setTilePosition(5,5);
+        // var room=new Room(16,9,tileMap);
+        // room.furnishings.push(tmp);
+        // return room;
+	}
+
+	getRoomB00(){
+		var tileMap = [
+			"================",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo>",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=======vv=======",
+			]
+        // var tmp=new Furnishing(100,60,brickImage,"static");
+        // tmp.setTilePosition(5,5);
+        // var room=new Room(16,9,tileMap);
+        // room.furnishings.push(tmp);
+        // return room;
+	}
+	getRoomB00(){
+		var tileMap = [
+			"================",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo>",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=======vv=======",
+			];
+        // var tmp=new Furnishing(100,60,brickImage,"static");
+        // tmp.setTilePosition(5,5);
+        // var room=new Room(16,9,tileMap);
+        // room.furnishings.push(tmp);
+        // return room;
+	}
+	getRoomB01(){
+		var tileMap = [
+			"...====^^=======",
+			"...=ooooooooooo=",
+			"...=ooooooooooo=",
+			"...=ooooooooooo>",
+			"...=ooooooooooo=",
+			"...=============",
+			"................",
+			"................",
+			"................",
+			];
+        // var tmp=new Furnishing(100,60,brickImage,"static");
+        // tmp.setTilePosition(5,5);
+        // var room=new Room(16,9,tileMap);
+        // room.furnishings.push(tmp);
+        // return room;
+	}
+
+	getRoomB10(){
+		var tileMap = [
+			"================",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"<oooooooooooooo>",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=======vv=======",
+			];
+			// var tmp=new Furnishing(100,60,brickImage,"static");
+			// tmp.setTilePosition(5,5);
+			// var room=new Room(16,9,tileMap);
+			// room.furnishings.push(tmp);
+			// return room;
+		}
+
+	getRoomB11(){
+			var tileMap = [
+				"=======^^=======",
+				"=oooooooooooooo=",
+				"<oooooooooooooo=",
+				"=oooooooooooooo=",
+				"=oooooooooooooo=",
+				"=======vv=======",
+				"................",
+				"................",
+				"................",
+				];
+				// var tmp=new Furnishing(100,60,brickImage,"static");
+				// tmp.setTilePosition(5,5);
+				// var room=new Room(16,9,tileMap);
+				// room.furnishings.push(tmp);
+				// return room;
+			}
+			getRoomB12(){
+				var tileMap = [
+					"=======^^=======",
+					"=oooooooooooooo=",
+					"=oooooooooooooo=",
+					"=oooooooooooooo=",
+					"=oooooooooooooo=",
+					"=oooooooooooooo=",
+					"=oooooooooooooo=",
+					"=oooooooooooooo=",
+					"================",
+					];
+					// var tmp=new Furnishing(100,60,brickImage,"static");
+					// tmp.setTilePosition(5,5);
+					// var room=new Room(16,9,tileMap);
+					// room.furnishings.push(tmp);
+					// return room;
+				}
+
+				getRoomB30(){
+					var tileMap = [
+						"================",
+						"=oooooooooooo=o=",
+						"=oooooooooooo=o=",
+						"=oooooooooooo=o=",
+						"<oo=======ooo=o>",
+						"=oo=ooooooooooo=",
+						"=oo=oooooooo=oo=",
+						"=oo=oooooooo=oo=",
+						"=======vv=======",
+						];
+						// var tmp=new Furnishing(100,60,brickImage,"static");
+						// tmp.setTilePosition(5,5);
+						// var room=new Room(16,9,tileMap);
+						// room.furnishings.push(tmp);
+						// return room;
+					}
+		getRoomB31(){
+			var tileMap = [
+				".....==^^==.....",
+				".....=oooo=.....",
+				".....=oooo=.....",
+				".....=oooo=.....",
+				".....=oooo=.....",
+				".....=oooo=.....",
+				".....=oooo=.....",
+				".....=oooo=.....",
+				".....==vv==.....",
+				];
+							// var tmp=new Furnishing(100,60,brickImage,"static");
+							// tmp.setTilePosition(5,5);
+							// var room=new Room(16,9,tileMap);
+							// room.furnishings.push(tmp);
+							// return room;
+			}
+			getRoomB32(){
+				var tileMap = [
+					".....==^^==.....",
+					".....=oooo=.....",
+					".....=oooo=.....",
+					".....=oooo=.....",
+					".....=oooo=.....",
+					".....=oooo=.....",
+					".....=oooo=.....",
+					".....=oooo=.....",
+					".....==vv==.....",
+					];
+								// var tmp=new Furnishing(100,60,brickImage,"static");
+								// tmp.setTilePosition(5,5);
+								// var room=new Room(16,9,tileMap);
+								// room.furnishings.push(tmp);
+								// return room;
+				}
+				getRoomB33(){
+					var tileMap = [
+						".....==^^==.....",
+						".....=oooo=.....",
+						".....=oooo=.....",
+						".....=oooo=.....",
+						".....=oooo=.....",
+						".....=oooo=.....",
+						".....=oooo=.....",
+						".....=oooo=.....",
+						".....==vv==.....",
+						];
+									// var tmp=new Furnishing(100,60,brickImage,"static");
+									// tmp.setTilePosition(5,5);
+									// var room=new Room(16,9,tileMap);
+									// room.furnishings.push(tmp);
+									// return room;
+					}
+					getRoomB34(){
+						var tileMap = [
+							"...===****===...",
+							"...=oooooooo=...",
+							"...=oooooooo=...",
+							"...=oooooooo=...",
+							"...=oooooooo=...",
+							"...=oooooooo=...",
+							"...==========...",
+							"................",
+							"................",
+							];
+										// var tmp=new Furnishing(100,60,brickImage,"static");
+										// tmp.setTilePosition(5,5);
+										// var room=new Room(16,9,tileMap);
+										// room.furnishings.push(tmp);
+										// return room;
+						}
+
+						getRoomB44(){
+							var tileMap = [
+								"========........",
+								"=oooooo=........",
+								"=oooooo=........",
+								"<oooooo=........",
+								"=oooooo=........",
+								"=oooooo=........",
+								"========........",
+								"................",
+								"................",
+								];
+											// var tmp=new Furnishing(100,60,brickImage,"static");
+											// tmp.setTilePosition(5,5);
+											// var room=new Room(16,9,tileMap);
+											// room.furnishings.push(tmp);
+											// return room;
+							}
+	getRoomU00(){
+		var tileMap = [
+			"................",
+			"................",
+			"================",
+			"=oooooooooooooo=",
+			"<oooooooooooooo>",
+			"=oooooooooooooo=",
+			"================",
+			"................",
+			"................",
+			];
+		// var tmp=new Furnishing(100,60,brickImage,"static");
+		// tmp.setTilePosition(5,5);
+		// var room=new Room(16,9,tileMap);
+		// room.furnishings.push(tmp);
+		// return room;
+	}
+	getRoomU10(){
+		var tileMap = [
+			"................",
+			"................",
+			"================",
+			"=oooooooooooooo=",
+			"<oooooooooooooo>",
+			"=oooooooooooooo=",
+			"================",
+			"................",
+			"................",
+			];
+		// var tmp=new Furnishing(100,60,brickImage,"static");
+		// tmp.setTilePosition(5,5);
+		// var room=new Room(16,9,tileMap);
+		// room.furnishings.push(tmp);
+		// return room;
+	}
+	getRoomU20(){
+		var tileMap = [
+			"================",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"<oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=oooooooooooooo=",
+			"=======vv=======",
+			];
+		// var tmp=new Furnishing(100,60,brickImage,"static");
+		// tmp.setTilePosition(5,5);
+		// var room=new Room(16,9,tileMap);
+		// room.furnishings.push(tmp);
+		// return room;
+	}
+	getRoomB32(){
+		var tileMap = [
+			".....==^^==.....",
+			".....=oooo=.....",
+			".....=oooo=.....",
+			".....=oooo=.....",
+			".....=oooo=.....",
+			".....=oooo=.....",
+			".....=oooo=.....",
+			".....=oooo=.....",
+			".....==vv==.....",
+			];
+						// var tmp=new Furnishing(100,60,brickImage,"static");
+						// tmp.setTilePosition(5,5);
+						// var room=new Room(16,9,tileMap);
+						// room.furnishings.push(tmp);
+						// return room;
+		}
+		getRoomB32(){
+			var tileMap = [
+				"=======^^=======",
+				"=oooooooooooooo=",
+				"=oooooooooooooo=",
+				"=oooooooooooooo=",
+				"=oooooooooooooo=",
+				"=oooooooooooooo=",
+				"=oooooooooooooo=",
+				"=oooooooooooooo=",
+				"================",
+				];
+							// var tmp=new Furnishing(100,60,brickImage,"static");
+							// tmp.setTilePosition(5,5);
+							// var room=new Room(16,9,tileMap);
+							// room.furnishings.push(tmp);
+							// return room;
+			}
     // Method to render room 2
     renderRoom2(x, y) {
         var room = new Tiles(
