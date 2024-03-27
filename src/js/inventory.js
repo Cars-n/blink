@@ -71,7 +71,14 @@ class InventoryController {
         if (this.inventory[y][x] !== "") return true;
         else return false;
     }
-
+    hasItem(item) {
+        for (let j = 0; j < InventoryController.INVENTORY_HEIGHT; j++) {
+            for (let i = 0; i < InventoryController.INVENTORY_WIDTH; i++) {
+                if (this.inventory[j][i].name == item.name) return true;
+            }
+        }
+        return false;
+    }
     //Gets a tile location, 0-2 and 0-1 for x and y. returns a dictionary with the tile's centered x and y coords.
     getTileLocation(x, y) {
         x += 1;

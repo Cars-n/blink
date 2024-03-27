@@ -121,6 +121,24 @@ function draw() {
 		i = Math.floor(Math.random() * 5000);
 		if(i == 20) CreepyPiano1.play();
 		if(i == 21) CreepyPiano2.play();
+
+		if(
+			//inventory.hasItem("gun") &&
+			 kb.pressed(' ')
+			// && inventory.hasItem("ammo")
+			){
+				let bullet;
+			if(playerMovement.lastDirection == "left"){
+			 	 bullet = new Sprite(player.x - 30,player.y,3,5);
+			}
+			else {
+				bullet = new Sprite(player.x + 30,player.y,3,5)
+			}
+			bullet.roatationLock = true;
+			bullet.direction = flashlightRotation - 90;
+			bullet.speed = 10;
+			bullet.move(100000);
+		}
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
