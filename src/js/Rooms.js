@@ -324,6 +324,24 @@ class RoomController {
         room.furnishings.push(tmp);
         return room;
     }
+	getStartRoom(){
+		var tileMap = [
+				"================",
+				"=oooooooooooooo=",
+				"=oooooooooooooo=",
+				"=oooooooooooooo=",
+				"=oooooooooooooo>",
+				"=oooooooooooooo=",
+				"=oooooooooooooo=",
+				"=oooooooooooooo=",
+				"=======vv=======",
+				];
+        // var tmp=new Furnishing(100,60,brickImage,"static");
+        // tmp.setTilePosition(5,5);
+        // var room=new Room(16,9,tileMap);
+        // room.furnishings.push(tmp);
+        // return room;
+	}
     // Method to render room 2
     renderRoom2(x, y) {
         var room = new Tiles(

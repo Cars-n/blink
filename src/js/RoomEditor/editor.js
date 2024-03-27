@@ -69,15 +69,15 @@ let tileSize = 80;
 let cols, rows;
 let tiles = [];
 let tileChars = [
-    ".".repeat(16),
-    ".".repeat(16),
-    ".".repeat(16),
-    ".".repeat(16),
-    ".".repeat(16),
-    ".".repeat(16),
-    ".".repeat(16),
-    ".".repeat(16),
-    ".".repeat(16)];
+    "\""+".".repeat(16)+"\"",
+    "\""+".".repeat(16)+"\"",
+    "\""+".".repeat(16)+"\"",
+    "\""+".".repeat(16)+"\"",
+    "\""+".".repeat(16)+"\"",
+    "\""+".".repeat(16)+"\"",
+    "\""+".".repeat(16)+"\"",
+    "\""+".".repeat(16)+"\"",
+    "\""+".".repeat(16)+"\""];
 
 function replaceAt(string, index, replacement) {
     // First part: from the start of the string to the character before the index
@@ -109,7 +109,7 @@ function setup() {
     });
     
 
-    createCanvas(16 * tileSize, 9 * tileSize,document.getElementById('editor'));
+    createCanvas(18 * tileSize, 9 * tileSize,document.getElementById('editor'));
     tileInput=document.getElementById("tileInput");
     cols = width / tileSize;
     rows = height / tileSize;
