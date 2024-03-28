@@ -69,11 +69,11 @@ function movePlayer(direction) {
     else if (direction == "right") player.x += 375;
 }
 //Moves the player in the direction specified. takes "up", "down", "left", "right" as arguments. Used to teleport to the next room.
-function movePlayer(direction) {
-    if (direction == "up") player.y -= 375;
-    else if (direction == "down") player.y += 375;
-    else if (direction == "left") player.x -= 375;
-    else if (direction == "right") player.x += 375;
+function movePlayer(direction, multiple = 1) {
+    if (direction == "up") player.y -= 375 * multiple;
+    else if (direction == "down") player.y += 375 * multiple;
+    else if (direction == "left") player.x -= 375 * multiple;
+    else if (direction == "right") player.x += 375 * multiple;
 }
 
 //Resets the HASFADEDIN and HASFADEDOUT variables. In order to fade the screen. Call then when you want to fade the screen.

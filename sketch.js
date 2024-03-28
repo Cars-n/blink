@@ -20,11 +20,13 @@ let pauseMenu;
 let settingsMenu;
 let CreepyPiano1;
 let CreepyPiano2;
+let trapDoorImage;
 function preload() {
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
 	keyImage = loadImage('assets/key.png');
 	brickImage = loadImage('assets/WallRoughDraft.png');
 	flashlightImage = loadImage('assets/Flashlight.png');
+	trapDoorImage = loadImage('assets/trapdoor.png');
 	floorBoardImage = loadImage("assets/floortiles.png");
 	doorImage=loadImage("assets/Door.png");
 	darknessImage = loadImage("assets/darkness.svg");

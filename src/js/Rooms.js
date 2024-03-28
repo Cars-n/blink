@@ -4,6 +4,32 @@ let roomControl;
 let ISWAITING = false;
 
 // Callback function, simply determines whether it is the player ob colliding with door tile or not
+function trapDoorCallback(a, b) {
+    if (b?.tag === "player") {
+        if (!ISWAITING) {
+            ISWAITING = true;
+            fadeScreenNow();
+            playerMovement.moveSpeed = 0;
+            player.room["x"] += 1;
+			console.log(player.room);
+            gameMap.loadRoom(player.room["x"], player.room["y"]);
+            if (doorCreak.isPlaying() == false) doorCreak.play();
+            waitForOpacityCondition(5000) // Wait for up to 5 seconds
+                .then(() => {
+                    moveCamera("right");
+                    movePlayer("right", 2);
+                    ISWAITING = false;
+                    playerMovement.moveSpeed = PLAYERSPEED;
+                })
+                .catch((error) => {
+                    console.error(error.message);
+                });
+        }
+    } else {
+        console.log("not player: ", b.tag);
+    }
+}
+
 function upDoorCallback(a, b) {
     if (b?.tag === "player") {
         if (!ISWAITING) {
@@ -79,30 +105,7 @@ function leftDoorCallback(a,b) {
         console.log("not player: ", b.tag);
     }
 }
-function leftDoorCallback(a, b) {
-    if (b?.tag === "player") {
-        if (!ISWAITING) {
-            ISWAITING = true;
-            fadeScreenNow();
-            playerMovement.moveSpeed = 0;
-            player.room["x"] -= 1;
-            gameMap.loadRoom(player.room["x"], player.room["y"]);
-            if (doorCreak.isPlaying() == false) doorCreak.play();
-            waitForOpacityCondition(5000) // Wait for up to 5 seconds
-                .then(() => {
-                    moveCamera("left");
-                    movePlayer("left");
-                    ISWAITING = false;
-                    playerMovement.moveSpeed = PLAYERSPEED;
-                })
-                .catch((error) => {
-                    console.error(error.message);
-                });
-        }
-    } else {
-        console.log("not player: ", b.tag);
-    }
-}
+
 function downDoorCallback(a, b) {
     if (b?.tag === "player") {
         if (!ISWAITING) {
@@ -222,6 +225,14 @@ class RoomController {
                 RoomController.TILE_HEIGHT,
                 "static",
                 downDoorCallback
+            );
+			RoomController.trapDoor = new ImageTile(
+                trapDoorImage,
+                "T",
+                RoomController.TILE_WIDTH,
+                RoomController.TILE_HEIGHT,
+                "static",
+                trapDoorCallback
             );
         }
 
@@ -438,7 +449,7 @@ class RoomController {
 			"=oooooooooooooo=",
 			"=oooooooooooooo=",
 			"=oooooooooooTTo=",
-			"<oooooooooooTTo=",
+			"<oooooooooooTTo>",
 			"=oooooooooooooo=",
 			"=oooooooooooooo=",
 			"=oooooooooooooo=",
@@ -469,24 +480,7 @@ class RoomController {
         // room.furnishings.push(tmp);
          return room;
 	}
-	getRoomB00(){
-		var tileMap = [
-			"================",
-			"=oooooooooooooo=",
-			"=oooooooooooooo=",
-			"=oooooooooooooo=",
-			"=oooooooooooooo>",
-			"=oooooooooooooo=",
-			"=oooooooooooooo=",
-			"=oooooooooooooo=",
-			"=======vv=======",
-			];
-        // var tmp=new Furnishing(100,60,brickImage,"static");
-        // tmp.setTilePosition(5,5);
-         var room=new Room(16,9,tileMap);
-        // room.furnishings.push(tmp);
-         return room;
-	}
+	
 	getRoomB01(){
 		var tileMap = [
 			"...====^^=======",
