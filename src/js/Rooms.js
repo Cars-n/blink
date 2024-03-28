@@ -338,9 +338,9 @@ class RoomController {
 				];
         // var tmp=new Furnishing(100,60,brickImage,"static");
         // tmp.setTilePosition(5,5);
-        // var room=new Room(16,9,tileMap);
+    	 var room=new Room(16,9,tileMap);
         // room.furnishings.push(tmp);
-        // return room;
+        return room;
 	}
 	getRoom02(){
 		var tileMap = [
@@ -356,9 +356,9 @@ class RoomController {
 			]
         // var tmp=new Furnishing(100,60,brickImage,"static");
         // tmp.setTilePosition(5,5);
-        // var room=new Room(16,9,tileMap);
+         var room=new Room(16,9,tileMap);
         // room.furnishings.push(tmp);
-        // return room;
+         return room;
 	}
 	getRoom03(){
 		var tileMap = [
@@ -374,9 +374,9 @@ class RoomController {
 			];
         // var tmp=new Furnishing(100,60,brickImage,"static");
         // tmp.setTilePosition(5,5);
-        // var room=new Room(16,9,tileMap);
+         var room=new Room(16,9,tileMap);
         // room.furnishings.push(tmp);
-        // return room;
+         return room;
 	}
 	getRoom04(){
 		var tileMap = [
@@ -392,9 +392,9 @@ class RoomController {
 			];
         // var tmp=new Furnishing(100,60,brickImage,"static");
         // tmp.setTilePosition(5,5);
-        // var room=new Room(16,9,tileMap);
+         var room=new Room(16,9,tileMap);
         // room.furnishings.push(tmp);
-        // return room;
+         return room;
 	}
 	getRoom10(){
 		var tileMap = [
@@ -410,9 +410,9 @@ class RoomController {
 			];
         // var tmp=new Furnishing(100,60,brickImage,"static");
         // tmp.setTilePosition(5,5);
-        // var room=new Room(16,9,tileMap);
+         var room=new Room(16,9,tileMap);
         // room.furnishings.push(tmp);
-        // return room;
+         return room;
 	}
 	getRoom11(){
 		var tileMap = [
@@ -428,9 +428,9 @@ class RoomController {
 			];
         // var tmp=new Furnishing(100,60,brickImage,"static");
         // tmp.setTilePosition(5,5);
-        // var room=new Room(16,9,tileMap);
+         var room=new Room(16,9,tileMap);
         // room.furnishings.push(tmp);
-        // return room;
+         return room;
 	}
 	getRoom20(){
 		var tileMap = [
@@ -446,9 +446,9 @@ class RoomController {
 			]
         // var tmp=new Furnishing(100,60,brickImage,"static");
         // tmp.setTilePosition(5,5);
-        // var room=new Room(16,9,tileMap);
+        var room=new Room(16,9,tileMap);
         // room.furnishings.push(tmp);
-        // return room;
+         return room;
 	}
 
 	getRoomB00(){
@@ -465,9 +465,9 @@ class RoomController {
 			]
         // var tmp=new Furnishing(100,60,brickImage,"static");
         // tmp.setTilePosition(5,5);
-        // var room=new Room(16,9,tileMap);
+         var room=new Room(16,9,tileMap);
         // room.furnishings.push(tmp);
-        // return room;
+         return room;
 	}
 	getRoomB00(){
 		var tileMap = [
@@ -483,9 +483,9 @@ class RoomController {
 			];
         // var tmp=new Furnishing(100,60,brickImage,"static");
         // tmp.setTilePosition(5,5);
-        // var room=new Room(16,9,tileMap);
+         var room=new Room(16,9,tileMap);
         // room.furnishings.push(tmp);
-        // return room;
+         return room;
 	}
 	getRoomB01(){
 		var tileMap = [
@@ -501,9 +501,9 @@ class RoomController {
 			];
         // var tmp=new Furnishing(100,60,brickImage,"static");
         // tmp.setTilePosition(5,5);
-        // var room=new Room(16,9,tileMap);
+        var room=new Room(16,9,tileMap);
         // room.furnishings.push(tmp);
-        // return room;
+         return room;
 	}
 
 	getRoomB10(){
@@ -520,9 +520,9 @@ class RoomController {
 			];
 			// var tmp=new Furnishing(100,60,brickImage,"static");
 			// tmp.setTilePosition(5,5);
-			// var room=new Room(16,9,tileMap);
+			 var room=new Room(16,9,tileMap);
 			// room.furnishings.push(tmp);
-			// return room;
+			 return room;
 		}
 
 	getRoomB11(){
@@ -539,9 +539,9 @@ class RoomController {
 				];
 				// var tmp=new Furnishing(100,60,brickImage,"static");
 				// tmp.setTilePosition(5,5);
-				// var room=new Room(16,9,tileMap);
+				 var room=new Room(16,9,tileMap);
 				// room.furnishings.push(tmp);
-				// return room;
+				 return room;
 			}
 			getRoomB12(){
 				var tileMap = [
@@ -557,12 +557,12 @@ class RoomController {
 					];
 					// var tmp=new Furnishing(100,60,brickImage,"static");
 					// tmp.setTilePosition(5,5);
-					// var room=new Room(16,9,tileMap);
+					 var room=new Room(16,9,tileMap);
 					// room.furnishings.push(tmp);
-					// return room;
+					 return room;
 				}
 
-				getRoomB30(){
+				getRoomB20(){
 					var tileMap = [
 						"================",
 						"=oooooooooooo=o=",
@@ -576,11 +576,11 @@ class RoomController {
 						];
 						// var tmp=new Furnishing(100,60,brickImage,"static");
 						// tmp.setTilePosition(5,5);
-						// var room=new Room(16,9,tileMap);
+						 var room=new Room(16,9,tileMap);
 						// room.furnishings.push(tmp);
-						// return room;
+						 return room;
 					}
-		getRoomB31(){
+		getRoomB21(){
 			var tileMap = [
 				".....==^^==.....",
 				".....=oooo=.....",
@@ -594,11 +594,11 @@ class RoomController {
 				];
 							// var tmp=new Furnishing(100,60,brickImage,"static");
 							// tmp.setTilePosition(5,5);
-							// var room=new Room(16,9,tileMap);
+							 var room=new Room(16,9,tileMap);
 							// room.furnishings.push(tmp);
-							// return room;
+							 return room;
 			}
-			getRoomB32(){
+			getRoomB22(){
 				var tileMap = [
 					".....==^^==.....",
 					".....=oooo=.....",
@@ -612,11 +612,11 @@ class RoomController {
 					];
 								// var tmp=new Furnishing(100,60,brickImage,"static");
 								// tmp.setTilePosition(5,5);
-								// var room=new Room(16,9,tileMap);
+								 var room=new Room(16,9,tileMap);
 								// room.furnishings.push(tmp);
-								// return room;
+								 return room;
 				}
-				getRoomB33(){
+				getRoomB23(){
 					var tileMap = [
 						".....==^^==.....",
 						".....=oooo=.....",
@@ -630,11 +630,11 @@ class RoomController {
 						];
 									// var tmp=new Furnishing(100,60,brickImage,"static");
 									// tmp.setTilePosition(5,5);
-									// var room=new Room(16,9,tileMap);
+									 var room=new Room(16,9,tileMap);
 									// room.furnishings.push(tmp);
-									// return room;
+									 return room;
 					}
-					getRoomB34(){
+					getRoomB24(){
 						var tileMap = [
 							"...===****===...",
 							"...=oooooooo=...",
@@ -648,12 +648,12 @@ class RoomController {
 							];
 										// var tmp=new Furnishing(100,60,brickImage,"static");
 										// tmp.setTilePosition(5,5);
-										// var room=new Room(16,9,tileMap);
+										 var room=new Room(16,9,tileMap);
 										// room.furnishings.push(tmp);
-										// return room;
+										 return room;
 						}
 
-						getRoomB44(){
+						getRoomB34(){
 							var tileMap = [
 								"========........",
 								"=oooooo=........",
@@ -667,9 +667,9 @@ class RoomController {
 								];
 											// var tmp=new Furnishing(100,60,brickImage,"static");
 											// tmp.setTilePosition(5,5);
-											// var room=new Room(16,9,tileMap);
+											 var room=new Room(16,9,tileMap);
 											// room.furnishings.push(tmp);
-											// return room;
+											 return room;
 							}
 	getRoomU00(){
 		var tileMap = [
@@ -685,9 +685,9 @@ class RoomController {
 			];
 		// var tmp=new Furnishing(100,60,brickImage,"static");
 		// tmp.setTilePosition(5,5);
-		// var room=new Room(16,9,tileMap);
+		 var room=new Room(16,9,tileMap);
 		// room.furnishings.push(tmp);
-		// return room;
+		 return room;
 	}
 	getRoomU10(){
 		var tileMap = [
@@ -703,9 +703,9 @@ class RoomController {
 			];
 		// var tmp=new Furnishing(100,60,brickImage,"static");
 		// tmp.setTilePosition(5,5);
-		// var room=new Room(16,9,tileMap);
+		 var room=new Room(16,9,tileMap);
 		// room.furnishings.push(tmp);
-		// return room;
+		 return room;
 	}
 	getRoomU20(){
 		var tileMap = [
@@ -721,11 +721,11 @@ class RoomController {
 			];
 		// var tmp=new Furnishing(100,60,brickImage,"static");
 		// tmp.setTilePosition(5,5);
-		// var room=new Room(16,9,tileMap);
+		 var room=new Room(16,9,tileMap);
 		// room.furnishings.push(tmp);
-		// return room;
+		 return room;
 	}
-	getRoomB32(){
+	getRoomU21(){
 		var tileMap = [
 			".....==^^==.....",
 			".....=oooo=.....",
@@ -739,11 +739,11 @@ class RoomController {
 			];
 						// var tmp=new Furnishing(100,60,brickImage,"static");
 						// tmp.setTilePosition(5,5);
-						// var room=new Room(16,9,tileMap);
+						 var room=new Room(16,9,tileMap);
 						// room.furnishings.push(tmp);
-						// return room;
+						 return room;
 		}
-		getRoomB32(){
+		getRoomU22(){
 			var tileMap = [
 				"=======^^=======",
 				"=oooooooooooooo=",
@@ -757,9 +757,9 @@ class RoomController {
 				];
 							// var tmp=new Furnishing(100,60,brickImage,"static");
 							// tmp.setTilePosition(5,5);
-							// var room=new Room(16,9,tileMap);
+							 var room=new Room(16,9,tileMap);
 							// room.furnishings.push(tmp);
-							// return room;
+							 return room;
 			}
     // Method to render room 2
     renderRoom2(x, y) {

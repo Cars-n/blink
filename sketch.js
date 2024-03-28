@@ -5,7 +5,7 @@ let player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
 let flashlight;
 let INVENTORYRENDERED = false;
-const PLAYERSPEED = 3;
+const PLAYERSPEED = 10;
 let gameMap;
 const CANVAS_WIDTH_PX=1920;
 const CANVAS_HEIGHT_PX=1080;
@@ -164,6 +164,7 @@ function draw() {
 
 	}
     else if (GAMESTATE == "INVENTORY"){
+		clear();
 		player.velocity.y = 0;
 		player.velocity.x = 0;
 		player.changeAni("idle_" + playerMovement.lastDirection);
