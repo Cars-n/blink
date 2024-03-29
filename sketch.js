@@ -28,6 +28,7 @@ function preload() {
 	flashlightImage = loadImage('assets/Flashlight.png');
 	trapDoorImage = loadImage('assets/trapdoor.png');
 	floorBoardImage = loadImage("assets/floortiles.png");
+	cellBarsImage = loadImage("assets/cellBars.jpg");
 	doorImage=loadImage("assets/Door.png");
 	darknessImage = loadImage("assets/darkness.svg");
 	soundFormats('mp3','wav');
@@ -61,10 +62,10 @@ function setup() {
 	fadeScreen.y = player.y;
 	flashlight = new Item(player.x + 50,player.y + 50, "FlashLight", 2,1,8,20,flashlightImage);
 	flashlight.itemSprite.debug=false;
-	key = new Item(player.x + 100 ,player.y, "Key", 1,1,10,5,keyImage);
+	key = new Item(CANVAS_WIDTH_PX/2 ,CANVAS_HEIGHT_PX*4 - 500, "Key", 1,1,10,5,keyImage);
 	key.itemSprite.debug=false;
 
-	// darkness overlay
+	// darkness overlayd
 	
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 

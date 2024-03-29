@@ -6,6 +6,8 @@ let ISWAITING = false;
 // Callback function, simply determines whether it is the player ob colliding with door tile or not
 function trapDoorCallback(a, b) {
     if (b?.tag === "player") {
+		if(inventory.hasItem(key)){
+			console.log("this should only be called if the player has the key");
         if (!ISWAITING) {
             ISWAITING = true;
             fadeScreenNow();
@@ -25,6 +27,12 @@ function trapDoorCallback(a, b) {
                     console.error(error.message);
                 });
         }
+		inventory.removeItem(key)
+	}
+	else{
+		console.log("You need a key to open this trapdoor")
+		//let Text = new Sprite(player.x, player.y, 100, 100, "You need a key to open this trapdoor");
+	}
     } else {
         console.log("not player: ", b.tag);
     }
@@ -182,6 +190,13 @@ class RoomController {
             RoomController.wallTile = new ImageTile(
                 brickImage,
                 "=",
+                RoomController.TILE_WIDTH,
+                RoomController.TILE_HEIGHT,
+                "static"
+            );
+			RoomController.barsTile = new ImageTile(
+                cellBarsImage,
+                "*",
                 RoomController.TILE_WIDTH,
                 RoomController.TILE_HEIGHT,
                 "static"
@@ -526,10 +541,10 @@ class RoomController {
 				"<oooooooooooooo=",
 				"=oooooooooooooo=",
 				"=oooooooooooooo=",
+				"======oooo======",
+				"=oooooooooooooo=",
+				"=oooooooooooooo=",
 				"=======vv=======",
-				"................",
-				"................",
-				"................",
 				];
 				// var tmp=new Furnishing(100,60,brickImage,"static");
 				// tmp.setTilePosition(5,5);
@@ -562,7 +577,7 @@ class RoomController {
 						"=oooooooooooo=o=",
 						"=oooooooooooo=o=",
 						"=oooooooooooo=o=",
-						"<oo=======ooo=o>",
+						"<oo=======ooo=o=",
 						"=oo=ooooooooooo=",
 						"=oo=oooooooo=oo=",
 						"=oo=oooooooo=oo=",
@@ -620,7 +635,7 @@ class RoomController {
 						".....=oooo=.....",
 						".....=oooo=.....",
 						".....=oooo=.....",
-						".....==vv==.....",
+						".....=****=.....",
 						];
 									// var tmp=new Furnishing(100,60,brickImage,"static");
 									// tmp.setTilePosition(5,5);

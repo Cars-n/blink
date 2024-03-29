@@ -74,7 +74,7 @@ class InventoryController {
     hasItem(item) {
         for (let j = 0; j < InventoryController.INVENTORY_HEIGHT; j++) {
             for (let i = 0; i < InventoryController.INVENTORY_WIDTH; i++) {
-                if (this.inventory[j][i].name == item.name) return true;
+                if (this.inventory[j][i] == item) return true;
             }
         }
         return false;
