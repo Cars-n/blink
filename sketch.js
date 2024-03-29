@@ -147,7 +147,9 @@ function draw() {
 		playerMovement.handleInput();
 		if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
 		enemyHandler();
-		darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y);
+		if(inventory.hasItem(flashlight)){
+			darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y);
+		}
 		if(kb.pressed('e')) {
 			GAMESTATE = "INVENTORY";
 		}
