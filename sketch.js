@@ -181,7 +181,7 @@ function draw() {
 		if(kb.pressed('e')){
 			inventory.remove();
 			INVENTORYRENDERED = false;
-			playerMovement.moveSpeed = 3;
+			playerMovement.moveSpeed = PLAYERSPEED;
 			GAMESTATE = "PLAYING";
 		} 
 		if(kb.pressed('r')){
