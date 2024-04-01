@@ -5,7 +5,7 @@ let player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
 let flashlight;
 let INVENTORYRENDERED = false;
-const PLAYERSPEED = 10;
+const PLAYERSPEED = 20;
 let gameMap;
 const CANVAS_WIDTH_PX=1920;
 const CANVAS_HEIGHT_PX=1080;
@@ -67,11 +67,15 @@ function setup() {
 	fadeScreen.x = player.x;
 	fadeScreen.y = player.y;
 	flashlight = new Item(player.x + 50,player.y + 50, "FlashLight", 2,1,8,20,flashlightImage);
-	flashlight.itemSprite.debug=false;
+	flashlight.itemSprite.debug=true;
 	key = new Item(CANVAS_WIDTH_PX/2 ,CANVAS_HEIGHT_PX*4 - 500, "Key", 1,1,10,5,keyImage);
-	key.itemSprite.debug=false;
-	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "gun", 2,1,33,6,gunImage);
-	bullet = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
+	key.itemSprite.debug=true;
+	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "gun", 2,1,6,33,gunImage);
+	gun.itemSprite.debug=true;
+
+	bullet = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "bullet", 1,1,4,3,bulletImage);
+	bullet.itemSprite.debug=true;
+
 	// darkness overlayd
 	
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
@@ -199,6 +203,7 @@ function draw() {
 		dragItem(flashlight, inventory);
 		dragItem(key, inventory);
 		dragItem(gun, inventory);
+		dragItem(bullet,inventory);
 	} 
 	else if (GAMESTATE == "PAUSE") {
 		console.log("PAUSED");
