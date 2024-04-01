@@ -3,6 +3,21 @@
 // let tiles;
 // let floorGroup;
 let tileInput;
+function preload() {
+	InventoryBackground = loadImage('assets/InventoryBackground.png');
+	keyImage = loadImage('assets/key.png');
+	brickImage = loadImage('assets/WallRoughDraft.png');
+	flashlightImage = loadImage('assets/Flashlight.png');
+	floorBoardImage = loadImage("assets/floortiles.png");
+	doorImage=loadImage("assets/Door.png");
+	// darknessImage = loadImage("assets/darkness.svg");
+	// soundFormats('mp3');
+	// doorCreak = loadSound('assets/audio/doorCreak.mp3');
+	// doorCreak.setVolume(0.5);
+	// footsteps = loadSound('assets/audio/footsteps.mp3');
+	// footsteps.setVolume(0.5);
+	// mainMenuBackground = loadImage("assets/Main-Menu-Background2.png");
+}
 // let mouseSprite;
 // function mouseHoverCallback(a,b){
 // console.log(a)
@@ -65,19 +80,20 @@ let tileInput;
 //     handleMouse();
 
 // }
+let roomController;
 let tileSize = 80;
 let cols, rows;
 let tiles = [];
 let tileChars = [
-    "\""+".".repeat(16)+"\"",
-    "\""+".".repeat(16)+"\"",
-    "\""+".".repeat(16)+"\"",
-    "\""+".".repeat(16)+"\"",
-    "\""+".".repeat(16)+"\"",
-    "\""+".".repeat(16)+"\"",
-    "\""+".".repeat(16)+"\"",
-    "\""+".".repeat(16)+"\"",
-    "\""+".".repeat(16)+"\""];
+    ".".repeat(16),
+    ".".repeat(16),
+    ".".repeat(16),
+    ".".repeat(16),
+    ".".repeat(16),
+    ".".repeat(16),
+    ".".repeat(16),
+    ".".repeat(16),
+    ".".repeat(16)];
 
 function replaceAt(string, index, replacement) {
     // First part: from the start of the string to the character before the index
@@ -94,6 +110,36 @@ function displayRoomArray(){
     outstr+="]"
     output.value=outstr;
 }
+function buttonFromTile(tile){
+    const button = document.createElement('button');
+      button.classList.add('tile-button');
+      button.style.backgroundImage = tile.image.get();
+      button.id=tile.group.tile;
+      button.tooltip=tile.group.tile;
+    return button
+}
+let pallet;
+function populateTileButtons(){
+    pallet = new Tiles(
+        ['^v',
+        '=o',
+        '<>'
+        ],
+        tileSize/2,
+        tileSize/2,
+        tileSize+10,
+        tileSize+10)
+    // let buttonContainer = document.getElementById('pallet-container');
+    
+
+    // buttonContainer.appendChild(buttonFromTile(RoomController.wallTile));
+    // buttonContainer.appendChild(buttonFromTile(RoomController.floor));
+    // buttonContainer.appendChild(buttonFromTile(RoomController.upDoor));
+    // buttonContainer.appendChild(buttonFromTile(RoomController.rightDoor));
+    // buttonContainer.appendChild(buttonFromTile(RoomController.leftDoor));
+    // buttonContainer.appendChild(buttonFromTile(RoomController.downDoor));
+
+}
 
 function setup() {
     //Set up generator button
@@ -109,10 +155,10 @@ function setup() {
     });
     
 
-    createCanvas(18 * tileSize, 9 * tileSize,document.getElementById('editor'));
+    createCanvas( 19 * tileSize, 9 * tileSize,document.getElementById('editor'));
     tileInput=document.getElementById("tileInput");
-    cols = width / tileSize;
-    rows = height / tileSize;
+    cols = 16;
+    rows = 9;
 
     // Initialize tiles
     for (let y = 0; y < rows; y++) {
@@ -121,18 +167,28 @@ function setup() {
             tiles[y][x] = 0;
         }
     }
+    RoomController.TILE_HEIGHT=tileSize;
+    RoomController.TILE_WIDTH=tileSize;
+    roomController=new RoomController();
+    //Must set tiles with null collider to static
+    RoomController.floor.group.collider='static';
+    populateTileButtons();
+    // var button=createButton("hi")
+    // button.image=roomController.wallTile.image
 }
-
+let offsetX=tileSize*2.5;
 function draw() {
     background(220);
     textSize(50);
     textFont("Courier New")
+    
+    
     // Draw grid
     for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {
             stroke(0);
             noFill();
-            rect(x * tileSize, y * tileSize, tileSize, tileSize);
+            rect(x * tileSize+offsetX, y * tileSize, tileSize, tileSize);
 
             // // Draw tiles
             // if (tiles[y][x] === 1) {
@@ -145,14 +201,21 @@ function draw() {
     for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {
             fill(0);
-            text(tileChars[y][x],x * tileSize+(tileSize/4), y * tileSize+(tileSize/4), tileSize, tileSize);
+            text(tileChars[y][x],(x * tileSize)+(tileSize/4)+offsetX, y * tileSize+(tileSize/4), tileSize, tileSize);
         }
     }
+    for(let tile of pallet){
+        if(tile.mouse.pressing()){
+            tileInput.value=tile.tile;
+        
+        }
+    }
+    
     // console.log(tileChars)
 }
 
 function mouseDragged() {
-    let x = floor(mouseX / tileSize);
+    let x = floor((mouseX-offsetX) / tileSize);
     let y = floor(mouseY / tileSize);
 
     if (x >= 0 && x < cols && y >= 0 && y < rows) {
@@ -168,7 +231,7 @@ function mouseDragged() {
 }
 
 function keyPressed() {
-    // Clear all tiles when key 'C' is pressed
+    // Clear all tiles when key 'ESCAPE' is pressed
     if (keyCode === ESCAPE ) {
         tileChars = [
             ".".repeat(16),
