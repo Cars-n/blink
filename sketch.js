@@ -133,6 +133,10 @@ function draw() {
 			ENEMY42SPAWED = true;
 			spawnEnemyAt(0, CANVAS_WIDTH_PX*4 - 500, CANVAS_HEIGHT_PX*2 - 100);
 		}
+
+		if(player.room["x"] == 9 && player.room["y"] == 2){
+			alert("You escaped out the window!!! Congrats!");
+		}
 		if(player.health <= 0) {
 			GAMESTATE = pauseMenu.exitGame(GAMESTATE);
 			player.health = 100;

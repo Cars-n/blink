@@ -100,6 +100,7 @@ class GameMap {
         this.activeRoom={"x":x,"y":y};
         xOffset=this.activeRoom['x']*CANVAS_WIDTH_PX;
         yOffset=this.activeRoom['y']*CANVAS_HEIGHT_PX;
+        console.log("yOffset for this room = " + yOffset);
 
         
         
