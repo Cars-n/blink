@@ -15,6 +15,8 @@ let darknessSprite;
 let GAMESTATE = "MENU";
 let inventory;
 let key;
+let gun;
+let bullet;
 let mainMenu;
 let pauseMenu;
 let settingsMenu;
@@ -30,7 +32,9 @@ function preload() {
 	trapDoorImage = loadImage('assets/trapdoor.png');
 	floorBoardImage = loadImage("assets/floortiles.png");
 	cellBarsImage = loadImage("assets/cellBars.jpg");
+	gunImage = loadImage("assets/shotgun.png");
 	doorImage=loadImage("assets/Door.png");
+	bulletImage = loadImage("assets/bullet.png");
 	darknessImage = loadImage("assets/darkness.svg");
 	soundFormats('mp3','wav');
 	CreepyPiano1 = loadSound('assets/audio/Piano_dissonent.wav');
@@ -65,7 +69,8 @@ function setup() {
 	flashlight.itemSprite.debug=false;
 	key = new Item(CANVAS_WIDTH_PX/2 ,CANVAS_HEIGHT_PX*4 - 500, "Key", 1,1,10,5,keyImage);
 	key.itemSprite.debug=false;
-
+	gun = new Item(player.x + 50,player.y - 50, "gun", 2,1,33,6,gunImage);
+	bullet = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
 	// darkness overlayd
 	
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
@@ -154,10 +159,18 @@ function draw() {
 				flashlight.itemSprite.x = 100;
 			} 
 		}
+		if(player.overlaps(gun.itemSprite)){
+			if (inventory.insertItem(gun, inventory.hasSpace(gun.InventoryX,gun.InventoryY))){
+				gun.itemSprite.visible = false;
+				gun.itemSprite.x = 100;
+			} 
+		}
 		if(player.overlaps(key.itemSprite)){
 			if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) key.itemSprite.visible = false;
 		}
-
+		if(player.overlaps(bullet.itemSprite)){
+			if (inventory.insertItem(bullet, inventory.hasSpace(bullet.InventoryX,bullet.InventoryY))) bullet.itemSprite.visible = false;
+		}
 
 		//Pause handle
 		if (kb.pressed('escape')) GAMESTATE = "PAUSE";
@@ -184,6 +197,7 @@ function draw() {
 		} 
 		dragItem(flashlight, inventory);
 		dragItem(key, inventory);
+		dragItem(gun, inventory);
 	} 
 	else if (GAMESTATE == "PAUSE") {
 		console.log("PAUSED");
