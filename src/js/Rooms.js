@@ -2,12 +2,13 @@
 let brickImage, floorBoardImage, doorImage;
 let roomControl;
 let ISWAITING = false;
+let TrapdoorUnlocked = false;
 
 // Callback function, simply determines whether it is the player ob colliding with door tile or not
 function trapDoorCallback(a, b) {
     if (b?.tag === "player") {
-		if(inventory.hasItem(key)){
-			console.log("this should only be called if the player has the key");
+		if(inventory.hasItem(key) || TrapdoorUnlocked == true){
+            TrapdoorUnlocked = true;
         if (!ISWAITING) {
             ISWAITING = true;
             fadeScreenNow();

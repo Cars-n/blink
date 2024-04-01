@@ -4,6 +4,7 @@
 //name: Name of the enemy
 //health: the max hp
 //width: width of enemy
+let CANTELEPORT = true;
 class enemyData{
     constructor(enemy_id, ai_type, name, health, height, width, dia, assetPath){
         this.enemy_id = enemy_id;
@@ -110,7 +111,9 @@ function keyPressed(){
 function enemyHandler(){
     let previousMax = enemyList.length; //Prevents inf loop if enemey is created while handler is being run
     for(let i = 0; i < previousMax; ++ i) {
-        if(nowBlinking == true && Math.random() > 0.8){
+        if(nowBlinking == true && CANTELEPORT == true){
+            CANTELEPORT = false;
+            teleportCooldown();
             enemyList[i].enemySprite.visible = true;
             enemyList[i].enemySprite.x = player.x + Math.floor(Math.random() * 100) * (Math.random() > 0.5 ? 1 : -1);
             enemyList[i].enemySprite.y = player.y + Math.floor(Math.random() * 100) * (Math.random() > 0.5 ? 1 : -1);
@@ -148,3 +151,8 @@ async function disappear(enemySprite){
     enemySprite.visible = false;
 }
 
+
+async function teleportCooldown(){
+    await delay(2000);
+    CANTELEPORT = true;
+}

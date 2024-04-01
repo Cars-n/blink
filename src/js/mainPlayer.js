@@ -58,6 +58,7 @@ function gunFunctionality(){
         }
         bullet.rotationLock = true;
         bullet.direction = flashlightRotation - 90;
+        bullet.img = bulletImage;
         bullet.speed = 10;
         bullet.move(100000);
     }
