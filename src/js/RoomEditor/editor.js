@@ -10,6 +10,8 @@ function preload() {
 	flashlightImage = loadImage('assets/Flashlight.png');
 	floorBoardImage = loadImage("assets/floortiles.png");
 	doorImage=loadImage("assets/Door.png");
+    cellBarsImage = loadImage("assets/cellBars.jpg");
+    trapDoorImage = loadImage("assets/trapdoor.png");
 	// darknessImage = loadImage("assets/darkness.svg");
 	// soundFormats('mp3');
 	// doorCreak = loadSound('assets/audio/doorCreak.mp3');

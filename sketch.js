@@ -23,6 +23,7 @@ let settingsMenu;
 let CreepyPiano1;
 let CreepyPiano2;
 let trapDoorImage;
+let cellBarsImage;
 let ENEMY42SPAWED = false;
 function preload() {
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
