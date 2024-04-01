@@ -38,6 +38,33 @@ function trapDoorCallback(a, b) {
     }
 }
 
+function trapDoorBackCallback(a, b) {
+    if (b?.tag === "player") {
+        if (!ISWAITING) {
+            ISWAITING = true;
+            fadeScreenNow();
+            playerMovement.moveSpeed = 0;
+            player.room["x"] -= 1;
+			console.log(player.room);
+            gameMap.loadRoom(player.room["x"], player.room["y"]);
+            if (doorCreak.isPlaying() == false) doorCreak.play();
+            waitForOpacityCondition(5000) // Wait for up to 5 seconds
+                .then(() => {
+                    moveCamera("left");
+                    movePlayer("left", 2);
+                    ISWAITING = false;
+                    playerMovement.moveSpeed = PLAYERSPEED;
+                })
+                .catch((error) => {
+                    console.error(error.message);
+                });
+        }
+    } else {
+        console.log("not player: ", b.tag);
+    }
+}
+
+
 function upDoorCallback(a, b) {
     if (b?.tag === "player") {
         if (!ISWAITING) {
@@ -248,6 +275,14 @@ class RoomController {
                 RoomController.TILE_HEIGHT,
                 "static",
                 trapDoorCallback
+            );
+			RoomController.trapDoorBack = new ImageTile(
+                trapDoorImage,
+                "t",
+                RoomController.TILE_WIDTH,
+                RoomController.TILE_HEIGHT,
+                "static",
+                trapDoorBackCallback
             );
         }
 
@@ -463,8 +498,8 @@ class RoomController {
 			"================",
 			"=oooooooooooooo=",
 			"=oooooooooooooo=",
-			"=oooooooooooTTo=",
-			"<oooooooooooTTo>",
+			"=oooooooooooToo=",
+			"<oooooooooooooo=",
 			"=oooooooooooooo=",
 			"=oooooooooooooo=",
 			"=oooooooooooooo=",
@@ -481,7 +516,7 @@ class RoomController {
 		var tileMap = [
 			"================",
 			"=oooooooooooooo=",
-			"=oooooooooooooo=",
+			"=ootooooooooooo=",
 			"=oooooooooooooo=",
 			"=oooooooooooooo>",
 			"=oooooooooooooo=",
