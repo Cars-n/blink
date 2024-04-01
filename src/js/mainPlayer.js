@@ -18,6 +18,7 @@ function setupPlayer(roomX=0,roomY=0){
     player.anis.offset.x = 2;
     player.anis.frameDelay = 8;
     player.layer = 2;
+    player.health = 101;
     //Configures the collision settings based on presets
     //turns on rotation lock (A MUST!!!), and sets the
     //collider type as dynamic
@@ -40,3 +41,25 @@ function setupPlayer(roomX=0,roomY=0){
 }
 
 
+
+
+function gunFunctionality(){
+    if(
+        //inventory.hasItem("gun") &&
+         kb.pressed(' ')
+        // && inventory.hasItem("ammo")
+        ){
+            let bullet;
+        if(playerMovement.lastDirection == "left"){
+              bullet = new Sprite(player.x - 30,player.y,3,5);
+        }
+        else {
+            bullet = new Sprite(player.x + 30,player.y,3,5)
+        }
+        bullet.rotationLock = true;
+        bullet.direction = flashlightRotation - 90;
+        bullet.img = bulletImage;
+        bullet.speed = 10;
+        bullet.move(100000);
+    }
+}

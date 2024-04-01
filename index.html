@@ -23,7 +23,9 @@
 			background-position: center;
 	  	}
 
-	 	 canvas {
+	 	 #game {
+			height: 100vh;
+			width:100vw;
 			max-width: 100%;
 			max-height: 100%;
 			object-fit: contain; /* scales canvas to size of container */
@@ -31,10 +33,19 @@
 			background-color: black;
 
 	  	}
+		canvas {
+			position: absolute;
+     	 overflow:hidden;
+    	  height: 1px;
+    	  width: 1px;
+		}
+		#irrelevantCanvas {
+			position: absolute;
+			width:1px;
+			height:1px;
+		}
 	 	video {
-			position: fixed;
-			top: -10000px;
-			left: -10000px;
+			position: absolute;
 			width:1px;
 			height:1px;
 		}
@@ -49,8 +60,8 @@
 	<canvas id="game"></canvas>
 	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/addons/p5.sound.min.js"></script>		
-	<script src="https://p5play.org/v3/planck.min.js"></script>
-	<script src="https://p5play.org/v3/p5play.js"></script>
+	<script src="p5play/planck.min.js"></script>
+	<script src="p5play/p5play.js"></script>
 	<script  src="src/js/mainPlayer.js"></script>
 	<script  src="src/js/Camera.js"></script>
 	<script  src="src/js/main.js"></script>

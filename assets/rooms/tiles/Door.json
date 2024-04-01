@@ -1,0 +1,8 @@
+{
+    "imagePath": "assets/Door.png",
+    "symbol": ["^","<","v",">"],
+    "name": "Door Tile",
+    "colliderType": "none",
+    "callbackFunction":["up","left","down","right"]
+}
+  
