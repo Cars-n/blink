@@ -6,63 +6,103 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Blink Room Editor</title>
 	<link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
-	  <style>
-		body{
+	<style>
+		body {
 			margin: 0;
 			padding: 0;
-			height: 100vh; /* body uses the whole viewport's height */
-			width: 100vw; /* body uses the whole viewport's width */
+			height: 100vh;
+			/* body uses the whole viewport's height */
+			width: 100vw;
+			/* body uses the whole viewport's width */
 			display: flex;
-			justify-content: center; /* makes contents horizontally centered */
-			align-items: center; /* makes contents vertically centered */
-			overflow: hidden; /* hides overflow from the video element */
+			justify-content: center;
+			/* makes contents horizontally centered */
+			align-items: center;
+			/* makes contents vertically centered */
+			overflow: hidden;
+			/* hides overflow from the video element */
 			background-color: gray;
-			background-size: contain; /* scales background image to size of container */
+			background-size: contain;
+			/* scales background image to size of container */
 			background-position: center;
-	  	}
+		}
 
-	 	 canvas {
+		canvas {
 			max-width: 100%;
 			max-height: 100%;
-			object-fit: contain; /* scales canvas to size of container */
-      		outline: none; /* removes default white outline */
+			object-fit: contain;
+			/* scales canvas to size of container */
+			outline: none;
+			/* removes default white outline */
 			background-color: white;
-            
 
-	  	}
-	 	video {
+
+		}
+
+		video {
 			position: fixed;
 			top: -10000px;
 			left: -10000px;
-			width:1px;
-			height:1px;
+			width: 1px;
+			height: 1px;
 		}
-	  </style>
+
+		/* Style for the button container */
+		.pallet-container {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 5px;
+			padding: 10px;
+		}
+
+		/* Style for the buttons */
+		.tile-button {
+			width: 50px;
+			/* Adjust button size as needed */
+			height: 50px;
+			/* Adjust button size as needed */
+			background-size: cover;
+		}
+	</style>
 
 </head>
 
 <body>
-    <div style="display: block;width: 20%;margin-left: 30px; padding-right: 30px;">
-        <label for="tileInput" style="font-size: 1.5rem;">Enter the symbol for the Tile:</label>
-        <input type="text" id="tileInput" name="tileInput" maxlength="1">
-        <div style="display: flex;flex-direction: column;">
-            <button id="generateBtn" style="font-size: 1.5rem;">Generate Tile Array</button>
-            <textarea readonly id="output" style="height: 300px;"></textarea>
-            <button style="font-size: 1.5rem;" id="copyBtn">Copy</button>
-        </div>
-        
+	<div style="display: block;width: 20%;margin-left: 30px; padding-right: 30px;">
+		<label for="tileInput" style="font-size: 1.5rem;">Enter the symbol for the Tile:</label>
+		<input type="text" id="tileInput" name="tileInput" maxlength="1">
+		<div style="display: flex;flex-direction: column;">
+			<button id="generateBtn" style="font-size: 1.5rem;">Generate Tile Array</button>
+			<textarea readonly id="output" style="height: 300px;"></textarea>
+			<button style="font-size: 1.5rem;" id="copyBtn">Copy</button>
+		</div>
+		<!-- <div id="pallet-container" class="pallet-container">
+			
+			<button class="tile-button" style="background-image: url('button1.png')"></button>
+			<button class="tile-button" style="background-image: url('button2.png')"></button>
+			<button class="tile-button" style="background-image: url('button3.png')"></button>
+			<button class="tile-button" style="background-image: url('button1.png')"></button>
+			<button class="tile-button" style="background-image: url('button2.png')"></button>
+			<button class="tile-button" style="background-image: url('button3.png')"></button>
+			<button class="tile-button" style="background-image: url('button1.png')"></button>
+			<button class="tile-button" style="background-image: url('button2.png')"></button>
+			<button class="tile-button" style="background-image: url('button3.png')"></button>
+		</div> -->
 
-    </div>
-    
+	</div>
+
 	<canvas id="editor"></canvas>
 	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/addons/p5.sound.min.js"></script>		
+	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/addons/p5.sound.min.js"></script>
 	<script src="https://p5play.org/v3/planck.min.js"></script>
 	<script src="https://p5play.org/v3/p5play.js"></script>
+	<script src="src/js/Layers.js"></script>
+	<script src="src/js/Furnishings.js"></script>
+	<script src="src/js/RoomTiles.js"></script>
+	<script src="src/js/Rooms.js" type="text/javascript"></script>
+	<script src="src/js/RoomEditor/editor.js"></script>
 
-	
-	<script  src="src/js/RoomEditor/editor.js"></script>
-	
+
 </body>
 
 </html>
