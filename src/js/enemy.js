@@ -35,6 +35,7 @@ class Enemy{
         this.enemySprite = new Sprite(400, 400, 25, 25);
         this.enemySprite.diameter = staticEnemyList[enemy_id].dia;
         this.enemySprite.layer=ENEMY_LAYER;
+        this.enemySprite.drag = 10;
         setObjectCollider(this.enemySprite, spriteTypes.ENEMY, true);
 
         if(staticEnemyList[enemy_id].assetPath){
@@ -109,10 +110,15 @@ function keyPressed(){
 function enemyHandler(){
     let previousMax = enemyList.length; //Prevents inf loop if enemey is created while handler is being run
     for(let i = 0; i < previousMax; ++ i) {
-        enemyList[i].enemySprite.moveTowards(player, .005)
+        if(nowBlinking == true && Math.random() > 0.8){
+            enemyList[i].enemySprite.visible = true;
+            enemyList[i].enemySprite.x = player.x + Math.floor(Math.random() * 100) * (Math.random() > 0.5 ? 1 : -1);
+            enemyList[i].enemySprite.y = player.y + Math.floor(Math.random() * 100) * (Math.random() > 0.5 ? 1 : -1);
+            disappear(enemyList[i].enemySprite);
+        }
 
-        //Detects if player and enemy overlaps and changes red if ture, currently need debug mode off to see this
-        if (enemyList[i].enemySprite.overlaps(player)) enemyList[i].enemySprite.color = 'red';
+        //Detects if player and enemy overlaps and changes red if true, currently need debug mode off to see this
+        if (enemyList[i].enemySprite.overlaps(player)) player.health -= 50;
     }
     
 }
@@ -121,7 +127,7 @@ function enemyHandler(){
 //Enemy data is harded coded and then pushed onto the staticEnemyList
 function setupStaticEnemyList(){ //Add new enemies here
 
-    temp = new enemyData(0, 0, "test", 5, 0, 0, 10, "assets/GrimReaper.png");
+    temp = new enemyData(0, 0, "test", 5, 0, 0, 10, "assets/GlowingEyesEnemy.png");
     staticEnemyList.push(temp);
 
 
@@ -137,4 +143,8 @@ function setupStaticEnemyList(){ //Add new enemies here
     loadEnemyAnimations();
 }
 
+async function disappear(enemySprite){
+    await delay(3000);
+    enemySprite.visible = false;
+}
 

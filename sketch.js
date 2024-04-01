@@ -21,6 +21,7 @@ let settingsMenu;
 let CreepyPiano1;
 let CreepyPiano2;
 let trapDoorImage;
+let ENEMY42SPAWED = false;
 function preload() {
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
 	keyImage = loadImage('assets/key.png');
@@ -121,32 +122,22 @@ function draw() {
 	} 
 	else if (GAMESTATE === 'PLAYING') {
 		clear();
-		i = Math.floor(Math.random() * 5000);
-		if(i == 20) CreepyPiano1.play();
-		if(i == 21) CreepyPiano2.play();
-
-		if(
-			//inventory.hasItem("gun") &&
-			 kb.pressed(' ')
-			// && inventory.hasItem("ammo")
-			){
-				let bullet;
-			if(playerMovement.lastDirection == "left"){
-			 	 bullet = new Sprite(player.x - 30,player.y,3,5);
-			}
-			else {
-				bullet = new Sprite(player.x + 30,player.y,3,5)
-			}
-			bullet.roatationLock = true;
-			bullet.direction = flashlightRotation - 90;
-			bullet.speed = 10;
-			bullet.move(100000);
-		}
+		randomBackgroundSounds();
+		gunFunctionality();
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
 		playerMovement.handleInput();
-		if(kb.presses('o')) spawnEnemyAt(1, player.x - 50, player.y - 50);
 		enemyHandler();
+		if(player.room["x"] == 4 && player.room["y"] == 2 && !ENEMY42SPAWED){
+			console.log('this worked');
+			ENEMY42SPAWED = true;
+			spawnEnemyAt(0, CANVAS_WIDTH_PX*4 - 500, CANVAS_HEIGHT_PX*2 - 100);
+		}
+		if(player.health <= 0) {
+			GAMESTATE = pauseMenu.exitGame(GAMESTATE);
+			player.health = 100;
+			alert("You died. Try again.")
+		}
 		if(inventory.hasItem(flashlight)){
 			darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y);
 		}

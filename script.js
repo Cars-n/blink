@@ -210,6 +210,6 @@ video.addEventListener('play', () => {
     //ctx.fillText("FPS:"+ (t2-t1), 10, 50);
     t1 = t2;
 
-  }, 100)
+  }, 75)
 
 })
