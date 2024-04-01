@@ -3,10 +3,10 @@ var mBlinkSound = new Audio("/sound/shotgun-firing1.mp3");
 let nowBlinking = false;
 
 Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri('/facemodels'),
-  faceapi.nets.faceLandmark68Net.loadFromUri('/facemodels'),
-  faceapi.nets.faceRecognitionNet.loadFromUri('/facemodels'),
-  faceapi.nets.faceExpressionNet.loadFromUri('/facemodels')
+  faceapi.nets.tinyFaceDetector.loadFromUri('./facemodels'),
+  faceapi.nets.faceLandmark68Net.loadFromUri('./facemodels'),
+  faceapi.nets.faceRecognitionNet.loadFromUri('./facemodels'),
+  faceapi.nets.faceExpressionNet.loadFromUri('./facemodels')
 ]).then(startVideo)
 
 function startVideo() {
