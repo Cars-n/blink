@@ -31,7 +31,7 @@ function trapDoorCallback(a, b) {
 		inventory.removeItem(key)
 	}
 	else{
-		alertw("You need a key to open this trapdoor")
+		alert("You need a key to open this trapdoor");
 		//let Text = new Sprite(player.x, player.y, 100, 100, "You need a key to open this trapdoor");
 	}
     } else {
