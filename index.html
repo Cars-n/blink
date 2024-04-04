@@ -21,19 +21,18 @@
 			background-image: url("assets/background.svg");
 			background-size: contain; /* scales background image to size of container */
 			background-position: center;
+			background-color: black;
 	  	}
 
 	 	 canvas {
 			max-width: 100vw;
 			max-height: 100vh;
 			object-fit: contain; /* scales canvas to size of container */
-      	outline: none; /* removes default white outline */
+      		outline: none; /* removes default white outline */
 
 	  	}
 	 	video {
-			position: fixed;
-			top: -10000px;
-			left: -10000px;
+			position: absolute;
 			width:1px;
 			height:1px;
 		}
@@ -47,8 +46,8 @@
 <body>
 	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/addons/p5.sound.min.js"></script>		
-	<script src="https://p5play.org/v3/planck.min.js"></script>
-	<script src="https://p5play.org/v3/p5play.js"></script>
+	<script src="p5play/planck.min.js"></script>
+	<script src="p5play/p5play.js"></script>
 	<script  src="src/js/mainPlayer.js"></script>
 	<script  src="src/js/Camera.js"></script>
 	<script  src="src/js/main.js"></script>
