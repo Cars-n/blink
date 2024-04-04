@@ -12,6 +12,7 @@ const CANVAS_HEIGHT_PX=1080;
 let darknessSprite;
 // Main Menu Assets
 // MENU, PLAYING, INVENTORY, PAUSED
+let GIANTEYESPAWNED = false;
 let GAMESTATE = "MENU";
 let inventory;
 let key;
@@ -24,7 +25,9 @@ let CreepyPiano1;
 let CreepyPiano2;
 let trapDoorImage;
 let cellBarsImage;
-let ENEMY42SPAWED = false;
+//needs to be false when game is ready to play, is false for testing.
+console.log("FIX THIS VALUE");
+let ENEMY42SPAWED = true;
 function preload() {
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
 	keyImage = loadImage('assets/key.png');
@@ -141,7 +144,13 @@ function draw() {
 		}
 
 		if(player.room["x"] == 9 && player.room["y"] == 2){
-			alert("You escaped out the window!!! Congrats!");
+			if(!GIANTEYESPAWNED) {
+				console.log("GIANT EYE SHOULD SPWAWN");
+				GIANTEYESPAWNED = true;
+				spawnEnemyAt(1, player.x, player.y + 500);
+			}
+			giantEyeBossfight();
+
 		}
 		if(player.health <= 0) {
 			GAMESTATE = pauseMenu.exitGame(GAMESTATE);
