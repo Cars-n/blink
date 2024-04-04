@@ -56,6 +56,7 @@ function setup() {
 	canvas = createCanvas(CANVAS_WIDTH_PX,CANVAS_HEIGHT_PX);
 	noSmooth(); // removes smoothing to maintain pixelated look
 	canvas.style = ""; // removes default canvas styling
+	canvas.id("game");
 
 	fadeScreen = createFadeScreen(); //Creates a screen that's black and fades in and out with the fadeInAndOut function
 	//Creates Room Controller. 
