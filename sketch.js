@@ -47,6 +47,20 @@ function preload() {
 	footsteps = loadSound('assets/audio/footsteps.mp3');
 	footsteps.setVolume(0.5);
 	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png");
+
+	// load furniture / prop images
+	bookshelf = loadImage("assets/rooms/props/Blink_PropBooksh1.png");
+	bookshelf1 = loadImage("assets/rooms/props/Blink_PropBooksh2.png");
+	drawer = loadImage("assets/rooms/props/Blink_PropD.png");
+	drawer1 = loadImage("assets/rooms/props/Blink_PropDr.png");
+	drawer1Open = loadImage("assets/rooms/props/Blink_PropDrOpen.png");
+	carpet = loadImage("assets/rooms/props/Blink_PropLC.png");
+	table = loadImage("assets/rooms/props/Blink_PropTable.png");
+	window1 = loadImage("assets/rooms/props/Blink_PropWindow.png");
+	shelf = loadImage("assets/rooms/props/Blink_PropShelf.png");
+	shelves = loadImage("assets/rooms/props/Blink_PropS.png");
+	cabinet = loadImage("assets/rooms/props/Blink_SpriteClosedCab.png");
+	openCabinet - loadImage("assets/rooms/props/Blink_SpriteOpenCab.png");
 }
 
 const SPAWNX=0;

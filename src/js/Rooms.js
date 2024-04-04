@@ -4,6 +4,15 @@ let roomControl;
 let ISWAITING = false;
 let TrapdoorUnlocked = false;
 
+// Declare variables for props for rooms
+let bookshelf, bookshelf1;
+let drawer, drawer1, drawer1Open;
+let carpet;
+let shelf, shelves;
+let table, window1;
+let cabinet, openCabinet;
+
+
 // Callback function, simply determines whether it is the player ob colliding with door tile or not
 function trapDoorCallback(a, b) {
     if (b?.tag === "player") {
@@ -96,8 +105,6 @@ function UpstairsDoorCallback(a, b) {
     }
 }
 
-
-
 function trapDoorBackCallback(a, b) {
     if (b?.tag === "player") {
         if (!ISWAITING) {
@@ -123,7 +130,6 @@ function trapDoorBackCallback(a, b) {
         console.log("not player: ", b.tag);
     }
 }
-
 
 function upDoorCallback(a, b) {
     if (b?.tag === "player") {
@@ -226,6 +232,11 @@ function downDoorCallback(a, b) {
     }
 }
 
+function addFurnishingToRoom(room, propImage, propType, x, y, w, z) {
+    var furnishing = new Furnishing(w, z, propImage, propType);
+    furnishing.setTilePosition(x, y);
+    room.furnishings.push(furnishing);
+}
 
 class Room{
     static MAX_T_WIDTH=16;
@@ -468,6 +479,7 @@ class RoomController {
         room.furnishings.push(tmp);
         return room;
     }
+    
 	getStartRoom(){
 		var tileMap = [
 				"=======SS=======",
@@ -480,10 +492,60 @@ class RoomController {
 				"=oooooooooooooo=",
 				"=======vv=======",
 				];
-        // var tmp=new Furnishing(100,60,brickImage,"static");
-        // tmp.setTilePosition(5,5);
-    	 var room=new Room(16,9,tileMap);
-        // room.furnishings.push(tmp);
+    	var room=new Room(16,9,tileMap);
+        // room , image, collision type, position x , position y, size 
+        addFurnishingToRoom(room, bookshelf, "static", 1.3, 1.0, 30, 50);
+        addFurnishingToRoom(room, bookshelf, "static", 1.5, 1.0, 30 , 50);
+        addFurnishingToRoom(room, window1, "static", 2.5, .5, 40, 50);
+        addFurnishingToRoom(room, bookshelf, "static", 3.0, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 3.2, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 3.4, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 3.6, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 3.8, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.0, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.2, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.4, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.6, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.8, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.0, 1.0, 30 , 50);
+        addFurnishingToRoom(room, table, "static", 5.5, 1.0, 50 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.0, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.2, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.4, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.6, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.8, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 7.0, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 7.2, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 7.4, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 7.6, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 7.8, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 8.0, 1.0, 30 , 50);
+        addFurnishingToRoom(room, window1, "static", 8.0, .5, 40, 50);
+        addFurnishingToRoom(room, bookshelf, "static", 8.2, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 8.4, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 8.6, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 8.8, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.0, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.2, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.4, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.6, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.8, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.0, 1.0, 30 , 50);
+        addFurnishingToRoom(room, table, "static", 10.5, 1.0, 50 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.0, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.2, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static",11.4, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.6, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static",11.8, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 12.0, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 12.2, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 12.4, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 12.6, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 12.8, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 13.0, 1.0, 30 , 50);
+        addFurnishingToRoom(room, window1, "static", 13.5, .5, 40, 50);
+        addFurnishingToRoom(room, bookshelf, "static", 14.3, 1.0, 30, 50);
+        addFurnishingToRoom(room, bookshelf, "static", 14.5, 1.0, 30 , 50);
         return room;
 	}
 	getRoom02(){
