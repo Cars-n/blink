@@ -65,10 +65,14 @@ function preload() {
 	chair = loadImage("assets/rooms/props/Blink_PropChair.png");
 	chairRight = loadImage("assets/rooms/props/Blink_PropChairRight.png");
 	painting1 = loadImage("assets/rooms/props/Blink_PropPainting1.png");
+	painting2 = loadImage("assets/rooms/props/Blink_PropPainting2.png");
 	fireplace = loadImage("assets/rooms/props/Blink_PropFireplace.png");
 	mirror = loadImage("assets/rooms/props/Blink_PropMirror.png");
 	dresser = loadImage("assets/rooms/props/Blink_PropSpookyDresser.png");
 	wallLamp = loadImage("assets/rooms/props/Blink_PropSpookyWallLamp.png");
+	bed = loadImage("assets/rooms/props/Blink_PropBed.png");
+	drink = loadImage("assets/rooms/props/Blink_PropDrink.png");
+	bigBookshelf = loadImage("assets/rooms/props/Blink_PropBigBookshelf.png");
 	}
 
 const SPAWNX=0;

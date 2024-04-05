@@ -5,19 +5,20 @@ let ISWAITING = false;
 let TrapdoorUnlocked = false;
 
 // Declare variables for props for rooms
-let bookshelf, bookshelf1;
+let bookshelf, bookshelf1, bigBookshelf;
 let drawer, drawer1, drawer1Open;
 let carpet;
 let shelf, shelves;
 let table, window1, window2;
 let cabinet, openCabinet;
 let chair, chairRight;
-let painting1;
+let painting1, painting2;
 let bed;
 let fireplace;
 let mirror;
 let dresser;
 let wallLamp;
+let drink;
 
 
 // Callback function, simply determines whether it is the player ob colliding with door tile or not
@@ -641,6 +642,22 @@ class RoomController {
 			"...====vv====...",
 			]
          var room=new Room(16,9,tileMap);
+         // row 1
+         addFurnishingToRoom(room, dresser, "static", 1.3, 1.1, 66, 47);
+         addFurnishingToRoom(room, bed, "static", 2, 1.3, 96, 111);
+         addFurnishingToRoom(room, painting2, "static", 2.05, .75, 100, 100);
+         addFurnishingToRoom(room, drawer1, "static", 3.1, 1.1, 40, 40);
+         addFurnishingToRoom(room, drink, "static", 3.1, .9, 15, 30);
+         addFurnishingToRoom(room, drawer1Open, "static", 3.3, 1.1, 40, 40);
+         addFurnishingToRoom(room, wallLamp, "static", 6, .4, 41, 42);
+         addFurnishingToRoom(room, wallLamp, "static", 10, .4, 41, 42);
+         addFurnishingToRoom(room, bigBookshelf, "static",12, 1.1, 144, 96);
+         addFurnishingToRoom(room, fireplace, "static",13, .9, 82, 132);
+         addFurnishingToRoom(room, bigBookshelf, "static",14, 1.1, 144, 96);
+
+
+         // row 4
+         addFurnishingToRoom(room, mirror, "static", 2.15, 4.0, 60, 60);
          return room;
 	}
 	getRoom03(){
