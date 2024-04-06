@@ -21,6 +21,7 @@ let mainMenu;
 let pauseMenu;
 let settingsMenu;
 let CreepyPiano1;
+let mainMenuSound;
 let CreepyPiano2;
 let trapDoorImage;
 let cellBarsImage;
@@ -37,11 +38,13 @@ function preload() {
 	doorImage=loadImage("assets/Door.png");
 	bulletImage = loadImage("assets/bullet.png");
 	darknessImage = loadImage("assets/darkness.svg");
-	soundFormats('mp3','wav');
+	soundFormats('mp3','wav', 'ogg');
 	CreepyPiano1 = loadSound('assets/audio/Piano_dissonent.wav');
 	CreepyPiano1.setVolume(1);
 	CreepyPiano2 = loadSound('assets/audio/Piano_dissonent2.wav');
 	CreepyPiano2.setVolume(1);
+	mainMenuSound = loadSound('assets/audio/forest.ogg')
+	mainMenuSound.setVolume(0.1);
 	doorCreak = loadSound('assets/audio/doorCreak.mp3');
 	doorCreak.setVolume(0.5);
 	footsteps = loadSound('assets/audio/footsteps.mp3');
@@ -99,6 +102,7 @@ function draw() {
 	// console.log("FPS:",1000/deltaTime);
 	if (GAMESTATE == "MENU") {
 		console.log("MAIN");
+		if(!mainMenuSound.isPlaying()) mainMenuSound.play();
 
 		player.velocity.y = 0;
 		player.velocity.x = 0;
@@ -118,6 +122,7 @@ function draw() {
 			fadeScreen.x = player.x;
 			fadeScreen.y = player.y;
 			gameMap.loadRoom(SPAWNX,SPAWNY);
+			mainMenuSound.pause();
 			GAMESTATE = mainMenu.startGame(GAMESTATE);
 		});
 
