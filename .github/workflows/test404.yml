@@ -12,6 +12,22 @@ jobs:
       steps:
         - name: Checkout repository
           uses: actions/checkout@v2
+        - name: Install Python
+          run: |
+            echo "$ ls"
+            ls
+            echo "$ apt update"
+            apt update
+
+            echo "$ apt install python3 -y"
+            apt install python3 -y
+
+            echo "$ python3  -V"
+            python3 -V
+        - name : Start Python's HTTP Server
+          run: | 
+            echo "$ python3 -m http.server"
+            python3 -m http.server --bind 127.0.0.1 &
         - name: Install Chrome Shared Libraries
           run: |
             sudo apt-get update && sudo apt-get install -y \
@@ -57,7 +73,7 @@ jobs:
           run: npm install
         - name: Install Chrome
           run: npx puppeteer browsers install chrome
+        
         - name: Run browser tests
           run: npm run test:no404
             
-        

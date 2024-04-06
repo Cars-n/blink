@@ -12,7 +12,7 @@ async function monitorNetwork() {
             count404+=1;
         }
     });
-    await page.goto('http://127.0.0.1:5500/index.html');
+    await page.goto('http://127.0.0.1:8000/index.html');
     await browser.close();
     return count404;
 }
