@@ -17,10 +17,10 @@ jobs:
             echo "$ ls"
             ls
             echo "$ apt update"
-            apt update
+            sudo apt update
 
             echo "$ apt install python3 -y"
-            apt install python3 -y
+            sudo apt install python3 -y
 
             echo "$ python3  -V"
             python3 -V
@@ -30,7 +30,7 @@ jobs:
             python3 -m http.server --bind 127.0.0.1 &
         - name: Install Chrome Shared Libraries
           run: |
-            apt-get update &&  apt-get install -y \
+            sudo apt-get update &&  sudo apt-get install -y \
             ca-certificates \
             fonts-liberation \
             libasound2 \
