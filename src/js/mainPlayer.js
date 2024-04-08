@@ -17,7 +17,7 @@ function setupPlayer(roomX=0,roomY=0){
     player.spriteSheet = 'assets/player.png';
     player.anis.offset.x = 2;
     player.anis.frameDelay = 8;
-    player.layer = 2;
+    player.layer = PLAYER_LAYER;
     player.health = 101;
     //Configures the collision settings based on presets
     //turns on rotation lock (A MUST!!!), and sets the
