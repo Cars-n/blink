@@ -8,7 +8,7 @@
       <stop offset="50%" stop-color="black" stop-opacity="0.5"/>
       <stop offset="100%" stop-color="black" stop-opacity="1"/>
     </linearGradient>
-    <polygon points="1920,1920  1820,1580  2020,1580" fill="url(#grad)" />
+    <polygon points="1920,1920  1700,1580  2140,1580" fill="url(#grad)" />
   </mask>
   
   <!-- Black square rectangle with mask applied -->
