@@ -2,12 +2,12 @@ name: Test Suite
 
 on:
   push:
-    branches: [ "main","dev","GHA-Test-404" ]
+    branches: [ "main","dev","Selenium-GHA" ]
   pull_request:
     branches: [ "main","dev" ]
 
 jobs:
-  Test-404:
+  Test-MainMenu:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout repository
@@ -30,7 +30,7 @@ jobs:
             python3 -m http.server --bind 127.0.0.1 &
         - name: Install Chrome Shared Libraries
           run: |
-            apt-get update && apt-get install -y \
+            apt-get update &&  apt-get install -y \
             ca-certificates \
             fonts-liberation \
             libasound2 \
@@ -75,5 +75,5 @@ jobs:
           run: npx puppeteer browsers install chrome
         
         - name: Run browser tests
-          run: npm run test:no404
-            
+          run: npm run test:mainMenu
+        

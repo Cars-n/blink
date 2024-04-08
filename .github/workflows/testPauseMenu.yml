@@ -75,5 +75,5 @@ jobs:
           run: npx puppeteer browsers install chrome
         
         - name: Run browser tests
-          run: npm run test:no404
+          run: npm run test:pauseMenu
             
