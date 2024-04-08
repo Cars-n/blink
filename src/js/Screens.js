@@ -85,7 +85,7 @@ class PauseMenu {
 
 		this.pauseTitle = createButton("PAUSE");
 		this.pauseTitle.class("PauseH1");
-		this.pauseTitle.attribute('name', 'header');
+		this.pauseTitle.attribute('name', 'pauseHeader');
 		this.pauseTitle.position(600,50);
 		this.pauseTitle.hide();
 
