@@ -1,7 +1,5 @@
 const puppeteer = require('puppeteer');
-const core=require('@actions/core');
-const { error } = require('console');
-const { start } = require('repl');
+const core=require('@actions/core')
 
 
 async function testPauseHeader() {
