@@ -37,7 +37,8 @@ function preload() {
 	gunImage = loadImage("assets/shotgun.png");
 	doorImage=loadImage("assets/Door.png");
 	bulletImage = loadImage("assets/bullet.png");
-	darknessImage = loadImage("assets/darkness.svg");
+	flashlight = loadImage("assets/darknessFlashlight.svg");
+	eyesight = loadImage("assets/darknessEyesight.svg");
 	soundFormats('mp3','wav', 'ogg');
 	CreepyPiano1 = loadSound('assets/audio/Piano_dissonent.wav');
 	CreepyPiano1.setVolume(1);
@@ -183,9 +184,14 @@ function draw() {
 			player.health = 100;
 			alert("You died. Try again.")
 		}
+
 		if(inventory.hasItem(flashlight)){
-			darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y);
+			darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y, true);
 		}
+		else{
+			darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y, false);
+		}
+
 		if(kb.pressed('e')) {
 			GAMESTATE = "INVENTORY";
 		}
