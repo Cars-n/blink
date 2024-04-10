@@ -119,7 +119,7 @@ class GameMap {
             this.roomArr[x][y].enemies.forEach(enemy => {
                 var spawnEnemyX=xOffset+(RoomController.TILE_WIDTH * enemy.tileOffsetX);
                 var spawnEnemyY=yOffset+(RoomController.TILE_WIDTH * enemy.tileOffsetY);
-                spawnEnemyAt(enemy.id,spawnEnemyX,spawnEnemyY);
+                spawnEnemyAt(enemy.enemyId,spawnEnemyX,spawnEnemyY);
             });
         }
         this.roomArr[x][y].enemies=[];//Only spawn enemies once
