@@ -1,5 +1,4 @@
 const video = document.getElementById('video')
-var mBlinkSound = new Audio("/sound/shotgun-firing1.mp3");
 let nowBlinking = false;
 
 Promise.all([
@@ -130,9 +129,7 @@ video.addEventListener('play', () => {
           if(currentIrisC<meanIrisC*vThreshold){
               nowBlinking = false;
               blinkCount += 1;
-              mBlinkSound.pause();
-              mBlinkSound.currentTime = 0;
-             // mBlinkSound.play();
+
           }//
        }//
 

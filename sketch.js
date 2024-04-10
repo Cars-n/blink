@@ -21,6 +21,7 @@ let mainMenu;
 let pauseMenu;
 let settingsMenu;
 let CreepyPiano1;
+let mainMenuSound;
 let CreepyPiano2;
 let trapDoorImage;
 let cellBarsImage;
@@ -37,17 +38,45 @@ function preload() {
 	doorImage=loadImage("assets/Door.png");
 	bulletImage = loadImage("assets/bullet.png");
 	darknessImage = loadImage("assets/darkness.svg");
-	soundFormats('mp3','wav');
+	soundFormats('mp3','wav', 'ogg');
 	CreepyPiano1 = loadSound('assets/audio/Piano_dissonent.wav');
 	CreepyPiano1.setVolume(1);
 	CreepyPiano2 = loadSound('assets/audio/Piano_dissonent2.wav');
 	CreepyPiano2.setVolume(1);
+	mainMenuSound = loadSound('assets/audio/forest.ogg')
+	mainMenuSound.setVolume(0.1);
 	doorCreak = loadSound('assets/audio/doorCreak.mp3');
 	doorCreak.setVolume(0.5);
 	footsteps = loadSound('assets/audio/footsteps.mp3');
 	footsteps.setVolume(0.5);
 	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png");
-}
+
+	// load furniture / prop images
+	bookshelf = loadImage("assets/rooms/props/Blink_PropBooksh1.png");
+	bookshelf1 = loadImage("assets/rooms/props/Blink_PropBooksh2.png");
+	drawer = loadImage("assets/rooms/props/Blink_PropD.png");
+	drawer1 = loadImage("assets/rooms/props/Blink_PropDr.png");
+	drawer1Open = loadImage("assets/rooms/props/Blink_PropDrOpen.png");
+	carpet = loadImage("assets/rooms/props/Blink_PropLC.png");
+	table = loadImage("assets/rooms/props/Blink_PropTable.png");
+	window1 = loadImage("assets/rooms/props/Blink_PropWindow.png");
+	window2 = loadImage("assets/rooms/props/Blink_PropSpookyWindow2.png");
+	shelf = loadImage("assets/rooms/props/Blink_PropShelf.png");
+	shelves = loadImage("assets/rooms/props/Blink_PropS.png");
+	cabinet = loadImage("assets/rooms/props/Blink_SpriteClosedCab.png");
+	openCabinet - loadImage("assets/rooms/props/Blink_SpriteOpenCab.png");
+	chair = loadImage("assets/rooms/props/Blink_PropChair.png");
+	chairRight = loadImage("assets/rooms/props/Blink_PropChairRight.png");
+	painting1 = loadImage("assets/rooms/props/Blink_PropPainting1.png");
+	painting2 = loadImage("assets/rooms/props/Blink_PropPainting2.png");
+	fireplace = loadImage("assets/rooms/props/Blink_PropFireplace.png");
+	mirror = loadImage("assets/rooms/props/Blink_PropMirror.png");
+	dresser = loadImage("assets/rooms/props/Blink_PropSpookyDresser.png");
+	wallLamp = loadImage("assets/rooms/props/Blink_PropSpookyWallLamp.png");
+	bed = loadImage("assets/rooms/props/Blink_PropBed.png");
+	drink = loadImage("assets/rooms/props/Blink_PropDrink.png");
+	bigBookshelf = loadImage("assets/rooms/props/Blink_PropBigBookshelf.png");
+	}
 
 const SPAWNX=0;
 const SPAWNY=0;
@@ -99,6 +128,7 @@ function draw() {
 	// console.log("FPS:",1000/deltaTime);
 	if (GAMESTATE == "MENU") {
 		console.log("MAIN");
+		if(!mainMenuSound.isPlaying()) mainMenuSound.play();
 
 		player.velocity.y = 0;
 		player.velocity.x = 0;
@@ -118,6 +148,7 @@ function draw() {
 			fadeScreen.x = player.x;
 			fadeScreen.y = player.y;
 			gameMap.loadRoom(SPAWNX,SPAWNY);
+			mainMenuSound.pause();
 			GAMESTATE = mainMenu.startGame(GAMESTATE);
 		});
 

@@ -1,0 +1,79 @@
+name: Test Suite
+
+on:
+  push:
+    branches: [ "main","dev","GHA-Test-404" ]
+  pull_request:
+    branches: [ "main","dev" ]
+
+jobs:
+  Test-404:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+        - name: Install Python
+          run: |
+            echo "$ ls"
+            ls
+            echo "$ apt update"
+            sudo apt update
+
+            echo "$ apt install python3 -y"
+            sudo apt install python3 -y
+
+            echo "$ python3  -V"
+            python3 -V
+        - name : Start Python's HTTP Server
+          run: | 
+            echo "$ python3 -m http.server"
+            python3 -m http.server --bind 127.0.0.1 &
+        - name: Install Chrome Shared Libraries
+          run: |
+            sudo apt-get update && sudo apt-get install -y \
+            ca-certificates \
+            fonts-liberation \
+            libasound2 \
+            libatk-bridge2.0-0 \
+            libatk1.0-0 \
+            libc6 \
+            libcairo2 \
+            libcups2 \
+            libdbus-1-3 \
+            libexpat1 \
+            libfontconfig1 \
+            libgbm1 \
+            libgcc1 \
+            libglib2.0-0 \
+            libgtk-3-0 \
+            libnspr4 \
+            libnss3 \
+            libpango-1.0-0 \
+            libpangocairo-1.0-0 \
+            libstdc++6 \
+            libx11-6 \
+            libx11-xcb1 \
+            libxcb1 \
+            libxcomposite1 \
+            libxcursor1 \
+            libxdamage1 \
+            libxext6 \
+            libxfixes3 \
+            libxi6 \
+            libxrandr2 \
+            libxrender1 \
+            libxss1 \
+            libxtst6 \
+            lsb-release \
+            wget \
+            xdg-utils
+        - name: Use Node.js 
+          uses: actions/setup-node@v2
+        - name: Install dependencies
+          run: npm install
+        - name: Install Chrome
+          run: npx puppeteer browsers install chrome
+        
+        - name: Run browser tests
+          run: npm run test:no404
+            
