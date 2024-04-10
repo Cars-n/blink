@@ -113,6 +113,8 @@ function keyPressed(){
 function enemyHandler(){
     let previousMax = enemyList.length; //Prevents inf loop if enemey is created while handler is being run
     for(let i = 0; i < previousMax; ++ i) {
+
+        if(enemyList.enemyid == 1){
         if(nowBlinking == true && CANTELEPORT == true){
             CANTELEPORT = false;
             teleportCooldown();
@@ -120,6 +122,7 @@ function enemyHandler(){
             enemyList[i].enemySprite.x = player.x + Math.floor(Math.random() * 100) * (Math.random() > 0.5 ? 1 : -1);
             enemyList[i].enemySprite.y = player.y + Math.floor(Math.random() * 100) * (Math.random() > 0.5 ? 1 : -1);
             disappear(enemyList[i].enemySprite);
+            }
         }
 
         //Detects if player and enemy overlaps and changes red if true, currently need debug mode off to see this
@@ -133,7 +136,9 @@ function enemyHandler(){
 function setupStaticEnemyList(){ //Add new enemies here
 
     temp = new enemyData(0, 0, "test", 5, 0, 0, 10, "assets/GlowingEyesEnemy.png");
+    giantEye = new enemyData(1,0, "Giant Eye", 500, 256,256, 256,"assets/GiantEye.png");
     staticEnemyList.push(temp);
+    staticEnemyList.push(giantEye);
 
 
 
