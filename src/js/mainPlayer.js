@@ -47,9 +47,9 @@ function setupPlayer(roomX=0,roomY=0){
 
 function gunFunctionality(){
     if(
-        inventory.hasItem(gun) &&
+        //inventory.hasItem(gun) &&
         kb.pressed(' ')
-        && inventory.hasItem(bulletItem)
+       // && inventory.hasItem(bulletItem)
         ){
             let bullet = new bullets.Sprite();
         if(playerMovement.lastDirection == "left"){

@@ -77,7 +77,11 @@ function setup() {
 	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Gun", 2,1,33,6,gunImage);
 	bulletItem = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
 	// darkness overlayd
-	
+	key.itemSprite.overlaps(RoomController.wallTile.group);
+	gun.itemSprite.overlaps(RoomController.wallTile.group);
+	flashlight.itemSprite.overlaps(RoomController.wallTile.group);
+	bulletItem.itemSprite.overlaps(RoomController.wallTile.group);
+
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
 	setupStaticEnemyList();
@@ -98,6 +102,7 @@ function setup() {
 	//Makes a new settings menu
 	settingsMenu = new SettingsMenu();
 
+	spawnEnemyAt(1,player.x,player.y);
 }
 
 function draw() {
@@ -168,6 +173,7 @@ function draw() {
 		if(inventory.hasItem(flashlight)){
 			darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y);
 		}
+		
 		if(kb.pressed('e')) {
 			GAMESTATE = "INVENTORY";
 		}
@@ -215,6 +221,7 @@ function draw() {
 		dragItem(flashlight, inventory);
 		dragItem(key, inventory);
 		dragItem(gun, inventory);
+		dragItem(bulletItem,inventory)
 	} 
 	else if (GAMESTATE == "PAUSE") {
 		console.log("PAUSED");
