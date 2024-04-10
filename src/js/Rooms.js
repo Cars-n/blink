@@ -245,7 +245,13 @@ function addFurnishingToRoom(room, propImage, propType, x, y, w, z) {
     furnishing.setTilePosition(x, y);
     room.furnishings.push(furnishing);
 }
-
+class RoomEnemyData{
+    constructor (id,x=1,y=1){
+        this.enemyId=id;
+        this.tileOffsetX=x;
+        this.tileOffsetY=y;
+    }
+}
 class Room{
     static MAX_T_WIDTH=16;
     static MAX_T_HEIGHT=9;
@@ -263,7 +269,7 @@ class Room{
         this.tWidth=tWidth;
         this.tHeight=tHeight;
         this.tileArray=tileArray;
-        
+        this.enemies=[]//Holds room enemy data
         this.furnishings=[];
     }
     getTileArray() {
@@ -642,6 +648,7 @@ class RoomController {
 			"...====vv====...",
 			]
          var room=new Room(16,9,tileMap);
+         room.enemies.push(new RoomEnemyData(0,4,4))
          // row 1
          addFurnishingToRoom(room, dresser, "static", 1.3, 1.1, 66, 47);
          addFurnishingToRoom(room, bed, "static", 2, 1.3, 96, 111);
@@ -1041,6 +1048,7 @@ class RoomController {
 							// var tmp=new Furnishing(100,60,brickImage,"static");
 							// tmp.setTilePosition(5,5);
 							 var room=new Room(16,9,tileMap);
+                             room.enemies.push(new RoomEnemyData(1,4,4))
 							// room.furnishings.push(tmp);
 							 return room;
 			}
