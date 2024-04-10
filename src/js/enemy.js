@@ -110,7 +110,12 @@ function keyPressed(){
 //Handles anything related to enemeis that needs to be done every frame
 function enemyHandler(){
     let previousMax = enemyList.length; //Prevents inf loop if enemey is created while handler is being run
-    for(let i = 0; i < previousMax; ++ i) {
+    for(let i = 0; i < previousMax; ++i) {
+        console.log(enemyList);
+        if(enemyList[i].enemy_id==1){
+            bullets.collides(enemyList[i].enemySprite, damageEnemy);
+        }
+        if(enemyList.enemy_id == 0){
         if(nowBlinking == true && CANTELEPORT == true){
             CANTELEPORT = false;
             teleportCooldown();
@@ -119,19 +124,28 @@ function enemyHandler(){
             enemyList[i].enemySprite.y = player.y + Math.floor(Math.random() * 100) * (Math.random() > 0.5 ? 1 : -1);
             disappear(enemyList[i].enemySprite);
         }
+    }
+
+            if(enemyList[i].health <= 0){
+                alert("Enemy " + enemyList[i].name + " has been defeated! YOU WIN!!!"); 
+                enemyList[i].enemySprite.remove();
+                enemyList.splice(i, 1);
+                if (enemyList.length == 0) return;
+            }
 
         //Detects if player and enemy overlaps and changes red if true, currently need debug mode off to see this
         if (enemyList[i].enemySprite.overlaps(player)) player.health -= 50;
-    }
     
 }
-
+}
 //Loads at start
 //Enemy data is harded coded and then pushed onto the staticEnemyList
 function setupStaticEnemyList(){ //Add new enemies here
 
     temp = new enemyData(0, 0, "test", 5, 0, 0, 10, "assets/GlowingEyesEnemy.png");
+    giantEye = new enemyData(1,0, "Giant Eye", 500, 256,256, 256,"assets/GiantEye.png");
     staticEnemyList.push(temp);
+    staticEnemyList.push(giantEye);
 
 
 
@@ -155,4 +169,12 @@ async function disappear(enemySprite){
 async function teleportCooldown(){
     await delay(2000);
     CANTELEPORT = true;
+}
+
+function damageEnemy(bullet, enemy){
+    bullet.remove();
+    enemyList.forEach(enemy => {
+        if(enemy.enemy_id == 1){
+            enemy.health -= 50;}
+     });
 }

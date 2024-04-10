@@ -12,11 +12,12 @@ const CANVAS_HEIGHT_PX=1080;
 let darknessSprite;
 // Main Menu Assets
 // MENU, PLAYING, INVENTORY, PAUSED
+let GIANTEYESPAWNED = false;
 let GAMESTATE = "MENU";
 let inventory;
 let key;
 let gun;
-let bullet;
+let bulletItem;
 let mainMenu;
 let pauseMenu;
 let settingsMenu;
@@ -25,7 +26,10 @@ let mainMenuSound;
 let CreepyPiano2;
 let trapDoorImage;
 let cellBarsImage;
-let ENEMY42SPAWED = false;
+let bullets;
+//needs to be false when game is ready to play, is false for testing.
+console.log("FIX THIS VALUE");
+let ENEMY42SPAWED = true;
 function preload() {
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
 	keyImage = loadImage('assets/key.png');
@@ -100,17 +104,18 @@ function setup() {
 	flashlight.itemSprite.debug=false;
 	key = new Item(CANVAS_WIDTH_PX/2 ,CANVAS_HEIGHT_PX*4 - 500, "Key", 1,1,10,5,keyImage);
 	key.itemSprite.debug=false;
-	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "gun", 2,1,6,33,gunImage);
-	gun.itemSprite.debug=false;
-
-	bullet = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "bullet", 1,1,4,3,bulletImage);
-	bullet.itemSprite.debug=false;
-
+	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Gun", 2,1,33,6,gunImage);
+	bulletItem = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
 	// darkness overlayd
-	
+	key.itemSprite.overlaps(RoomController.wallTile.group);
+	gun.itemSprite.overlaps(RoomController.wallTile.group);
+	flashlight.itemSprite.overlaps(RoomController.wallTile.group);
+	bulletItem.itemSprite.overlaps(RoomController.wallTile.group);
+
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
 	setupStaticEnemyList();
+	console.log(staticEnemyList);
 	darknessSetup();
 	//Remove to turn off debug mode
 	// turnOnDebugMode(true, true);
@@ -121,8 +126,13 @@ function setup() {
 	//Makes a pause menu screen
 	pauseMenu = new PauseMenu();
 
+	//creates group for bullets
+	setUpBullets();
+
 	//Makes a new settings menu
 	settingsMenu = new SettingsMenu();
+
+	spawnEnemyAt(1,player.x,player.y);
 }
 
 function draw() {
@@ -165,9 +175,10 @@ function draw() {
 	else if (GAMESTATE === 'PLAYING') {
 		clear();
 		randomBackgroundSounds();
-		gunFunctionality();
+		gunFunctionality(bullets);
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
+		bulletCollisions();
 		playerMovement.handleInput();
 		enemyHandler();
 		if(player.room["x"] == 4 && player.room["y"] == 2 && !ENEMY42SPAWED){
@@ -177,7 +188,14 @@ function draw() {
 		}
 
 		if(player.room["x"] == 9 && player.room["y"] == 2){
-			alert("You escaped out the window!!! Congrats!");
+			if(!GIANTEYESPAWNED) {
+				console.log("GIANT EYE SHOULD SPWAWN");
+				GIANTEYESPAWNED = true;
+				console.log(player.x, player.y);
+				spawnEnemyAt(1, player.x, player.y + 500);
+			}
+			giantEyeBossfight();
+
 		}
 		if(player.health <= 0) {
 			GAMESTATE = pauseMenu.exitGame(GAMESTATE);
@@ -210,13 +228,12 @@ function draw() {
 		if(player.overlaps(key.itemSprite)){
 			if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) key.itemSprite.visible = false;
 		}
-		if(player.overlaps(bullet.itemSprite)){
-			if (inventory.insertItem(bullet, inventory.hasSpace(bullet.InventoryX,bullet.InventoryY))) bullet.itemSprite.visible = false;
+		if(player.overlaps(bulletItem.itemSprite)){
+			if (inventory.insertItem(bulletItem, inventory.hasSpace(bulletItem.InventoryX,bulletItem.InventoryY))) bulletItem.itemSprite.visible = false;
 		}
 
 		//Pause handle
 		if (kb.pressed('escape')) GAMESTATE = "PAUSE";
-
 	}
     else if (GAMESTATE == "INVENTORY"){
 		clear();
@@ -240,7 +257,8 @@ function draw() {
 		dragItem(flashlight, inventory);
 		dragItem(key, inventory);
 		dragItem(gun, inventory);
-		dragItem(bullet,inventory);
+		dragItem(bulletItem,inventory)
+
 	} 
 	else if (GAMESTATE == "PAUSE") {
 		console.log("PAUSED");
