@@ -132,7 +132,6 @@ function setup() {
 	//Makes a new settings menu
 	settingsMenu = new SettingsMenu();
 
-	spawnEnemyAt(1,player.x,player.y);
 }
 
 function draw() {
@@ -192,7 +191,6 @@ function draw() {
 				console.log("GIANT EYE SHOULD SPWAWN");
 				GIANTEYESPAWNED = true;
 				console.log(player.x, player.y);
-				spawnEnemyAt(1, player.x, player.y + 500);
 			}
 			giantEyeBossfight();
 

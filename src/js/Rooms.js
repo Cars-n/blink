@@ -535,14 +535,14 @@ class RoomController {
         addFurnishingToRoom(room, bookshelf, "static", 7.4, 1.0, 30 , 50);
         addFurnishingToRoom(room, bookshelf, "static", 7.6, 1.0, 30 , 50);
         addFurnishingToRoom(room, bookshelf, "static", 7.8, 1.0, 30 , 50);
-        addFurnishingToRoom(room, bookshelf, "static", 8.0, 1.0, 30 , 50);
-        addFurnishingToRoom(room, window1, "static", 8.0, .5, 40, 50);
-        addFurnishingToRoom(room, bookshelf, "static", 8.2, 1.0, 30 , 50);
-        addFurnishingToRoom(room, bookshelf, "static", 8.4, 1.0, 30 , 50);
-        addFurnishingToRoom(room, bookshelf, "static", 8.6, 1.0, 30 , 50);
-        addFurnishingToRoom(room, bookshelf, "static", 8.8, 1.0, 30 , 50);
-        addFurnishingToRoom(room, bookshelf, "static", 9.0, 1.0, 30 , 50);
-        addFurnishingToRoom(room, bookshelf, "static", 9.2, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 8.0, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, window1, "static", 8.0, .5, 40, 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 8.2, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 8.4, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 8.6, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 8.8, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 9.0, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 9.2, 1.0, 30 , 50);
         addFurnishingToRoom(room, bookshelf, "static", 9.4, 1.0, 30 , 50);
         addFurnishingToRoom(room, bookshelf, "static", 9.6, 1.0, 30 , 50);
         addFurnishingToRoom(room, bookshelf, "static", 9.8, 1.0, 30 , 50);
@@ -646,7 +646,10 @@ class RoomController {
 			"...=oooooooo=...",
 			"...=oooooooo=...",
 			"...====vv====...",
-			]
+			];
+        
+
+
          var room=new Room(16,9,tileMap);
          room.enemies.push(new RoomEnemyData(0,4,4))
          // row 1
