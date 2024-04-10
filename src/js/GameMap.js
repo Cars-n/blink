@@ -88,6 +88,7 @@ class GameMap {
         });
     }
     }
+
     //Takes the x and y coords of a room on the map. a room with top left at 32x 9y would be gotten with 2,1
     loadRoom(x,y){
         let xOffset=0;
@@ -114,8 +115,14 @@ class GameMap {
                 element.instantiateSprite(xOffset, yOffset);
             });
         }
-
-
+        if(this.roomArr[x][y].enemies!=undefined){
+            this.roomArr[x][y].enemies.forEach(enemy => {
+                var spawnEnemyX=xOffset+(RoomController.TILE_WIDTH * enemy.tileOffsetX);
+                var spawnEnemyY=yOffset+(RoomController.TILE_WIDTH * enemy.tileOffsetY);
+                spawnEnemyAt(enemy.enemyId,spawnEnemyX,spawnEnemyY);
+            });
+        }
+        this.roomArr[x][y].enemies=[];//Only spawn enemies once
         this.map.layer=MAP_LAYER;
 
     }

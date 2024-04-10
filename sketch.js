@@ -257,8 +257,7 @@ function draw() {
 		dragItem(flashlight, inventory);
 		dragItem(key, inventory);
 		dragItem(gun, inventory);
-		dragItem(bulletItem,inventory)
-
+		dragItem(bulletItem,inventory);
 	} 
 	else if (GAMESTATE == "PAUSE") {
 		console.log("PAUSED");

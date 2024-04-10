@@ -70,7 +70,9 @@ function spawnEnemy(num){
 
 //Similar to spawnEnemy() but this takes a pair of x,y cords and spawns it at that location
 function spawnEnemyAt(num, x, y){
-    let temp = new Enemy(num, x, y);
+    let temp = new Enemy(num);
+    temp.enemySprite.x=x;
+    temp.enemySprite.y=y;
     enemyList.push(temp);
 }
 
