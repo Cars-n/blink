@@ -17,7 +17,7 @@ let GAMESTATE = "MENU";
 let inventory;
 let key;
 let gun;
-let bullet;
+let bulletItem;
 let mainMenu;
 let pauseMenu;
 let settingsMenu;
@@ -25,6 +25,7 @@ let CreepyPiano1;
 let CreepyPiano2;
 let trapDoorImage;
 let cellBarsImage;
+let bullets;
 //needs to be false when game is ready to play, is false for testing.
 console.log("FIX THIS VALUE");
 let ENEMY42SPAWED = true;
@@ -73,13 +74,14 @@ function setup() {
 	flashlight.itemSprite.debug=false;
 	key = new Item(CANVAS_WIDTH_PX/2 ,CANVAS_HEIGHT_PX*4 - 500, "Key", 1,1,10,5,keyImage);
 	key.itemSprite.debug=false;
-	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "gun", 2,1,33,6,gunImage);
-	bullet = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
+	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Gun", 2,1,33,6,gunImage);
+	bulletItem = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
 	// darkness overlayd
 	
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
 	setupStaticEnemyList();
+	console.log(staticEnemyList);
 	darknessSetup();
 	//Remove to turn off debug mode
 	// turnOnDebugMode(true, true);
@@ -90,8 +92,12 @@ function setup() {
 	//Makes a pause menu screen
 	pauseMenu = new PauseMenu();
 
+	//creates group for bullets
+	setUpBullets();
+
 	//Makes a new settings menu
 	settingsMenu = new SettingsMenu();
+
 }
 
 function draw() {
@@ -132,9 +138,10 @@ function draw() {
 	else if (GAMESTATE === 'PLAYING') {
 		clear();
 		randomBackgroundSounds();
-		gunFunctionality();
+		gunFunctionality(bullets);
 		fadeInAndOut(fadeScreen);
 		movementSounds(player,footsteps);
+		bulletCollisions();
 		playerMovement.handleInput();
 		enemyHandler();
 		if(player.room["x"] == 4 && player.room["y"] == 2 && !ENEMY42SPAWED){
@@ -147,6 +154,7 @@ function draw() {
 			if(!GIANTEYESPAWNED) {
 				console.log("GIANT EYE SHOULD SPWAWN");
 				GIANTEYESPAWNED = true;
+				console.log(player.x, player.y);
 				spawnEnemyAt(1, player.x, player.y + 500);
 			}
 			giantEyeBossfight();
@@ -178,13 +186,12 @@ function draw() {
 		if(player.overlaps(key.itemSprite)){
 			if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) key.itemSprite.visible = false;
 		}
-		if(player.overlaps(bullet.itemSprite)){
-			if (inventory.insertItem(bullet, inventory.hasSpace(bullet.InventoryX,bullet.InventoryY))) bullet.itemSprite.visible = false;
+		if(player.overlaps(bulletItem.itemSprite)){
+			if (inventory.insertItem(bulletItem, inventory.hasSpace(bulletItem.InventoryX,bulletItem.InventoryY))) bulletItem.itemSprite.visible = false;
 		}
 
 		//Pause handle
 		if (kb.pressed('escape')) GAMESTATE = "PAUSE";
-
 	}
     else if (GAMESTATE == "INVENTORY"){
 		clear();
