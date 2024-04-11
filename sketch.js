@@ -100,22 +100,27 @@ function setup() {
 	player = setupPlayer(SPAWNX,SPAWNY);
 	fadeScreen.x = player.x;
 	fadeScreen.y = player.y;
-	flashlight = new Item(player.x + 50,player.y + 50, "FlashLight", 2,1,8,20,flashlightImage);
-	flashlight.itemSprite.debug=false;
-	key = new Item(CANVAS_WIDTH_PX/2 ,CANVAS_HEIGHT_PX*4 - 500, "Key", 1,1,10,5,keyImage);
-	key.itemSprite.debug=false;
-	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Gun", 2,1,33,6,gunImage);
-	bulletItem = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
-	// darkness overlayd
+	flashlight = new Item(player.x + 50,player.y - 50, "FlashLight", 2,1,8,20,flashlightImage);
+	flashlight.itemSprite.debug=true;
+	key = new Item(player.x + 100 ,player.y - 50, "Key", 1,1,10,5,keyImage);
+	key.itemSprite.debug=true;
+	gun = new Item(player.x + 50,player.y - 50, "Gun", 2,1,6,33,gunImage);
+	gun.itemSprite.debug = true;
+	bulletItem = new Item(player.x + 75, player.y - 50, "Bullet", 1,1,4,3,bulletImage);
+	bulletItem.itemSprite.debug = true;
+
 	key.itemSprite.overlaps(RoomController.wallTile.group);
+
 	gun.itemSprite.overlaps(RoomController.wallTile.group);
+
 	flashlight.itemSprite.overlaps(RoomController.wallTile.group);
+
 	bulletItem.itemSprite.overlaps(RoomController.wallTile.group);
 
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
 	setupStaticEnemyList();
-	console.log(staticEnemyList);
+
 	darknessSetup();
 	//Remove to turn off debug mode
 	// turnOnDebugMode(true, true);

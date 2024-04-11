@@ -119,7 +119,7 @@ class InventoryController {
                 };
         }
         if (x * y == 2) {
-            for (let i = 0; i < InventoryController.INVENTORY_WIDTH - 1; i++) {
+            for (let i = 0; i <= InventoryController.INVENTORY_WIDTH - 1; i++) {
                 if (this.inventory[0][i] == "" && this.inventory[1][i] == "") {
                     return {
                         x: i,
