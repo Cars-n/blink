@@ -19,7 +19,7 @@ function setupPlayer(roomX=0,roomY=0){
     player.anis.frameDelay = 8;
     player.layer = PLAYER_LAYER;
     player.health = 101;
-    player.debug = true;
+    player.debug = false;
     
     //Configures the collision settings based on presets
     //turns on rotation lock (A MUST!!!), and sets the
