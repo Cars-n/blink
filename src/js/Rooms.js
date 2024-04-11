@@ -244,6 +244,7 @@ function addFurnishingToRoom(room, propImage, propType, x, y, w, z) {
     var furnishing = new Furnishing(w, z, propImage, propType);
     furnishing.setTilePosition(x, y);
     room.furnishings.push(furnishing);
+    return furnishing;  //Returns for testing
 }
 class RoomEnemyData{
     constructor (id,x=1,y=1){

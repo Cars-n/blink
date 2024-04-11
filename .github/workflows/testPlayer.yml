@@ -17,10 +17,10 @@ jobs:
             echo "$ ls"
             ls
             echo "$ apt update"
-            sudo apt update
+            apt update
 
             echo "$ apt install python3 -y"
-            sudo apt install python3 -y
+            apt install python3 -y
 
             echo "$ python3  -V"
             python3 -V
@@ -30,7 +30,7 @@ jobs:
             python3 -m http.server --bind 127.0.0.1 &
         - name: Install Chrome Shared Libraries
           run: |
-            sudo apt-get update && sudo apt-get install -y \
+            apt-get update && apt-get install -y \
             ca-certificates \
             fonts-liberation \
             libasound2 \
@@ -74,10 +74,10 @@ jobs:
 
         - name: Install Chai Library
           run : npm install chai
-
-        - name: Install Chrome
-          run: npx puppeteer browsers install chrome
         
-        - name: Run browser tests
-          run: npm run test:no404
+        - name: Install Mocha Test Framework
+          run: npm install --global mocha
+
+        - name: Run Mocha & Chi Tests
+          run: npm test
             
