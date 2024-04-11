@@ -71,6 +71,10 @@ jobs:
           uses: actions/setup-node@v2
         - name: Install dependencies
           run: npm install
+
+        - name: Install Chai Library
+          run : npm install chai
+
         - name: Install Chrome
           run: npx puppeteer browsers install chrome
         
