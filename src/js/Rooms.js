@@ -658,6 +658,7 @@ class RoomController {
 
          // row 4
          addFurnishingToRoom(room, mirror, "static", 2.15, 4.0, 60, 60);
+
          return room;
 	}
 	getRoom03(){
@@ -672,10 +673,7 @@ class RoomController {
 			"...=oooooooo=...",
 			"...====vv====...",
 			];
-        // var tmp=new Furnishing(100,60,brickImage,"static");
-        // tmp.setTilePosition(5,5);
          var room=new Room(16,9,tileMap);
-        // room.furnishings.push(tmp);
          return room;
 	}
 	getRoom04(){
