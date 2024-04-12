@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "puppeteer": "^22.6.3"
+    "puppeteer": "^22.6.3",
+    "mocha": "*",
+    "chai": "*"
   },
   "scripts": {
     "test:no404": "node tests/test-no404.js",
