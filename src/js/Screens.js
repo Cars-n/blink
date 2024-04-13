@@ -2,137 +2,6 @@
  * 
  */
 
-//class for win screen 
-class WinScreen {
-	constructor(){
-	//Backdrop to the menu
-	this.menu = new Sprite(1920/2,1080/2,1920,1080);
-	this.menu.layer = WIN_LAYER;
-	this.menu.opacity = 0.4;
-	this.menu.color = 'black';
-	this.menu.visible = false;
-	this.menu.collider = 'none';
-
-	this.WinScreenTitle = createButton("YOU ESCAPED!");
-	this.WinScreenTitle.class("WinCon");
-	this.WinScreenTitle.position(600,50);
-	this.WinScreenTitle.hide();
-
-	//Make div to then put each button under
-	this.returnButtonDiv = createDiv();
-	this.returnButtonDiv.id("returnButton");
-	this.returnButtonDiv.class(">Return to main menu");
-
-	//Makes the return button
-	this.returnButton = createButton('>Return');
-	this.returnButton.class("WinScreenButtons");
-	this.returnButtonDiv.center();
-	this.returnButtonDiv.position(510,330);	// x, y
-
-	//Sets parent and hides div
-	this.returnButton.parent("returnButton");
-	this.returnButtonDiv.hide();
-
-
-
-
-
-
-	//create the div to hold button
-	this.replayButtonDiv = createDiv();
-	this.replayButtonDiv.id("replayButton")
-
-	//Setup replay button
-    this.replayButton = createButton('>Replay');
-	this.replayButton.class("WinScreenButtons");
-	this.replayButton.center();
-	this.replayButton.position(870, 330); //x, y
-
-    //sets the parent and hides the div
-	this.replayButton.parent("replayButton");
-	this.replayButton.hide();
-
-
-	//Together div
-	this.buttonRowDiv = createDiv();
-	this.buttonRowDiv.class("ButtonRowDiv");
-	
-}
-
-/**
- * Shows the menu and buttons
- * 
- */
-showMenu() {
-	if (this.menu.visible == false) {
-		//Shows menu
-		this.menu.visible = true;
-		
-		this.WinScreenTitle.show();
-		
-		//Sets divs to visible
-		this.returnButtonDiv.show();
-		this.replayButtonDiv.show();
-		
-		//Shows buttons
-		this.returnButton.show();
-		this.replayButton.show();
-		
-	}
-}
-
-/**
- * Hides the menu 
- * 
-*/
-hideMenu() {
-	if (this.menu.visible == true) {
-
-		//Hides buttons
-		this.returnButton.hide();
-		this.replayButton.hide();
-
-		//Hides divs
-		this.returnButtonDiv.hide();
-		this.replayButtonDiv.hide();
-
-
-		this.WinScreenTitle.hide();
-
-		//Makes menu hide
-		this.menu.visible = false;
-	}	
-}
-
-
-/**
- * Exits the player from the game and returns them to the menu
- * 
- * @param {*} CURRENTGAMESTATE 
- * @returns The "MENU" game state
- */
-returnMenuGame(CURRENTGAMESTATE) {
-	this.hideMenu();
-	CURRENTGAMESTATE = "MENU";
-	return 	CURRENTGAMESTATE;
-}
-
-
-/**
- * Resumes game play and closes the pause menu
- * 
- * @param {*} CURRENTGAMESTATE 
- * @returns The "PLAYING" game state
- */
-replayGame(CURRENTGAMESTATE) {
-	this.hideMenu();
-	CURRENTGAMESTATE = "Replay";
-
-	return CURRENTGAMESTATE;
-}
-
-}
-
 /**
  * Class for the settings sub menu
  */
@@ -370,6 +239,136 @@ class PauseMenu {
 	}
 
 }
+//class for win screen 
+class WinScreen {
+	constructor(){
+	//Backdrop to the menu
+	this.menu = new Sprite(1920/2,1080/2,1920,1080);
+	this.menu.layer = WIN_LAYER;
+	this.menu.opacity = 0.4;
+	this.menu.color = 'black';
+	this.menu.visible = false;
+	this.menu.collider = 'none';
+
+	this.WinScreenTitle = createButton("YOU ESCAPED!");
+	this.WinScreenTitle.class("WinCondition");
+	this.WinScreenTitle.position(600,50);
+	this.WinScreenTitle.hide();
+
+	//Make div to then put each button under
+	this.returnButtonDiv = createDiv();
+	this.returnButtonDiv.id("returnButton");
+	this.returnButtonDiv.class(">Return to main menu");
+
+	//Makes the return button
+	this.returnButton = createButton('>Return');
+	this.returnButton.class("WinScreenButtons");
+	this.returnButtonDiv.center();
+	this.returnButtonDiv.position(510,330);	// x, y
+
+	//Sets parent and hides div
+	this.returnButton.parent("returnButton");
+	this.returnButtonDiv.hide();
+
+
+
+
+
+
+	//create the div to hold button
+	this.replayButtonDiv = createDiv();
+	this.replayButtonDiv.id("replayButton")
+
+	//Setup replay button
+    this.replayButton = createButton('>Replay');
+	this.replayButton.class("WinScreenButtons");
+	this.replayButton.center();
+	this.replayButton.position(870, 330); //x, y
+
+    //sets the parent and hides the div
+	this.replayButton.parent("replayButton");
+	this.replayButton.hide();
+
+
+	//Together div
+	this.buttonRowDiv = createDiv();
+	this.buttonRowDiv.class("ButtonRowDiv");
+	
+}
+
+/**
+ * Shows the menu and buttons
+ * 
+ */
+showMenu() {
+	if (this.menu.visible == false) {
+		//Shows menu
+		this.menu.visible = true;
+		
+		this.WinScreenTitle.show();
+		
+		//Sets divs to visible
+		this.returnButtonDiv.show();
+		this.replayButtonDiv.show();
+		
+		//Shows buttons
+		this.returnButton.show();
+		this.replayButton.show();
+		
+	}
+}
+
+/**
+ * Hides the menu 
+ * 
+*/
+hideMenu() {
+	if (this.menu.visible == true) {
+
+		//Hides buttons
+		this.returnButton.hide();
+		this.replayButton.hide();
+
+		//Hides divs
+		this.returnButtonDiv.hide();
+		this.replayButtonDiv.hide();
+
+
+		this.WinScreenTitle.hide();
+
+		//Makes menu hide
+		this.menu.visible = false;
+	}	
+}
+
+
+/**
+ * Exits the player from the game and returns them to the menu
+ * 
+ * @param {*} CURRENTGAMESTATE 
+ * @returns The "MENU" game state
+ */
+returnMenuGame(CURRENTGAMESTATE) {
+	this.hideMenu();
+	CURRENTGAMESTATE = "MENU";
+	return 	CURRENTGAMESTATE;
+}
+
+
+/**
+ * Resumes game play and closes the pause menu
+ * 
+ * @param {*} CURRENTGAMESTATE 
+ * @returns The "PLAYING" game state
+ */
+replayGame(CURRENTGAMESTATE) {
+	this.hideMenu();
+	CURRENTGAMESTATE = "Replay";
+
+	return CURRENTGAMESTATE;
+}
+
+}
 
 /**
  * Class to handle the control of the main menu and actions in the menu
@@ -466,4 +465,5 @@ class MainMenu {
 
 		return CURRENTGAMESTATE;
 	}
+	
 }
