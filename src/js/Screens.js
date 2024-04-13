@@ -21,7 +21,7 @@ class WinScreen {
 	//Make div to then put each button under
 	this.returnButtonDiv = createDiv();
 	this.returnButtonDiv.id("returnButton");
-	this.returnButtonDiv.class(">Return to main");
+	this.returnButtonDiv.class(">Return to main menu");
 
 	//Makes the return button
 	this.returnButton = createButton('>Return');
