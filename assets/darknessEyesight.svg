@@ -1,0 +1,16 @@
+<svg width="3840" height="3840" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define the mask -->
+  <mask id="triangle-mask">
+    <rect width="100%" height="100%" fill="white"/> <!-- Make the entire canvas white -->
+    <!-- Transparent gradient transition -->
+    <linearGradient id="gradient" x1="1920" y1="1818" x2="1920" y2="1920" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="black" stop-opacity="0"/>
+      <stop offset="50%" stop-color="black" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="black" stop-opacity="1"/>
+    </linearGradient>
+    <polygon points="1920,1920  1854,1818  1986,1818" fill="url(#gradient)" />
+  </mask>
+  
+  <!-- Black square rectangle with mask applied -->
+  <rect x="0" y="0" width="3840" height="3840" fill="black" opacity="0.8" mask="url(#triangle-mask)" />
+</svg>

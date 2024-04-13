@@ -245,7 +245,13 @@ function addFurnishingToRoom(room, propImage, propType, x, y, w, z) {
     furnishing.setTilePosition(x, y);
     room.furnishings.push(furnishing);
 }
-
+class RoomEnemyData{
+    constructor (id,x=1,y=1){
+        this.enemyId=id;
+        this.tileOffsetX=x;
+        this.tileOffsetY=y;
+    }
+}
 class Room{
     static MAX_T_WIDTH=16;
     static MAX_T_HEIGHT=9;
@@ -263,7 +269,7 @@ class Room{
         this.tWidth=tWidth;
         this.tHeight=tHeight;
         this.tileArray=tileArray;
-        
+        this.enemies=[]//Holds room enemy data
         this.furnishings=[];
     }
     getTileArray() {
@@ -529,14 +535,14 @@ class RoomController {
         addFurnishingToRoom(room, bookshelf, "static", 7.4, 1.0, 30 , 50);
         addFurnishingToRoom(room, bookshelf, "static", 7.6, 1.0, 30 , 50);
         addFurnishingToRoom(room, bookshelf, "static", 7.8, 1.0, 30 , 50);
-        addFurnishingToRoom(room, bookshelf, "static", 8.0, 1.0, 30 , 50);
-        addFurnishingToRoom(room, window1, "static", 8.0, .5, 40, 50);
-        addFurnishingToRoom(room, bookshelf, "static", 8.2, 1.0, 30 , 50);
-        addFurnishingToRoom(room, bookshelf, "static", 8.4, 1.0, 30 , 50);
-        addFurnishingToRoom(room, bookshelf, "static", 8.6, 1.0, 30 , 50);
-        addFurnishingToRoom(room, bookshelf, "static", 8.8, 1.0, 30 , 50);
-        addFurnishingToRoom(room, bookshelf, "static", 9.0, 1.0, 30 , 50);
-        addFurnishingToRoom(room, bookshelf, "static", 9.2, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 8.0, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, window1, "static", 8.0, .5, 40, 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 8.2, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 8.4, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 8.6, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 8.8, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 9.0, 1.0, 30 , 50);
+        // addFurnishingToRoom(room, bookshelf, "static", 9.2, 1.0, 30 , 50);
         addFurnishingToRoom(room, bookshelf, "static", 9.4, 1.0, 30 , 50);
         addFurnishingToRoom(room, bookshelf, "static", 9.6, 1.0, 30 , 50);
         addFurnishingToRoom(room, bookshelf, "static", 9.8, 1.0, 30 , 50);
@@ -640,8 +646,12 @@ class RoomController {
 			"...=oooooooo=...",
 			"...=oooooooo=...",
 			"...====vv====...",
-			]
+			];
+        
+
+
          var room=new Room(16,9,tileMap);
+         room.enemies.push(new RoomEnemyData(0,4,4))
          // row 1
          addFurnishingToRoom(room, dresser, "static", 1.3, 1.1, 66, 47);
          addFurnishingToRoom(room, bed, "static", 2, 1.3, 96, 111);
@@ -1041,6 +1051,7 @@ class RoomController {
 							// var tmp=new Furnishing(100,60,brickImage,"static");
 							// tmp.setTilePosition(5,5);
 							 var room=new Room(16,9,tileMap);
+                             room.enemies.push(new RoomEnemyData(1,4,4))
 							// room.furnishings.push(tmp);
 							 return room;
 			}
