@@ -164,7 +164,7 @@ function draw() {
 
 		mainMenu.exitButton.mousePressed(() => {		
 			/* TODO - LEFT OPEN FOR THE MAIN MENU METHODS TO DISPLAY */
-			alert("What, got to scared and quit?");
+			alert("What, got too scared and quit?");
 		});
 		
 		if(kb.pressed('l')){
