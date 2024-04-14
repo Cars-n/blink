@@ -22,7 +22,7 @@ jobs:
           run : npm install --global chai
         
         - name: Install Mocha Test Framework
-          run: npm install @types/chai
+          run: npm install chai
 
         - name: Run Mocha & Chai Tests
           run: npm run mocha:player 
