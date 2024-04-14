@@ -119,3 +119,7 @@ function bulletCollisions(){
  function bulletRemove(bullet, tile){
     bullet.remove();
  }
+
+
+ //Testing module export in node
+ module.exports = { setupPlayer };
