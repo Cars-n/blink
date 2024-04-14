@@ -1083,8 +1083,8 @@ class RoomController {
 
 //Exports needed for testing
 //Class exports
-modules.exports = { RoomController, Room };
+module.exports = { RoomController, Room };
 
 //Callbacks
-modules.exports = { UpstairsDoorCallback, leftDoorCallback, rightDoorCallback, upDoorCallback, downDoorCallback, 
+module.exports = { UpstairsDoorCallback, leftDoorCallback, rightDoorCallback, upDoorCallback, downDoorCallback, 
     trapDoorCallback, MiddleDoorCallback, requestIdleCallback, trapDoorBackCallback };
