@@ -25,5 +25,5 @@ jobs:
           run: npm install @types/chai
 
         - name: Run Mocha & Chai Tests
-          run: npm mocha:player -r chai/register-expect
+          run: npm run mocha:player -r chai/register-expect
             
