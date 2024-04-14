@@ -1087,4 +1087,4 @@ module.exports = { RoomController, Room };
 
 //Callbacks
 module.exports = { UpstairsDoorCallback, leftDoorCallback, rightDoorCallback, upDoorCallback, downDoorCallback, 
-    trapDoorCallback, MiddleDoorCallback, requestIdleCallback, trapDoorBackCallback };
+    trapDoorCallback, MiddleDoorCallback, trapDoorBackCallback };
