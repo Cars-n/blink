@@ -3,6 +3,7 @@ const playerFile = require('../src/js/mainPlayer.js');
 
 
 function playerCreation() {
+    let testPlayer  = playerFile.setUpPlayer();
 
     describe("Player", function() {
         describe("#Constructing a new player", function() {
