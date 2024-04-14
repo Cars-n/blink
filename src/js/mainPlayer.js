@@ -1,3 +1,5 @@
+ const Room = require('../js/Rooms.js');
+
 /**
  * 
  * Player of the game - settings and other setup
