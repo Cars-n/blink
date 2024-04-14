@@ -1077,3 +1077,14 @@ class RoomController {
         );
     }
 }
+
+
+
+
+//Exports needed for testing
+//Class exports
+modules.exports = { RoomController, Room };
+
+//Callbacks
+modules.exports = { UpstairsDoorCallback, leftDoorCallback, rightDoorCallback, upDoorCallback, downDoorCallback, 
+    trapDoorCallback, MiddleDoorCallback, requestIdleCallback, trapDoorBackCallback };
