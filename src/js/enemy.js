@@ -144,8 +144,8 @@ function enemyHandler(){
 //Enemy data is harded coded and then pushed onto the staticEnemyList
 function setupStaticEnemyList(){ //Add new enemies here
 
-    temp = new enemyData(0, 0, "test", 5, 0, 0, 10, "assets/GlowingEyesEnemy.png");
-    giantEye = new enemyData(1,0, "Giant Eye", 500, 256,256, 256,"assets/GiantEye.png");
+    temp = new enemyData(0, 0, "test", 5, 0, 0, 10, "assets/player/enemies/GlowingEyesEnemy.png");
+    giantEye = new enemyData(1,0, "Giant Eye", 500, 256,256, 256,"assets/player/enemies/GiantEye.png");
     staticEnemyList.push(temp);
     staticEnemyList.push(giantEye);
 

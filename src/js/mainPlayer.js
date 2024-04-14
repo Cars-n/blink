@@ -14,7 +14,7 @@ function setupPlayer(roomX=0,roomY=0){
 
     player = new Sprite(xOffset, yOffset, 64, 64);
     player.room={"x":roomX,"y":roomY};
-    player.spriteSheet = 'assets/player.png';
+    player.spriteSheet = 'assets/player/characters/player.png';
     player.anis.offset.x = 2;
     player.anis.frameDelay = 8;
     player.layer = PLAYER_LAYER;
