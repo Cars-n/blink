@@ -1,10 +1,8 @@
 const assert = require('assert');
-const playerFile = require('../src/js/mainPlayer.js');
-const RoomController = require('../src/js/Rooms.js');
 
 
 function playerCreation() {
-    let testPlayer  = playerFile.setupPlayer();
+   
 
     describe("Player", function() {
         describe("#Constructing a new player", function() {
