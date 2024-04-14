@@ -1,4 +1,6 @@
 const assert = require('assert');
+const playerFile = require('../src/js/mainPlayer.js');
+
 
 function playerCreation() {
 
