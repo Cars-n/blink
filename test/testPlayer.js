@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { expect } = require('chai');
+import { expect } from 'chai';
 
 function playerCreation() {
     let testPlayer = playerSetup();
