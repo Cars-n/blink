@@ -29,7 +29,7 @@ let cellBarsImage;
 let bullets;
 
 //Testing
-//let testPlayer = setupPlayer();
+let testPlayer = setupPlayer();
 
 //needs to be false when game is ready to play, is false for testing.
 console.log("FIX THIS VALUE");
