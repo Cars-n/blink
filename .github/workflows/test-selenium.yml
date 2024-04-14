@@ -1,20 +1,25 @@
 name: Run Selenium Test Suite
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "main","dev","Selenium" ]
+  pull_request:
+    branches: [ "main","dev" ]
 jobs:
-  scrape:
+  Test-Selenium:
     runs-on: ubuntu-latest
     steps:
+    #Set up environment
       - name: Checking out repo
         uses: actions/checkout@v3
       - name: Setting up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      - name: Installing package list
+      - name: Installing package list #Not sure what this
         run: apt list --installed
-      - name: update
-        run: sudo apt update -y    
+        #Chrome dependencies
+      - name: Update
+        run: sudo apt update -y
       - name: Install Chrome Shared Libraries
         run: |
             sudo apt-get update &&  sudo apt-get install -y \
@@ -53,17 +58,11 @@ jobs:
             libxtst6 \
             lsb-release \
             wget \
-            xdg-utils  
-      - name: Removing previous chrome instances on runner 
+            xdg-utils
+      - name: Removing previous chrome instances on runner #This probably isnt necessary to have
         run: sudo apt purge google-chrome-stable
-        continue-on-error: true  
-      - name: chrome install
-        uses: browser-actions/setup-chrome@v1
-      - run: chrome --version
-      - name: Use Node.js 
-        uses: actions/setup-node@v2
-      - name: Install dependencies
-        run: npm install
+        continue-on-error: true
+      # Actually installing chrome
       - name: Install Chrome
         run: |
           wget https://dl-ssl.google.com/linux/linux_signing_key.pub -O /tmp/google.pub
@@ -74,12 +73,11 @@ jobs:
           
           sudo apt-get install -y chromium-browser chromium-chromedriver -y
           sudo apt-get update -y
+      
        # Need to fetch reqs if needed
       - name: Installing all necessary packages
-        run: pip install chromedriver-autoinstaller selenium pyvirtualdisplay webdriver_manager
-      - name: Install xvfb
-        run: sudo apt install xvfb -y
-        continue-on-error: true  
+        run: pip install -r tests/selenium/requirements.txt
 
+      # Run tests
       - name: Running the Python script
-        run: python3 tests/webdriver.py
+        run: python3 tests/selenium/webdriver.py
