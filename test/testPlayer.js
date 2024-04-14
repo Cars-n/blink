@@ -1,8 +1,9 @@
 const assert = require('assert');
 
 
+
 function playerCreation() {
-   
+    var testPlayer = setupPlayer();
 
     describe("Player", function() {
         describe("#Constructing a new player", function() {
