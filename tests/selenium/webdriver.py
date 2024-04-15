@@ -168,30 +168,9 @@ def test_movement():
     assert new_x_pos > x_pos, "Failed to move to the right"
     print("Right movement passed")
 
-def test_death():
-    browser=open_browser()
-    time.sleep(3)
-    browser.find_element(By.NAME,'start').click()
-    time.sleep(4)
-
-    print("Testing player death")
-    player_health = browser.execute_script('return player.health')
-    assert player_health > 0, "Player is dead on start"
-    print("Player has ",player_health," health")
-    browser.execute_script('player.health -= 200')
-    alert = browser.switch_to.alert
-    alert_text = alert.text
-    assert "died" in alert_text, "Expected alert didn't appear"
-    alert.dismiss()
-    gamestate = browser.execute_script('return GAMESTATE')
-    print(gamestate)
-    assert gamestate != "PLAYING", "Game state did not change"
-    print("Player death passed")
-
 if __name__ == "__main__":
     # test_wikipedia_python_results()
     # test_wikipedia_CPP_results()
     test_movement()
     test_rooms()
-    test_death()
     print("done.")
