@@ -19,7 +19,7 @@ chrome_options = webdriver.ChromeOptions()
 options = [
   # Define window size here
     "--ignore-certificate-errors",
-    "--headless",
+    # "--headless",
     #"--disable-gpu",
     #"--window-size=1920,1200",
     #"--ignore-certificate-errors",
@@ -59,7 +59,7 @@ def test_wikipedia_CPP_results():
     assert "Bjarne Stroustrup" in browser.page_source
     
     browser.close()
-def open_browser(link='127.0.0.1:8000/index.html'):
+def open_browser(link='http://127.0.0.1:8000/index.html'):
     browser = webdriver.Chrome(options = chrome_options)
     browser.get(link)
     return browser
