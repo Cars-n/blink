@@ -5,7 +5,7 @@ let player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
 let flashlight;
 let INVENTORYRENDERED = false;
-const PLAYERSPEED = 7;
+const PLAYERSPEED = 15;
 let gameMap;
 const CANVAS_WIDTH_PX=1920;
 const CANVAS_HEIGHT_PX=1080;
@@ -27,10 +27,14 @@ let CreepyPiano2;
 let trapDoorImage;
 let cellBarsImage;
 let bullets;
+let laserEyeBeam;
+let laser
+let trinket;
 //needs to be false when game is ready to play, is false for testing.
 console.log("FIX THIS VALUE");
 let ENEMY42SPAWED = true;
 function preload() {
+
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
 	keyImage = loadImage('assets/key.png');
 	brickImage = loadImage('assets/WallRoughDraft.png');
@@ -104,9 +108,16 @@ function setup() {
 	flashlight.itemSprite.debug=false;
 	key = new Item(CANVAS_WIDTH_PX/2 ,CANVAS_HEIGHT_PX*4 - 500, "Key", 1,1,10,5,keyImage);
 	key.itemSprite.debug=false;
-	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Gun", 2,1,33,6,gunImage);
-	bulletItem = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
-	// darkness overlayd
+	//gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Gun", 2,1,33,6,gunImage);
+	gun = new Item(player.x + 50,player.y + 50, "Gun", 2,1,33,6,gunImage);
+
+	//bulletItem = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
+	bulletItem = new Item(player.x + 50,player.y + 50, "Bullet", 1,1,4,3,bulletImage);
+
+	trinket = new Item(0,0, "Trinket", 1,1,10,10, "assets/GrimReaper.png");
+	trinket.itemSprite.debug=true;
+	// darkness overlay
+	trinket.itemSprite.overlaps(RoomController.wallTile.group);
 	key.itemSprite.overlaps(RoomController.wallTile.group);
 	gun.itemSprite.overlaps(RoomController.wallTile.group);
 	flashlight.itemSprite.overlaps(RoomController.wallTile.group);
@@ -180,19 +191,23 @@ function draw() {
 		bulletCollisions();
 		playerMovement.handleInput();
 		enemyHandler();
-		if(player.room["x"] == 4 && player.room["y"] == 2 && !ENEMY42SPAWED){
+		if(player.room["x"] == 0 && player.room["y"] == 1 && !ENEMY42SPAWED){
 			console.log('this worked');
 			ENEMY42SPAWED = true;
-			spawnEnemyAt(0, CANVAS_WIDTH_PX*4 - 500, CANVAS_HEIGHT_PX*2 - 100);
 		}
 
 		if(player.room["x"] == 9 && player.room["y"] == 2){
 			if(!GIANTEYESPAWNED) {
-				console.log("GIANT EYE SHOULD SPWAWN");
 				GIANTEYESPAWNED = true;
-				console.log(player.x, player.y);
+				laserDelay();
+				enemyList.forEach(enemy => {
+					if(enemy.enemy_id == 1){
+						laser = setupLaser(laser, enemy.enemySprite.x, enemy.enemySprite.y);
+						laser.overlaps(enemy.enemySprite);
+						setupEyes();
+				}});
 			}
-			giantEyeBossfight();
+			if(BOSSISALIVE) giantEyeBossfight();
 
 		}
 		if(player.health <= 0) {
@@ -229,6 +244,10 @@ function draw() {
 		if(player.overlaps(bulletItem.itemSprite)){
 			if (inventory.insertItem(bulletItem, inventory.hasSpace(bulletItem.InventoryX,bulletItem.InventoryY))) bulletItem.itemSprite.visible = false;
 		}
+		if(player.overlaps(trinket.itemSprite)){
+			console.log(inventory.hasSpace(trinket.InventoryX,trinket.InventoryY))
+			if (inventory.insertItem(trinket, inventory.hasSpace(trinket.InventoryX,trinket.InventoryY))) trinket.itemSprite.visible = false;
+		}
 
 		//Pause handle
 		if (kb.pressed('escape')) GAMESTATE = "PAUSE";
@@ -256,6 +275,8 @@ function draw() {
 		dragItem(key, inventory);
 		dragItem(gun, inventory);
 		dragItem(bulletItem,inventory);
+		dragItem(trinket,inventory);
+
 	} 
 	else if (GAMESTATE == "PAUSE") {
 		console.log("PAUSED");

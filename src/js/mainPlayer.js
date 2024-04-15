@@ -4,7 +4,7 @@
  *
  */
 const BULLETSPEED = 15;
-
+let CANSHOOT = true;
 
 function setupPlayer(roomX=0,roomY=0){
     
@@ -49,8 +49,11 @@ function gunFunctionality(){
     if(
        inventory.hasItem(gun) &&
          kb.pressed(' ')
-         && inventory.hasItem(bulletItem)
+         && inventory.hasItem(bulletItem) 
+         && CANSHOOT
         ){
+            CANSHOOT = false;
+            shootDelay();
             let bullet = new bullets.Sprite();
         if(playerMovement.lastDirection == "left"){
               bullet.x = player.x - 45;
@@ -113,9 +116,14 @@ function bulletCollisions(){
     bullets.collides(RoomController.secretDoor.group, bulletRemove)
     bullets.collides(RoomController.upstairsDoor.group, bulletRemove)
     bullets.collides(RoomController.middleFloorDoor.group, bulletRemove)
+    
 }
 
 
  function bulletRemove(bullet, tile){
     bullet.remove();
+ }
+ async function shootDelay(){
+    await delay(2000);
+    CANSHOOT = true;
  }

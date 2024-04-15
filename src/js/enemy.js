@@ -4,6 +4,7 @@
 //name: Name of the enemy
 //health: the max hp
 //width: width of enemy
+let BOSSISALIVE = true;
 let CANTELEPORT = true;
 class enemyData{
     constructor(enemy_id, ai_type, name, health, height, width, dia, assetPath){
@@ -33,8 +34,8 @@ class Enemy{
         this.enemy_id = enemy_id;
         this.name = staticEnemyList[enemy_id].name;
         this.health = staticEnemyList[enemy_id].health;
-        this.enemySprite = new Sprite(400, 400, 25, 25);
-        this.enemySprite.diameter = staticEnemyList[enemy_id].dia;
+        this.enemySprite = new Sprite(400, 400, staticEnemyList[enemy_id].width, staticEnemyList[enemy_id].height);
+        if(staticEnemyList[enemy_id].dia != 0)this.enemySprite.diameter = staticEnemyList[enemy_id].dia;
         this.enemySprite.layer=ENEMY_LAYER;
         this.enemySprite.drag = 10;
         setObjectCollider(this.enemySprite, spriteTypes.ENEMY, true);
@@ -113,38 +114,47 @@ function keyPressed(){
 function enemyHandler(){
     let previousMax = enemyList.length; //Prevents inf loop if enemey is created while handler is being run
     for(let i = 0; i < previousMax; ++i) {
-        console.log(enemyList);
         if(enemyList[i].enemy_id==1){
-            bullets.collides(enemyList[i].enemySprite, damageEnemy);
+            if(nowBlinking)enemyList[i].health += 50;
+            bullets.collides(enemyList[i].enemySprite, damageEye);
         }
-        if(enemyList.enemy_id == 0){
+        if(enemyList[i].enemy_id == 0){
+            bullets.collides(enemyList[i].enemySprite, damageGhost);
+        }
         if(nowBlinking == true && CANTELEPORT == true){
             CANTELEPORT = false;
             teleportCooldown();
             enemyList[i].enemySprite.visible = true;
-            enemyList[i].enemySprite.x = player.x + Math.floor(Math.random() * 100) * (Math.random() > 0.5 ? 1 : -1);
-            enemyList[i].enemySprite.y = player.y + Math.floor(Math.random() * 100) * (Math.random() > 0.5 ? 1 : -1);
+            enemyList[i].enemySprite.collider = "static";
+            enemyList[i].enemySprite.x = player.x + (50 + Math.floor(Math.random() * 100)) * (Math.random() > 0.5 ? 1 : -1);
+            enemyList[i].enemySprite.y = player.y + (50 + Math.floor(Math.random() * 100)) * (Math.random() > 0.5 ? 1 : -1);
             disappear(enemyList[i].enemySprite);
         }
-    }
-
-            if(enemyList[i].health <= 0){
-                alert("Enemy " + enemyList[i].name + " has been defeated! YOU WIN!!!"); 
-                enemyList[i].enemySprite.remove();
-                enemyList.splice(i, 1);
-                if (enemyList.length == 0) return;
+        
+        console.log(enemyList[i].health)
+        if(enemyList[i].health <= 0){
+            if(enemyList[i].enemy_id == 0){
+                trinket.itemSprite.x = enemyList[i].enemySprite.x;
+                trinket.itemSprite.y = enemyList[i].enemySprite.y;
+            } 
+            if(enemyList[i].enemy_id == 1){
+                BOSSISALIVE = false;
             }
-
+            enemyList[i].enemySprite.remove();
+            enemyList.splice(i, 1);
+            if (enemyList.length == 0) return;
+        }
+        
         //Detects if player and enemy overlaps and changes red if true, currently need debug mode off to see this
         if (enemyList[i].enemySprite.overlaps(player)) player.health -= 50;
+    }
     
-}
 }
 //Loads at start
 //Enemy data is harded coded and then pushed onto the staticEnemyList
 function setupStaticEnemyList(){ //Add new enemies here
 
-    temp = new enemyData(0, 0, "test", 5, 0, 0, 10, "assets/GlowingEyesEnemy.png");
+    temp = new enemyData(0, 0, "Ghost", 100, 100, 50, 0, "assets/GlowingEyesEnemy.png");
     giantEye = new enemyData(1,0, "Giant Eye", 500, 256,256, 256,"assets/GiantEye.png");
     staticEnemyList.push(temp);
     staticEnemyList.push(giantEye);
@@ -165,18 +175,28 @@ function setupStaticEnemyList(){ //Add new enemies here
 async function disappear(enemySprite){
     await delay(3000);
     enemySprite.visible = false;
+    enemySprite.collider = "none"
 }
 
 
 async function teleportCooldown(){
-    await delay(2000);
+    await delay(3000);
     CANTELEPORT = true;
 }
 
-function damageEnemy(bullet, enemy){
+function damageEye(bullet, enemy){
     bullet.remove();
     enemyList.forEach(enemy => {
         if(enemy.enemy_id == 1){
+            enemy.health -= 50;}
+     });
+}
+
+function damageGhost(bullet, enemy){
+    console.log("hello");
+    bullet.remove();
+    enemyList.forEach(enemy => {
+        if(enemy.enemy_id == 0){
             enemy.health -= 50;}
      });
 }
