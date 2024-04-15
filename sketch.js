@@ -119,14 +119,17 @@ function setup() {
 	// darkness overlay
 	trinket.itemSprite.overlaps(RoomController.wallTile.group);
 	key.itemSprite.overlaps(RoomController.wallTile.group);
+
 	gun.itemSprite.overlaps(RoomController.wallTile.group);
+
 	flashlight.itemSprite.overlaps(RoomController.wallTile.group);
+
 	bulletItem.itemSprite.overlaps(RoomController.wallTile.group);
 
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
 	setupStaticEnemyList();
-	console.log(staticEnemyList);
+
 	darknessSetup();
 	//Remove to turn off debug mode
 	// turnOnDebugMode(true, true);
