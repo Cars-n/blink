@@ -115,13 +115,12 @@ function enemyHandler(){
     let previousMax = enemyList.length; //Prevents inf loop if enemey is created while handler is being run
     for(let i = 0; i < previousMax; ++i) {
         if(enemyList[i].enemy_id==1){
-            if(nowBlinking)enemyList[i].health += 50;
             bullets.collides(enemyList[i].enemySprite, damageEye);
         }
         if(enemyList[i].enemy_id == 0){
             bullets.collides(enemyList[i].enemySprite, damageGhost);
         }
-        if(nowBlinking == true && CANTELEPORT == true){
+        if(nowBlinking == true && CANTELEPORT == true && enemyList[i].enemy_id == 0){
             CANTELEPORT = false;
             teleportCooldown();
             enemyList[i].enemySprite.visible = true;

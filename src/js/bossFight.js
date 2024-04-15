@@ -15,7 +15,6 @@ function giantEyeBossfight(){
         PLAYERIFRAMES = true;
         player.health -= 100;
         playerInvincibility();
-        console.log("Player health: ", player.health);
     }
     if(CANFIRELASER)shootLaser(player.x, player.y);
     if(CANFIRELITTLEEYES){
@@ -37,7 +36,6 @@ function setupLaser(laser, x, y){
     laser = new Sprite(x,y,5000,100)
     laser.img = 'assets/LaserEyeBeam.png';
     laser.scale = 0.4;
-    laser.debug = true;
     laser.offset.x = 500;
     laser.collider = 'none';
     laser.visible = false;
@@ -55,7 +53,6 @@ function setupEyes(){
 }
 
 async function shootLaser(x,y){
-    console.log("shooting laser");
     CANFIRELASER = false;
     laser.rotation = Math.atan2( y - laser.y, x - laser.x ) * ( 180 / Math.PI )
     laser.visible = true;
