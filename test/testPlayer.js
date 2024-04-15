@@ -1,6 +1,5 @@
 const assert = require('assert');
-import * as Rooms from '../src/js/Rooms.js';
-import * as Player from '../src/js/mainPlayer.js';
+const Player = require('../src/js/mainPlayer.js');
 
 
 function playerCreation() {
