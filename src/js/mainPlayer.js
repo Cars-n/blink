@@ -1,6 +1,7 @@
 if (typeof module !== 'undefined' && module.exports) { 
     console.log('this script is running in Node.js'); 
     const Room = import('../src/js/Rooms.js');
+    await import('../src/js/Rooms.js');
     const RoomController = Room.RoomController;
 
 } else { 
