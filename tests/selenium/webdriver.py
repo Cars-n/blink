@@ -25,6 +25,8 @@ options = [
     "--no-sandbox"
     #"--disable-dev-shm-usage",
     #'--remote-debugging-port=9222'
+    #"--disable-dev-shm-usage",
+    #'--remote-debugging-port=9222'
 ]
 
 for option in options:
@@ -57,9 +59,141 @@ def test_wikipedia_CPP_results():
     assert "Bjarne Stroustrup" in browser.page_source
     time.sleep(3)
     browser.close()
+def open_browser(link='http://127.0.0.1:8000/index.html'):
+    browser = webdriver.Chrome(options = chrome_options)
+    browser.get(link)
+    return browser
+def test_execute():
+    browser = webdriver.Chrome(options = chrome_options)
+    browser.get("127.0.0.1:8000/index.html")
+    time.sleep(1)
+    browser.find_element(By.NAME,'start').click()
+    time.sleep(4)
+    print(browser.execute_script('return testFunc();'))
 
+def test_rooms():
+    browser=open_browser()
+    time.sleep(3)
+    browser.find_element(By.NAME,'start').click()
+    time.sleep(2)
+
+    print("Testing player can move rooms...")
+    start_room=browser.execute_script('return player.room;')
+    print("Starting in room: ",start_room)
+    #Move player to the room to the right, hopefully no obstacles :)
+    ActionChains(browser)\
+        .key_down('d')\
+        .perform()
+    time.sleep(2.5)
+    ActionChains(browser)\
+        .key_down('w')\
+        .perform()
+    time.sleep(1)
+    ActionChains(browser)\
+        .key_up('w')\
+        .key_up('d')\
+        .perform()
+    time.sleep(3)
+    new_room=browser.execute_script('return player.room;')
+    assert(new_room['x']!=start_room)
+    print("Rooms changed!")
+
+def test_movement():
+    browser=open_browser()
+    time.sleep(3)
+    browser.find_element(By.NAME,'start').click()
+    time.sleep(4)
+
+    print("Testing player can move upwards...")
+    y_pos = browser.execute_script('return player.y;')
+    print("Player Y position: ", y_pos)
+    ActionChains(browser)\
+        .key_down('w')\
+        .perform()
+    time.sleep(.1)
+    ActionChains(browser)\
+        .key_up('w')\
+        .perform()
+    time.sleep(.1)
+    new_y_pos = browser.execute_script('return player.y;')
+    print("Player Y position after moving upwards: ", new_y_pos)
+    assert new_y_pos < y_pos, "Failed to move upwards"
+    print("Upward movement passed")
+
+    print("Testing player can move downwards...")
+    y_pos = browser.execute_script('return player.y;')
+    print("Player Y position: ", y_pos)
+    ActionChains(browser)\
+        .key_down('s')\
+        .perform()
+    time.sleep(.1)
+    ActionChains(browser)\
+        .key_up('s')\
+        .perform()
+    time.sleep(.1)
+    new_y_pos = browser.execute_script('return player.y;')
+    print("Player Y position after moving downwards: ", new_y_pos)
+    assert new_y_pos > y_pos, "Failed to move downwards"
+    print("Downward movement passed")
+
+
+    print("Testing player can move to the left...")
+    x_pos = browser.execute_script('return player.x;')
+    print("Player X position: ", x_pos)
+    ActionChains(browser)\
+        .key_down('a')\
+        .perform()
+    time.sleep(.1)
+    ActionChains(browser)\
+        .key_up('a')\
+        .perform()
+    time.sleep(.1)
+    new_x_pos = browser.execute_script('return player.x;')
+    print("Player X position after moving to the left: ", new_x_pos)
+    assert new_x_pos < x_pos, "Failed to move to the left"
+    print("Left movement passed")
+
+
+    print("Testing player can move to the right...")
+    x_pos = browser.execute_script('return player.x;')
+    print("Player X position: ", x_pos)
+    ActionChains(browser)\
+        .key_down('d')\
+        .perform()
+    time.sleep(.1)
+    ActionChains(browser)\
+        .key_up('d')\
+        .perform()
+    time.sleep(.1)
+    new_x_pos = browser.execute_script('return player.x;')
+    print("Player X position after moving to the right: ", new_x_pos)
+    assert new_x_pos > x_pos, "Failed to move to the right"
+    print("Right movement passed")
+
+def test_death():
+    browser=open_browser()
+    time.sleep(3)
+    browser.find_element(By.NAME,'start').click()
+    time.sleep(4)
+
+    print("Testing player death")
+    player_health = browser.execute_script('return player.health')
+    assert player_health > 0, "Player is dead on start"
+    print("Player has ",player_health," health")
+    browser.execute_script('player.health -= 200')
+    alert = browser.switch_to.alert
+    alert_text = alert.text
+    assert "died" in alert_text, "Expected alert didn't appear"
+    alert.dismiss()
+    gamestate = browser.execute_script('return GAMESTATE')
+    print(gamestate)
+    assert gamestate != "PLAYING", "Game state did not change"
+    print("Player death passed")
 
 if __name__ == "__main__":
-    test_wikipedia_python_results()
-    test_wikipedia_CPP_results()
+    # test_wikipedia_python_results()
+    # test_wikipedia_CPP_results()
+    test_movement()
+    test_rooms()
+    test_death()
     print("done.")
