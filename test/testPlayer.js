@@ -1,5 +1,5 @@
 const assert = require('assert');
-const Room = require('../src/js/Rooms.js');
+require('../src/js/Rooms.js').RoomController;
 const Player = require('../src/js/mainPlayer.js');
 
 
