@@ -28,8 +28,6 @@ let trapDoorImage;
 let cellBarsImage;
 let bullets;
 
-let testPlayer = playerSetup();
-
 //needs to be false when game is ready to play, is false for testing.
 console.log("FIX THIS VALUE");
 let ENEMY42SPAWED = true;
@@ -278,6 +276,8 @@ function draw() {
 
 		pauseMenu.exitButton.mousePressed(() => {
 			
+			 
+
 			/* TODO - LEFT OPEN FOR THE MAIN MENU METHODS TO DISPLAY */
 			alert("What, got to scared and quit?");
 			GAMESTATE = pauseMenu.exitGame(GAMESTATE);

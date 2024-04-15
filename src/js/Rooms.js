@@ -1077,3 +1077,12 @@ class RoomController {
         );
     }
 }
+
+
+//Does Node.js stuff
+if (typeof module !== 'undefined' && module.exports) { 
+    console.log('this script is running in Node.js'); 
+    module.exports(RoomController);
+} else { 
+    console.log('this script is not running in Node.js'); 
+}

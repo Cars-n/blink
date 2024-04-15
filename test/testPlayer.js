@@ -1,9 +1,10 @@
 const assert = require('assert');
-
+import * as Rooms from '../src/js/Rooms.js';
+import * as Player from '../src/js/mainPlayer.js';
 
 
 function playerCreation() {
-    var testPlayer = setupPlayer();
+    let testPlayer = Player.setupPlayer();
 
     describe("Player", function() {
         describe("#Constructing a new player", function() {
