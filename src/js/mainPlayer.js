@@ -1,9 +1,3 @@
-if (typeof module !== 'undefined' && module.exports) { 
-    console.log('this script is running in Node.js'); 
-    import('../src/js/Rooms.js').RoomController;
-} else { 
-    console.log('this script is not running in Node.js'); 
-}
 /**
  * 
  * Player of the game - settings and other setup
@@ -126,11 +120,3 @@ function bulletCollisions(){
     bullet.remove();
  }
 
-
- //Node.JS stuff
- if (typeof module !== 'undefined' && module.exports) { 
-    console.log('this script is running in Node.js'); 
-    module.exports = {setupPlayer};
-} else { 
-    console.log('this script is not running in Node.js'); 
-}

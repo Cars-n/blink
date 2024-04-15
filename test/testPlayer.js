@@ -1,7 +1,4 @@
-const assert = require('assert');
-const Room = require('../src/js/Rooms.js');
-const Player = require('../src/js/mainPlayer.js');
-
+import * as chai from 'chai';
 
 
 function playerCreation() {
