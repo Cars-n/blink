@@ -1,6 +1,7 @@
 const assert = require('assert');
-const Player = require('../src/js/mainPlayer.js');
 const Room = require('../src/js/Rooms.js');
+const Player = require('../src/js/mainPlayer.js');
+
 
 
 function playerCreation() {
