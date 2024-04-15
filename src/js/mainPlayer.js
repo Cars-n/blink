@@ -1,6 +1,8 @@
 if (typeof module !== 'undefined' && module.exports) { 
     console.log('this script is running in Node.js'); 
-    import('../src/js/Rooms.js');
+    const Room = import('../src/js/Rooms.js');
+    const RoomController = Room.RoomController;
+
 } else { 
     console.log('this script is not running in Node.js'); 
 }
