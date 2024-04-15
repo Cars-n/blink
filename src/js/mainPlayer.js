@@ -1,3 +1,9 @@
+if (typeof module !== 'undefined' && module.exports) { 
+    console.log('this script is running in Node.js'); 
+    require('../js/Rooms.js');
+} else { 
+    console.log('this script is not running in Node.js'); 
+}
 /**
  * 
  * Player of the game - settings and other setup
