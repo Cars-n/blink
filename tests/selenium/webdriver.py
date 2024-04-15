@@ -3,7 +3,9 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver import Keys, ActionChains
 from selenium.webdriver.common.by import By
+
 # from webdriver_manager.chrome import ChromeDriverManager
 import time
 import chromedriver_autoinstaller
@@ -42,7 +44,7 @@ def test_wikipedia_python_results():
     search_input.send_keys(query)  
     search_input.send_keys(Keys.RETURN)  
     assert "Guido" in browser.page_source
-    time.sleep(10)
+    
     browser.close()
 
 def test_wikipedia_CPP_results():
@@ -55,11 +57,51 @@ def test_wikipedia_CPP_results():
     search_input.send_keys(query)  
     search_input.send_keys(Keys.RETURN)  
     assert "Bjarne Stroustrup" in browser.page_source
-    time.sleep(3)
+    
     browser.close()
+def open_browser(link='127.0.0.1:8000/index.html'):
+    browser = webdriver.Chrome(options = chrome_options)
+    browser.get(link)
+    return browser
+def test_execute():
+    browser = webdriver.Chrome(options = chrome_options)
+    browser.get("127.0.0.1:8000/index.html")
+    time.sleep(1)
+    browser.find_element(By.NAME,'start').click()
+    time.sleep(4)
+    print(browser.execute_script('return testFunc();'))
+def test_rooms():
+    browser=open_browser()
+    time.sleep(3)
+    browser.find_element(By.NAME,'start').click()
+    time.sleep(2)
+
+    print("Testing player can move rooms...")
+    start_room=browser.execute_script('return player.room;')
+    print("Starting in room: ",start_room)
+    #Move player to the room to the right, hopefully no obstacles :)
+    ActionChains(browser)\
+        .key_down('d')\
+        .perform()
+    time.sleep(2.5)
+    ActionChains(browser)\
+        .key_down('w')\
+        .perform()
+    time.sleep(1)
+    ActionChains(browser)\
+        .key_up('w')\
+        .key_up('d')\
+        .perform()
+    time.sleep(3)
+    new_room=browser.execute_script('return player.room;')
+    assert(new_room['x']!=start_room)
+    print("Rooms changed!")
+    
+    
 
 
 if __name__ == "__main__":
-    test_wikipedia_python_results()
-    test_wikipedia_CPP_results()
+    # test_wikipedia_python_results()
+    # test_wikipedia_CPP_results()
+    test_rooms()
     print("done.")
