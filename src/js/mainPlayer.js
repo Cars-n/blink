@@ -1,6 +1,6 @@
 if (typeof module !== 'undefined' && module.exports) { 
     console.log('this script is running in Node.js'); 
-    require('../js/Rooms.js');
+    require('../src/js/Rooms.js');
 } else { 
     console.log('this script is not running in Node.js'); 
 }
