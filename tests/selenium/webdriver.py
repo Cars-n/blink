@@ -61,7 +61,14 @@ def test_wikipedia_CPP_results():
 
 if __name__ == "__main__":
     browser = webdriver.Chrome(options = chrome_options)
-    browser.execute_script('test.js')
+
+    #trying to open the JS file and read the whole thing in one string
+    #to execute the whole script
+    f = open('test.js')
+    wholeJSCode = f.read()
+    print(wholeJSCode)
+
+    browser.execute_script(wholeJSCode)
     #test_wikipedia_python_results()
     #test_wikipedia_CPP_results()
     print("done.")
