@@ -78,6 +78,12 @@ jobs:
       - name: Installing all necessary packages
         run: pip install -r tests/selenium/requirements.txt
 
+      - name: Install Chai Library
+        run : npm install --global chai
+        
+      - name: Install Mocha Test Framework
+        run: npm install @types/chai
+
       # Run tests
       - name: Running the Python script
         run: python3 tests/selenium/webdriver.py
