@@ -68,7 +68,8 @@ if __name__ == "__main__":
     wholeJSCode = f.read()
     print(wholeJSCode)
 
+
     browser.execute_script(wholeJSCode)
     #test_wikipedia_python_results()
     #test_wikipedia_CPP_results()
-    print("done.")
+    print("done.") 
