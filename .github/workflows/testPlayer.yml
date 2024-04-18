@@ -1,4 +1,4 @@
-name: Run Chai & Mocha Tests
+name: Run Selenium Test Suite
 on:
   push:
     branches: [ "main","dev","Chai-Testing" ]
@@ -77,19 +77,10 @@ jobs:
        # Need to fetch reqs if needed
       - name: Installing all necessary packages
         run: pip install -r tests/selenium/requirements.txt
-
-      - name: Install Chai Library
-        run : npm install --global chai
-        
-      - name: Install Mocha Test Framework
-        run: npm install @types/chai
-
-      #Run python webserver
-      - name: Run python Webserver
-        run:
-          echo "$ python3 -m http.server"
-          python3 -m http.server --bind 127.0.0.1 &
-
+      - name : Start Python's HTTP Server
+        run: | 
+            echo "$ python3 -m http.server"
+            python3 -m http.server --bind 127.0.0.1 &
       # Run tests
       - name: Running the Python script
-        run: python3 tests/selenium/webdriver.py
+        run: python3 tests/selenium/seleniumTests.py
