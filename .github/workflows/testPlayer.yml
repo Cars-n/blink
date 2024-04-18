@@ -1,4 +1,4 @@
-name: Run Selenium Test Suite
+name: Run Chai & Mocha Tests
 on:
   push:
     branches: [ "main","dev","Chai-Testing" ]
