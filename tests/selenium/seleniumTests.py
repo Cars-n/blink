@@ -32,33 +32,6 @@ options = [
 for option in options:
     chrome_options.add_argument(option)
 
-
-
-def test_wikipedia_python_results():
-    print("testing wikipedia results to make sure BDFL is mentioned")
-    browser = webdriver.Chrome(options = chrome_options)
-    browser.get("http://wikipedia.org")
-    query = "Python (programming language)"
-    search_input = browser.find_element(By.ID,"searchInput")
-    search_input.clear()
-    search_input.send_keys(query)  
-    search_input.send_keys(Keys.RETURN)  
-    assert "Guido" in browser.page_source
-    
-    browser.close()
-
-def test_wikipedia_CPP_results():
-    print("testing wikipedia results to make sure Bjarne is mentioned")
-    browser = webdriver.Chrome(options = chrome_options)
-    browser.get("http://wikipedia.org")
-    query = "C++"
-    search_input = browser.find_element(By.ID,"searchInput")
-    search_input.clear()
-    search_input.send_keys(query)  
-    search_input.send_keys(Keys.RETURN)  
-    assert "Bjarne Stroustrup" in browser.page_source
-    
-    browser.close()
 def open_browser(link='http://127.0.0.1:8000/index.html'):
     browser = webdriver.Chrome(options = chrome_options)
     browser.get(link)
@@ -190,8 +163,6 @@ def test_death():
     print("Player death passed")
 
 if __name__ == "__main__":
-    # test_wikipedia_python_results()
-    # test_wikipedia_CPP_results()
     test_movement()
     test_rooms()
     test_death()
