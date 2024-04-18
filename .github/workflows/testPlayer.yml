@@ -1,47 +1,27 @@
-name: Test Suite
-
+name: Run Selenium Test Suite
 on:
   push:
     branches: [ "main","dev","Chai-Testing" ]
   pull_request:
     branches: [ "main","dev" ]
-
 jobs:
-  Test-Player:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v2
-        
-        - name: Use Node.js 
-          uses: actions/setup-node@v2
-        - name: Install dependencies
-          run: npm install
-
-        - name: Install Chai Library
-          run : npm install --global chai
-        
-        - name: Install Mocha Test Framework
-          run: npm install chai
-
-        - name: Install Python
-          run: |
-            echo "$ ls"
-            ls
-            echo "$ apt update"
-            sudo apt update
-
-            echo "$ apt install python3 -y"
-            sudo apt install python3 -y
-
-            echo "$ python3  -V"
-            python3 -V
-        - name : Start Python's HTTP Server
-          run: | 
-            echo "$ python3 -m http.server"
-            python3 -m http.server --bind 127.0.0.1 &
-        - name: Install Chrome Shared Libraries
-          run: |
+  Test-Selenium:
+    runs-on: ubuntu-latest
+    steps:
+    #Set up environment
+      - name: Checking out repo
+        uses: actions/checkout@v3
+      - name: Setting up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Installing package list #Not sure what this
+        run: apt list --installed
+        #Chrome dependencies
+      - name: Update
+        run: sudo apt update -y
+      - name: Install Chrome Shared Libraries
+        run: |
             sudo apt-get update &&  sudo apt-get install -y \
             ca-certificates \
             fonts-liberation \
@@ -79,10 +59,25 @@ jobs:
             lsb-release \
             wget \
             xdg-utils
+      - name: Removing previous chrome instances on runner #This probably isnt necessary to have
+        run: sudo apt purge google-chrome-stable
+        continue-on-error: true
+      # Actually installing chrome
+      - name: Install Chrome
+        run: |
+          sudo wget https://dl-ssl.google.com/linux/linux_signing_key.pub -O /tmp/google.pub
+          sudo gpg --no-default-keyring --keyring /etc/apt/keyrings/google-chrome.gpg --import /tmp/google.pub
+          echo 'deb [arch=amd64 signed-by=/etc/apt/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list
+          sudo apt-get update -y
+          sudo apt-get install google-chrome-stable -y
+          
+          sudo apt-get install -y chromium-browser chromium-chromedriver -y
+          sudo apt-get update -y
+      
+       # Need to fetch reqs if needed
+      - name: Installing all necessary packages
+        run: pip install -r tests/selenium/requirements.txt
 
-        - name: Install Chrome
-          run: npx puppeteer browsers install chrome
-
-        - name: Run Mocha & Chai Tests
-          run: npm run mocha:player 
-            
+      # Run tests
+      - name: Running the Python script
+        run: python3 tests/selenium/webdriver.py
