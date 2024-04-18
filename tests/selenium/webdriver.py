@@ -30,6 +30,19 @@ options = [
 for option in options:
     chrome_options.add_argument(option)
 
+def open_browser(link='http://127.0.0.1:8000/index.html'):
+    browser = webdriver.Chrome(options = chrome_options)
+    browser.get(link)
+    return browser
+
+def test_execute():
+    browser = webdriver.Chrome(options = chrome_options)
+    browser.get("127.0.0.1:8000/index.html")
+    time.sleep(1)
+    browser.find_element(By.NAME,'start').click()
+    time.sleep(4)
+    print(browser.execute_script('return testFunc();'))
+
 
 
 def test_wikipedia_python_results():
@@ -60,8 +73,7 @@ def test_wikipedia_CPP_results():
 
 
 if __name__ == "__main__":
-    browser = webdriver.Chrome(options = chrome_options)
-    browser.get("http://127.0.0.1:8000/index.html")
+    browser = open_browser()
 
     #trying to open the JS file and read the whole thing in one string
     #to execute the whole script
