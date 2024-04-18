@@ -60,6 +60,8 @@ def test_wikipedia_CPP_results():
 
 
 if __name__ == "__main__":
-    test_wikipedia_python_results()
-    test_wikipedia_CPP_results()
+    browser = webdriver.Chrome(options = chrome_options)
+    browser.execute_script('test.js')
+    #test_wikipedia_python_results()
+    #test_wikipedia_CPP_results()
     print("done.")
