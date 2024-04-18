@@ -4,8 +4,8 @@
 function playerCreation() {
     let testPlayer = setupPlayer();
 
-    describe("Player", function() {
-        describe("#Constructing a new player", function() {
+    //describe("Player", function() {
+        //describe("#Constructing a new player", function() {
             // it('should be of type Sprite');
             // expect(testPlayer).to.be.type('Sprite');
 
@@ -14,7 +14,7 @@ function playerCreation() {
 
             // it ('should have 101 health');
             // expect(testPlayer.health).to.equal(101);
-        });
+        //});
 
         // describe("#Setting up bullets for gun to attack", function () {
         //     setUpBullets();
@@ -25,7 +25,7 @@ function playerCreation() {
             
         // });
 
-    });
+    //});
 }
 
 playerCreation();
