@@ -1,5 +1,5 @@
-import * as mocha from '../../chaiAndMocha/mocha.js';
-import * as chai from '../../chaiAndMocha/chai.js';
+// import * as mocha from '../../chaiAndMocha/mocha.js';
+// import * as chai from '../../chaiAndMocha/chai.js';
 
 
 function playerCreation() {
