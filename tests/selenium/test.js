@@ -3,7 +3,7 @@
 
 
 function playerCreation() {
-    let testPlayer = Player.setupPlayer();
+    let testPlayer = setupPlayer();
 
     describe("Player", function() {
         describe("#Constructing a new player", function() {

@@ -84,6 +84,12 @@ jobs:
       - name: Install Mocha Test Framework
         run: npm install @types/chai
 
+      #Run python webserver
+      - name: Run python Webserver
+        run:
+          echo "$ python3 -m http.server"
+          python3 -m http.server --bind 127.0.0.1 &
+
       # Run tests
       - name: Running the Python script
         run: python3 tests/selenium/webdriver.py
