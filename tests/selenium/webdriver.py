@@ -61,7 +61,7 @@ def test_wikipedia_CPP_results():
 
 if __name__ == "__main__":
     browser = webdriver.Chrome(options = chrome_options)
-    browser.get("http://127.0.0.1")
+    browser.get("http://127.0.0.1:8000/index.html")
 
     #trying to open the JS file and read the whole thing in one string
     #to execute the whole script
