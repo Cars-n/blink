@@ -239,6 +239,7 @@ class PauseMenu {
 	}
 
 }
+
 //class for win screen 
 class WinScreen {
 	constructor(){
@@ -300,7 +301,7 @@ class WinScreen {
  * Shows the menu and buttons
  * 
  */
-showMenu() {
+showWin() {
 	if (this.menu.visible == false) {
 		//Shows menu
 		this.menu.visible = true;
