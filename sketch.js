@@ -93,6 +93,9 @@ function setup() {
 
 	//Makes a new settings menu
 	settingsMenu = new SettingsMenu();
+
+	//makes new win screen
+	//WinMenu = new WinScreen();
 }
 
 function draw() {
@@ -180,6 +183,9 @@ function draw() {
 		//Pause handle
 		if (kb.pressed('escape')) GAMESTATE = "PAUSE";
 
+		//win screen handle
+		if(kb.pressed('~')) GAMESTATE = "WIN";
+
 	}
     else if (GAMESTATE == "INVENTORY"){
 		clear();
@@ -246,5 +252,14 @@ function draw() {
 	/*else if (GAMESTATE == 'SETTINGS') {
 
 	}*/
-}	
+	else if (GAMESTATE == "WIN") {
+		console.log("WIN");
 
+		player.velocity.y = 0;
+		player.velocity.x = 0;
+		player.changeAni("idle_" + playerMovement.lastDirection);
+		movementSounds(player,footsteps);
+
+		WinMenu.showWin();
+	}
+}
