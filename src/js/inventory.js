@@ -406,3 +406,33 @@ function dragItem(item, inventory) {
         }
     }
 }
+
+
+
+
+
+function inventoryFunctionality(){
+    player.velocity.y = 0;
+		player.velocity.x = 0;
+		player.changeAni("idle_" + playerMovement.lastDirection);
+		movementSounds(player,footsteps);
+		if(!INVENTORYRENDERED){
+			inventory.renderInventory();
+			INVENTORYRENDERED = true;
+		}
+		if(kb.pressed('e')){
+			inventory.remove();
+			INVENTORYRENDERED = false;
+			playerMovement.moveSpeed = PLAYERSPEED;
+			GAMESTATE = "PLAYING";
+		} 
+		if(kb.pressed('r')){
+			console.log(inventory.inventory);
+		} 
+		dragItem(flashlight, inventory);
+		dragItem(key, inventory);
+		dragItem(gun, inventory);
+		dragItem(bulletItem,inventory);
+		dragItem(trinket,inventory);
+
+}

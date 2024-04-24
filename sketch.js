@@ -17,6 +17,7 @@ let GAMESTATE = "MENU";
 let inventory;
 let key;
 let gun;
+let healthBar;
 let bulletItem;
 let mainMenu;
 let pauseMenu;
@@ -30,12 +31,18 @@ let bullets;
 let laserEyeBeam;
 let laser
 let trinket;
+let fullHealth, twoHealth, oneHealth, deadHealth;
 //needs to be false when game is ready to play, is false for testing.
 console.log("FIX THIS VALUE");
 let ENEMY42SPAWED = true;
 function preload() {
 
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
+	fullHealth = loadImage('assets/Health_Eye_Full.png');
+	twoHealth = loadImage('assets/Health_Eye_2.png');
+	oneHealth = loadImage('assets/Health_Eye_1.png');
+	deadHealth = loadImage('assets/Health_Eye_0.png');
+
 	keyImage = loadImage('assets/key.png');
 	brickImage = loadImage('assets/WallRoughDraft.png');
 	flashlightImage = loadImage('assets/Flashlight.png');
@@ -99,7 +106,7 @@ function setup() {
 	
 	gameMap=new GameMap();
 	
-	// roomControl = new RoomController();
+	// roomControl = new RoomControcller();
 	inventory = new InventoryController();	
 	player = setupPlayer(SPAWNX,SPAWNY);
 	fadeScreen.x = player.x;
@@ -124,6 +131,9 @@ function setup() {
 
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
 
+	healthBar = new Sprite(150,950,100,100);
+	healthBar.img = fullHealth;
+	healthBar.collider = "none";
 	setupStaticEnemyList();
 
 	darknessSetup();
@@ -147,189 +157,18 @@ function setup() {
 function draw() {
 	// console.log("FPS:",1000/deltaTime);
 	if (GAMESTATE == "MENU") {
-		console.log("MAIN");
-		if(!mainMenuSound.isPlaying()) mainMenuSound.play();
-
-		player.velocity.y = 0;
-		player.velocity.x = 0;
-		player.changeAni("idle_" + playerMovement.lastDirection);
-		movementSounds(player,footsteps);
-
-		mainMenu.showMenu();
-
-		mainMenu.startButton.mousePressed(() => {
-			moveCamera("right",SPAWNX);
-			moveCamera("down",SPAWNY);
-			var coords=gameMap.getRoomWorldCoords(SPAWNX,SPAWNY);
-			player.x=coords.x+600;
-			player.y=coords.y+600;
-			player.room["x"]=SPAWNX;
-			player.room["y"]=SPAWNY;
-			fadeScreen.x = player.x;
-			fadeScreen.y = player.y;
-			gameMap.loadRoom(SPAWNX,SPAWNY);
-			mainMenuSound.pause();
-			GAMESTATE = mainMenu.startGame(GAMESTATE);
-		});
-
-		mainMenu.exitButton.mousePressed(() => {		
-			/* TODO - LEFT OPEN FOR THE MAIN MENU METHODS TO DISPLAY */
-			alert("What, got too scared and quit?");
-		});
-		
-		if(kb.pressed('l')){
-			GAMESTATE = mainMenu.startGame(GAMESTATE);		
-		} 
+		menuFunctionality();
 	} 
 	else if (GAMESTATE === 'PLAYING') {
 		clear();
-		if(inventory.hasItem(trinket)){
-			RoomController.upstairsDoor.group.img = floorBoardImage;
-			RoomController.middleFloorDoor.group.img = floorBoardImage;
-		}
-		else{
-			RoomController.upstairsDoor.group.img = brickImage;
-			RoomController.middleFloorDoor.group.img = brickImage;
-
-		}
-		randomBackgroundSounds();
-		gunFunctionality(bullets);
-		fadeInAndOut(fadeScreen);
-		movementSounds(player,footsteps);
-		bulletCollisions();
-		playerMovement.handleInput();
-		enemyHandler();
-		if(player.room["x"] == 0 && player.room["y"] == 1 && !ENEMY42SPAWED){
-			console.log('this worked');
-			ENEMY42SPAWED = true;
-		}
-
-		if(player.room["x"] == 9 && player.room["y"] == 2){
-			if(!GIANTEYESPAWNED) {
-				GIANTEYESPAWNED = true;
-				laserDelay();
-				enemyList.forEach(enemy => {
-					if(enemy.enemy_id == 1){
-						laser = setupLaser(laser, enemy.enemySprite.x, enemy.enemySprite.y);
-						laser.overlaps(enemy.enemySprite);
-						setupEyes();
-				}});
-			}
-			if(BOSSISALIVE) giantEyeBossfight();
-
-		}
-		if(player.health <= 0) {
-			GAMESTATE = pauseMenu.exitGame(GAMESTATE);
-			player.health = 100;
-			alert("You died. Try again.")
-		}
-
-		if(inventory.hasItem(flashlight)){
-			darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y, true);
-		}
-		else{
-			darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y, false);
-		}
-
-		if(kb.pressed('e')) {
-			GAMESTATE = "INVENTORY";
-		}
-		if(player.overlaps(flashlight.itemSprite)){
-			if (inventory.insertItem(flashlight, inventory.hasSpace(flashlight.InventoryX,flashlight.InventoryY))){
-				flashlight.itemSprite.visible = false;
-				flashlight.itemSprite.x = 100;
-			} 
-		}
-		if(player.overlaps(gun.itemSprite)){
-			if (inventory.insertItem(gun, inventory.hasSpace(gun.InventoryX,gun.InventoryY))){
-				gun.itemSprite.visible = false;
-				gun.itemSprite.x = 100;
-			} 
-		}
-		if(player.overlaps(key.itemSprite)){
-			if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) {
-				key.itemSprite.visible = false;
-				key.itemSprite.x = 100;
-			}
-		}
-		if(player.overlaps(bulletItem.itemSprite)){
-			if (inventory.insertItem(bulletItem, inventory.hasSpace(bulletItem.InventoryX,bulletItem.InventoryY))) {
-				bulletItem.itemSprite.visible = false;
-				bulletItem.itemSprite.x = 100;
-			}
-		}
-		if(player.overlaps(trinket.itemSprite)){
-			console.log(inventory.hasSpace(trinket.InventoryX,trinket.InventoryY))
-			if (inventory.insertItem(trinket, inventory.hasSpace(trinket.InventoryX,trinket.InventoryY))){
-				trinket.itemSprite.visible = false;
-				bulletItem.itemSprite.x = 100;
-			} 
-		}
-
-		//Pause handle
-		if (kb.pressed('escape')) GAMESTATE = "PAUSE";
+		playingFunctionality();
 	}
     else if (GAMESTATE == "INVENTORY"){
+		inventoryFunctionality();
 		clear();
-		player.velocity.y = 0;
-		player.velocity.x = 0;
-		player.changeAni("idle_" + playerMovement.lastDirection);
-		movementSounds(player,footsteps);
-		if(!INVENTORYRENDERED){
-			inventory.renderInventory();
-			INVENTORYRENDERED = true;
-		}
-		if(kb.pressed('e')){
-			inventory.remove();
-			INVENTORYRENDERED = false;
-			playerMovement.moveSpeed = PLAYERSPEED;
-			GAMESTATE = "PLAYING";
-		} 
-		if(kb.pressed('r')){
-			console.log(inventory.inventory);
-		} 
-		dragItem(flashlight, inventory);
-		dragItem(key, inventory);
-		dragItem(gun, inventory);
-		dragItem(bulletItem,inventory);
-		dragItem(trinket,inventory);
-
 	} 
 	else if (GAMESTATE == "PAUSE") {
-		console.log("PAUSED");
-
-		player.velocity.y = 0;
-		player.velocity.x = 0;
-		player.changeAni("idle_" + playerMovement.lastDirection);
-		movementSounds(player,footsteps);
-
-		pauseMenu.showMenu();
-
-		pauseMenu.resumeButton.mousePressed(() => {
-			GAMESTATE = pauseMenu.resumeGame(GAMESTATE);
-		
-		});
-
-
-		pauseMenu.exitButton.mousePressed(() => {
-			
-			/* TODO - LEFT OPEN FOR THE MAIN MENU METHODS TO DISPLAY */
-			alert("What, got to scared and quit?");
-			GAMESTATE = pauseMenu.exitGame(GAMESTATE);
-		});
-		
-
-		pauseMenu.settingsButton.mousePressed(() => {
-			alert("The settings screen is under progress and will be done soon! :)");
-			//GAMESTATE = pauseMenu.settingsToggle(settingsMenu, GAMESTATE);
-
-		});
-		
-
-		if(kb.pressed('escape')){
-			GAMESTATE = pauseMenu.resumeGame(GAMESTATE);
-			
-		} 
+		pauseFunctionality();
 	}
 
 	/* TODO - FOR THE SETTINGS TRIGGER
