@@ -15,11 +15,19 @@ function darknessSetup() {
 function darknessDraw(playerX, playerY, playerVelocityX, playerVelocityY) {     
       darkness.y = playerY;
       darkness.x = playerX;
-      if(playerVelocityX != 0 || playerVelocityY != 0) { // if player is moving
-            targetRotation = (atan2(playerVelocityX, -playerVelocityY) + 360) % 360; // calculates the angle formed between two points
+  
+      if(playerVelocityX !== 0 || playerVelocityY !== 0) { // if player is moving
+          targetRotation = (Math.atan2(playerVelocityX, -playerVelocityY) * 180 / Math.PI + 360) % 360; // calculates the angle formed between two points, converts to degrees, range of 0-359
+  
+          // calculate the shortest rotation direction
+          let diff = (targetRotation - currentRotation + 540) % 360 - 180; // finds difference between angles, add 540 to ensure positive before modulo, range of -180-179
+  
+          // adjust targetRotation to rotate in the shortest direction
+          targetRotation = currentRotation + diff;
       }
-
+  
       currentRotation = lerp(currentRotation, targetRotation, ROTATION_SPEED); // currentRotation gets ROTATION_SPEED times closer to the target
-
+  
       darkness.rotation = currentRotation;
-}
+  }
+  
