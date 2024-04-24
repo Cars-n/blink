@@ -3,12 +3,16 @@ function menuFunctionality(){
 
 		player.velocity.y = 0;
 		player.velocity.x = 0;
+		player.visible = false;
+		healthBar.visible = false;
 		player.changeAni("idle_" + playerMovement.lastDirection);
 		movementSounds(player,footsteps);
 
 		mainMenu.showMenu();
 
 		mainMenu.startButton.mousePressed(() => {
+			player.visible = true;
+			healthBar.visible = true;
 			moveCamera("right",SPAWNX);
 			moveCamera("down",SPAWNY);
 			var coords=gameMap.getRoomWorldCoords(SPAWNX,SPAWNY);
@@ -29,6 +33,7 @@ function menuFunctionality(){
 		});
 		
 		if(kb.pressed('l')){
+			
 			GAMESTATE = mainMenu.startGame(GAMESTATE);		
 		} 
 }

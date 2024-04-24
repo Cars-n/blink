@@ -134,6 +134,7 @@ function setup() {
 	healthBar = new Sprite(150,950,100,100);
 	healthBar.img = fullHealth;
 	healthBar.collider = "none";
+	healthBar.layer = PLAYER_LAYER;
 	setupStaticEnemyList();
 
 	darknessSetup();
