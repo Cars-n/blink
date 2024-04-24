@@ -1,13 +1,11 @@
-const DARKNESSLAYER = 2;
 const ROTATION_SPEED = 0.1;
-let darkness, clockwiseAmt, counterClockwiseAmt
+let darkness
 let currentRotation = 0, targetRotation = 0;
 
 
 function darknessSetup() {
       darkness = new Sprite(width/2, height/2, 1920, 1080); // creates a sprite that is the size of the canvas and at the center of the canvas
       darkness.img = "assets/darkness.svg"
-      darkness.opacity = 0.4;
       darkness.collider = 'none';
       darkness.layer = DARKNESSLAYER; // layer needs to be higher than player and enviroment sprites
 } 
