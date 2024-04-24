@@ -50,7 +50,7 @@ class InventoryController {
                         item.itemSprite.x = location.x;
                         item.itemSprite.y = location.y;
                     } else if (item.orientation == "horizontal") {
-                        item.itemSprite.rotation = 0;
+                        item.fixSpriteRotation();
                         item.itemSprite.x = location.x;
                         item.itemSprite.y = location.y;
                         item.itemSprite.x += InventoryController.TILE_WIDTH / 2;
@@ -71,7 +71,14 @@ class InventoryController {
         if (this.inventory[y][x] !== "") return true;
         else return false;
     }
-
+    hasItem(item) {
+        for (let j = 0; j < InventoryController.INVENTORY_HEIGHT; j++) {
+            for (let i = 0; i < InventoryController.INVENTORY_WIDTH; i++) {
+                if (this.inventory[j][i] == item) return true;
+            }
+        }
+        return false;
+    }
     //Gets a tile location, 0-2 and 0-1 for x and y. returns a dictionary with the tile's centered x and y coords.
     getTileLocation(x, y) {
         x += 1;
@@ -159,12 +166,12 @@ class InventoryController {
         this.inventory[PAO.y][PAO.x] = item;
         if (PAO.orientation == "horizontal") {
             item.orientation = "horizontal";
-            this.inventory[PAO.y][PAO.x + 1] = item;
             item.fixSpriteRotation();
+            this.inventory[PAO.y][PAO.x + 1] = item;
         } else if (PAO.orientation == "vertical") {
             item.orientation = "vertical";
-            this.inventory[PAO.y + 1][PAO.x] = item;
             item.fixSpriteRotation();
+            this.inventory[PAO.y + 1][PAO.x] = item;
         }
         return true;
     }
@@ -287,6 +294,7 @@ class Item {
         this.itemSprite.drag = drag;
         setObjectCollider(this.itemSprite, spriteTypes.MOVABLEOBJECT);
     }
+
     //fixes the sprite of the item to be horizontal or vertical.
     fixSpriteRotation() {
         if (this.orientation == "horizontal") {
@@ -314,75 +322,31 @@ function dragItem(item, inventory) {
             return;
         } else if (
             item.itemSprite.x <
-                Math.ceil(player.x / 1920) * 1920 -
-                    960 -
-                    InventoryController.TILE_WIDTH * 1.5 ||
-            item.itemSprite.x >
-                Math.ceil(player.x / 1920) * 1920 -
-                    960 -
-                    InventoryController.TILE_WIDTH +
-                    InventoryController.TILE_WIDTH * 2.5 ||
+                Math.ceil(player.x / 1920) * 1920 - 960 - InventoryController.TILE_WIDTH * 1.5 || item.itemSprite.x >
+                Math.ceil(player.x / 1920) * 1920 - 960 - InventoryController.TILE_WIDTH + InventoryController.TILE_WIDTH * 2.5 ||
             item.itemSprite.y <
-                Math.ceil(player.y / 1080) * 1080 -
-                    540 -
-                    InventoryController.TILE_HEIGHT * 1.5 ||
-            item.itemSprite.y >
-                Math.ceil(player.y / 1080) * 1080 -
-                    540 -
-                    InventoryController.TILE_HEIGHT +
-                    InventoryController.TILE_HEIGHT * 1.5
+            Math.ceil(player.y / 1080) * 1080 - 540 - InventoryController.TILE_HEIGHT * 1.5 ||
+            item.itemSprite.y > Math.ceil(player.y / 1080) * 1080 - 540 - InventoryController.TILE_HEIGHT + InventoryController.TILE_HEIGHT * 1.5
         ) {
             inventory.removeItem(item, "drop");
         } else {
             for (let i = 0; i < InventoryController.INVENTORY_WIDTH; i++) {
                 if (item.orientation == "vertical") {
-                    if (
-                        Math.abs(
-                            item.itemSprite.x -
-                                inventory.getTileLocation(i, 0).x
-                        ) < 100
-                    ) {
-                        if (
-                            inventory.isFull(i, 0) == false &&
-                            inventory.isFull(i, 1) == false
-                        ) {
+                    if (Math.abs(item.itemSprite.x - inventory.getTileLocation(i, 0).x) < 100) {
+                        if (inventory.isFull(i, 0) == false && inventory.isFull(i, 1) == false ) {
                             inventory.removeItem(item, "remove");
-                            inventory.insertItem(item, {
-                                x: i,
-                                y: 0,
-                                orientation: "vertical",
-                            });
-                            item.itemSprite.x = inventory.getTileLocation(
-                                i,
-                                0
-                            ).x;
-                            item.itemSprite.y =
-                                inventory.getTileLocation(i, 0).y +
-                                InventoryController.TILE_HEIGHT / 2;
+                            inventory.insertItem(item, { x: i, y: 0, orientation: "vertical",});
+                            item.itemSprite.x = inventory.getTileLocation(i, 0).x;
+                            item.itemSprite.y = inventory.getTileLocation(i, 0).y + InventoryController.TILE_HEIGHT / 2;
                         }
                         return;
                     }
-                } else if (item.orientation == "horizontal") {
-                    if (
-                        Math.abs(
-                            item.itemSprite.x -
-                                InventoryController.TILE_WIDTH / 2 -
-                                inventory.getTileLocation(i, 0).x
-                        ) < 100
-                    ) {
-                        item.itemSprite.x =
-                            inventory.getTileLocation(i, 0).x +
-                            InventoryController.TILE_WIDTH / 2;
-                        if (
-                            Math.abs(
-                                item.itemSprite.y -
-                                    inventory.getTileLocation(0, 0).y
-                            ) < 100
-                        ) {
-                            if (
-                                inventory.isFull(i, 0) == false &&
-                                inventory.isFull(i + 1, 0) == false
-                            ) {
+                } 
+                else if (item.orientation == "horizontal") {
+                    if ( Math.abs(item.itemSprite.x - InventoryController.TILE_WIDTH / 2 - inventory.getTileLocation(i, 0).x ) < 100 ) {
+                        item.itemSprite.x = inventory.getTileLocation(i, 0).x + InventoryController.TILE_WIDTH / 2;
+                        if (Math.abs(item.itemSprite.y - inventory.getTileLocation(0, 0).y) < 100) {
+                            if (inventory.isFull(i, 0) == false && inventory.isFull(i + 1, 0) == false) {
                                 inventory.removeItem(item, "remove");
                                 inventory.insertItem(item, {
                                     x: i,
@@ -403,29 +367,16 @@ function dragItem(item, inventory) {
                                     y: 1,
                                     orientation: "horizontal",
                                 });
-                                item.itemSprite.y = inventory.getTileLocation(
-                                    0,
-                                    1
-                                ).y;
+                                item.itemSprite.y = inventory.getTileLocation(0,1).y;
                             }
                             return;
                         }
                     }
                 } else {
-                    if (
-                        Math.abs(
-                            item.itemSprite.x -
-                                inventory.getTileLocation(i, 0).x
-                        ) < 100 &&
-                        item.itemSprite.x != inventory.getTileLocation(i, 0).x
-                    ) {
+                    if (Math.abs(item.itemSprite.x - inventory.getTileLocation(i, 0).x) < 100 &&
+                        item.itemSprite.x != inventory.getTileLocation(i, 0).x ) {
                         item.itemSprite.x = inventory.getTileLocation(i, 0).x;
-                        if (
-                            Math.abs(
-                                item.itemSprite.y -
-                                    inventory.getTileLocation(0, 0).y
-                            ) < 100
-                        ) {
+                        if (Math.abs(item.itemSprite.y - inventory.getTileLocation(0, 0).y) < 100) {
                             inventory.removeItem(item, "remove");
                             inventory.insertItem(item, {
                                 x: i,

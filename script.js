@@ -1,35 +1,14 @@
 const video = document.getElementById('video')
-var mBlinkSound = new Audio("/sound/shotgun-firing1.mp3");
 let nowBlinking = false;
 
 Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri('/facemodels'),
-  faceapi.nets.faceLandmark68Net.loadFromUri('/facemodels'),
-  faceapi.nets.faceRecognitionNet.loadFromUri('/facemodels'),
-  faceapi.nets.faceExpressionNet.loadFromUri('/facemodels')
+  faceapi.nets.tinyFaceDetector.loadFromUri('./facemodels'),
+  faceapi.nets.faceLandmark68Net.loadFromUri('./facemodels'),
+  faceapi.nets.faceRecognitionNet.loadFromUri('./facemodels'),
+  faceapi.nets.faceExpressionNet.loadFromUri('./facemodels')
 ]).then(startVideo)
 
 function startVideo() {
-
-  if (navigator.userAgent.match(/iPhone|iPad|Android/)) { ///iPhone|Android.+Mobile/
-    console.log("Mobile");
-     video.width = 400; //1080;
-
-    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-    .then(localMediaStream => {
-      if ('srcObject' in video) {
-        video.srcObject = localMediaStream;
-      } else {
-        video.src = window.URL.createObjectURL(localMediaStream);
-      }
-      video.play();
-    })
-    .catch(err => {
-      console.error(`Not available!!!!`, err);
-    });
-
-  } 
-  else {
     console.log("PC");
     navigator.getUserMedia(
         { video: {} },
@@ -43,7 +22,7 @@ function startVideo() {
   // div.innerText = 'video size:'+video.width+', '+video.height
   // console.log(div.innerText);
   // document.body.appendChild(div)
-}
+
 
 video.addEventListener('play', () => {
 
@@ -56,10 +35,10 @@ video.addEventListener('play', () => {
   // ctx_bg.fillRect(0, 0, video.width, video.height/2);
 
   var canvas_face = document.createElement("canvas");
+  canvas_face.setAttribute("id", "irrelevantCanvas");
   canvas_face.width = video.width;
   canvas_face.height = video.height;
   var ctx_face = canvas_face.getContext('2d');
-
   const canvas = faceapi.createCanvasFromMedia(video)
   document.body.append(canvas)
   const displaySize = { width: video.width, height: video.height }
@@ -150,9 +129,7 @@ video.addEventListener('play', () => {
           if(currentIrisC<meanIrisC*vThreshold){
               nowBlinking = false;
               blinkCount += 1;
-              mBlinkSound.pause();
-              mBlinkSound.currentTime = 0;
-             // mBlinkSound.play();
+
           }//
        }//
 
@@ -230,6 +207,6 @@ video.addEventListener('play', () => {
     //ctx.fillText("FPS:"+ (t2-t1), 10, 50);
     t1 = t2;
 
-  }, 33)
+  }, 75)
 
 })

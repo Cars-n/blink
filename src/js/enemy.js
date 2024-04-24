@@ -4,8 +4,9 @@
 //name: Name of the enemy
 //health: the max hp
 //width: width of enemy
+let CANTELEPORT = true;
 class enemyData{
-    constructor(enemy_id, ai_type, name, health, height, width, dia){
+    constructor(enemy_id, ai_type, name, health, height, width, dia, assetPath){
         this.enemy_id = enemy_id;
         this.ai_type = ai_type;
         this.name = name;
@@ -13,6 +14,8 @@ class enemyData{
         this.height = height;
         this.width = width;
         this.dia = dia;
+        this.assetPath = assetPath || false;
+        this.animation = null;
     }
 }
 
@@ -32,9 +35,31 @@ class Enemy{
         this.health = staticEnemyList[enemy_id].health;
         this.enemySprite = new Sprite(400, 400, 25, 25);
         this.enemySprite.diameter = staticEnemyList[enemy_id].dia;
-        this.enemySprite.layer=2;
+        this.enemySprite.layer=ENEMY_LAYER;
+        this.enemySprite.drag = 10;
         setObjectCollider(this.enemySprite, spriteTypes.ENEMY, true);
+
+        if(staticEnemyList[enemy_id].assetPath){
+            this.enemySprite.addAni('default', staticEnemyList[enemy_id].animation)
+        }
     }
+
+    recieveDamage(dmgTaken){
+        this.health -= dmgTaken;
+
+        if(this.health < 0){
+
+        }
+    }
+}
+
+//Animations must be loaded before start up
+function loadEnemyAnimations(){
+    for(let i = 0; i < staticEnemyList.length; ++i){
+        if(staticEnemyList[i].assetPath)
+            staticEnemyList[i].animation = loadAnimation(staticEnemyList[i].assetPath);
+    }
+
 }
 
 //Spawns an enemy in default location, used mostly for debugging
@@ -43,9 +68,11 @@ function spawnEnemy(num){
     enemyList.push(temp);
 }
 
-//Similar to spawnEnemy() but this takes a pair of x,y cords and spawns it at the location
+//Similar to spawnEnemy() but this takes a pair of x,y cords and spawns it at that location
 function spawnEnemyAt(num, x, y){
-    let temp = new Enemy(num, x, y);
+    let temp = new Enemy(num);
+    temp.enemySprite.x=x;
+    temp.enemySprite.y=y;
     enemyList.push(temp);
 }
 
@@ -57,6 +84,15 @@ function removeEnemy(){
     }
 }
 
+//Clears the enemy list, getting rid of any alive enemy
+function clearEnemyList(){
+    let previousMax = enemyList.length;
+    for(let i = 0; i < previousMax; ++ i){
+        removeEnemy();
+    }
+}
+
+//Debug keys
 //Spawns an enemy when k key is pressed and removes latest spawed enemy with l key
 function keyPressed(){
     if(keyCode === 75){
@@ -68,40 +104,79 @@ function keyPressed(){
     }
 
     if(keyCode === 76){
-        removeEnemy();
+        //removeEnemy();
+        clearEnemyList();
     }
 }
 
 //Handles anything related to enemeis that needs to be done every frame
 function enemyHandler(){
     let previousMax = enemyList.length; //Prevents inf loop if enemey is created while handler is being run
-    for(let i = 0; i < previousMax; ++ i) {
-        enemyList[i].enemySprite.moveTowards(player, .005)
-
-        //Detects if player and enemy overlaps and changes red if ture, currently need debug mode off to see this
-        if (enemyList[i].enemySprite.overlaps(player)) enemyList[i].enemySprite.color = 'red';
+    for(let i = 0; i < previousMax; ++i) {
+        console.log(enemyList);
+        if(enemyList[i].enemy_id==1){
+            bullets.collides(enemyList[i].enemySprite, damageEnemy);
+        }
+        if(enemyList.enemy_id == 0){
+        if(nowBlinking == true && CANTELEPORT == true){
+            CANTELEPORT = false;
+            teleportCooldown();
+            enemyList[i].enemySprite.visible = true;
+            enemyList[i].enemySprite.x = player.x + Math.floor(Math.random() * 100) * (Math.random() > 0.5 ? 1 : -1);
+            enemyList[i].enemySprite.y = player.y + Math.floor(Math.random() * 100) * (Math.random() > 0.5 ? 1 : -1);
+            disappear(enemyList[i].enemySprite);
+        }
     }
+
+            if(enemyList[i].health <= 0){
+                alert("Enemy " + enemyList[i].name + " has been defeated! YOU WIN!!!"); 
+                enemyList[i].enemySprite.remove();
+                enemyList.splice(i, 1);
+                if (enemyList.length == 0) return;
+            }
+
+        //Detects if player and enemy overlaps and changes red if true, currently need debug mode off to see this
+        if (enemyList[i].enemySprite.overlaps(player)) player.health -= 50;
     
 }
-
+}
 //Loads at start
 //Enemy data is harded coded and then pushed onto the staticEnemyList
 function setupStaticEnemyList(){ //Add new enemies here
 
-    temp = new enemyData(0, 0, "test", 5, 0, 0, 10);
+    temp = new enemyData(0, 0, "test", 5, 0, 0, 10, "assets/GlowingEyesEnemy.png");
+    giantEye = new enemyData(1,0, "Giant Eye", 500, 256,256, 256,"assets/GiantEye.png");
     staticEnemyList.push(temp);
-
-    temp = new enemyData(1, 0, "test2", 5, 0, 0, 20);
-    staticEnemyList.push(temp);
+    staticEnemyList.push(giantEye);
 
 
 
+    //Throws an error is enemy id's arent sequential
     for(let i = 0; i < staticEnemyList.length; ++i){
         if(i != staticEnemyList[i].enemy_id) {
             console.log("Enemy id issue at", i);
             throw new Error("Enemy id's not sequental or number is shared when they should not");
         }
     }
+
+    loadEnemyAnimations();
+}
+
+async function disappear(enemySprite){
+    await delay(3000);
+    enemySprite.visible = false;
 }
 
 
+async function teleportCooldown(){
+    await delay(2000);
+    CANTELEPORT = true;
+}
+
+function damageEnemy(bullet, enemy){
+    bullet.remove();
+    enemyList.forEach(enemy => {
+        if(enemy.enemy_id == 1){
+            enemy.health -= 50;}
+     });
+}
