@@ -1,0 +1,25 @@
+name: Run File Checking Test Suite
+on:
+  push:
+    branches: [ "main","dev","Chai-Testing" ]
+  pull_request:
+    branches: [ "main","dev" ]
+jobs:
+  Test-Selenium:
+    runs-on: ubuntu-latest
+    steps:
+    #Set up environment
+      - name: Checking out repo
+        uses: actions/checkout@v3
+
+
+      - name: Use Node.js 
+        uses: actions/setup-node@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      
+      # Run tests
+      - name: Running Mocha and Chai Tests
+        run: nmp test

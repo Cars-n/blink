@@ -77,7 +77,7 @@ if __name__ == "__main__":
 
     #trying to open the JS file and read the whole thing in one string
     #to execute the whole script
-    f = open('./tests/selenium/test.js')
+    f = open('test.js')
     wholeJSCode = f.read()
     print(wholeJSCode)
 
