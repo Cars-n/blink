@@ -19,6 +19,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Mocha
+        run: npm install mocha
+      
+      - name: Intall Chai
+        run: npm install chai
+
       
       # Run tests
       - name: Running Mocha and Chai Tests
