@@ -22,4 +22,4 @@ jobs:
       
       # Run tests
       - name: Running Mocha and Chai Tests
-        run: nmp test
+        run: npm test
