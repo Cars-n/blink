@@ -1,7 +1,7 @@
 function replaceAt(string, index, replacement) {
     // First part: from the start of the string to the character before the index
     // Second part: the replacement character(s)
-    // Third part: from the character after the index to the end of the string
+    // Third part: from the character after the index to the end of the string 
     return string.substring(0, index) + replacement + string.substring(index + 1);
   }
   

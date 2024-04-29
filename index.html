@@ -22,8 +22,7 @@
 			background-size: contain; /* scales background image to size of container */
 			background-position: center;
 	  	}
-
-	 	 #game {
+		canvas {
 			height: 100vh;
 			width:100vw;
 			max-width: 100%;
@@ -31,21 +30,17 @@
 			object-fit: contain; /* scales canvas to size of container */
       		outline: none; /* removes default white outline */
 			background-color: black;
-
-	  	}
-		canvas {
-			position: absolute;
-     	 overflow:hidden;
-    	  height: 1px;
-    	  width: 1px;
 		}
 		#irrelevantCanvas {
 			position: absolute;
+			overflow: hidden;
 			width:1px;
 			height:1px;
 		}
 	 	video {
 			position: absolute;
+			top:0;
+			left:0;
 			width:1px;
 			height:1px;
 		}
@@ -57,13 +52,17 @@
 </head>
 
 <body>
-	<canvas id="game"></canvas>
+	<!-- <canvas id="game"></canvas> -->
 	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/p5@1/lib/addons/p5.sound.min.js"></script>		
 	<script src="p5play/planck.min.js"></script>
 	<script src="p5play/p5play.js"></script>
 	<script  src="src/js/mainPlayer.js"></script>
+	<script  src="src/js/videoCheck.js"></script>
+	<script  src="src/js/menu.js"></script>
+	<script  src="src/js/playing.js"></script>
 	<script  src="src/js/Camera.js"></script>
+	<script  src="src/js/pause.js"></script>
 	<script  src="src/js/main.js"></script>
 	<script src="src/js/inventory.js"></script>
 	<script  src="src/js/MovementController.js"></script>

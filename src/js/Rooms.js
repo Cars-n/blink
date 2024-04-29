@@ -1,4 +1,4 @@
-// Declaring variables for images and the room controller
+// Declaring variables for images and the room controller 
 let brickImage, floorBoardImage, doorImage;
 let roomControl;
 let ISWAITING = false;
@@ -9,8 +9,8 @@ let bookshelf, bookshelf1, bigBookshelf;
 let drawer, drawer1, drawer1Open;
 let carpet;
 let shelf, shelves;
-let table, window1, window2;
-let cabinet, openCabinet;
+let table, window1, window2, dinnerTable, drinkShelf, dishCabinet, table2;
+let cabinet, openCabinet, kitchenCabinet;
 let chair, chairRight;
 let painting1, painting2;
 let bed;
@@ -19,6 +19,7 @@ let mirror;
 let dresser;
 let wallLamp;
 let drink;
+let stove;
 
 
 // Callback function, simply determines whether it is the player ob colliding with door tile or not
@@ -494,6 +495,7 @@ class RoomController {
         return room;
     }
     
+    // furnished
 	getStartRoom(){
 		var tileMap = [
 				"=======SS=======",
@@ -635,6 +637,7 @@ class RoomController {
 
         return room;
 	}
+    // furnished
 	getRoom02(){
 		var tileMap = [
 			"=======^^=======",
@@ -651,7 +654,6 @@ class RoomController {
 
 
          var room=new Room(16,9,tileMap);
-         room.enemies.push(new RoomEnemyData(0,4,4))
          // row 1
          addFurnishingToRoom(room, dresser, "static", 1.3, 1.1, 66, 47);
          addFurnishingToRoom(room, bed, "static", 2, 1.3, 96, 111);
@@ -668,8 +670,10 @@ class RoomController {
 
          // row 4
          addFurnishingToRoom(room, mirror, "static", 2.15, 4.0, 60, 60);
+         room.enemies.push(new RoomEnemyData(0,2,4))
          return room;
 	}
+    // furnished
 	getRoom03(){
 		var tileMap = [
 			"...====^^====...",
@@ -682,11 +686,152 @@ class RoomController {
 			"...=oooooooo=...",
 			"...====vv====...",
 			];
-        // var tmp=new Furnishing(100,60,brickImage,"static");
-        // tmp.setTilePosition(5,5);
          var room=new Room(16,9,tileMap);
-        // room.furnishings.push(tmp);
-         return room;
+        // row 1
+        addFurnishingToRoom(room, bookshelf, "static", 4.1, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.3, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.5, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.7, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.9, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.1, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.3, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.5, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.7, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.9, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.1, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.3, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.5, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static",9.5, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.7, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.9, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.1, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.3, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.5, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.7, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static",10.9, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.1, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.3, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.5, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.7, 1.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.9, 1.0, 30 , 50);
+
+
+        // row 2
+        addFurnishingToRoom(room, chair, "static", 4.9, 2.0, 50 , 50);
+        addFurnishingToRoom(room, table, "static", 5.2, 2.0, 50 , 50);
+        addFurnishingToRoom(room, table, "static", 5.5, 2.0, 50 , 50);
+        addFurnishingToRoom(room, chairRight, "static", 5.9, 2.0, 50 , 50);
+        addFurnishingToRoom(room, chair, "static", 10.1, 2.0, 50 , 50);
+        addFurnishingToRoom(room, table, "static", 10.4, 2.0, 50 , 50);
+        addFurnishingToRoom(room, table, "static", 10.7, 2.0, 50 , 50);
+        addFurnishingToRoom(room, chairRight, "static", 11.1, 2.0, 50 , 50);
+
+        // row 3
+        addFurnishingToRoom(room, bookshelf, "static", 4.1, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.3, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.5, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.7, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.9, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.1, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.3, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.5, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.7, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.9, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.1, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.3, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.5, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static",9.5, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.7, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.9, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.1, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.3, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.5, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.7, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static",10.9, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.1, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.3, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.5, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.7, 3.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.9, 3.0, 30 , 50);
+
+        // row 4
+        addFurnishingToRoom(room, chair, "static", 4.9, 4.0, 50 , 50);
+        addFurnishingToRoom(room, table, "static", 5.2, 4.0, 50 , 50);
+        addFurnishingToRoom(room, table, "static", 5.5, 4.0, 50 , 50);
+        addFurnishingToRoom(room, chairRight, "static", 5.9, 4.0, 50 , 50);
+        addFurnishingToRoom(room, chair, "static", 10.1, 4.0, 50 , 50);
+        addFurnishingToRoom(room, table, "static", 10.4, 4.0, 50 , 50);
+        addFurnishingToRoom(room, table, "static", 10.7, 4.0, 50 , 50);
+        addFurnishingToRoom(room, chairRight, "static", 11.1, 4.0, 50 , 50);
+
+
+        // row 5
+        addFurnishingToRoom(room, bookshelf, "static", 4.1, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.3, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.5, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.7, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.9, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.1, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.3, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.5, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.7, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.9, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.1, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.3, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.5, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static",9.5, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.7, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.9, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.1, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.3, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.5, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.7, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static",10.9, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.1, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.3, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.5, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.7, 5.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.9, 5.0, 30 , 50);
+
+        // row 6
+        addFurnishingToRoom(room, chair, "static", 4.9, 6.0, 50 , 50);
+        addFurnishingToRoom(room, table, "static", 5.2, 6.0, 50 , 50);
+        addFurnishingToRoom(room, table, "static", 5.5, 6.0, 50 , 50);
+        addFurnishingToRoom(room, chairRight, "static", 5.9, 6.0, 50 , 50);
+        addFurnishingToRoom(room, chair, "static", 10.1, 6.0, 50 , 50);
+        addFurnishingToRoom(room, table, "static", 10.4, 6.0, 50 , 50);
+        addFurnishingToRoom(room, table, "static", 10.7, 6.0, 50 , 50);
+        addFurnishingToRoom(room, chairRight, "static", 11.1, 6.0, 50 , 50);
+
+        // row 7
+        addFurnishingToRoom(room, bookshelf, "static", 4.1, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.3, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.5, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.7, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 4.9, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.1, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.3, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.5, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.7, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 5.9, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.1, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.3, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 6.5, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static",9.5, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.7, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 9.9, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.1, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.3, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.5, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 10.7, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static",10.9, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.1, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.3, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.5, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.7, 7.0, 30 , 50);
+        addFurnishingToRoom(room, bookshelf, "static", 11.9, 7.0, 30 , 50);    
+        
+        return room;
 	}
 	getRoom04(){
 		var tileMap = [
@@ -700,10 +845,29 @@ class RoomController {
 			"=oooooooooooooo=",
 			"================",
 			];
-        // var tmp=new Furnishing(100,60,brickImage,"static");
-        // tmp.setTilePosition(5,5);
          var room=new Room(16,9,tileMap);
-        // room.furnishings.push(tmp);
+         // row 1
+         addFurnishingToRoom(room, stove, "static", 1.4, 1.1, 100 , 52); 
+         addFurnishingToRoom(room, drinkShelf, "static", 1.75, .5, 150 , 40); 
+         addFurnishingToRoom(room, stove, "static", 2.2, 1.1, 100 ,52);  
+         addFurnishingToRoom(room, kitchenCabinet, "static", 3.0, 1.0, 50 ,75); 
+         addFurnishingToRoom(room, kitchenCabinet, "static", 3.4, 1.0, 50 ,75); 
+         addFurnishingToRoom(room, dishCabinet, "static", 4.1, .9, 65 , 80);  
+         addFurnishingToRoom(room, table2, "static", 4.9, 1.0, 95 , 45);  
+         addFurnishingToRoom(room, table2, "static", 5.8, 1.0, 95 , 45); 
+
+         addFurnishingToRoom(room, kitchenCabinet, "static", 11.0, 1.0, 50 ,75);
+         addFurnishingToRoom(room, kitchenCabinet, "static", 11.4, 1.0, 50 ,75);
+         addFurnishingToRoom(room, kitchenCabinet, "static", 11.8, 1.0, 50 ,75);
+         addFurnishingToRoom(room, kitchenCabinet, "static", 12.2, 1.0, 50 ,75);
+         addFurnishingToRoom(room, kitchenCabinet, "static", 12.6, 1.0, 50 ,75);
+         addFurnishingToRoom(room, kitchenCabinet, "static", 13, 1.0, 50 ,75);
+         addFurnishingToRoom(room, kitchenCabinet, "static", 13.4, 1.0, 50 ,75);
+         addFurnishingToRoom(room, kitchenCabinet, "static", 13.8, 1.0, 50 ,75);
+         addFurnishingToRoom(room, kitchenCabinet, "static", 14.2, 1.0, 50 ,75);
+
+         // row  4
+         addFurnishingToRoom(room, dinnerTable, "static", 2.2, 4.1, 105 ,50);  
          return room;
 	}
 	getRoom10(){
@@ -816,10 +980,10 @@ class RoomController {
 			 var room=new Room(16,9,tileMap);
 			// room.furnishings.push(tmp);
 			 return room;
-		}
+	}
 
 	getRoomB11(){
-			var tileMap = [
+		var tileMap = [
 				"=======^^=======",
 				"=oooooooooooooo=",
 				"<oooooooooooooo=",
@@ -1038,20 +1202,20 @@ class RoomController {
 		}
 		getRoomU22(){
 			var tileMap = [
-				"=======^^=======",
-				"=oooooooooooooo=",
-				"=oooooooooooooo=",
-				"=oooooooooooooo=",
-				"=oooooooooooooo=",
-				"=oooooooooooooo=",
-				"=oooooooooooooo=",
-				"=oooooooooooooo=",
-				"================",
+				"=======^^==.....",
+				"=ooooooooo=.....",
+				"=ooooooooo=.....",
+				"=ooooooooo=.....",
+				"=ooooooooo=.....",
+				"=ooooooooo=.....",
+				"=ooooooooo=.....",
+				"=ooooooooo=.....",
+				"===========.....",
 				];
 							// var tmp=new Furnishing(100,60,brickImage,"static");
 							// tmp.setTilePosition(5,5);
 							 var room=new Room(16,9,tileMap);
-                             room.enemies.push(new RoomEnemyData(1,4,4))
+                             room.enemies.push(new RoomEnemyData(1,2,4))
 							// room.furnishings.push(tmp);
 							 return room;
 			}

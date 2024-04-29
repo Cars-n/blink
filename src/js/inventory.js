@@ -1,4 +1,4 @@
-//Inventory class with functions for inserting into inventory, removing from inventory, rendering inventory, getting coordinates of inventory tiles, and checking if inventory is full.
+//Inventory class with functions for inserting into inventory, removing from inventory, rendering inventory, getting coordinates of inventory tiles, and checking if inventory is full. 
 class InventoryController {
     //Static variables should not be cahnged. 
     static TILE_HEIGHT = 200;
@@ -99,6 +99,7 @@ class InventoryController {
 
     //Checks if there is space for an item of x*y size. Returns a dictionary with the x and y coords of the top left corner of the space and the orientation of the space.
     hasSpace(x, y) {
+        console.log(x*y);
         if (x * y == 1) {
             if (this.inventory[0].indexOf("") !== -1)
                 return {
@@ -119,7 +120,7 @@ class InventoryController {
                 };
         }
         if (x * y == 2) {
-            for (let i = 0; i < InventoryController.INVENTORY_WIDTH - 1; i++) {
+            for (let i = 0; i <= InventoryController.INVENTORY_WIDTH - 1; i++) {
                 if (this.inventory[0][i] == "" && this.inventory[1][i] == "") {
                     return {
                         x: i,
@@ -404,4 +405,34 @@ function dragItem(item, inventory) {
             }
         }
     }
+}
+
+
+
+
+
+function inventoryFunctionality(){
+    player.velocity.y = 0;
+		player.velocity.x = 0;
+		player.changeAni("idle_" + playerMovement.lastDirection);
+		movementSounds(player,footsteps);
+		if(!INVENTORYRENDERED){
+			inventory.renderInventory();
+			INVENTORYRENDERED = true;
+		}
+		if(kb.pressed('e')){
+			inventory.remove();
+			INVENTORYRENDERED = false;
+			playerMovement.moveSpeed = PLAYERSPEED;
+			GAMESTATE = "PLAYING";
+		} 
+		if(kb.pressed('r')){
+			console.log(inventory.inventory);
+		} 
+		dragItem(flashlight, inventory);
+		dragItem(key, inventory);
+		dragItem(gun, inventory);
+		dragItem(bulletItem,inventory);
+		dragItem(trinket,inventory);
+
 }

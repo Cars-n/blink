@@ -1,6 +1,6 @@
 let darkness;
 let flashlightRotation;
-
+//revert
 function darknessSetup() {
       darkness = new Sprite(width/2, height/2, 1920, 1080); // creates a sprite that is the size of the canvas and at the center of the canvas
       darkness.img = "assets/darknessEyesight.svg"
