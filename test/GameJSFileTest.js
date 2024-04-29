@@ -4,7 +4,7 @@ const fs = require('node:fs');
 function fileCheck() {
     describe("#Game JavaScript Files", function() {
         it(" is expected to have mainPlayer.js", () => {
-            expect(fs.readFile('./src/js/mainplayer.js', 'utf8', (err, data) => {
+            expect(fs.readFile('./src/js/mainPlayer.js', 'utf8', (err, data) => {
                 if (err) {
                     throw("mainPlayer.js NOT FOUND")
                 } 
