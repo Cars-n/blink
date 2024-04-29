@@ -1,5 +1,6 @@
 const video = document.getElementById('video')
 let nowBlinking = false;
+let vThreshold = 1.3;
 
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('./facemodels'),
@@ -117,7 +118,6 @@ video.addEventListener('play', () => {
       return sum + element;
     }, 0);
     meanIrisC = meanIrisC / irisC.length;
-    let vThreshold = 1.3;
 
     let currentIrisC = irisC[irisC.length-1];
     if(irisC.length==100){

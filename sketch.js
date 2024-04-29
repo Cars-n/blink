@@ -143,6 +143,7 @@ function setup() {
 
 	mainMenuBackground.resize(1920,1080);
 	mainMenu = new MainMenu();
+	BlinkViewer = new BlinkViewer();
 
 	//Makes a pause menu screen
 	pauseMenu = new PauseMenu();
@@ -160,6 +161,9 @@ function draw() {
 	if (GAMESTATE == "MENU") {
 		menuFunctionality();
 	} 
+	else if (GAMESTATE === "BLINKVIEW"){
+		videoCheckFunctionality();
+	}
 	else if (GAMESTATE === 'PLAYING') {
 		clear();
 		playingFunctionality();
