@@ -1,0 +1,5 @@
+selenium
+chromedriver_autoinstaller
+pyvirtualdisplay
+webdriver_manager
+behave

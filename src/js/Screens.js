@@ -85,7 +85,6 @@ class PauseMenu {
 
 		this.pauseTitle = createButton("PAUSE");
 		this.pauseTitle.class("PauseH1");
-		this.pauseTitle.attribute('name', 'pauseHeader');
 		this.pauseTitle.position(600,50);
 		this.pauseTitle.hide();
 
@@ -96,7 +95,6 @@ class PauseMenu {
 
 		//Makes the button
 		this.resumeButton = createButton('>Resume');
-		this.resumeButton.attribute('name', 'resume');
 		this.resumeButton.class("PauseMenuButtons");
 		this.resumeButtonDiv.center();
 		this.resumeButtonDiv.position(510,330);	// x, y
@@ -117,7 +115,6 @@ class PauseMenu {
 
 		// Setup exit Button
 		this.exitButton = createButton('>Exit');
-		this.exitButton.attribute('name', 'pauseExit');
 		this.exitButton.class("PauseMenuButtons");
 		this.exitButtonDiv.center();
 		this.exitButtonDiv.position(715,350);	//x, y
@@ -136,7 +133,6 @@ class PauseMenu {
 
 		// Setup settings Button
 		this.settingsButton = createButton('>Settings');
-		this.settingsButton.attribute('name', 'pauseSettings');
 		this.settingsButton.class("PauseMenuButtons");
 		this.settingsButtonDiv.center();
 		this.settingsButtonDiv.position(870,330);	// x, y
@@ -267,31 +263,26 @@ class MainMenu {
 		this.menu.collider = 'none';
 
 		this.title.class("H1");
-		this.title.attribute('name', 'title');
 		this.title.position(600,50);
 		this.title.hide();
 
 		//Setting up the start button
 		this.startButton.class("MainMenuButtons");
-		this.startButton.attribute("name", "start");
 		this.startButton.position(675, 200)
 		this.startButton.hide();		//Hides the button until pause menu is triggered
 
 		//Setting up the tutorial button
 		this.tutorialButton.class("MainMenuButtons");
-		this.tutorialButton.attribute("name", "tutorial");
 		this.tutorialButton.position(675, 250)
 		this.tutorialButton.hide();		//Hides the button until pause menu is triggered
 
 		//Setting up the controls button
 		this.controlsButton.class("MainMenuButtons");
-		this.controlsButton.attribute("name", "controls");
 		this.controlsButton.position(675, 300)
 		this.controlsButton.hide();		//Hides the button until pause menu is triggered
 
 		// Setup exit Button
 		this.exitButton.class("MainMenuButtons");
-		this.exitButton.attribute("name", "exit");
 		this.exitButton.position(675,350)
 		this.exitButton.hide();		//Hides the button until pause menu is triggered
 		

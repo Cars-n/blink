@@ -2,7 +2,7 @@ name: Test Suite
 
 on:
   push:
-    branches: [ "main","dev","Selenium-GHA" ]
+    branches: [ "main","dev","GHA-Test-404" ]
   pull_request:
     branches: [ "main","dev" ]
 
