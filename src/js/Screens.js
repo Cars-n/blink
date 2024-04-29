@@ -245,17 +245,12 @@ class PauseMenu {
 
 }
 
-/**
- * Class to handle the control of the main menu and actions in the menu
- */
 class MainMenu {
 	/**
 	 * Default constructor, makes a background, resume and exit buttons
 	 */
 	constructor() {
 		this.startButton = createButton('> Start');
-		this.tutorialButton = createButton('> Tutorial');
-		this.controlsButton = createButton('> Controls');
 		this.exitButton = createButton('> Exit');
 		this.title = createButton('BLINK');
 
@@ -267,32 +262,17 @@ class MainMenu {
 		this.menu.collider = 'none';
 
 		this.title.class("H1");
-		this.title.attribute('name', 'title');
 		this.title.position(600,50);
 		this.title.hide();
 
 		//Setting up the start button
 		this.startButton.class("MainMenuButtons");
-		this.startButton.attribute("name", "start");
 		this.startButton.position(675, 200)
 		this.startButton.hide();		//Hides the button until pause menu is triggered
 
-		//Setting up the tutorial button
-		this.tutorialButton.class("MainMenuButtons");
-		this.tutorialButton.attribute("name", "tutorial");
-		this.tutorialButton.position(675, 250)
-		this.tutorialButton.hide();		//Hides the button until pause menu is triggered
-
-		//Setting up the controls button
-		this.controlsButton.class("MainMenuButtons");
-		this.controlsButton.attribute("name", "controls");
-		this.controlsButton.position(675, 300)
-		this.controlsButton.hide();		//Hides the button until pause menu is triggered
-
 		// Setup exit Button
 		this.exitButton.class("MainMenuButtons");
-		this.exitButton.attribute("name", "exit");
-		this.exitButton.position(675,350)
+		this.exitButton.position(675,250)
 		this.exitButton.hide();		//Hides the button until pause menu is triggered
 		
 	}
@@ -305,8 +285,6 @@ class MainMenu {
 	showMenu() {
 		this.menu.visible = true;
 		this.startButton.show();
-		this.tutorialButton.show();
-		this.controlsButton.show();
 		this.exitButton.show();
 		this.title.show();
 
@@ -318,33 +296,32 @@ class MainMenu {
 	 */
 	hideMenu() {
 		this.startButton.hide();
-		this.tutorialButton.hide();
-		this.controlsButton.hide();
 		this.exitButton.hide();
 		this.title.hide();
 		this.menu.visible = false;
 	}
-		/**
+
+
+	/**
 	 * Called when exit is clicked
 	 * Takes you to the main menu
 	 */
-		exitGame(CURRENTGAMESTATE) {
-			this.hideMenu();
-			CURRENTGAMESTATE = "MENU";
-		}
-	
-	
-		/**
-		 * Resumes the game when resume is clicked OR escape is pressed a second time
-		 */
-		startBlinkView(CURRENTGAMESTATE) {
-			this.hideMenu();
-			CURRENTGAMESTATE = 'BLINKVIEW';
-	
-			return CURRENTGAMESTATE;
-		}
+	exitGame(CURRENTGAMESTATE) {
+		this.hideMenu();
+		CURRENTGAMESTATE = "MENU";
 	}
 
+
+	/**
+	 * Resumes the game when resume is clicked OR escape is pressed a second time
+	 */
+	startGame(CURRENTGAMESTATE) {
+		this.hideMenu();
+		CURRENTGAMESTATE = 'PLAYING';
+
+		return CURRENTGAMESTATE;
+	}
+}
 
 
 class BlinkViewer {
