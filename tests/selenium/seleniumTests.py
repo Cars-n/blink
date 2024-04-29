@@ -162,8 +162,81 @@ def test_death():
     assert gamestate != "PLAYING", "Game state did not change"
     print("Player death passed")
 
+def test_inventory():
+    browser=open_browser()
+    time.sleep(3)
+    browser.find_element(By.NAME,'start').click()
+    time.sleep(4)
+
+    print("Testing player inventory")
+    print("Checking if player is empty on start")
+    empty_inventory = browser.execute_script('\
+        for (let j = 0; j < InventoryController.INVENTORY_HEIGHT; j++) {\
+            for (let i = 0; i < InventoryController.INVENTORY_WIDTH; i++) {\
+                if (inventory.inventory[j][i] != "") return false;\
+            }\
+        }\
+        return true;\
+    ')
+    assert empty_inventory == True, "Player's inventory is not empty on start"
+    print("Creating flashlight item on player")
+    browser.execute_script('\
+        flashlight = new Item(player.x,player.y, "FlashLight", 2,1,8,20,flashlightImage);\
+    ')
+    time.sleep(.1)
+    has_item = browser.execute_script('return inventory.hasItem(flashlight)')
+    assert has_item == True, "Player did not pick up flashlight"
+    time.sleep(5)
+
+    print("Creating gun item on player")
+    browser.execute_script('\
+        gun = new Item(player.x,player.y, "Gun", 2,1,33,6,gunImage);\
+    ')
+    time.sleep(.1)
+    has_item = browser.execute_script('return inventory.hasItem(gun)')
+    assert has_item == True, "Player did not pick up gun"
+    time.sleep(5)
+
+    print("Creating bullet item on player")
+    browser.execute_script('\
+        bulletItem = new Item(player.x,player.y, "Bullet", 1,1,4,3,bulletImage);\
+    ')
+    time.sleep(.1)
+    has_item = browser.execute_script('return inventory.hasItem(bulletItem)')
+    assert has_item == True, "Player did not pick up bullet"
+
+    print("Creating key item on player")
+    browser.execute_script('\
+        key = new Item(player.x,player.y, "Key", 1,1,10,5,keyImage);\
+    ')
+    time.sleep(.1)
+    has_item = browser.execute_script('return inventory.hasItem(key)')
+    assert has_item == True, "Player did not pick up key"
+
+    print("Checking if player's inventory is full")
+    has_space = browser.execute_script('return inventory.hasSpace(1,1)')
+    assert has_space["orientation"] == "none", "Player has storage space left"
+
+    print("Checking if items are not visible")
+    assert browser.execute_script('return flashlight.itemSprite.visible') == False, "Flashlight sprite is still visible"
+    assert browser.execute_script('return gun.itemSprite.visible') == False, "Gun sprite is still visible"
+    assert browser.execute_script('return bulletItem.itemSprite.visible') == False, "Bullet sprite is still visible"
+    assert browser.execute_script('return key.itemSprite.visible') == False, "Key sprite is still visible"
+
+    print("Spawning item on player while inventory is full")
+    browser.execute_script('\
+        key = new Item(player.x,player.y, "Key", 1,1,10,5,keyImage);\
+    ')
+    time.sleep(.1)
+    has_item = browser.execute_script('return inventory.hasItem(key)')
+    assert has_item == False, "Player picked up key"
+    assert browser.execute_script('return key.itemSprite.visible') == True, "Key sprite is not visible"
+    print("Inventory test passed")
+    
+
 if __name__ == "__main__":
     test_movement()
     test_rooms()
     test_death()
+    test_inventory()
     print("done.")
