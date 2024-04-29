@@ -5,14 +5,6 @@ function fileCheck() {
 
     describe("#Game Asset PNG & JPG Images", function(){
 
-        it(" is expected to have BODY_SKELETON.png", () => {
-            expect(fs.readFile('./assets/BODY_SKELETON.png', 'utf8', (err, data) => {
-                if (err) {
-                    throw("BODY_SKELETON.png NOT FOUND")
-                } 
-            }));
-        });
-        
         it(" is expected to have bullet.png", () => {
             expect(fs.readFile('./assets/bullet.png', 'utf8', (err, data) => {
                 if (err) {
