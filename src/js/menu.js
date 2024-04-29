@@ -1,3 +1,4 @@
+//revert
 function menuFunctionality(){
     if(!mainMenuSound.isPlaying()) mainMenuSound.play();
 

@@ -1,3 +1,4 @@
+//revert
 function pauseFunctionality() {
     player.velocity.y = 0;
     player.velocity.x = 0;

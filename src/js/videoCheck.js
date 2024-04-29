@@ -1,3 +1,4 @@
+//revert
 function videoCheckFunctionality(){
 		BlinkViewer.showMenu();
         vThreshold = BlinkViewer.sensitivitySlider.value() / 100;

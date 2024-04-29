@@ -7,7 +7,7 @@ function makeCameraFollowPlayer() {
     camera.y = player.y;
 }
 
-//Creates a Sprite that cover the entire screen.
+//Creates a Sprite that cover the entire screen. 
 function createFadeScreen() {
     object = new Sprite(500, 500, 100000, 100000);
     object.color = "black";

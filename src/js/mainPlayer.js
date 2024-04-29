@@ -1,5 +1,5 @@
 /**
- * 
+ *  
  * Player of the game - settings and other setup
  *
  */

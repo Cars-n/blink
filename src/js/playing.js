@@ -1,3 +1,4 @@
+//revert
 function playingFunctionality(){
     if (player.health <= 0) {
         healthBar.img = noHealth;

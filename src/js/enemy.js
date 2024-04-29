@@ -1,5 +1,5 @@
 //Class for data of enemies
-//enemy_id: Specifies what type of enemy they are
+//enemy_id: Specifies what type of enemy they are 
 //ai_type: Specifies what type of ai the enemy has, all will probably have a unique one
 //name: Name of the enemy
 //health: the max hp
