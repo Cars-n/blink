@@ -92,6 +92,12 @@ function preload() {
 	bed = loadImage("assets/rooms/props/Blink_PropBed.png");
 	drink = loadImage("assets/rooms/props/Blink_PropDrink.png");
 	bigBookshelf = loadImage("assets/rooms/props/Blink_PropBigBookshelf.png");
+	dinnerTable = loadImage("assets/rooms/props/Blink_DinnerTable.png");
+	dishCabinet = loadImage("assets/rooms/props/Blink_DishCabinet.png");
+	drinkShelf = loadImage("assets/rooms/props/Blink_DrinkShelf.png");
+	stove = loadImage("assets/rooms/props/Blink_Stove.png");
+	kitchenCabinet = loadImage("assets/rooms/props/Blink_KitchenCabinet.png");
+	table2 = loadImage("assets/rooms/props/Blink_Table2.png");
 	}
 
 const SPAWNX=0;
