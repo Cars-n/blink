@@ -105,8 +105,11 @@ function setup() {
 	key = new Item(CANVAS_WIDTH_PX/2 ,CANVAS_HEIGHT_PX*4 - 500, "Key", 1,1,10,5,keyImage);
 	key.itemSprite.debug=false;
 	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Gun", 2,1,33,6,gunImage);
+
 	bulletItem = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
-	// darkness overlayd
+	trinket = new Item(0,0, "Trinket", 1,1,10,10, "assets/GrimReaper.png");
+	// darkness overlay
+	trinket.itemSprite.overlaps(RoomController.wallTile.group);
 	key.itemSprite.overlaps(RoomController.wallTile.group);
 	gun.itemSprite.overlaps(RoomController.wallTile.group);
 	flashlight.itemSprite.overlaps(RoomController.wallTile.group);
@@ -227,7 +230,17 @@ function draw() {
 			if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) key.itemSprite.visible = false;
 		}
 		if(player.overlaps(bulletItem.itemSprite)){
-			if (inventory.insertItem(bulletItem, inventory.hasSpace(bulletItem.InventoryX,bulletItem.InventoryY))) bulletItem.itemSprite.visible = false;
+			if (inventory.insertItem(bulletItem, inventory.hasSpace(bulletItem.InventoryX,bulletItem.InventoryY))) {
+				bulletItem.itemSprite.visible = false;
+				bulletItem.itemSprite.x = 100;
+			}
+		}
+		if(player.overlaps(trinket.itemSprite)){
+			console.log(inventory.hasSpace(trinket.InventoryX,trinket.InventoryY))
+			if (inventory.insertItem(trinket, inventory.hasSpace(trinket.InventoryX,trinket.InventoryY))){
+				trinket.itemSprite.visible = false;
+				bulletItem.itemSprite.x = 100;
+			} 
 		}
 
 		//Pause handle

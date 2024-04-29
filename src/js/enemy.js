@@ -115,9 +115,18 @@ function enemyHandler(){
     for(let i = 0; i < previousMax; ++i) {
         console.log(enemyList);
         if(enemyList[i].enemy_id==1){
+<<<<<<< HEAD
             bullets.collides(enemyList[i].enemySprite, damageEnemy);
         }
         if(enemyList.enemy_id == 0){
+=======
+            if(nowBlinking)enemyList[i].health += 50;
+            bullets.collides(enemyList[i].enemySprite, damageEye);
+        }
+        if(enemyList[i].enemy_id == 0){
+            bullets.collides(enemyList[i].enemySprite, damageGhost);
+        }
+>>>>>>> parent of eab4d7c (Boss fight complete)
         if(nowBlinking == true && CANTELEPORT == true){
             CANTELEPORT = false;
             teleportCooldown();
