@@ -6,12 +6,12 @@ let tileInput;
 function preload() {
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
 	keyImage = loadImage('assets/key.png');
-	brickImage = loadImage('assets/WallRoughDraft.png');
-	flashlightImage = loadImage('assets/Flashlight.png');
-	floorBoardImage = loadImage("assets/floortiles.png");
+	brickImage = loadImage('assets/rooms/tiles/tile_checkered.png');
+	flashlightImage = loadImage('assets/rooms/items/flashlight.png');
+	floorBoardImage = loadImage("assets/rooms/tiles/wood_crossed_large.png");
 	doorImage=loadImage("assets/Door.png");
     cellBarsImage = loadImage("assets/cellBars.jpg");
-    trapDoorImage = loadImage("assets/trapdoor.png");
+    trapDoorImage = loadImage("assets/rooms/tiles/trapdoor.png");
 	// darknessImage = loadImage("assets/darkness.svg");
 	// soundFormats('mp3');
 	// doorCreak = loadSound('assets/audio/doorCreak.mp3');
