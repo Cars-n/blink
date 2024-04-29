@@ -40,14 +40,14 @@ def test_execute():
     browser = webdriver.Chrome(options = chrome_options)
     browser.get("127.0.0.1:8000/index.html")
     time.sleep(1)
-    browser.find_element(By.NAME,'start').click()
+    browser.find_element(By.ID,'start').click()
     time.sleep(4)
     print(browser.execute_script('return testFunc();'))
 
 def test_rooms():
     browser=open_browser()
     time.sleep(3)
-    browser.find_element(By.NAME,'start').click()
+    browser.find_element(By.ID,'start').click()
     time.sleep(2)
 
     print("Testing player can move rooms...")
@@ -74,7 +74,7 @@ def test_rooms():
 def test_movement():
     browser=open_browser()
     time.sleep(3)
-    browser.find_element(By.NAME,'start').click()
+    browser.find_element(By.ID,'start').click()
     time.sleep(4)
 
     print("Testing player can move upwards...")
@@ -144,7 +144,7 @@ def test_movement():
 def test_death():
     browser=open_browser()
     time.sleep(3)
-    browser.find_element(By.NAME,'start').click()
+    browser.find_element(By.ID,'start').click()
     time.sleep(4)
 
     print("Testing player death")
@@ -165,7 +165,7 @@ def test_death():
 def test_inventory():
     browser=open_browser()
     time.sleep(3)
-    browser.find_element(By.NAME,'start').click()
+    browser.find_element(By.ID,'start').click()
     time.sleep(4)
 
     print("Testing player inventory")

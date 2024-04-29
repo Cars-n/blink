@@ -268,21 +268,26 @@ class MainMenu {
 
 		//Setting up the start button
 		this.startButton.class("MainMenuButtons");
+		this.startButton.id("start")
 		this.startButton.position(675, 200)
 		this.startButton.hide();		//Hides the button until pause menu is triggered
 
 		//Setting up the tutorial button
 		this.tutorialButton.class("MainMenuButtons");
+		this.tutorialButton.id("tutorial")
+
 		this.tutorialButton.position(675, 250)
 		this.tutorialButton.hide();		//Hides the button until pause menu is triggered
 
 		//Setting up the controls button
 		this.controlsButton.class("MainMenuButtons");
+		this.controlsButton.id("controls");
 		this.controlsButton.position(675, 300)
 		this.controlsButton.hide();		//Hides the button until pause menu is triggered
 
 		// Setup exit Button
 		this.exitButton.class("MainMenuButtons");
+		this.exitButton.id("exit");
 		this.exitButton.position(675,350)
 		this.exitButton.hide();		//Hides the button until pause menu is triggered
 		
