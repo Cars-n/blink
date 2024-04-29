@@ -81,8 +81,9 @@ jobs:
         run: | 
             echo "$ python3 -m http.server"
             python3 -m http.server --bind 127.0.0.1 &
+      - name: Running behavioral tests
+        run: behave tests/selenium/behavioral/menu.feature
       # Run tests
       - name: Running the Python script
         run: python3 tests/selenium/seleniumTests.py
-      - name: Running behavioral tests
-        run: behave tests/selenium/behavioral/menu.feature
+      

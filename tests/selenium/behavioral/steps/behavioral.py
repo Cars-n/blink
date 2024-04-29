@@ -3,9 +3,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from behave import *
 import time
+import chromedriver_autoinstaller
 
+chromedriver_autoinstaller.install()
 
 def open_browser(link='http://127.0.0.1:8000/index.html'):
+    time.sleep(1)
     chrome_options = webdriver.ChromeOptions()    
     # Add your options as needed    
     options = [
