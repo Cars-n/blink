@@ -1,4 +1,4 @@
-//Class for moving any sprite, whether through move up
+//Class for moving any sprite, whether through move up 
 class MovementController {
 
     //takes a sprite as a target to control

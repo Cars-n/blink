@@ -1,6 +1,6 @@
 /**
  * 
- * Sets up and uses debug mode for testing purposes
+ * Sets up and uses debug mode for testing  purposes
  * 
  */
 
