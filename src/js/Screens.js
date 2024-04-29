@@ -250,8 +250,6 @@ class MainMenu {
 	 */
 	constructor() {
 		this.startButton = createButton('> Start');
-		this.tutorialButton = createButton('> Tutorial');
-		this.controlsButton = createButton('> Controls');
 		this.exitButton = createButton('> Exit');
 		this.title = createButton('BLINK');
 
@@ -271,19 +269,9 @@ class MainMenu {
 		this.startButton.position(675, 200)
 		this.startButton.hide();		//Hides the button until pause menu is triggered
 
-		//Setting up the tutorial button
-		this.tutorialButton.class("MainMenuButtons");
-		this.tutorialButton.position(675, 250)
-		this.tutorialButton.hide();		//Hides the button until pause menu is triggered
-
-		//Setting up the controls button
-		this.controlsButton.class("MainMenuButtons");
-		this.controlsButton.position(675, 300)
-		this.controlsButton.hide();		//Hides the button until pause menu is triggered
-
 		// Setup exit Button
 		this.exitButton.class("MainMenuButtons");
-		this.exitButton.position(675,350)
+		this.exitButton.position(675,250)
 		this.exitButton.hide();		//Hides the button until pause menu is triggered
 		
 	}
@@ -296,8 +284,6 @@ class MainMenu {
 	showMenu() {
 		this.menu.visible = true;
 		this.startButton.show();
-		this.tutorialButton.show();
-		this.controlsButton.show();
 		this.exitButton.show();
 		this.title.show();
 
@@ -309,8 +295,6 @@ class MainMenu {
 	 */
 	hideMenu() {
 		this.startButton.hide();
-		this.tutorialButton.hide();
-		this.controlsButton.hide();
 		this.exitButton.hide();
 		this.title.hide();
 		this.menu.visible = false;

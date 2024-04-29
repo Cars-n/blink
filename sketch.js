@@ -206,6 +206,7 @@ function draw() {
 			player.health = 100;
 			alert("You died. Try again.")
 		}
+		
 
 		if(inventory.hasItem(flashlight)){
 			darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y, true);
@@ -299,6 +300,7 @@ function draw() {
 			
 		} 
 	}
+
 
 	/* TODO - FOR THE SETTINGS TRIGGER
 	/*else if (GAMESTATE == 'SETTINGS') {
