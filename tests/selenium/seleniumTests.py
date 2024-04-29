@@ -41,7 +41,7 @@ def open_browser_and_start_game(link='http://127.0.0.1:8000/index.html'):
     browser=open_browser(link)
     time.sleep(2)
     browser.find_element(By.NAME,'start').click() # Go to blink selection
-    time.sleep(1.5)
+    time.sleep(3)
     browser.find_element(By.NAME,'exit').click() # go to game start
     return browser
 
