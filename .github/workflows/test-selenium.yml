@@ -1,7 +1,7 @@
 name: Run Selenium Test Suite
 on:
   push:
-    branches: [ "main","dev","Selenium",'selenium-test-room-change' ]
+    branches: [ "main","dev","Selenium","selenium-test-room-change","selenium-behavioral-tests"]
   pull_request:
     branches: [ "main","dev" ]
 jobs:
