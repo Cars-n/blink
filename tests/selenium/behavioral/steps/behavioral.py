@@ -38,7 +38,6 @@ def step_impl(context, button_id):
     context.browser.find_element(By.ID,button_id).click()
     time.sleep(2)
 
-
 @then(u'the game state is "{goal_state}"')
 def step_impl(context, goal_state):
     assert(context.browser.execute_script(f"return GAMESTATE;")==goal_state)
