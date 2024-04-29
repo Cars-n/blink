@@ -157,7 +157,6 @@ class PauseMenu {
 	 * 
 	 */
 	showMenu() {
-		if (this.menu.visible == false) {
 			//Shows menu
 			this.menu.visible = true;
 			
@@ -173,7 +172,6 @@ class PauseMenu {
 			this.exitButton.show();
 			this.settingsButton.show();
 			
-		}
 	}
 	
 	/**
@@ -181,8 +179,6 @@ class PauseMenu {
 	 * 
 	*/
 	hideMenu() {
-		if (this.menu.visible == true) {
-
 			//Hides buttons
 			this.resumeButton.hide();
 			this.exitButton.hide();
@@ -198,7 +194,6 @@ class PauseMenu {
 
 			//Makes menu hide
 			this.menu.visible = false;
-		}	
 	}
 
 
@@ -315,9 +310,9 @@ class MainMenu {
 	/**
 	 * Resumes the game when resume is clicked OR escape is pressed a second time
 	 */
-	startGame(CURRENTGAMESTATE) {
+	startBlinkView(CURRENTGAMESTATE) {
 		this.hideMenu();
-		CURRENTGAMESTATE = 'PLAYING';
+		CURRENTGAMESTATE = 'BLINKVIEW';
 
 		return CURRENTGAMESTATE;
 	}

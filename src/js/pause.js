@@ -9,7 +9,7 @@ function pauseFunctionality() {
 
     pauseMenu.resumeButton.mousePressed(() => {
         GAMESTATE = pauseMenu.resumeGame(GAMESTATE);
-    
+        
     });
 
 
