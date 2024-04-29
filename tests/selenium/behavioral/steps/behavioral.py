@@ -47,6 +47,6 @@ def step_impl(context):
     context.browser=open_browser()
     context.browser.find_element(By.NAME,"start").click()
     time.sleep(1)
-    context.browser.find_element(By.NAME,"start").click()
+    context.browser.find_element(By.NAME,"exit").click()
 
 

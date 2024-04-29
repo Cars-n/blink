@@ -36,12 +36,13 @@ def open_browser(link='http://127.0.0.1:8000/index.html'):
     browser = webdriver.Chrome(options = chrome_options)
     browser.get(link)
     return browser
+
 def open_browser_and_start_game(link='http://127.0.0.1:8000/index.html'):
     browser=open_browser(link)
     time.sleep(2)
     browser.find_element(By.NAME,'start').click() # Go to blink selection
     time.sleep(1.5)
-    browser.find_element(By.NAME,'start').click() # go to start
+    browser.find_element(By.NAME,'exit').click() # go to game start
     return browser
 
 def test_execute():
