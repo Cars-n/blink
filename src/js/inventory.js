@@ -1,4 +1,4 @@
-//Inventory class with functions for inserting into inventory, removing from inventory, rendering inventory, getting coordinates of inventory tiles, and checking if inventory is full.
+//Inventory class with functions for inserting into inventory, removing from inventory, rendering inventory, getting coordinates of inventory tiles, and checking if inventory is full. 
 class InventoryController {
     //Static variables should not be cahnged. 
     static TILE_HEIGHT = 200;

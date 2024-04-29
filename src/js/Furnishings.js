@@ -1,6 +1,6 @@
 
 
-// Class representing a tile in a room
+// Class representing a tile in a room 
 class Furnishing {
     
     constructor(width, height,image=null, colliderType = 'none', collidingCallback = null) {

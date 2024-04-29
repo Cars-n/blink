@@ -1,7 +1,7 @@
 /**
  * 
- */
-
+ */ 
+ 
 
 /**
  * Class for the settings sub menu

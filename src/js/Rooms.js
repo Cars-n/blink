@@ -1,4 +1,4 @@
-// Declaring variables for images and the room controller
+// Declaring variables for images and the room controller 
 let brickImage, floorBoardImage, doorImage;
 let roomControl;
 let ISWAITING = false;
