@@ -5,6 +5,14 @@ function fileCheck() {
 
     describe("#Game Asset PNG & JPG Images", function(){
 
+        it(" is expected to have BODY_skeleton.png", () => {
+            expect(fs.readFile('./assets/BODY_skeleton.png', 'utf8', (err, data) => {
+                if (err) {
+                    throw("BODY_skeleton.png NOT FOUND")
+                } 
+            }));
+        });
+        
         it(" is expected to have bullet.png", () => {
             expect(fs.readFile('./assets/bullet.png', 'utf8', (err, data) => {
                 if (err) {
@@ -30,10 +38,10 @@ function fileCheck() {
         });
 
 
-        it(" is expected to have FlashLight.png", () => {
-            expect(fs.readFile('./assets/FlashLight.png', 'utf8', (err, data) => {
+        it(" is expected to have Flashlight.png", () => {
+            expect(fs.readFile('./assets/Flashlight.png', 'utf8', (err, data) => {
                 if (err) {
-                    throw("FlashLight.png NOT FOUND")
+                    throw("Flashlight.png NOT FOUND")
                 } 
             }));
         });
