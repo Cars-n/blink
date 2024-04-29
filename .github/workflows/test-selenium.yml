@@ -84,3 +84,5 @@ jobs:
       # Run tests
       - name: Running the Python script
         run: python3 tests/selenium/seleniumTests.py
+      - name: Running behavioral tests
+        run: behave tests/selenium/behavioral/menu.feature
