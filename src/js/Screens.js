@@ -262,11 +262,15 @@ class MainMenu {
 
 		//Setting up the start button
 		this.startButton.class("MainMenuButtons");
+		this.startButton.attribute("name", "start");
+
 		this.startButton.position(675, 200)
 		this.startButton.hide();		//Hides the button until pause menu is triggered
 
 		// Setup exit Button
 		this.exitButton.class("MainMenuButtons");
+		this.exitButton.attribute("name", "exit");
+
 		this.exitButton.position(675,250)
 		this.exitButton.hide();		//Hides the button until pause menu is triggered
 		
