@@ -7,7 +7,7 @@ on:
     branches: [ "main","dev" ]
 
 jobs:
-  Test-404:
+  Test-PauseMenu:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout repository
@@ -30,7 +30,7 @@ jobs:
             python3 -m http.server --bind 127.0.0.1 &
         - name: Install Chrome Shared Libraries
           run: |
-            sudo apt-get update && sudo apt-get install -y \
+            sudo apt-get update &&  sudo apt-get install -y \
             ca-certificates \
             fonts-liberation \
             libasound2 \
@@ -75,5 +75,5 @@ jobs:
           run: npx puppeteer browsers install chrome
         
         - name: Run browser tests
-          run: npm run test:no404
-            
+          run: npm run test:pauseMenu
+        

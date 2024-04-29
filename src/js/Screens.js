@@ -85,6 +85,7 @@ class PauseMenu {
 
 		this.pauseTitle = createButton("PAUSE");
 		this.pauseTitle.class("PauseH1");
+		this.pauseTitle.attribute('name', 'pauseHeader');
 		this.pauseTitle.position(600,50);
 		this.pauseTitle.hide();
 
@@ -95,6 +96,7 @@ class PauseMenu {
 
 		//Makes the button
 		this.resumeButton = createButton('>Resume');
+		this.resumeButton.attribute('name', 'resume');
 		this.resumeButton.class("PauseMenuButtons");
 		this.resumeButtonDiv.center();
 		this.resumeButtonDiv.position(510,330);	// x, y
@@ -115,6 +117,7 @@ class PauseMenu {
 
 		// Setup exit Button
 		this.exitButton = createButton('>Exit');
+		this.exitButton.attribute('name', 'pauseExit');
 		this.exitButton.class("PauseMenuButtons");
 		this.exitButtonDiv.center();
 		this.exitButtonDiv.position(715,350);	//x, y
@@ -133,6 +136,7 @@ class PauseMenu {
 
 		// Setup settings Button
 		this.settingsButton = createButton('>Settings');
+		this.settingsButton.attribute('name', 'pauseSettings');
 		this.settingsButton.class("PauseMenuButtons");
 		this.settingsButtonDiv.center();
 		this.settingsButtonDiv.position(870,330);	// x, y
@@ -263,26 +267,31 @@ class MainMenu {
 		this.menu.collider = 'none';
 
 		this.title.class("H1");
+		this.title.attribute('name', 'title');
 		this.title.position(600,50);
 		this.title.hide();
 
 		//Setting up the start button
 		this.startButton.class("MainMenuButtons");
+		this.startButton.attribute("name", "start");
 		this.startButton.position(675, 200)
 		this.startButton.hide();		//Hides the button until pause menu is triggered
 
 		//Setting up the tutorial button
 		this.tutorialButton.class("MainMenuButtons");
+		this.tutorialButton.attribute("name", "tutorial");
 		this.tutorialButton.position(675, 250)
 		this.tutorialButton.hide();		//Hides the button until pause menu is triggered
 
 		//Setting up the controls button
 		this.controlsButton.class("MainMenuButtons");
+		this.controlsButton.attribute("name", "controls");
 		this.controlsButton.position(675, 300)
 		this.controlsButton.hide();		//Hides the button until pause menu is triggered
 
 		// Setup exit Button
 		this.exitButton.class("MainMenuButtons");
+		this.exitButton.attribute("name", "exit");
 		this.exitButton.position(675,350)
 		this.exitButton.hide();		//Hides the button until pause menu is triggered
 		
@@ -315,6 +324,114 @@ class MainMenu {
 		this.title.hide();
 		this.menu.visible = false;
 	}
+		/**
+	 * Called when exit is clicked
+	 * Takes you to the main menu
+	 */
+		exitGame(CURRENTGAMESTATE) {
+			this.hideMenu();
+			CURRENTGAMESTATE = "MENU";
+		}
+	
+	
+		/**
+		 * Resumes the game when resume is clicked OR escape is pressed a second time
+		 */
+		startBlinkView(CURRENTGAMESTATE) {
+			this.hideMenu();
+			CURRENTGAMESTATE = 'BLINKVIEW';
+	
+			return CURRENTGAMESTATE;
+		}
+	}
+
+
+
+class BlinkViewer {
+		/**
+		 * Default constructor, makes a background, resume and exit buttons
+		 */
+		constructor() {
+			this.OKButton = createButton('OK');
+			this.sensitivitySlider = createSlider(100, 200, 130);
+			this.title = createButton('BLINK');
+	
+			//Backdrop to the menu
+			this.menu = new Sprite(1920/2,1080/2,1920,1080);
+			this.menu.layer = MAIN_MENU_LAYER;
+			this.menu.opacity = 1;
+			this.menu.color = 'black';
+			this.menu.collider = 'none';
+	
+			this.title.class("H1");
+			this.title.attribute('name', 'title');
+			this.title.position(600,50);
+			this.title.hide();
+	
+			//Setting up the start button
+			this.sensitivitySlider.class("MainMenuButtons");
+			this.sensitivitySlider.attribute("name", "start");
+			this.sensitivitySlider.position(window.outerWidth/2, 1000)
+			this.sensitivitySlider.hide();		//Hides the button until pause menu is triggered
+	
+			// Setup exit Button
+			this.OKButton.class("MainMenuButtons");
+			this.OKButton.attribute("name", "exit");
+			this.OKButton.position(window.outerWidth/2 + 300,1000)
+			this.OKButton.hide();		//Hides the button until pause menu is triggered
+			
+		}
+	
+		/**
+		 * Shows the menu and buttons
+		 * 
+		 * @param {*} CURRENTGAMESTATE 
+		 */
+		showMenu() {
+			var element = document.querySelectorAll('[id=irrelevantCanvas]');
+			var video = document.getElementById("video");
+			element.forEach(element => {
+			element.style.height = "70vh";
+			element.style.width = "70vw";
+			element.style.top = "15vh";
+			element.style.left = "15vw";
+			element.style.backgroundColor = "transparent";
+			});
+			video.style.height = "70vh";
+			video.style.width = "70vw";
+			video.style.top = "15vh";
+			video.style.left = "15vw";
+
+			this.menu.visible = true;
+			this.OKButton.show();
+			this.sensitivitySlider.show();
+			this.title.show();
+		}
+	
+		/**
+		 * Hides the menu 
+		 * 
+		 */
+		hideMenu() {
+			var element = document.querySelectorAll('[id=irrelevantCanvas]');
+			var video = document.getElementById("video");
+			element.forEach(element => {
+			element.style.height = "1px";
+			element.style.width = "1px";
+			element.style.top = "1px";
+			element.style.left = "1px";
+			element.style.backgroundColor = "black";
+			});
+			video.style.height = "1px";
+			video.style.width = "1px";
+			video.style.top = "1px";
+			video.style.left = "1px";
+
+			this.OKButton.hide();
+			this.sensitivitySlider.hide();
+			this.title.hide();
+			this.menu.visible = false;
+		}
 
 
 	/**
@@ -323,7 +440,7 @@ class MainMenu {
 	 */
 	exitGame(CURRENTGAMESTATE) {
 		this.hideMenu();
-		CURRENTGAMESTATE = "MENU";
+		CURRENTGAMESTATE = "BLINKVIEW";
 	}
 
 

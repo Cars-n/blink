@@ -1,4 +1,4 @@
-const FADERATE = 0.1;
+const FADERATE = 0.015;
 let HASFADEDIN = true;
 let HASFADEDOUT = true;
 let OPACITYEQUALSONE = false;
@@ -55,10 +55,24 @@ function fadeOut(object) {
 
 //Moves the camera in the direction specified. takes "up", "down", "left", "right" as arguments.
 function moveCamera(direction, multiplier = 1) {
-    if (direction == "up") camera.y -= 1080 * multiplier;
-    else if (direction == "down") camera.y += 1080 * multiplier;
-    else if (direction == "left") camera.x -= 1920 * multiplier;
-    else if (direction == "right") camera.x += 1920 * multiplier;
+    if (direction == "up"){
+        camera.y -= 1080 * multiplier;
+        healthBar.y -= 1080 * multiplier;
+    } 
+    else if (direction == "down"){
+        camera.y += 1080 * multiplier;
+        healthBar.y += 1080 * multiplier;
+    } 
+    else if (direction == "left")
+    {
+        camera.x -= 1920 * multiplier;
+        healthBar.x -= 1920 * multiplier;
+    }
+    else if (direction == "right")
+    {
+        camera.x += 1920 * multiplier;
+        healthBar.x += 1920 * multiplier;
+    } 
 }
 
 //Moves the player in the direction specified. takes "up", "down", "left", "right" as arguments. Used to teleport to the next room.
