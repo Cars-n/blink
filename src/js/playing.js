@@ -1,7 +1,7 @@
 //revert
 function playingFunctionality(){
     if (player.health <= 0) {
-        healthBar.img = noHealth;
+        healthBar.img = null;
     }
     else if (player.health < 50){
         healthBar.img = oneHealth;
@@ -46,8 +46,9 @@ function playingFunctionality(){
     }
     if(player.health <= 0) {
         GAMESTATE = pauseMenu.exitGame(GAMESTATE);
-        player.health = 100;
+        
         alert("You died. Try again.")
+        player.health = 100;
     }
 
     if(inventory.hasItem(flashlight)){

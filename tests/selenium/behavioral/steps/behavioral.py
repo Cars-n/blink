@@ -15,6 +15,8 @@ def open_browser(link='http://127.0.0.1:8000/index.html'):
     # Define window size here
         "--ignore-certificate-errors",
         "--headless",
+        "--window-size=1920,1200",
+
         "--no-sandbox"
     ]
 

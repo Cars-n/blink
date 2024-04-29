@@ -353,7 +353,7 @@ class BlinkViewer {
 			// Setup exit Button
 			this.OKButton.class("MainMenuButtons");
 			this.OKButton.attribute("name", "ok");
-			this.OKButton.position(window.outerWidth/2 + 300,1000)
+			this.OKButton.position(window.outerWidth/2 + 300,window.height-300)
 			this.OKButton.hide();		//Hides the button until pause menu is triggered
 			
 		}

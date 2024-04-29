@@ -8,9 +8,9 @@ from selenium.webdriver.common.by import By
 
 # from webdriver_manager.chrome import ChromeDriverManager
 import time
-import chromedriver_autoinstaller
+# import chromedriver_autoinstaller
 
-chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
+# chromedriver_autoinstaller.install()  # Check if the current version of chromedriver exists
                                       # and if it doesn't exist, download it automatically,
                                       # then add chromedriver to path
 
@@ -21,7 +21,7 @@ options = [
     "--ignore-certificate-errors",
     "--headless",
     # "--disable-gpu",
-    # "--window-size=1920,1200",
+    "--window-size=1920,1200",
     # "--ignore-certificate-errors",
     # "--disable-extensions",
     "--no-sandbox"
@@ -91,7 +91,7 @@ def test_movement():
     time.sleep(.1)
     new_y_pos = browser.execute_script('return player.y;')
     print("Player Y position after moving upwards: ", new_y_pos)
-    assert new_y_pos < y_pos, "Failed to move upwards"
+    assert (new_y_pos < y_pos, "Failed to move upwards")
     print("Upward movement passed")
 
     print("Testing player can move downwards...")
@@ -148,9 +148,11 @@ def test_death():
 
     print("Testing player death")
     player_health = browser.execute_script('return player.health')
-    assert player_health > 0, "Player is dead on start"
+    assert (player_health > 0, "Player is dead on start")
     print("Player has ",player_health," health")
-    browser.execute_script('player.health -= 200')
+    browser.execute_script('player.health -= 50')
+    browser.execute_script('player.health -= 50')
+    browser.execute_script('player.health -= 50')
     time.sleep(4)
     alert = browser.switch_to.alert
     alert_text = alert.text
@@ -233,8 +235,8 @@ def test_inventory():
     
 
 if __name__ == "__main__":
+    test_death()
     test_movement()
     test_rooms()
-    test_death()
     test_inventory()
     print("done.")
