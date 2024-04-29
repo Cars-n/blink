@@ -1,5 +1,5 @@
 
-// Class representing a tile in a room
+// Class representing a tile in a room 
 class RoomTile {
     constructor(symbol, width, height, colliderType = 'none', collidingCallback = null) {
         // Creating a p5.js group to hold the tile

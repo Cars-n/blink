@@ -1,6 +1,6 @@
 /**
  * 
- *  Functions & Utilities for collision related settings
+ *  Functions & Utilities for collision related settings 
  * 
  */
 

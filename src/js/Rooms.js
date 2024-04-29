@@ -1,4 +1,4 @@
-// Declaring variables for images and the room controller
+// Declaring variables for images and the room controller 
 let brickImage, floorBoardImage, doorImage;
 let roomControl;
 let ISWAITING = false;
@@ -654,7 +654,6 @@ class RoomController {
 
 
          var room=new Room(16,9,tileMap);
-         room.enemies.push(new RoomEnemyData(0,4,4))
          // row 1
          addFurnishingToRoom(room, dresser, "static", 1.3, 1.1, 66, 47);
          addFurnishingToRoom(room, bed, "static", 2, 1.3, 96, 111);
@@ -671,7 +670,7 @@ class RoomController {
 
          // row 4
          addFurnishingToRoom(room, mirror, "static", 2.15, 4.0, 60, 60);
-
+         room.enemies.push(new RoomEnemyData(0,2,4))
          return room;
 	}
     // furnished
@@ -1203,20 +1202,20 @@ class RoomController {
 		}
 		getRoomU22(){
 			var tileMap = [
-				"=======^^=======",
-				"=oooooooooooooo=",
-				"=oooooooooooooo=",
-				"=oooooooooooooo=",
-				"=oooooooooooooo=",
-				"=oooooooooooooo=",
-				"=oooooooooooooo=",
-				"=oooooooooooooo=",
-				"================",
+				"=======^^==.....",
+				"=ooooooooo=.....",
+				"=ooooooooo=.....",
+				"=ooooooooo=.....",
+				"=ooooooooo=.....",
+				"=ooooooooo=.....",
+				"=ooooooooo=.....",
+				"=ooooooooo=.....",
+				"===========.....",
 				];
 							// var tmp=new Furnishing(100,60,brickImage,"static");
 							// tmp.setTilePosition(5,5);
 							 var room=new Room(16,9,tileMap);
-                             room.enemies.push(new RoomEnemyData(1,4,4))
+                             room.enemies.push(new RoomEnemyData(1,2,4))
 							// room.furnishings.push(tmp);
 							 return room;
 			}

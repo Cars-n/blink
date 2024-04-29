@@ -1,3 +1,4 @@
+//I need to revert all of this
 function createMenuScreen() {
     var object = new Sprite(1920 / 2, 1080 / 2, 1920, 1080);
     object.image = mainMenuImage;

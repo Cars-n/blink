@@ -1,5 +1,6 @@
 const video = document.getElementById('video')
 let nowBlinking = false;
+let vThreshold = 1.3;
 
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('./facemodels'),
@@ -27,6 +28,7 @@ function startVideo() {
 video.addEventListener('play', () => {
 
   var canvas_bg = document.createElement("canvas");
+  canvas_bg.setAttribute("id", "irrelevantCanvas");
   canvas_bg.width = video.width;
   canvas_bg.height = video.height;
   document.body.append(canvas_bg)
@@ -40,6 +42,7 @@ video.addEventListener('play', () => {
   canvas_face.height = video.height;
   var ctx_face = canvas_face.getContext('2d');
   const canvas = faceapi.createCanvasFromMedia(video)
+  canvas.setAttribute("id", "irrelevantCanvas")
   document.body.append(canvas)
   const displaySize = { width: video.width, height: video.height }
   faceapi.matchDimensions(canvas, displaySize)
@@ -115,7 +118,6 @@ video.addEventListener('play', () => {
       return sum + element;
     }, 0);
     meanIrisC = meanIrisC / irisC.length;
-    let vThreshold = 1.3;
 
     let currentIrisC = irisC[irisC.length-1];
     if(irisC.length==100){
