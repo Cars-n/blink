@@ -36,20 +36,22 @@ def open_browser(link='http://127.0.0.1:8000/index.html'):
     browser = webdriver.Chrome(options = chrome_options)
     browser.get(link)
     return browser
+def open_browser_and_start_game(link='http://127.0.0.1:8000/index.html'):
+    browser=open_browser(link)
+    time.sleep(2)
+    browser.find_element(By.NAME,'start').click() # Go to blink selection
+    time.sleep(1.5)
+    browser.find_element(By.NAME,'start').click() # go to start
+    return browser
+
 def test_execute():
-    browser = webdriver.Chrome(options = chrome_options)
-    browser.get("127.0.0.1:8000/index.html")
-    time.sleep(1)
-    browser.find_element(By.ID,'start').click()
+    browser = open_browser_and_start_game()
     time.sleep(4)
     print(browser.execute_script('return testFunc();'))
 
 def test_rooms():
-    browser=open_browser()
-    time.sleep(3)
-    browser.find_element(By.ID,'start').click()
+    browser = open_browser_and_start_game()
     time.sleep(2)
-
     print("Testing player can move rooms...")
     start_room=browser.execute_script('return player.room;')
     print("Starting in room: ",start_room)
@@ -72,9 +74,7 @@ def test_rooms():
     print("Rooms changed!")
 
 def test_movement():
-    browser=open_browser()
-    time.sleep(3)
-    browser.find_element(By.ID,'start').click()
+    browser = open_browser_and_start_game()
     time.sleep(4)
 
     print("Testing player can move upwards...")
@@ -142,9 +142,7 @@ def test_movement():
     print("Right movement passed")
 
 def test_death():
-    browser=open_browser()
-    time.sleep(3)
-    browser.find_element(By.ID,'start').click()
+    browser = open_browser_and_start_game()
     time.sleep(4)
 
     print("Testing player death")
@@ -162,10 +160,9 @@ def test_death():
     assert gamestate != "PLAYING", "Game state did not change"
     print("Player death passed")
 
+
 def test_inventory():
-    browser=open_browser()
-    time.sleep(3)
-    browser.find_element(By.ID,'start').click()
+    browser = open_browser_and_start_game()
     time.sleep(4)
 
     print("Testing player inventory")

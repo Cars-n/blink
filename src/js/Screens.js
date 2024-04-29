@@ -370,7 +370,7 @@ class BlinkViewer {
 	
 			//Setting up the start button
 			this.sensitivitySlider.class("MainMenuButtons");
-			this.sensitivitySlider.attribute("name", "start");
+			this.sensitivitySlider.attribute("name", "slider");
 			this.sensitivitySlider.position(window.outerWidth/2, 1000)
 			this.sensitivitySlider.hide();		//Hides the button until pause menu is triggered
 	

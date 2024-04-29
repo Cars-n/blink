@@ -7,4 +7,4 @@ Scenario Outline: Using menu
 
  Examples: Main Menu
    | button_id   | goal_state   |
-   | start       | PLAYING      |
+   | start       | BLINKVIEW    |
