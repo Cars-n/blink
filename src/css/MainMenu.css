@@ -9,7 +9,10 @@
 .MainMenuButtons:hover {
     background-color: rgb(120, 79, 4);
 }
-
+.OkButton{
+    bottom: 5vh;
+    display: block;
+}
 @keyframes glitch {
     0% {
         opacity: 1;
