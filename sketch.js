@@ -118,6 +118,9 @@ function setup() {
 	fadeScreen.x = player.x;
 	fadeScreen.y = player.y;
 	flashlight = new Item(player.x + 50,player.y + 50, "FlashLight", 2,1,8,20,flashlightImage);
+	inventory.insertItem(flashlight, inventory.hasSpace(flashlight.InventoryX,flashlight.InventoryY))
+	flashlight.itemSprite.visible = false;
+	flashlight.itemSprite.x = 100;
 	flashlight.itemSprite.debug=false;
 	key = new Item(CANVAS_WIDTH_PX/2 ,CANVAS_HEIGHT_PX*4 - 500, "Key", 1,1,10,5,keyImage);
 	key.itemSprite.debug=false;
