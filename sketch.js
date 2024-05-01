@@ -3,9 +3,8 @@ let enemyList = []; //Enemeies currently spawned
 const staticEnemyList = []; //Stored list of every enemy
 let player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
-let flashlight;
 let INVENTORYRENDERED = false;
-const PLAYERSPEED = 15;
+const PLAYERSPEED = 5;
 let gameMap;
 const CANVAS_WIDTH_PX=1920;
 const CANVAS_HEIGHT_PX=1080;
@@ -15,23 +14,18 @@ let darknessSprite;
 let GIANTEYESPAWNED = false;
 let GAMESTATE = "MENU";
 let inventory;
-let key;
-let gun;
+let key, gun, bullets, trinket, bulletItem, flashlight;
 let healthBar;
-let bulletItem;
+let fullHealth, twoHealth, oneHealth, deadHealth;
 let mainMenu;
 let pauseMenu;
 let settingsMenu;
-let CreepyPiano1;
+let CreepyPiano1, CreepyPiano2;
 let mainMenuSound;
-let CreepyPiano2;
 let trapDoorImage;
 let cellBarsImage;
-let bullets;
 let laserEyeBeam;
 let laser
-let trinket;
-let fullHealth, twoHealth, oneHealth, deadHealth;
 //needs to be false when game is ready to play, is false for testing.
 console.log("FIX THIS VALUE");
 let ENEMY42SPAWED = true;
