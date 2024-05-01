@@ -11,6 +11,8 @@ const CANVAS_HEIGHT_PX=1080;
 let darknessSprite;
 // Main Menu Assets
 // MENU, PLAYING, INVENTORY, PAUSED
+let d,e,l,o,s,i,r = false;
+let delozierMode = false;
 let GIANTEYESPAWNED = false;
 let GAMESTATE = "MENU";
 let inventory;
@@ -159,6 +161,20 @@ function setup() {
 }
 
 function draw() {
+	if(kb.presses("d")) d = true;
+	if(kb.presses("e")) e = true;
+	if(kb.presses("l")) l = true;
+	if(kb.presses("o")) o = true;
+	if(kb.presses("s")) s = true;
+	if(kb.presses("i")) i = true;
+	if(kb.presses("r")) r = true;
+
+	if(!delozierMode && d && e && l && o && s && i && r){
+		alert("Delozier Mode Activated You now have 1000000 health")
+		delozierMode = true;
+		player.health = 1000000;
+		console.log(player.health);
+	}
 	// console.log("FPS:",1000/deltaTime);
 	if (GAMESTATE == "MENU") {
 		menuFunctionality();
