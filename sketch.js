@@ -46,7 +46,7 @@ function preload() {
 	keyImage = loadImage('assets/key.png');
 	brickImage = loadImage('assets/WallRoughDraft.png');
 	flashlightImage = loadImage('assets/Flashlight.png');
-	trapDoorImage = loadImage('assets/trapdoor.png');
+	trapDoorImage = loadImage('assets/rooms/tiles/trapdoor.png');
 	floorBoardImage = loadImage("assets/floortiles.png");
 	cellBarsImage = loadImage("assets/cellBars.jpg");
 	gunImage = loadImage("assets/shotgun.png");
