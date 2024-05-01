@@ -345,15 +345,15 @@ class BlinkViewer {
 			this.title.hide();
 	
 			//Setting up the start button
-			this.sensitivitySlider.class("MainMenuButtons");
+			this.sensitivitySlider.class("MainMenuButtons OkButton");
 			this.sensitivitySlider.attribute("name", "slider");
-			this.sensitivitySlider.position(window.outerWidth/2, 1000)
+			// this.sensitivitySlider.position(window.outerWidth/2, 1000)
 			this.sensitivitySlider.hide();		//Hides the button until pause menu is triggered
 	
 			// Setup exit Button
-			this.OKButton.class("MainMenuButtons");
+			this.OKButton.class("MainMenuButtons OkButton");
 			this.OKButton.attribute("name", "ok");
-			this.OKButton.position(window.outerWidth/2 + 300,window.height-300)
+			// this.OKButton.position(window.outerWidth/2 + 300,window.height-300)
 			this.OKButton.hide();		//Hides the button until pause menu is triggered
 			
 		}
