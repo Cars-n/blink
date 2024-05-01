@@ -25,9 +25,8 @@ function playingFunctionality(){
     bulletCollisions();
     playerMovement.handleInput();
     enemyHandler();
-    if(player.room["x"] == 0 && player.room["y"] == 1 && !ENEMY42SPAWED){
-        console.log('this worked');
-        ENEMY42SPAWED = true;
+    if(player.room["x"] == 0 && player.room["y"] == 1){
+			if (!chaseMusic.isPlaying()) chaseMusic.play();
     }
 
     if(player.room["x"] == 9 && player.room["y"] == 2){

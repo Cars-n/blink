@@ -86,7 +86,7 @@ function MiddleDoorCallback(a, b) {
 
 function UpstairsDoorCallback(a, b) {
 	if(b?.tag === "player"){
-    if (ENEMY42SPAWED == true) {
+    if (inventory.hasItem(trinket) == true) {
         if (!ISWAITING) {
             ISWAITING = true;
             fadeScreenNow();

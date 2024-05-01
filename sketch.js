@@ -27,8 +27,6 @@ let cellBarsImage;
 let laserEyeBeam;
 let laser
 //needs to be false when game is ready to play, is false for testing.
-console.log("FIX THIS VALUE");
-let ENEMY42SPAWED = true;
 function preload() {
 
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
@@ -36,7 +34,6 @@ function preload() {
 	twoHealth = loadImage('assets/Health_Eye_2.png');
 	oneHealth = loadImage('assets/Health_Eye_1.png');
 	deadHealth = loadImage('assets/Health_Eye_0.png');
-
 	keyImage = loadImage('assets/key.png');
 	brickImage = loadImage('assets/rooms/tiles/woodTile_Dark.png');
 	flashlightImage = loadImage('assets/Flashlight.png');
@@ -55,8 +52,10 @@ function preload() {
 	CreepyPiano2.setVolume(1);
 	mainMenuSound = loadSound('assets/audio/forest.ogg')
 	mainMenuSound.setVolume(0.1);
-	doorCreak = loadSound('assets/audio/doorCreak.mp3');
-	doorCreak.setVolume(0.5);
+	chaseMusic = loadSound('assets/audio/chaseMusic.mp3');
+	chaseMusic.setVolume(0.1);
+	doorCreak = loadSound('assets/audio/door-opening-and-closing-18398.mp3');
+	doorCreak.setVolume(0.3);
 	footsteps = loadSound('assets/audio/footsteps.mp3');
 	footsteps.setVolume(0.5);
 	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png");
