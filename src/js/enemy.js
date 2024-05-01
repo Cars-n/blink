@@ -174,6 +174,7 @@ function setupStaticEnemyList(){ //Add new enemies here
 async function disappear(enemySprite){
     await delay(3000);
     enemySprite.visible = false;
+    enemySprite.x = 100;
     enemySprite.collider = "none"
 }
 

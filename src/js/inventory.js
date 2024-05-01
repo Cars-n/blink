@@ -44,6 +44,7 @@ class InventoryController {
                 if (this.inventory[j][i] !== "") {
                     let item = this.inventory[j][i];
                     item.itemSprite.visible = true;
+                    item.itemSprite.layer = SETTINGS_LAYER
                     item.itemSprite.scale = item.scaleVector;
                     let location = this.getTileLocation(i, j);
                     if (item.orientation == "none") {
@@ -183,6 +184,8 @@ class InventoryController {
         for (let i = 0; i < InventoryController.INVENTORY_WIDTH; i++) {
             if (this.inventory[0][i] !== "") {
                 this.inventory[0][i].itemSprite.visible = false;
+                this.inventory[0][i].itemSprite.layer = ITEM_LAYER;
+
                 this.inventory[0][i].itemSprite.x = 10000;
             }
             if (this.inventory[1][i] !== "") {
