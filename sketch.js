@@ -44,13 +44,13 @@ function preload() {
 	deadHealth = loadImage('assets/Health_Eye_0.png');
 
 	keyImage = loadImage('assets/key.png');
-	brickImage = loadImage('assets/WallRoughDraft.png');
+	brickImage = loadImage('assets/rooms/tiles/woodTile_Dark.png');
 	flashlightImage = loadImage('assets/Flashlight.png');
 	trapDoorImage = loadImage('assets/rooms/tiles/trapdoor.png');
-	floorBoardImage = loadImage("assets/floortiles.png");
+	floorBoardImage = loadImage("assets//rooms/tiles/wood_crossed_large.png");
 	cellBarsImage = loadImage("assets/cellBars.jpg");
 	gunImage = loadImage("assets/shotgun.png");
-	doorImage=loadImage("assets/Door.png");
+	doorImage=loadImage("assets/rooms/tiles/tileDoorway_brown.png");
 	bulletImage = loadImage("assets/bullet.png");
 	flashlight = loadImage("assets/darknessFlashlight.svg");
 	eyesight = loadImage("assets/darknessEyesight.svg");
