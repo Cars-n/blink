@@ -145,7 +145,12 @@ function enemyHandler(){
         }
         
         //Detects if player and enemy overlaps and changes red if true, currently need debug mode off to see this
-        if (enemyList[i].enemySprite.overlaps(player)) player.health -= 50;
+        if (enemyList[i].enemySprite.overlaps(player) && !PLAYERIFRAMES){
+            PLAYERIFRAMES = true;
+            player.health -= 50;
+            playerInvincibility();
+        } 
+        
     }
     
 }
