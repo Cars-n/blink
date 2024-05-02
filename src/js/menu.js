@@ -18,7 +18,7 @@ function menuFunctionality(){
 
 		mainMenu.exitButton.mousePressed(() => {		
 			/* TODO - LEFT OPEN FOR THE MAIN MENU METHODS TO DISPLAY */
-			showToast("What, got too scared and quit?");
+			alert("What, got too scared and quit?");
 		});
 		
 		if(kb.pressed('l')){

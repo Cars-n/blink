@@ -1,7 +1,7 @@
-var toastDuration = 6500;
-var textSpeed = 50;
+let toastDuration = 6500;
+let textSpeed = 50;
 
-function showToast(msg) {
+function alert(msg) {
     let toast = document.createElement('div');
     toast.classList.add('toast');
 
