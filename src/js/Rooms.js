@@ -49,13 +49,41 @@ function trapDoorCallback(a, b) {
 		inventory.removeItem(key)
 	}
 	else{
-		alert("You need a key to open this trapdoor");
-		//let Text = new Sprite(player.x, player.y, 100, 100, "You need a key to open this trapdoor");
-	}
+		// alert("You need a key to open this trapdoor");
+		// // let Text = new Sprite(player.x, player.y, 100, 100, "You need a key to open this trapdoor");
+        const dialogueBoxfixedContainer = add([fixed()])
+        const dialogueBox = dialogueBoxfixedContainer.add([
+            rect(1000, 200),
+            outline(5),
+            pos(150, 500),
+            fixed()
+        ])
+        const dialogue = "You need a key to open this trapdoor!"
+        const content = dialogueBox.add([
+            text(' ',
+            {
+                size: 42,
+                width: 900,
+                lineSpacing: 15,
+            }),
+            color(10,10,10),
+            pos(40,30),
+            fixed()
+        ])
+
+        content.text = dialogue
+
+        onUpdate(() => {
+            if (isKeyDown('space')) {
+                destroy(dialogueBox)
+            }
+        })
+    }
     } else {
         console.log("not player: ", b.tag);
     }
 }
+
 function MiddleDoorCallback(a, b) {
 	if(b?.tag === "player"){
         if (!ISWAITING) {
