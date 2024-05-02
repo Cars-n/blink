@@ -46,20 +46,19 @@
 		}
 		.toast {
 			position: fixed;
-			bottom: 0; /* positions at bottom of screen*/
-			left: 0; /* extends to left edge of container */
-			right: 0; /* extends to right edge of container */
-			height: 80px;
+			bottom: 3vh; /* positions at bottom of screen*/
+			margin: auto; /* centers toast horizontally*/
+			align-items: center; /* centers text */
+			z-index: 999; /* Ensure the toast is above other elements */
+			height: 3vh;
+			width: 50vw;
 			background: rgb(18, 18, 18);
 			border-radius: 10px;
 			border: 2px solid rgb(183, 183, 183);
 			padding: 10px;
 			font-weight: 600;
 			color: rgb(183, 183, 183);
-			margin: 15px 0;
 			display: flex;
-			align-items: center;
-			z-index: 999; /* Ensure the toast is above other elements */
 		}
 	  </style>
 
