@@ -21,68 +21,71 @@ let wallLamp;
 let drink;
 let stove;
 
+function typeText(textBox, text, index) {
+    if (index < text.length) {
+        textBox.textContent += text.charAt(index);
+        index++;
+        setTimeout(() => {
+            typeText(textBox, text, index);
+        }, 50); // Adjust the typing speed (milliseconds per character)
+    }
+}
 
 // Callback function, simply determines whether it is the player ob colliding with door tile or not
 function trapDoorCallback(a, b) {
     if (b?.tag === "player") {
-		if(inventory.hasItem(key) || TrapdoorUnlocked == true){
+        if (inventory.hasItem(key) || TrapdoorUnlocked == true) {
             TrapdoorUnlocked = true;
-        if (!ISWAITING) {
-            ISWAITING = true;
-            fadeScreenNow();
-            playerMovement.moveSpeed = 0;
-            player.room["x"] += 1;
-			console.log(player.room);
-            gameMap.loadRoom(player.room["x"], player.room["y"]);
-            if (doorCreak.isPlaying() == false) doorCreak.play();
-            waitForOpacityCondition(5000) // Wait for up to 5 seconds
-                .then(() => {
-                    moveCamera("right");
-                    movePlayer("right", 2);
-                    ISWAITING = false;
-                    playerMovement.moveSpeed = PLAYERSPEED;
-                })
-                .catch((error) => {
-                    console.error(error.message);
-                });
-        }
-		inventory.removeItem(key)
-	}
-	else{
-		// alert("You need a key to open this trapdoor");
-		// // let Text = new Sprite(player.x, player.y, 100, 100, "You need a key to open this trapdoor");
-        const dialogueBoxfixedContainer = add([fixed()])
-        const dialogueBox = dialogueBoxfixedContainer.add([
-            rect(1000, 200),
-            outline(5),
-            pos(150, 500),
-            fixed()
-        ])
-        const dialogue = "You need a key to open this trapdoor!"
-        const content = dialogueBox.add([
-            text(' ',
-            {
-                size: 42,
-                width: 900,
-                lineSpacing: 15,
-            }),
-            color(10,10,10),
-            pos(40,30),
-            fixed()
-        ])
-
-        content.text = dialogue
-
-        onUpdate(() => {
-            if (isKeyDown('space')) {
-                destroy(dialogueBox)
+            if (!ISWAITING) {
+                ISWAITING = true;
+                fadeScreenNow();
+                playerMovement.moveSpeed = 0;
+                player.room["x"] += 1;
+                console.log(player.room);
+                gameMap.loadRoom(player.room["x"], player.room["y"]);
+                if (doorCreak.isPlaying() == false) doorCreak.play();
+                waitForOpacityCondition(5000) // Wait for up to 5 seconds
+                    .then(() => {
+                        moveCamera("right");
+                        movePlayer("right", 2);
+                        ISWAITING = false;
+                        playerMovement.moveSpeed = PLAYERSPEED;
+                    })
+                    .catch((error) => {
+                        console.error(error.message);
+                    });
             }
-        })
-    }
-    } else {
-        console.log("not player: ", b.tag);
+            inventory.removeItem(key);
+        } else {
+            // Create a black text box at the bottom of the screen with red lettering
+            const textBox = document.createElement("div");
+            textBox.style.position = "fixed";
+            textBox.style.bottom = "100px"; // Adjust the distance from the bottom
+            textBox.style.left = "50%";
+            textBox.style.transform = "translateX(-50%)";
+            textBox.style.backgroundColor = "black";
+            textBox.style.color = "red"; // Set the lettering color to red
+            textBox.style.padding = "20px";
+            textBox.style.borderRadius = "10px";
+            textBox.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
+            textBox.style.width = "500px"; // Make the text box twice as long
+            textBox.style.textAlign = "center"; // Center align the text
+            textBox.style.fontSize = "2em"; // Double the font size
+            document.body.appendChild(textBox);
+
+            // Typing effect
+            typeText(textBox, "You need a key to open this trapdoor.", 0);
+
+            // Remove the text box after some time
+            setTimeout(() => {
+                document.body.removeChild(textBox);
+            }, 3000 + ("You need a key to open this trapdoor".length * 50)); // Adjust the timeout to match the typing duration
+        }
     }
 }
+
+
+
 
 function MiddleDoorCallback(a, b) {
 	if(b?.tag === "player"){
