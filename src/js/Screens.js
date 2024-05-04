@@ -433,7 +433,7 @@ class BlinkViewer {
 
 class WinMenu {
 	/**
-	 * Default constructor, makes a background, resume and exit buttons
+	 * Default constructor, makes a background and exit buttons
 	 */
 	constructor() {
 		this.exitButton = createButton('> Exit');
@@ -455,7 +455,7 @@ class WinMenu {
 		this.exitButton.attribute("name", "exit");
 
 		this.exitButton.position(675,250)
-		this.exitButton.hide();		//Hides the button until pause menu is triggered
+		this.exitButton.hide();		//Hides the button until win menu is triggered
 		
 	}
 
@@ -489,5 +489,6 @@ class WinMenu {
 	exitGame(CURRENTGAMESTATE) {
 		this.hideMenu();
 		CURRENTGAMESTATE = "MENU";
+		return CURRENTGAMESTATE;
 	}
 }
