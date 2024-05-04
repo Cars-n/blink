@@ -15,7 +15,7 @@ function waitForOpacityCondition(timeout) {
             // console.log("this is the Opacity: " + OPACITYEQUALSONE + "\n"+ "this is the variable: " + variable);
             if (OPACITYEQUALSONE === true) {
                 resolve(OPACITYEQUALSONE);
-            } else if (Date.now() - startTime >= timeout) {
+            } else if (Date.now() - startTime >= 10000) {
                 reject(new Error("Timeout waiting for condition"));
             } else {
                 setTimeout(checkCondition, 1); // Adjust the interval as needed
