@@ -22,6 +22,7 @@ let fullHealth, twoHealth, oneHealth, deadHealth;
 let mainMenu;
 let pauseMenu;
 let settingsMenu;
+let winMenu;
 let CreepyPiano1, CreepyPiano2;
 let mainMenuSound;
 let trapDoorImage;
@@ -158,6 +159,9 @@ function setup() {
 	//Makes a new settings menu
 	settingsMenu = new SettingsMenu();
 
+	//Makes a new win menu
+	winMenu = new WinMenu();
+
 }
 
 function draw() {
@@ -192,6 +196,9 @@ function draw() {
 	} 
 	else if (GAMESTATE == "PAUSE") {
 		pauseFunctionality();
+	}
+	else if (GAMESTATE == "WON") {
+		winFunctionality();
 	}
 
 	/* TODO - FOR THE SETTINGS TRIGGER
