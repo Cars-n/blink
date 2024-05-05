@@ -27,7 +27,7 @@ function playingFunctionality(){
     bulletCollisions();
     playerMovement.handleInput();
     enemyHandler();
-    
+
     if(player.room["x"] == 0 && player.room["y"] == 1){
 			if (!chaseMusic.isPlaying()) chaseMusic.play();
     }
@@ -48,8 +48,10 @@ function playingFunctionality(){
     }
     if(player.health <= 0) { 
         textBox("You died. Try again.")
-        player.health = 100;
+        healthBar.img = deadHealth;
+        setTimeout(() => {
         window.location.reload();
+        }, 3500);
     }
 
     if(inventory.hasItem(flashlight)){

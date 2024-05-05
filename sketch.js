@@ -120,7 +120,7 @@ function setup() {
 	key = new Item(CANVAS_WIDTH_PX/2 ,CANVAS_HEIGHT_PX*4 - 500, "Key", 1,1,10,5,keyImage);
 	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Gun", 2,1,33,6,gunImage);
 	bulletItem = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
-	trinket = new Item(500,500, "Trinket", 1,1,87,115, trinketImage);
+	trinket = new Item(-100,0, "Trinket", 1,1,87,115, trinketImage);
 	trinket.itemSprite.overlaps(RoomController.wallTile.group);
 	key.itemSprite.overlaps(RoomController.wallTile.group);
 	gun.itemSprite.overlaps(RoomController.wallTile.group);
