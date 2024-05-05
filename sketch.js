@@ -32,6 +32,7 @@ let laser
 function preload() {
 
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
+	trinketImage = loadImage('assets/Artifact.png')
 	fullHealth = loadImage('assets/Health_Eye_Full.png');
 	twoHealth = loadImage('assets/Health_Eye_2.png');
 	oneHealth = loadImage('assets/Health_Eye_1.png');
@@ -116,21 +117,14 @@ function setup() {
 	inventory.insertItem(flashlight, inventory.hasSpace(flashlight.InventoryX,flashlight.InventoryY))
 	flashlight.itemSprite.visible = false;
 	flashlight.itemSprite.x = 100;
-	flashlight.itemSprite.debug=false;
 	key = new Item(CANVAS_WIDTH_PX/2 ,CANVAS_HEIGHT_PX*4 - 500, "Key", 1,1,10,5,keyImage);
-	key.itemSprite.debug=false;
 	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Gun", 2,1,33,6,gunImage);
-
 	bulletItem = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
-	trinket = new Item(0,0, "Trinket", 1,1,10,10, "assets/GrimReaper.png");
-	// darkness overlay
+	trinket = new Item(500,500, "Trinket", 1,1,87,115, trinketImage);
 	trinket.itemSprite.overlaps(RoomController.wallTile.group);
 	key.itemSprite.overlaps(RoomController.wallTile.group);
-
 	gun.itemSprite.overlaps(RoomController.wallTile.group);
-
 	flashlight.itemSprite.overlaps(RoomController.wallTile.group);
-
 	bulletItem.itemSprite.overlaps(RoomController.wallTile.group);
 
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
