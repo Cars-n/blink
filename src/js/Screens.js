@@ -491,8 +491,8 @@ class WinMenu {
 	 * Takes you to the main menu
 	 */
 	exitGame(CURRENTGAMESTATE) {
-		this.hideMenu();
-		CURRENTGAMESTATE = "MENU";
-		return CURRENTGAMESTATE;
+		setTimeout(() => {
+			window.location.reload();
+		},1000);
 	}
 }
