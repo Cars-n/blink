@@ -434,3 +434,65 @@ class BlinkViewer {
 		return CURRENTGAMESTATE;
 	}
 }
+
+class WinMenu {
+	/**
+	 * Default constructor, makes a background and exit buttons
+	 */
+	constructor() {
+		this.exitButton = createButton('> Exit');
+		this.title = createButton('YOU ESCAPED');
+
+		//Backdrop to the menu
+		this.menu = new Sprite(1920/2,1080/2,1920,1080);
+		this.menu.layer = MAIN_MENU_LAYER;
+		this.menu.opacity = 0.4;
+		this.menu.color = 'black';
+		this.menu.collider = 'none';
+
+		this.title.class("EscapedH1");
+		this.title.position(600,50);
+		this.title.hide();
+
+		// Setup exit Button
+		this.exitButton.class("EscapedMenuButtons");
+		this.exitButton.attribute("name", "exit");
+
+		this.exitButton.position(675,250)
+		this.exitButton.hide();		//Hides the button until win menu is triggered
+		
+	}
+
+	/**
+	 * Shows the menu and buttons
+	 * 
+	 * @param {*} CURRENTGAMESTATE 
+	 */
+	showMenu() {
+		this.menu.visible = true;
+		this.exitButton.show();
+		this.title.show();
+
+	}
+
+	/**
+	 * Hides the menu 
+	 * 
+	 */
+	hideMenu() {
+		this.exitButton.hide();
+		this.title.hide();
+		this.menu.visible = false;
+	}
+
+
+	/**
+	 * Called when exit is clicked
+	 * Takes you to the main menu
+	 */
+	exitGame(CURRENTGAMESTATE) {
+		this.hideMenu();
+		CURRENTGAMESTATE = "MENU";
+		return CURRENTGAMESTATE;
+	}
+}

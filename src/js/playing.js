@@ -44,6 +44,7 @@ function playingFunctionality(){
             }});
         }
         if(BOSSISALIVE) giantEyeBossfight();
+        else GAMESTATE = "WON";
 
     }
     if(player.health <= 0) { 
