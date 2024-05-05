@@ -32,7 +32,6 @@ function trapDoorCallback(a, b) {
             fadeScreenNow();
             playerMovement.moveSpeed = 0;
             player.room["x"] += 1;
-			console.log(player.room);
             gameMap.loadRoom(player.room["x"], player.room["y"]);
             if (doorCreak.isPlaying() == false) doorCreak.play();
             waitForOpacityCondition(5000) // Wait for up to 5 seconds
@@ -49,7 +48,7 @@ function trapDoorCallback(a, b) {
 		inventory.removeItem(key)
 	}
 	else{
-		alert("You need a key to open this trapdoor");
+		textBox("You need a key to open this trapdoor");
 		//let Text = new Sprite(player.x, player.y, 100, 100, "You need a key to open this trapdoor");
 	}
     } else {
@@ -121,7 +120,6 @@ function trapDoorBackCallback(a, b) {
             fadeScreenNow();
             playerMovement.moveSpeed = 0;
             player.room["x"] -= 1;
-			console.log(player.room);
             gameMap.loadRoom(player.room["x"], player.room["y"]);
             if (doorCreak.isPlaying() == false) doorCreak.play();
             waitForOpacityCondition(5000) // Wait for up to 5 seconds

@@ -170,12 +170,10 @@ function draw() {
 	if(kb.presses("r")) r = true;
 
 	if(!delozierMode && d && e && l && o && s && i && r){
-		alert("Delozier Mode Activated You now have 1000000 health")
+		textBox("Delozier Mode Activated You now have 1000000 health")
 		delozierMode = true;
 		player.health = 1000000;
-		console.log(player.health);
 	}
-	// console.log("FPS:",1000/deltaTime);
 	if (GAMESTATE == "MENU") {
 		menuFunctionality();
 	} 

@@ -95,20 +95,20 @@ function clearEnemyList(){
 
 //Debug keys
 //Spawns an enemy when k key is pressed and removes latest spawed enemy with l key
-function keyPressed(){
-    if(keyCode === 75){
-        spawnEnemy(0);
-    }
+// function keyPressed(){
+//     if(keyCode === 75){
+//         spawnEnemy(0);
+//     }
 
-    if(keyCode === 77){
-        spawnEnemy(1);
-    }
+//     if(keyCode === 77){
+//         spawnEnemy(1);
+//     }
 
-    if(keyCode === 76){
-        //removeEnemy();
-        clearEnemyList();
-    }
-}
+//     if(keyCode === 76){
+//         //removeEnemy();
+//         clearEnemyList();
+//     }
+// }
 
 //Handles anything related to enemeis that needs to be done every frame
 function enemyHandler(){
@@ -130,7 +130,6 @@ function enemyHandler(){
             disappear(enemyList[i].enemySprite);
         }
         
-        console.log(enemyList[i].health)
         if(enemyList[i].health <= 0){
             if(enemyList[i].enemy_id == 0){
                 trinket.itemSprite.x = enemyList[i].enemySprite.x;
