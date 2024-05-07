@@ -833,6 +833,7 @@ class RoomController {
         
         return room;
 	}
+    // furnished
 	getRoom04(){
 		var tileMap = [
 			"=======^^=======",
