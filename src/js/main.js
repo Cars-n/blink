@@ -28,7 +28,7 @@ function waitForOpacityCondition(timeout) {
 
 // Example usage
 
-function textBox(text, delay=50, width="500", bottom="100px"){
+function textBox(text, delay=50, width="500", bottom="100px", useTypeText=true){
     const textBox = document.createElement("div");
             textBox.style.position = "fixed";
             textBox.style.bottom = bottom; // Adjust the distance from the bottom
@@ -42,11 +42,13 @@ function textBox(text, delay=50, width="500", bottom="100px"){
             textBox.style.width = width; // Make the text box twice as long
             textBox.style.textAlign = "center"; // Center align the text
             textBox.style.fontSize = "2em"; // Double the font size
+            textBox.addEventListener("click", () => {
+                document.body.removeChild(textBox);});
             document.body.appendChild(textBox);
-
+            
             // Typing effect
-            typeText(textBox, text, 0,delay);
-
+            if(useTypeText) typeText(textBox, text, 0,delay);
+            else textBox.textContent = text;
             // Remove the text box after some time
             setTimeout(() => {
                 document.body.removeChild(textBox);
