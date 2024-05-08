@@ -1,4 +1,20 @@
+let HAS_DIED=false;
 function playingFunctionality(){
+    if(player.health <= 0) { 
+        if(HAS_DIED){
+            return;
+        }
+        playerMovement.target.velocity.x=0;
+        playerMovement.target.velocity.y=0;
+        player.changeAni('idle_down'); 
+        HAS_DIED=true;
+        textBox("You died. Try again.")
+        healthBar.img = deadHealth;
+        setTimeout(() => {
+        window.location.reload();
+        }, 3500);
+        return;
+    }
     if (player.health <= 0) {
         healthBar.img = null;
     }
@@ -47,13 +63,7 @@ function playingFunctionality(){
         else GAMESTATE = "WON";
 
     }
-    if(player.health <= 0) { 
-        textBox("You died. Try again.")
-        healthBar.img = deadHealth;
-        setTimeout(() => {
-        window.location.reload();
-        }, 3500);
-    }
+    
 
     if(inventory.hasItem(flashlight)){
         darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y, true);

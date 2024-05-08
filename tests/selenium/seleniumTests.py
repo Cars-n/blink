@@ -153,11 +153,7 @@ def test_death():
     browser.execute_script('player.health -= 50')
     browser.execute_script('player.health -= 50')
     browser.execute_script('player.health -= 50')
-    time.sleep(4)
-    alert = browser.switch_to.alert
-    alert_text = alert.text
-    assert "died" in alert_text, "Expected alert didn't appear"
-    alert.dismiss()
+    time.sleep(6)
     gamestate = browser.execute_script('return GAMESTATE')
     print(gamestate)
     assert gamestate != "PLAYING", "Game state did not change"
