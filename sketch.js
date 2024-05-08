@@ -3,54 +3,49 @@ let enemyList = []; //Enemeies currently spawned
 const staticEnemyList = []; //Stored list of every enemy
 let player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
-let flashlight;
 let INVENTORYRENDERED = false;
-const PLAYERSPEED = 15;
+const PLAYERSPEED = 5;
 let gameMap;
 const CANVAS_WIDTH_PX=1920;
 const CANVAS_HEIGHT_PX=1080;
 let darknessSprite;
 // Main Menu Assets
 // MENU, PLAYING, INVENTORY, PAUSED
+let d,e,l,o,s,i,r = false;
+let delozierMode = false;
 let GIANTEYESPAWNED = false;
 let GAMESTATE = "MENU";
 let inventory;
-let key;
-let gun;
+let key, gun, bullets, trinket, bulletItem, flashlight;
 let healthBar;
-let bulletItem;
+let fullHealth, twoHealth, oneHealth, deadHealth;
 let mainMenu;
 let pauseMenu;
 let settingsMenu;
-let CreepyPiano1;
+let winMenu;
+let CreepyPiano1, CreepyPiano2;
 let mainMenuSound;
-let CreepyPiano2;
 let trapDoorImage;
 let cellBarsImage;
-let bullets;
 let laserEyeBeam;
 let laser
-let trinket;
-let fullHealth, twoHealth, oneHealth, deadHealth;
 //needs to be false when game is ready to play, is false for testing.
-console.log("FIX THIS VALUE");
-let ENEMY42SPAWED = true;
 function preload() {
 
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
+	trinketImage = loadImage('assets/Artifact.png')
 	fullHealth = loadImage('assets/Health_Eye_Full.png');
 	twoHealth = loadImage('assets/Health_Eye_2.png');
 	oneHealth = loadImage('assets/Health_Eye_1.png');
 	deadHealth = loadImage('assets/Health_Eye_0.png');
-
 	keyImage = loadImage('assets/key.png');
-	brickImage = loadImage('assets/WallRoughDraft.png');
+	brickImage = loadImage('assets/rooms/tiles/woodTile_Dark.png');
 	flashlightImage = loadImage('assets/Flashlight.png');
-	trapDoorImage = loadImage('assets/trapdoor.png');
-	floorBoardImage = loadImage("assets/floortiles.png");
+	trapDoorImage = loadImage('assets/rooms/tiles/trapdoor.png');
+	floorBoardImage = loadImage("assets//rooms/tiles/wood_crossed_large.png");
 	cellBarsImage = loadImage("assets/cellBars.jpg");
 	gunImage = loadImage("assets/shotgun.png");
-	doorImage=loadImage("assets/Door.png");
+	doorImage=loadImage("assets/rooms/tiles/tileDoorway_brown.png");
 	bulletImage = loadImage("assets/bullet.png");
 	flashlight = loadImage("assets/darknessFlashlight.svg");
 	eyesight = loadImage("assets/darknessEyesight.svg");
@@ -61,8 +56,10 @@ function preload() {
 	CreepyPiano2.setVolume(1);
 	mainMenuSound = loadSound('assets/audio/forest.ogg')
 	mainMenuSound.setVolume(0.1);
-	doorCreak = loadSound('assets/audio/doorCreak.mp3');
-	doorCreak.setVolume(0.5);
+	chaseMusic = loadSound('assets/audio/chaseMusic.mp3');
+	chaseMusic.setVolume(0.1);
+	doorCreak = loadSound('assets/audio/door-opening-and-closing-18398.mp3');
+	doorCreak.setVolume(0.3);
 	footsteps = loadSound('assets/audio/footsteps.mp3');
 	footsteps.setVolume(0.5);
 	mainMenuBackground = loadImage("assets/Main-Menu-Background2.png");
@@ -118,21 +115,17 @@ function setup() {
 	fadeScreen.x = player.x;
 	fadeScreen.y = player.y;
 	flashlight = new Item(player.x + 50,player.y + 50, "FlashLight", 2,1,8,20,flashlightImage);
-	flashlight.itemSprite.debug=false;
+	inventory.insertItem(flashlight, inventory.hasSpace(flashlight.InventoryX,flashlight.InventoryY))
+	flashlight.itemSprite.visible = false;
+	flashlight.itemSprite.x = 100;
 	key = new Item(CANVAS_WIDTH_PX/2 ,CANVAS_HEIGHT_PX*4 - 500, "Key", 1,1,10,5,keyImage);
-	key.itemSprite.debug=false;
 	gun = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Gun", 2,1,33,6,gunImage);
-
 	bulletItem = new Item(CANVAS_WIDTH_PX * 5 + 500,CANVAS_HEIGHT_PX - 400, "Bullet", 1,1,4,3,bulletImage);
-	trinket = new Item(0,0, "Trinket", 1,1,10,10, "assets/GrimReaper.png");
-	// darkness overlay
+	trinket = new Item(-100,0, "Trinket", 1,1,87,115, trinketImage);
 	trinket.itemSprite.overlaps(RoomController.wallTile.group);
 	key.itemSprite.overlaps(RoomController.wallTile.group);
-
 	gun.itemSprite.overlaps(RoomController.wallTile.group);
-
 	flashlight.itemSprite.overlaps(RoomController.wallTile.group);
-
 	bulletItem.itemSprite.overlaps(RoomController.wallTile.group);
 
 	playerMovement = new MovementController(player,PLAYERSPEED,true);
@@ -160,10 +153,25 @@ function setup() {
 	//Makes a new settings menu
 	settingsMenu = new SettingsMenu();
 
+	//Makes a new win menu
+	winMenu = new WinMenu();
+
 }
 
 function draw() {
-	// console.log("FPS:",1000/deltaTime);
+	if(kb.presses("d")) d = true;
+	if(kb.presses("e")) e = true;
+	if(kb.presses("l")) l = true;
+	if(kb.presses("o")) o = true;
+	if(kb.presses("s")) s = true;
+	if(kb.presses("i")) i = true;
+	if(kb.presses("r")) r = true;
+
+	if(!delozierMode && d && e && l && o && s && i && r){
+		textBox("Delozier Mode Activated You now have 1000000 health")
+		delozierMode = true;
+		player.health = 1000000;
+	}
 	if (GAMESTATE == "MENU") {
 		menuFunctionality();
 	} 
@@ -180,6 +188,9 @@ function draw() {
 	} 
 	else if (GAMESTATE == "PAUSE") {
 		pauseFunctionality();
+	}
+	else if (GAMESTATE == "WON") {
+		winFunctionality();
 	}
 
 	/* TODO - FOR THE SETTINGS TRIGGER

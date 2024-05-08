@@ -95,20 +95,20 @@ function clearEnemyList(){
 
 //Debug keys
 //Spawns an enemy when k key is pressed and removes latest spawed enemy with l key
-function keyPressed(){
-    if(keyCode === 75){
-        spawnEnemy(0);
-    }
+// function keyPressed(){
+//     if(keyCode === 75){
+//         spawnEnemy(0);
+//     }
 
-    if(keyCode === 77){
-        spawnEnemy(1);
-    }
+//     if(keyCode === 77){
+//         spawnEnemy(1);
+//     }
 
-    if(keyCode === 76){
-        //removeEnemy();
-        clearEnemyList();
-    }
-}
+//     if(keyCode === 76){
+//         //removeEnemy();
+//         clearEnemyList();
+//     }
+// }
 
 //Handles anything related to enemeis that needs to be done every frame
 function enemyHandler(){
@@ -130,7 +130,6 @@ function enemyHandler(){
             disappear(enemyList[i].enemySprite);
         }
         
-        console.log(enemyList[i].health)
         if(enemyList[i].health <= 0){
             if(enemyList[i].enemy_id == 0){
                 trinket.itemSprite.x = enemyList[i].enemySprite.x;
@@ -145,7 +144,12 @@ function enemyHandler(){
         }
         
         //Detects if player and enemy overlaps and changes red if true, currently need debug mode off to see this
-        if (enemyList[i].enemySprite.overlaps(player)) player.health -= 50;
+        if (enemyList[i].enemySprite.overlaps(player) && !PLAYERIFRAMES){
+            PLAYERIFRAMES = true;
+            player.health -= 50;
+            playerInvincibility();
+        } 
+        
     }
     
 }
@@ -174,6 +178,7 @@ function setupStaticEnemyList(){ //Add new enemies here
 async function disappear(enemySprite){
     await delay(3000);
     enemySprite.visible = false;
+    enemySprite.x = 100;
     enemySprite.collider = "none"
 }
 

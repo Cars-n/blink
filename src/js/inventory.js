@@ -44,6 +44,7 @@ class InventoryController {
                 if (this.inventory[j][i] !== "") {
                     let item = this.inventory[j][i];
                     item.itemSprite.visible = true;
+                    item.itemSprite.layer = SETTINGS_LAYER
                     item.itemSprite.scale = item.scaleVector;
                     let location = this.getTileLocation(i, j);
                     if (item.orientation == "none") {
@@ -99,7 +100,6 @@ class InventoryController {
 
     //Checks if there is space for an item of x*y size. Returns a dictionary with the x and y coords of the top left corner of the space and the orientation of the space.
     hasSpace(x, y) {
-        console.log(x*y);
         if (x * y == 1) {
             if (this.inventory[0].indexOf("") !== -1)
                 return {
@@ -183,6 +183,8 @@ class InventoryController {
         for (let i = 0; i < InventoryController.INVENTORY_WIDTH; i++) {
             if (this.inventory[0][i] !== "") {
                 this.inventory[0][i].itemSprite.visible = false;
+                this.inventory[0][i].itemSprite.layer = ITEM_LAYER;
+
                 this.inventory[0][i].itemSprite.x = 10000;
             }
             if (this.inventory[1][i] !== "") {
@@ -425,9 +427,6 @@ function inventoryFunctionality(){
 			INVENTORYRENDERED = false;
 			playerMovement.moveSpeed = PLAYERSPEED;
 			GAMESTATE = "PLAYING";
-		} 
-		if(kb.pressed('r')){
-			console.log(inventory.inventory);
 		} 
 		dragItem(flashlight, inventory);
 		dragItem(key, inventory);

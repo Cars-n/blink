@@ -12,7 +12,7 @@ function setupPlayer(roomX=0,roomY=0){
     let yOffset=(RoomController.TILE_HEIGHT/2)+(roomY*CANVAS_HEIGHT_PX)+300;
 
 
-    player = new Sprite(xOffset, yOffset, 64, 64);
+    player = new Sprite(xOffset, yOffset, 30, 51);
     player.room={"x":roomX,"y":roomY};
     player.spriteSheet = 'assets/player.png';
     player.anis.offset.x = 2;
@@ -26,17 +26,14 @@ function setupPlayer(roomX=0,roomY=0){
     //collider type as dynamic
     setObjectCollider(player, spriteTypes.PLAYER, true);
     player.tag="player";
-    player.addAnis({
-        up: { row: 8, frames: 9 },
-        left: { row: 9, frames: 9 }, 
-        down: { row: 10, frames: 9 },
-        right: { row: 11, frames: 9 },
-    
-        idle_up: { row: 8, frames: 1 }, 
-        idle_left: { row: 9, frames: 1 },
-        idle_down: { row: 10, frames: 1 },
-        idle_right: { row: 11, frames: 1 },
-    });
+    player.addAni('up', "../../assets/PlayerAnimations/upWalking/1.png", "../../assets/PlayerAnimations/upWalking/2.png", "../../assets/PlayerAnimations/upWalking/3.png", "../../assets/PlayerAnimations/upWalking/4.png", "../../assets/PlayerAnimations/upWalking/5.png", "../../assets/PlayerAnimations/upWalking/6.png", "../../assets/PlayerAnimations/upWalking/7.png", "../../assets/PlayerAnimations/upWalking/8.png", "../../assets/PlayerAnimations/upWalking/9.png",);
+    player.addAni('left', "../../assets/PlayerAnimations/leftWalking/1.png", "../../assets/PlayerAnimations/leftWalking/2.png", "../../assets/PlayerAnimations/leftWalking/3.png", "../../assets/PlayerAnimations/leftWalking/4.png", "../../assets/PlayerAnimations/leftWalking/5.png", "../../assets/PlayerAnimations/leftWalking/6.png", "../../assets/PlayerAnimations/leftWalking/7.png", "../../assets/PlayerAnimations/leftWalking/8.png", "../../assets/PlayerAnimations/leftWalking/9.png",);
+    player.addAni("down", "../../assets/PlayerAnimations/downWalking/1.png", "../../assets/PlayerAnimations/downWalking/2.png", "../../assets/PlayerAnimations/downWalking/3.png", "../../assets/PlayerAnimations/downWalking/4.png", "../../assets/PlayerAnimations/downWalking/5.png", "../../assets/PlayerAnimations/downWalking/6.png", "../../assets/PlayerAnimations/downWalking/7.png", "../../assets/PlayerAnimations/downWalking/8.png", "../../assets/PlayerAnimations/downWalking/9.png",);
+    player.addAni("right", "../../assets/PlayerAnimations/rightWalking/1.png", "../../assets/PlayerAnimations/rightWalking/2.png", "../../assets/PlayerAnimations/rightWalking/3.png", "../../assets/PlayerAnimations/rightWalking/4.png", "../../assets/PlayerAnimations/rightWalking/5.png", "../../assets/PlayerAnimations/rightWalking/6.png", "../../assets/PlayerAnimations/rightWalking/7.png", "../../assets/PlayerAnimations/rightWalking/8.png", "../../assets/PlayerAnimations/rightWalking/9.png",);
+    player.addAni("idle_up", "../../assets/PlayerAnimations/upWalking/1.png");
+    player.addAni("idle_left", "../../assets/PlayerAnimations/leftWalking/1.png");
+    player.addAni("idle_down", "../../assets/PlayerAnimations/downWalking/1.png");
+    player.addAni("idle_right", "../../assets/PlayerAnimations/rightWalking/1.png");
     player.changeAni('idle_up'); // Starting direction
     // Animations for movement
     return player;

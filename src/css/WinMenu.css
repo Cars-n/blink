@@ -1,0 +1,80 @@
+/**
+    CSS Styling for the pause screen
+
+*/
+
+
+/*
+    Lays out the grid implementation that will be overlaid to center the buttons
+    3x4 grid with fractional units for scalability
+    The 3 allows for a center
+*/
+.layoutGrid {
+    display: grid;
+    grid-template:
+    ".    .        .      .            ." 1fr
+    ".    .        .      .            ." 1fr
+    ".    .        Exit   .            ." 1fr
+    ".    .        .      .            ." 1fr
+    /1fr  1fr      1fr    1fr          1fr;
+}
+
+.Exit{
+    grid-area: Exit;
+    justify-content: center;
+    padding-top: 150px;
+
+}
+
+.EscapedMenuButtons{
+    background-color: transparent;
+    display: grid;
+    color: white;
+    border: none;
+    font-size: 25px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+.EscapedHeading {
+    color: white;
+}
+
+.EscapedMenuButtons:hover{
+    color: rgb(252, 252, 86);
+}
+
+
+@keyframes EscapedGlitch {
+    0% {
+        opacity: 1;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    40% {
+        opacity: 0.9;
+    }
+    60% {
+        text-shadow: 0 0 10px yellow, 0 0 20px yellow, 0 0 30px yellow, 0 0 40px yellow, 0 0 50px yellow, 0 0 60px yellow, 0 0 70px yellow;
+    }
+    80% {
+        background-color: transparent;
+        color: rgb(255, 255, 157); 
+        text-shadow: 0 0 10px rgb(255, 255, 117), 0 0 20px rgb(255, 255, 246), 0 0 30px rgb(255, 255, 0);
+        opacity: 0.75;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
+  
+.EscapedH1 {
+    font-size: 7em;
+    color: rgb(255, 255, 0);
+    background-color: transparent;
+    border:none;
+    animation: EscapedGlitch 4s infinite;
+    text-shadow: 0 0 5px yellow; /* Add a yellow glow effect */
+    transition: all 0.1s ease-in-out; /* Smoother transition for the glitch effect */
+  }
