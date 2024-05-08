@@ -10,6 +10,11 @@ const CANVAS_WIDTH_PX=1920;
 const CANVAS_HEIGHT_PX=1080;
 let darknessSprite;
 // Main Menu Assets
+let upWalking1, upWalking2, upWalking3, upWalking4, upWalking5, upWalking6, upWalking7, upWalking8, upWalking9;
+let lefWalking1, leftWalking2, leftWalking3, leftWalking4, leftWalking5, leftWalking6, leftWalking7, leftWalking8, leftWalking9;
+let rightWalking1, rightWalking2, rightWalking3, rightWalking4, rightWalking5, rightWalking6, rightWalking7, rightWalking8, rightWalking9;
+let downWallking1, downWalking2, downWalking3, downWalking4, downWalking5, downWalking6, downWalking7, downWalking8, downWalking9;
+
 // MENU, PLAYING, INVENTORY, PAUSED
 let d,e,l,o,s,i,r = false;
 let delozierMode = false;
@@ -31,6 +36,43 @@ let laserEyeBeam;
 let laser
 //needs to be false when game is ready to play, is false for testing.
 function preload() {
+	//player animations from assets/PlayerAnimations
+	upWalking1 = loadImage('assets/PlayerAnimations/upWalking/1.png');
+	upWalking2 = loadImage('assets/PlayerAnimations/upWalking/2.png');
+	upWalking3 = loadImage('assets/PlayerAnimations/upWalking/3.png');
+	upWalking4 = loadImage('assets/PlayerAnimations/upWalking/4.png');
+	upWalking5 = loadImage('assets/PlayerAnimations/upWalking/5.png');
+	upWalking6 = loadImage('assets/PlayerAnimations/upWalking/6.png');
+	upWalking7 = loadImage('assets/PlayerAnimations/upWalking/7.png');
+	upWalking8 = loadImage('assets/PlayerAnimations/upWalking/8.png');
+	upWalking9 = loadImage('assets/PlayerAnimations/upWalking/9.png');
+	leftWalking1 = loadImage('assets/PlayerAnimations/leftWalking/1.png');
+	leftWalking2 = loadImage('assets/PlayerAnimations/leftWalking/2.png');
+	leftWalking3 = loadImage('assets/PlayerAnimations/leftWalking/3.png');
+	leftWalking4 = loadImage('assets/PlayerAnimations/leftWalking/4.png');
+	leftWalking5 = loadImage('assets/PlayerAnimations/leftWalking/5.png');
+	leftWalking6 = loadImage('assets/PlayerAnimations/leftWalking/6.png');
+	leftWalking7 = loadImage('assets/PlayerAnimations/leftWalking/7.png');
+	leftWalking8 = loadImage('assets/PlayerAnimations/leftWalking/8.png');
+	leftWalking9 = loadImage('assets/PlayerAnimations/leftWalking/9.png');
+	rightWalking1 = loadImage('assets/PlayerAnimations/rightWalking/1.png');
+	rightWalking2 = loadImage('assets/PlayerAnimations/rightWalking/2.png');
+	rightWalking3 = loadImage('assets/PlayerAnimations/rightWalking/3.png');
+	rightWalking4 = loadImage('assets/PlayerAnimations/rightWalking/4.png');
+	rightWalking5 = loadImage('assets/PlayerAnimations/rightWalking/5.png');
+	rightWalking6 = loadImage('assets/PlayerAnimations/rightWalking/6.png');
+	rightWalking7 = loadImage('assets/PlayerAnimations/rightWalking/7.png');
+	rightWalking8 = loadImage('assets/PlayerAnimations/rightWalking/8.png');
+	rightWalking9 = loadImage('assets/PlayerAnimations/rightWalking/9.png');
+	downWalking1 = loadImage('assets/PlayerAnimations/downWalking/1.png');
+	downWalking2 = loadImage('assets/PlayerAnimations/downWalking/2.png');
+	downWalking3 = loadImage('assets/PlayerAnimations/downWalking/3.png');
+	downWalking4 = loadImage('assets/PlayerAnimations/downWalking/4.png');
+	downWalking5 = loadImage('assets/PlayerAnimations/downWalking/5.png');
+	downWalking6 = loadImage('assets/PlayerAnimations/downWalking/6.png');
+	downWalking7 = loadImage('assets/PlayerAnimations/downWalking/7.png');
+	downWalking8 = loadImage('assets/PlayerAnimations/downWalking/8.png');
+	downWalking9 = loadImage('assets/PlayerAnimations/downWalking/9.png');
 
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
 	trinketImage = loadImage('assets/Artifact.png')
