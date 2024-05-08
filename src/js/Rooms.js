@@ -1023,7 +1023,7 @@ class RoomController {
 						"=oooooooooooo=o=",
 						"=oooooooooooo=o=",
 						"=oooooooooooo=o=",
-						"<oo=======ooo=o=",
+						"<oo===ooooooo=o=",
 						"=oo=ooooooooooo=",
 						"=oo=oooooooo=oo=",
 						"=oo=oooooooo=oo=",
