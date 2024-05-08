@@ -4,7 +4,7 @@ const staticEnemyList = []; //Stored list of every enemy
 let player,fadeScreen, footsteps, doorCreak;
 let ALL_LOADED=1;
 let INVENTORYRENDERED = false;
-const PLAYERSPEED = 5;
+const PLAYERSPEED = 9;
 let gameMap;
 const CANVAS_WIDTH_PX=1920;
 const CANVAS_HEIGHT_PX=1080;
