@@ -16,7 +16,7 @@ let rightWalking1, rightWalking2, rightWalking3, rightWalking4, rightWalking5, r
 let downWallking1, downWalking2, downWalking3, downWalking4, downWalking5, downWalking6, downWalking7, downWalking8, downWalking9;
 
 // MENU, PLAYING, INVENTORY, PAUSED
-let d,e,l,o,s,i,r = false;
+let d,e,l,o,z,i,r = false;
 let delozierMode = false;
 let GIANTEYESPAWNED = false;
 let GAMESTATE = "MENU";
@@ -205,11 +205,11 @@ function draw() {
 	if(kb.presses("e")) e = true;
 	if(kb.presses("l")) l = true;
 	if(kb.presses("o")) o = true;
-	if(kb.presses("s")) s = true;
+	if(kb.presses("z")) z = true;
 	if(kb.presses("i")) i = true;
 	if(kb.presses("r")) r = true;
 
-	if(!delozierMode && d && e && l && o && s && i && r){
+	if(!delozierMode && d && e && l && o && r && i && z){
 		textBox("Delozier Mode Activated You now have 1000000 health")
 		delozierMode = true;
 		player.health = 1000000;
