@@ -25,7 +25,7 @@ function playingFunctionality(){
         healthBar.img = twoHealth;
     }
     else if (player.health > 10000) {
-        healthBar.img = "../../assets/greg.png"
+        healthBar.img = delozerFace
     }
     if(inventory.hasItem(trinket)){
         RoomController.upstairsDoor.group.img = floorBoardImage;
