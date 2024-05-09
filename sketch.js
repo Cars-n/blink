@@ -73,7 +73,7 @@ function preload() {
 	downWalking7 = loadImage('assets/PlayerAnimations/downWalking/7.png');
 	downWalking8 = loadImage('assets/PlayerAnimations/downWalking/8.png');
 	downWalking9 = loadImage('assets/PlayerAnimations/downWalking/9.png');
-
+	delozierFace = loadImage('assets/greg.png');
 	InventoryBackground = loadImage('assets/InventoryBackground.png');
 	trinketImage = loadImage('assets/Artifact.png')
 	fullHealth = loadImage('assets/Health_Eye_Full.png');
