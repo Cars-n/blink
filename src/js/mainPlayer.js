@@ -12,7 +12,7 @@ function setupPlayer(roomX=0,roomY=0){
     let yOffset=(RoomController.TILE_HEIGHT/2)+(roomY*CANVAS_HEIGHT_PX)+300;
 
 
-    player = new Sprite(xOffset, yOffset, 64, 64);
+    player = new Sprite(xOffset, yOffset, 30, 51);
     player.room={"x":roomX,"y":roomY};
     player.spriteSheet = 'assets/player.png';
     player.anis.offset.x = 2;
@@ -26,17 +26,14 @@ function setupPlayer(roomX=0,roomY=0){
     //collider type as dynamic
     setObjectCollider(player, spriteTypes.PLAYER, true);
     player.tag="player";
-    player.addAnis({
-        up: { row: 8, frames: 9 },
-        left: { row: 9, frames: 9 }, 
-        down: { row: 10, frames: 9 },
-        right: { row: 11, frames: 9 },
-    
-        idle_up: { row: 8, frames: 1 }, 
-        idle_left: { row: 9, frames: 1 },
-        idle_down: { row: 10, frames: 1 },
-        idle_right: { row: 11, frames: 1 },
-    });
+    player.addAni('up', upWalking1, upWalking2, upWalking3, upWalking4, upWalking5, upWalking6, upWalking7, upWalking8, upWalking9);
+    player.addAni('left', leftWalking1, leftWalking2, leftWalking3, leftWalking4, leftWalking5, leftWalking6, leftWalking7, leftWalking8, leftWalking9);
+    player.addAni("down", downWalking1, downWalking2, downWalking3, downWalking4, downWalking5, downWalking6, downWalking7, downWalking8, downWalking9);
+    player.addAni("right", rightWalking1, rightWalking2, rightWalking3, rightWalking4, rightWalking5, rightWalking6, rightWalking7, rightWalking8, rightWalking9);
+    player.addAni("idle_up", upWalking1);
+    player.addAni("idle_left", leftWalking1);
+    player.addAni("idle_down", downWalking1);
+    player.addAni("idle_right", rightWalking1);
     player.changeAni('idle_up'); // Starting direction
     // Animations for movement
     return player;

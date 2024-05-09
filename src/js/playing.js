@@ -1,13 +1,31 @@
-//revert
+let HAS_DIED=false;
 function playingFunctionality(){
+    if(player.health <= 0) { 
+        if(HAS_DIED){
+            return;
+        }
+        playerMovement.target.velocity.x=0;
+        playerMovement.target.velocity.y=0;
+        player.changeAni('idle_down'); 
+        HAS_DIED=true;
+        textBox("You died. Try again.")
+        healthBar.img = deadHealth;
+        setTimeout(() => {
+        window.location.reload();
+        }, 3500);
+        return;
+    }
     if (player.health <= 0) {
-        healthBar.img = noHealth;
+        healthBar.img = null;
     }
     else if (player.health < 50){
         healthBar.img = oneHealth;
     }
     else if (player.health < 100) {
         healthBar.img = twoHealth;
+    }
+    else if (player.health > 10000) {
+        healthBar.img = delozierFace
     }
     if(inventory.hasItem(trinket)){
         RoomController.upstairsDoor.group.img = floorBoardImage;
@@ -25,9 +43,9 @@ function playingFunctionality(){
     bulletCollisions();
     playerMovement.handleInput();
     enemyHandler();
-    if(player.room["x"] == 0 && player.room["y"] == 1 && !ENEMY42SPAWED){
-        console.log('this worked');
-        ENEMY42SPAWED = true;
+
+    if(player.room["x"] == 0 && player.room["y"] == 1){
+			if (!chaseMusic.isPlaying()) chaseMusic.play();
     }
 
     if(player.room["x"] == 9 && player.room["y"] == 2){
@@ -42,13 +60,10 @@ function playingFunctionality(){
             }});
         }
         if(BOSSISALIVE) giantEyeBossfight();
+        else GAMESTATE = "WON";
 
     }
-    if(player.health <= 0) {
-        GAMESTATE = pauseMenu.exitGame(GAMESTATE);
-        player.health = 100;
-        alert("You died. Try again.")
-    }
+    
 
     if(inventory.hasItem(flashlight)){
         darknessDraw(player.x, player.y, player.velocity.x, player.velocity.y, true);
@@ -68,12 +83,14 @@ function playingFunctionality(){
     }
     if(player.overlaps(gun.itemSprite)){
         if (inventory.insertItem(gun, inventory.hasSpace(gun.InventoryX,gun.InventoryY))){
+            textBox("Press the spacebar to shoot if you have a bullet in your inventory");
             gun.itemSprite.visible = false;
             gun.itemSprite.x = 100;
         } 
     }
     if(player.overlaps(key.itemSprite)){
         if (inventory.insertItem(key, inventory.hasSpace(key.InventoryX,key.InventoryY))) {
+            textBox("this looks like it could fit into a trapdoor.")
             key.itemSprite.visible = false;
             key.itemSprite.x = 100;
         }
@@ -85,8 +102,8 @@ function playingFunctionality(){
         }
     }
     if(player.overlaps(trinket.itemSprite)){
-        console.log(inventory.hasSpace(trinket.InventoryX,trinket.InventoryY))
         if (inventory.insertItem(trinket, inventory.hasSpace(trinket.InventoryX,trinket.InventoryY))){
+            textBox("You feel your perception shift as you pick up the trinket. You can now see hidden doors.")
             trinket.itemSprite.visible = false;
             bulletItem.itemSprite.x = 100;
         } 

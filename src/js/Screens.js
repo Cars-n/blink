@@ -157,7 +157,6 @@ class PauseMenu {
 	 * 
 	 */
 	showMenu() {
-		if (this.menu.visible == false) {
 			//Shows menu
 			this.menu.visible = true;
 			
@@ -173,7 +172,6 @@ class PauseMenu {
 			this.exitButton.show();
 			this.settingsButton.show();
 			
-		}
 	}
 	
 	/**
@@ -181,8 +179,6 @@ class PauseMenu {
 	 * 
 	*/
 	hideMenu() {
-		if (this.menu.visible == true) {
-
 			//Hides buttons
 			this.resumeButton.hide();
 			this.exitButton.hide();
@@ -198,7 +194,6 @@ class PauseMenu {
 
 			//Makes menu hide
 			this.menu.visible = false;
-		}	
 	}
 
 
@@ -245,17 +240,12 @@ class PauseMenu {
 
 }
 
-/**
- * Class to handle the control of the main menu and actions in the menu
- */
 class MainMenu {
 	/**
 	 * Default constructor, makes a background, resume and exit buttons
 	 */
 	constructor() {
 		this.startButton = createButton('> Start');
-		this.tutorialButton = createButton('> Tutorial');
-		this.controlsButton = createButton('> Controls');
 		this.exitButton = createButton('> Exit');
 		this.title = createButton('BLINK');
 
@@ -267,32 +257,21 @@ class MainMenu {
 		this.menu.collider = 'none';
 
 		this.title.class("H1");
-		this.title.attribute('name', 'title');
 		this.title.position(600,50);
 		this.title.hide();
 
 		//Setting up the start button
 		this.startButton.class("MainMenuButtons");
 		this.startButton.attribute("name", "start");
+
 		this.startButton.position(675, 200)
 		this.startButton.hide();		//Hides the button until pause menu is triggered
-
-		//Setting up the tutorial button
-		this.tutorialButton.class("MainMenuButtons");
-		this.tutorialButton.attribute("name", "tutorial");
-		this.tutorialButton.position(675, 250)
-		this.tutorialButton.hide();		//Hides the button until pause menu is triggered
-
-		//Setting up the controls button
-		this.controlsButton.class("MainMenuButtons");
-		this.controlsButton.attribute("name", "controls");
-		this.controlsButton.position(675, 300)
-		this.controlsButton.hide();		//Hides the button until pause menu is triggered
 
 		// Setup exit Button
 		this.exitButton.class("MainMenuButtons");
 		this.exitButton.attribute("name", "exit");
-		this.exitButton.position(675,350)
+
+		this.exitButton.position(675,250)
 		this.exitButton.hide();		//Hides the button until pause menu is triggered
 		
 	}
@@ -305,8 +284,6 @@ class MainMenu {
 	showMenu() {
 		this.menu.visible = true;
 		this.startButton.show();
-		this.tutorialButton.show();
-		this.controlsButton.show();
 		this.exitButton.show();
 		this.title.show();
 
@@ -318,33 +295,32 @@ class MainMenu {
 	 */
 	hideMenu() {
 		this.startButton.hide();
-		this.tutorialButton.hide();
-		this.controlsButton.hide();
 		this.exitButton.hide();
 		this.title.hide();
 		this.menu.visible = false;
 	}
-		/**
+
+
+	/**
 	 * Called when exit is clicked
 	 * Takes you to the main menu
 	 */
-		exitGame(CURRENTGAMESTATE) {
-			this.hideMenu();
-			CURRENTGAMESTATE = "MENU";
-		}
-	
-	
-		/**
-		 * Resumes the game when resume is clicked OR escape is pressed a second time
-		 */
-		startBlinkView(CURRENTGAMESTATE) {
-			this.hideMenu();
-			CURRENTGAMESTATE = 'BLINKVIEW';
-	
-			return CURRENTGAMESTATE;
-		}
+	exitGame(CURRENTGAMESTATE) {
+		this.hideMenu();
+		CURRENTGAMESTATE = "MENU";
 	}
 
+
+	/**
+	 * Resumes the game when resume is clicked OR escape is pressed a second time
+	 */
+	startBlinkView(CURRENTGAMESTATE) {
+		this.hideMenu();
+		CURRENTGAMESTATE = 'BLINKVIEW';
+
+		return CURRENTGAMESTATE;
+	}
+}
 
 
 class BlinkViewer {
@@ -369,15 +345,15 @@ class BlinkViewer {
 			this.title.hide();
 	
 			//Setting up the start button
-			this.sensitivitySlider.class("MainMenuButtons");
-			this.sensitivitySlider.attribute("name", "start");
-			this.sensitivitySlider.position(window.outerWidth/2, 1000)
+			this.sensitivitySlider.class("MainMenuButtons OkButton");
+			this.sensitivitySlider.attribute("name", "slider");
+			// this.sensitivitySlider.position(window.outerWidth/2, 1000)
 			this.sensitivitySlider.hide();		//Hides the button until pause menu is triggered
 	
 			// Setup exit Button
-			this.OKButton.class("MainMenuButtons");
-			this.OKButton.attribute("name", "exit");
-			this.OKButton.position(window.outerWidth/2 + 300,1000)
+			this.OKButton.class("MainMenuButtons OkButton");
+			this.OKButton.attribute("name", "ok");
+			// this.OKButton.position(window.outerWidth/2 + 300,window.height-300)
 			this.OKButton.hide();		//Hides the button until pause menu is triggered
 			
 		}
@@ -412,7 +388,7 @@ class BlinkViewer {
 		 * Hides the menu 
 		 * 
 		 */
-		hideMenu() {
+		async hideMenu() {
 			var element = document.querySelectorAll('[id=irrelevantCanvas]');
 			var video = document.getElementById("video");
 			element.forEach(element => {
@@ -442,15 +418,81 @@ class BlinkViewer {
 		this.hideMenu();
 		CURRENTGAMESTATE = "BLINKVIEW";
 	}
+	
+	
+	/**
+	 * Resumes the game when resume is clicked OR escape is pressed a second time
+	*/
+	startGame(CURRENTGAMESTATE) {
+		this.hideMenu()
+		CURRENTGAMESTATE = 'PLAYING';
+		let text = "The trees, gnarled and black against the dying light, seemed to reach for you with skeletal fingers. The wind, a mournful sigh through the pines, whispered of things long dead and best forgotten. You stood there, at the foot of the mansion, your breath coming in ragged gasps, the taste of fear metallic on your tongue. The crash, the figure on the road, it was all a kaleidoscope of terror in your mind. Now, this house, looming like a tombstone against the bruised sky, offered sanctuary. Or did it? A flicker of movement in a shattered window, a shadow playing tricks? Or was it the figure, somehow transported, already inside, waiting for you? You knew the car was useless, a mangled wreck offering no escape. But the woods, with their rustling secrets and unseen eyes, were no haven either. The mansion, for all its haunted stillness, was your only option. Taking a shuddering breath, you stepped forward, each footfall echoing in the unnatural hush. The door, ancient and weathered, creaked open as if it had been waiting for you, beckoning you into the darkness. The smell hit you first, a mix of dust and decay, a hint of something sickly sweet underneath. And then the cold, seeping into your bones, a chill that went deeper than the autumn air. You were trapped, caught in a game you didn't understand, the rules whispered by unseen entities. Escape. That was the only goal. Escape the mansion, escape the figure, escape the darkness that seemed to crawl beneath your skin. But how? The answer, like everything else in this place, was shrouded in shadows.";
+		textBox(text, 25, "1200px", "25px", false)
+		setTimeout(() =>{
+			textBox("You have a flashlight that you brought from your car, to view it press e.")
+		}, 70000);
+		return CURRENTGAMESTATE;
+	}
+}
+
+class WinMenu {
+	/**
+	 * Default constructor, makes a background and exit buttons
+	 */
+	constructor() {
+		this.exitButton = createButton('> Exit');
+		this.title = createButton('YOU ESCAPED');
+
+		//Backdrop to the menu
+		this.menu = new Sprite(1920/2,1080/2,1920,1080);
+		this.menu.layer = MAIN_MENU_LAYER;
+		this.menu.opacity = 0.4;
+		this.menu.color = 'black';
+		this.menu.collider = 'none';
+
+		this.title.class("EscapedH1");
+		this.title.position(600,50);
+		this.title.hide();
+
+		// Setup exit Button
+		this.exitButton.class("EscapedMenuButtons");
+		this.exitButton.attribute("name", "exit");
+
+		this.exitButton.position(675,250)
+		this.exitButton.hide();		//Hides the button until win menu is triggered
+		
+	}
+
+	/**
+	 * Shows the menu and buttons
+	 * 
+	 * @param {*} CURRENTGAMESTATE 
+	 */
+	showMenu() {
+		this.menu.visible = true;
+		this.exitButton.show();
+		this.title.show();
+
+	}
+
+	/**
+	 * Hides the menu 
+	 * 
+	 */
+	hideMenu() {
+		this.exitButton.hide();
+		this.title.hide();
+		this.menu.visible = false;
+	}
 
 
 	/**
-	 * Resumes the game when resume is clicked OR escape is pressed a second time
+	 * Called when exit is clicked
+	 * Takes you to the main menu
 	 */
-	startGame(CURRENTGAMESTATE) {
-		this.hideMenu();
-		CURRENTGAMESTATE = 'PLAYING';
-
-		return CURRENTGAMESTATE;
+	exitGame(CURRENTGAMESTATE) {
+		setTimeout(() => {
+			window.location.reload();
+		},1000);
 	}
 }

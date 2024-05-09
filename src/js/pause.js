@@ -9,20 +9,20 @@ function pauseFunctionality() {
 
     pauseMenu.resumeButton.mousePressed(() => {
         GAMESTATE = pauseMenu.resumeGame(GAMESTATE);
-    
+        
     });
 
 
     pauseMenu.exitButton.mousePressed(() => {
         
         /* TODO - LEFT OPEN FOR THE MAIN MENU METHODS TO DISPLAY */
-        alert("What, got to scared and quit?");
+        textBox("What, got to scared and quit?");
         GAMESTATE = pauseMenu.exitGame(GAMESTATE);
     });
     
 
     pauseMenu.settingsButton.mousePressed(() => {
-        alert("The settings screen is under progress and will be done soon! :)");
+        textBox("The settings screen is under progress and will be done soon! :)");
         //GAMESTATE = pauseMenu.settingsToggle(settingsMenu, GAMESTATE);
 
     });

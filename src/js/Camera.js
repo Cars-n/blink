@@ -1,4 +1,4 @@
-const FADERATE = 0.015;
+const FADERATE = 0.035;
 let HASFADEDIN = true;
 let HASFADEDOUT = true;
 let OPACITYEQUALSONE = false;

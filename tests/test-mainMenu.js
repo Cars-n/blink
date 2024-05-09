@@ -56,7 +56,7 @@ async function testStartButton() {
     startButton.click();
 
     //Check the game state
-    if (GAMESTATE != 'PLAYING') {
+    if (GAMESTATE != 'BINKVIEW') {
         throw "Game state is not PLAYING and stuck on menu when start is clicked!";
     }
 

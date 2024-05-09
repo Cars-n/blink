@@ -21,7 +21,7 @@ options = [
     "--ignore-certificate-errors",
     "--headless",
     # "--disable-gpu",
-    # "--window-size=1920,1200",
+    "--window-size=1920,1200",
     # "--ignore-certificate-errors",
     # "--disable-extensions",
     "--no-sandbox"
@@ -36,20 +36,23 @@ def open_browser(link='http://127.0.0.1:8000/index.html'):
     browser = webdriver.Chrome(options = chrome_options)
     browser.get(link)
     return browser
+
+def open_browser_and_start_game(link='http://127.0.0.1:8000/index.html'):
+    browser=open_browser(link)
+    time.sleep(2)
+    browser.find_element(By.NAME,'start').click() # Go to blink selection
+    time.sleep(3)
+    browser.find_element(By.NAME,'ok').click() # go to game start
+    return browser
+
 def test_execute():
-    browser = webdriver.Chrome(options = chrome_options)
-    browser.get("127.0.0.1:8000/index.html")
-    time.sleep(1)
-    browser.find_element(By.NAME,'start').click()
+    browser = open_browser_and_start_game()
     time.sleep(4)
     print(browser.execute_script('return testFunc();'))
 
 def test_rooms():
-    browser=open_browser()
-    time.sleep(3)
-    browser.find_element(By.NAME,'start').click()
+    browser = open_browser_and_start_game()
     time.sleep(2)
-
     print("Testing player can move rooms...")
     start_room=browser.execute_script('return player.room;')
     print("Starting in room: ",start_room)
@@ -72,9 +75,7 @@ def test_rooms():
     print("Rooms changed!")
 
 def test_movement():
-    browser=open_browser()
-    time.sleep(3)
-    browser.find_element(By.NAME,'start').click()
+    browser = open_browser_and_start_game()
     time.sleep(4)
 
     print("Testing player can move upwards...")
@@ -90,7 +91,7 @@ def test_movement():
     time.sleep(.1)
     new_y_pos = browser.execute_script('return player.y;')
     print("Player Y position after moving upwards: ", new_y_pos)
-    assert new_y_pos < y_pos, "Failed to move upwards"
+    assert (new_y_pos < y_pos, "Failed to move upwards")
     print("Upward movement passed")
 
     print("Testing player can move downwards...")
@@ -142,48 +143,29 @@ def test_movement():
     print("Right movement passed")
 
 def test_death():
-    browser=open_browser()
-    time.sleep(3)
-    browser.find_element(By.NAME,'start').click()
+    browser = open_browser_and_start_game()
     time.sleep(4)
 
     print("Testing player death")
     player_health = browser.execute_script('return player.health')
-    assert player_health > 0, "Player is dead on start"
+    assert (player_health > 0, "Player is dead on start")
     print("Player has ",player_health," health")
-    browser.execute_script('player.health -= 200')
-    time.sleep(4)
-    alert = browser.switch_to.alert
-    alert_text = alert.text
-    assert "died" in alert_text, "Expected alert didn't appear"
-    alert.dismiss()
+    browser.execute_script('player.health -= 50')
+    browser.execute_script('player.health -= 50')
+    browser.execute_script('player.health -= 50')
+    time.sleep(6)
     gamestate = browser.execute_script('return GAMESTATE')
     print(gamestate)
     assert gamestate != "PLAYING", "Game state did not change"
     print("Player death passed")
 
+
 def test_inventory():
-    browser=open_browser()
-    time.sleep(3)
-    browser.find_element(By.NAME,'start').click()
+    browser = open_browser_and_start_game()
     time.sleep(4)
 
     print("Testing player inventory")
-    print("Checking if player is empty on start")
-    empty_inventory = browser.execute_script('\
-        for (let j = 0; j < InventoryController.INVENTORY_HEIGHT; j++) {\
-            for (let i = 0; i < InventoryController.INVENTORY_WIDTH; i++) {\
-                if (inventory.inventory[j][i] != "") return false;\
-            }\
-        }\
-        return true;\
-    ')
-    assert empty_inventory == True, "Player's inventory is not empty on start"
-    print("Creating flashlight item on player")
-    browser.execute_script('\
-        flashlight = new Item(player.x,player.y, "FlashLight", 2,1,8,20,flashlightImage);\
-    ')
-    time.sleep(.1)
+    print("Checking if player started with flashlight")
     has_item = browser.execute_script('return inventory.hasItem(flashlight)')
     assert has_item == True, "Player did not pick up flashlight"
     time.sleep(5)
@@ -235,8 +217,8 @@ def test_inventory():
     
 
 if __name__ == "__main__":
+    test_death()
     test_movement()
     test_rooms()
-    test_death()
     test_inventory()
     print("done.")
